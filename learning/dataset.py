@@ -333,10 +333,11 @@ def split_documents(
     test_keys = set(keys[:test_count])
     validation_keys = set(keys[test_count : test_count + validation_count])
     train_keys = set(keys[test_count + validation_count :])
+    # Keep both membership and list order stable across Python processes.
     return CorpusSplit(
-        train=[document for key in train_keys for document in groups[key]],
-        validation=[document for key in validation_keys for document in groups[key]],
-        test=[document for key in test_keys for document in groups[key]],
+        train=[document for key in keys if key in train_keys for document in groups[key]],
+        validation=[document for key in keys if key in validation_keys for document in groups[key]],
+        test=[document for key in keys if key in test_keys for document in groups[key]],
         seed=seed,
         validation_fraction=validation_fraction,
         test_fraction=test_fraction,

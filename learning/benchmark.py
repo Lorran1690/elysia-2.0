@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+from statistics import median
 from typing import Any
 
 import psutil
@@ -40,7 +41,9 @@ def benchmark_generation(model: ElysiaTransformer, *, device: torch.device, toke
     return results
 
 
-def benchmark_model(model: ElysiaTransformer, *, device: torch.device, steps: int = 5) -> dict[str, Any]:
+def benchmark_model(
+    model: ElysiaTransformer, *, device: torch.device, steps: int = 5, warmup: int = 0, repetitions: int = 1
+) -> dict[str, Any]:
     model = model.to(device)
     model.train()
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
@@ -49,27 +52,40 @@ def benchmark_model(model: ElysiaTransformer, *, device: torch.device, steps: in
     inputs = torch.randint(0, model.config.vocab_size, (batch_size, sequence), device=device)
     targets = torch.randint(0, model.config.vocab_size, (batch_size, sequence), device=device)
     process = psutil.Process()
+    def train_measurement() -> tuple[float, float]:
+        _sync(device)
+        started = time.perf_counter()
+        losses: list[float] = []
+        for _ in range(steps):
+            optimizer.zero_grad(set_to_none=True)
+            _, loss = model(inputs, targets)
+            loss.backward()
+            optimizer.step()
+            losses.append(float(loss.item()))
+        _sync(device)
+        return time.perf_counter() - started, losses[-1]
+
+    for _ in range(warmup):
+        train_measurement()
     if device.type == "cuda":
         torch.cuda.reset_peak_memory_stats(device)
     _sync(device)
-    started = time.perf_counter()
-    losses: list[float] = []
-    for _ in range(steps):
-        optimizer.zero_grad(set_to_none=True)
-        _, loss = model(inputs, targets)
-        loss.backward()
-        optimizer.step()
-        losses.append(float(loss.item()))
-    _sync(device)
-    elapsed = time.perf_counter() - started
+    training_measurements = [train_measurement() for _ in range(repetitions)]
+    elapsed = median(item[0] for item in training_measurements)
     model.eval()
-    generation = benchmark_generation(model, device=device)
+    generation_measurements = [benchmark_generation(model, device=device) for _ in range(repetitions)]
+    generation = {
+        key: median(measurement[key] for measurement in generation_measurements)
+        for key in generation_measurements[0]
+    }
     return {
         "parameters": model.num_parameters(),
         "train_seconds": elapsed,
         "train_step_seconds": elapsed / steps,
         "tokens_per_second": (batch_size * sequence * steps) / elapsed,
-        "last_loss": losses[-1],
+        "last_loss": training_measurements[-1][1],
+        "warmup": warmup,
+        "repetitions": repetitions,
         "rss_bytes": process.memory_info().rss,
         "peak_vram_bytes": torch.cuda.max_memory_allocated(device) if device.type == "cuda" else 0,
         **generation,

@@ -1,0 +1,260 @@
+{
+  "device": "cuda",
+  "benchmark_kind": "synthetic tensors",
+  "experiments": {
+    "swiglu-sdpa": {
+      "parameters": 3486032,
+      "train_seconds": 0.08137110000097891,
+      "train_step_seconds": 0.016274220000195783,
+      "tokens_per_second": 7865.200298291416,
+      "last_loss": 1.7183828353881836,
+      "warmup": 2,
+      "repetitions": 2,
+      "rss_bytes": 1103163392,
+      "peak_vram_bytes": 88072704,
+      "generation_uncached_seconds": 0.7257041500015475,
+      "generation_uncached_tokens_per_second": 117.25914374942202,
+      "generation_cached_seconds": 0.24591965000217897,
+      "generation_cached_tokens_per_second": 131.86800243260524,
+      "kv_cache_bytes_for_prompt": 131072.0,
+      "cache_window_equivalence": {
+        "cases": [
+          {
+            "prompt_tokens": 7,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 251,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 256,
+            "new_tokens": 12,
+            "equal": true
+          }
+        ],
+        "all_equal": true
+      }
+    },
+    "swiglu": {
+      "parameters": 3486032,
+      "train_seconds": 0.1624852999993891,
+      "train_step_seconds": 0.03249705999987782,
+      "tokens_per_second": 3938.8178499987766,
+      "last_loss": 1.7183830738067627,
+      "warmup": 2,
+      "repetitions": 2,
+      "rss_bytes": 1228722176,
+      "peak_vram_bytes": 88072704,
+      "generation_uncached_seconds": 0.9858170499974221,
+      "generation_uncached_tokens_per_second": 60.185230127723955,
+      "generation_cached_seconds": 0.8255358999995224,
+      "generation_cached_tokens_per_second": 41.16211139626377,
+      "kv_cache_bytes_for_prompt": 131072.0,
+      "cache_window_equivalence": {
+        "cases": [
+          {
+            "prompt_tokens": 7,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 251,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 256,
+            "new_tokens": 12,
+            "equal": true
+          }
+        ],
+        "all_equal": true
+      }
+    },
+    "sdpa": {
+      "parameters": 3483640,
+      "train_seconds": 0.15533524999773363,
+      "train_step_seconds": 0.031067049999546726,
+      "tokens_per_second": 4120.12083547899,
+      "last_loss": 1.4399209022521973,
+      "warmup": 2,
+      "repetitions": 2,
+      "rss_bytes": 1226252288,
+      "peak_vram_bytes": 88021504,
+      "generation_uncached_seconds": 0.272166049999214,
+      "generation_uncached_tokens_per_second": 119.625843481973,
+      "generation_cached_seconds": 0.4000028000009479,
+      "generation_cached_tokens_per_second": 80.07216242124213,
+      "kv_cache_bytes_for_prompt": 131072.0,
+      "cache_window_equivalence": {
+        "cases": [
+          {
+            "prompt_tokens": 7,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 251,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 256,
+            "new_tokens": 12,
+            "equal": true
+          }
+        ],
+        "all_equal": true
+      }
+    },
+    "combined": {
+      "parameters": 3418192,
+      "train_seconds": 0.28852009999900474,
+      "train_step_seconds": 0.057704019999800946,
+      "tokens_per_second": 2218.2163391812483,
+      "last_loss": 1.9324657917022705,
+      "warmup": 2,
+      "repetitions": 2,
+      "rss_bytes": 1249976320,
+      "peak_vram_bytes": 86715904,
+      "generation_uncached_seconds": 0.8234400000037567,
+      "generation_uncached_tokens_per_second": 39.051323818065285,
+      "generation_cached_seconds": 0.7641063000010035,
+      "generation_cached_tokens_per_second": 42.194955383862705,
+      "kv_cache_bytes_for_prompt": 131072.0,
+      "cache_window_equivalence": {
+        "cases": [
+          {
+            "prompt_tokens": 7,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 251,
+            "new_tokens": 12,
+            "equal": true
+          },
+          {
+            "prompt_tokens": 256,
+            "new_tokens": 12,
+            "equal": true
+          }
+        ],
+        "all_equal": true
+      }
+    }
+  },
+  "corpus_pilot": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "steps": 10,
+    "parameters": 3485519,
+    "elapsed_seconds": 1.0322809999997844,
+    "history": [
+      {
+        "step": 1.0,
+        "train_loss": 6.293434143066406,
+        "validation_loss": 6.125966707865397
+      },
+      {
+        "step": 10.0,
+        "train_loss": 5.622521877288818,
+        "validation_loss": 5.682201226552327
+      }
+    ],
+    "test_loss": 5.556485493977864,
+    "tokenizer": {
+      "type": "byte_bpe",
+      "schema_version": 1,
+      "vocab_size": 503,
+      "requested_vocab_size": 512,
+      "fingerprint": "dfda70b968dfcfb215261391623e9e1ae73da79b71ea8f67f9c977be8aed8048"
+    },
+    "corpus": {
+      "files_seen": 4,
+      "documents_loaded": 4,
+      "duplicate_documents": 0,
+      "invalid_documents": 0,
+      "source_groups": 4,
+      "near_duplicate_clusters": 4,
+      "total_bytes": 4445,
+      "raw_files": {
+        "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+        "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+        "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+        "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+      }
+    },
+    "checkpoint": "learning\\checkpoints\\elysia-seed-v0.4-pilot.pt",
+    "data": {
+      "raw_files": {
+        "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+        "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+        "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+        "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+      },
+      "split": {
+        "seed": 2026,
+        "validation_fraction": 0.15,
+        "test_fraction": 0.15,
+        "members": {
+          "train": [
+            {
+              "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+              "group": "related:1",
+              "path": "data\\raw\\elysia_limits.txt"
+            },
+            {
+              "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+              "group": "related:0",
+              "path": "data\\raw\\elysia_experiment_log.txt"
+            }
+          ],
+          "validation": [
+            {
+              "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+              "group": "related:3",
+              "path": "data\\raw\\elysia_training_notes.txt"
+            }
+          ],
+          "test": [
+            {
+              "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+              "group": "related:2",
+              "path": "data\\raw\\elysia_principles.txt"
+            }
+          ]
+        },
+        "fingerprint": "fa60370603eb2f2509a80a71785d75ea4bfe68e45047b8a6ea8535352119e6d1"
+      },
+      "tokenizer": {
+        "type": "byte_bpe",
+        "schema_version": 1,
+        "vocab_size": 503,
+        "requested_vocab_size": 512,
+        "fingerprint": "dfda70b968dfcfb215261391623e9e1ae73da79b71ea8f67f9c977be8aed8048"
+      },
+      "token_stores": {
+        "train": {
+          "path": "data\\processed\\tokens-train-fa60370603eb.bin",
+          "token_count": 768,
+          "sha256": "be00f67a344bcb644e48d36b17d1ac07c03c405df475c24d0be9f50bc6e95685"
+        },
+        "validation": {
+          "path": "data\\processed\\tokens-validation-fa60370603eb.bin",
+          "token_count": 568,
+          "sha256": "947d16ec06baa5240739a6c669de4b971d52e50b7b5a11a1a59cd27a012cf3b3"
+        },
+        "test": {
+          "path": "data\\processed\\tokens-test-fa60370603eb.bin",
+          "token_count": 557,
+          "sha256": "028d60cfc30cee6f93da74be2f4e30b78857c558175fbea6b8ca6e0298840bfb"
+        }
+      },
+      "fingerprint": "5a7e24feaa139d8a05a6ec4dbc7b92c327bf8045366539de91dba02cc3faac40"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "tokens-test-fa60370603eb.bin",
+  "token_count": 557,
+  "sha256": "028d60cfc30cee6f93da74be2f4e30b78857c558175fbea6b8ca6e0298840bfb",
+  "documents": [
+    "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7"
+  ],
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 503,
+    "requested_vocab_size": 512,
+    "fingerprint": "dfda70b968dfcfb215261391623e9e1ae73da79b71ea8f67f9c977be8aed8048"
+  },
+  "split": {
+    "seed": 2026,
+    "validation_fraction": 0.15,
+    "test_fraction": 0.15,
+    "members": {
+      "train": [
+        {
+          "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+          "group": "related:1",
+          "path": "data\\raw\\elysia_limits.txt"
+        },
+        {
+          "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+          "group": "related:0",
+          "path": "data\\raw\\elysia_experiment_log.txt"
+        }
+      ],
+      "validation": [
+        {
+          "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+          "group": "related:3",
+          "path": "data\\raw\\elysia_training_notes.txt"
+        }
+      ],
+      "test": [
+        {
+          "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+          "group": "related:2",
+          "path": "data\\raw\\elysia_principles.txt"
+        }
+      ]
+    },
+    "fingerprint": "fa60370603eb2f2509a80a71785d75ea4bfe68e45047b8a6ea8535352119e6d1"
+  }
+}

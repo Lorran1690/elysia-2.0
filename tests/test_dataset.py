@@ -56,6 +56,7 @@ def test_split_is_disjoint_and_fingerprinted() -> None:
     assert not groups[0] & groups[2]
     assert not groups[1] & groups[2]
     assert len(split.metadata()["fingerprint"]) == 64
+    assert split.metadata() == split_documents(documents, seed=4).metadata()
 
 
 def test_token_store_is_bounded_for_large_source(tmp_path: Path) -> None:
