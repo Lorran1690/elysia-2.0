@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "training_split_fingerprint": "a39d11769467502f8c3034de7242fa436874b7c1a93813e152e46b33ad0492fd",
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 504,
+    "requested_vocab_size": 512,
+    "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+  }
+}

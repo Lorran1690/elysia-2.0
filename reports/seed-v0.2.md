@@ -1,54 +1,51 @@
-# Relatório ELYSIA-Seed v0.2
+# Relatório ELYSIA-Seed v0.2 auditada
 
 Branch: `codex/elysia-seed-v0.2`.
 
-## Alterações
+## Escopo da revisão
 
-- Corrigido o decode incremental de bytes UTF-8 incompletos durante geração.
-- Checkpoints v2 agora guardam estados Python, PyTorch, CUDA e do gerador de lotes.
-- O carregamento usa `weights_only=True`, valida campos, configuração do modelo e fingerprint do tokenizador.
-- A divisão exige pelo menos três documentos e produz treino, validação e teste disjuntos.
-- O carregador lê TXT e JSONL linha a linha, valida UTF-8, normaliza NFC, remove duplicações e registra hashes/erros.
-- Adicionado Byte-Level BPE próprio, com vocabulário JSON versionado e tokens especiais.
-- Adicionada CI para a suíte sem GPU.
+- O split é realizado antes do BPE. O vocabulário `tokenizer-v0.2-audited.json` é treinado apenas nos dois trabalhos do conjunto de treino.
+- TXT passou a ser uma obra por arquivo. Em JSONL, registros com `source_id`, `source`, `document_id` ou `id` são agrupados como uma única obra.
+- Duplicatas exatas são removidas; uma assinatura SimHash impede que textos muito próximos cruzem os splits. Isso é uma proteção heurística, não uma prova de que toda paráfrase foi identificada.
+- O corpus, o BPE e os tokens são processados em fluxo. Os tokens de cada split ficam em arquivos `uint32` locais e os lotes leem somente as janelas necessárias.
+- Checkpoints v3 guardam hashes dos arquivos brutos, split, tokenizador, armazenamento de tokens e arquitetura. Retomar com qualquer assinatura diferente falha.
+- A geração usa `torch.load(..., weights_only=True)` e valida tokenizador, vocabulário e fingerprint antes de carregar pesos.
 
-## Tokenizadores
+## Artefatos auditados
 
-| Tokenizador | Vocabulário | Bytes | Tokens | Bytes/token | Limite uniforme estimado (bits/byte) |
-|---|---:|---:|---:|---:|---:|
-| ByteTokenizer v0.1 | 259 | 4.417 | 4.417 | 1,000 | 8,0168 |
-| ELYSIA-BPE v0.2 | 512 | 4.417 | 1.744 | 2,5327 | 3,5535 |
+- Checkpoint: `learning/checkpoints/elysia-seed-v0.2-audited.pt`.
+- Tokenizador: `data/processed/tokenizer-v0.2-audited.json`.
+- Manifesto do tokenizador: `data/processed/tokenizer-v0.2-audited.manifest.json`.
+- Assinatura do split: `c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea`.
+- Assinatura dos dados do checkpoint: `3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e`.
 
-O limite em bits/byte é uma comparação uniforme baseada no vocabulário, não perplexidade nem evidência de compreensão.
+## Corpus local
 
-## Dataset local
+- 4 arquivos, 4 obras, 0 duplicatas exatas e 0 registros inválidos.
+- 4.445 bytes locais autorizados; nenhum dado externo foi baixado.
+- Split: 2 obras para treino, 1 para validação e 1 para teste.
+- BPE: 504 tokens no vocabulário solicitado de até 512; fingerprint `a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6`.
 
-- Arquivos válidos: 4.
-- Documentos: 16 linhas não vazias.
-- Duplicações: 0.
-- Registros inválidos: 0.
-- Caracteres: 4.417.
-- Bytes UTF-8: 4.417.
-- Origem: textos criados especificamente para demonstração técnica.
-- Dados externos: nenhum baixado.
+## Treinamento novo e retomada
 
-## Treino controlado
+Executado localmente em NVIDIA GeForce GTX 1650/CUDA:
 
-- Arquitetura separada da v0.1, com 4 blocos, embedding 256, 4 cabeças, feedforward 1024 e contexto 256.
-- Vocabulário BPE: 512.
-- Parâmetros: 3.487.744.
-- Dispositivo: NVIDIA GeForce GTX 1650 via CUDA 12.8 (`torch 2.11.0+cu128`).
-- 50 etapas iniciais em 1,32 s; retomada verificada até a etapa 55 em 0,47 s.
-- Loss de treino: `6,2579` na etapa 1, `4,0510` na etapa 50 e `3,8236` na etapa 55.
-- Loss de validação: `6,1603` na etapa 1, `5,5991` na etapa 50 e `5,5814` na etapa 55.
-- Loss no split de teste na etapa 55: `5,6726`.
+| Etapa | Loss treino | Loss validação |
+| ---: | ---: | ---: |
+| 1 | 6,2490 | 6,1099 |
+| 20 | 5,0042 | 5,6404 |
+| 30 | 4,1937 | 5,5339 |
+| 35, após retomada | 4,4449 | 5,5167 |
 
-Isso demonstra ajuste em um corpus pequeno; não demonstra que o modelo compreende português.
+- 30 etapas iniciais: 2,55 s.
+- Retomada de 30 para 35: 0,62 s.
+- Loss de teste após a etapa 35: `5,4371`.
+- A recarga segura do checkpoint e uma geração curta foram verificadas. A saída ainda é rudimentar, como esperado para este corpus mínimo.
 
-## Testes
+## Resultados antigos
 
-`21 passed in 7.02s`, incluindo BPE, Unicode, TXT/JSONL, deduplicação, splits, máscara causal, gradientes, overfitting, checkpoint seguro, restauração de RNG, determinismo, geração, CPU e GPU disponível.
+As métricas previamente registradas para a v0.2 **não são comparáveis** com este relatório. O BPE anterior foi aprendido antes do split e a unidade de TXT era uma linha; os números antigos permanecem no histórico, mas não são evidência auditada de generalização.
 
-## Limitações e v0.3 proposta
+## Limitações
 
-O corpus ainda é pequeno demais para conclusões linguísticas. A próxima etapa poderia ampliar dados autorizados, medir melhor perplexidade e criar avaliações fixas de texto não visto. Isso é apenas uma proposta; a v0.3 não foi iniciada.
+O corpus é pequeno demais para qualquer alegação de compreensão de português. A detecção de texto semelhante é deliberadamente leve e pode deixar passar paráfrases distantes. Esta revisão não inicia v0.3, não usa dados externos e não adiciona RoPE, RAG, LoRA, quantização ou novas camadas de produto.

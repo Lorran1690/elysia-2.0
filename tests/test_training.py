@@ -5,9 +5,11 @@ import pytest
 import torch
 
 from brain.generate import generate
+from brain.bpe_tokenizer import ByteBPETokenizer
 from brain.model import ElysiaTransformer, ModelConfig
 from learning.dataset import make_batch
 from learning.train import load_checkpoint, save_checkpoint, set_seed
+from learning.generate_text import load_inference_checkpoint
 
 
 def tiny_config() -> ModelConfig:
@@ -76,7 +78,7 @@ def test_checkpoint_round_trip(tmp_path: Path) -> None:
         history=[{"step": 7.0, "train_loss": 1.0, "validation_loss": 1.2}],
         config={"seed": 1},
     )
-    loaded = torch.load(path, map_location="cpu", weights_only=False)
+    loaded = torch.load(path, map_location="cpu", weights_only=True)
     restored = ElysiaTransformer(ModelConfig(**loaded["model_config"]))
     restored.load_state_dict(loaded["model_state"])
     assert loaded["step"] == 7
@@ -122,6 +124,39 @@ def test_checkpoint_restores_random_states_and_rejects_wrong_config(tmp_path: Pa
     wrong_model = ElysiaTransformer(ModelConfig(**{**tiny_config().__dict__, "embedding_dim": 16, "num_heads": 4}))
     with pytest.raises(ValueError, match="incompatível"):
         load_checkpoint(path, model=wrong_model, device=torch.device("cpu"))
+
+
+def test_checkpoint_refuses_resume_with_other_corpus(tmp_path: Path) -> None:
+    model = ElysiaTransformer(tiny_config())
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001)
+    path = tmp_path / "audited.pt"
+    data = {"fingerprint": "corpus-a"}
+    save_checkpoint(path, model=model, optimizer=optimizer, step=1, history=[], config={}, data_metadata=data)
+    with pytest.raises(ValueError, match="Dados ou divisão incompatíveis"):
+        load_checkpoint(path, model=model, device=torch.device("cpu"), expected_data={"fingerprint": "corpus-b"})
+
+
+def test_safe_inference_validates_bpe_fingerprint(tmp_path: Path) -> None:
+    tokenizer = ByteBPETokenizer(280).train(["modelo local repetido " * 20])
+    tokenizer_path = tmp_path / "tokenizer.json"
+    tokenizer.save(tokenizer_path)
+    model = ElysiaTransformer(ModelConfig(**{**tiny_config().__dict__, "vocab_size": tokenizer.vocab_size}))
+    path = tmp_path / "inference.pt"
+    save_checkpoint(
+        path,
+        model=model,
+        optimizer=torch.optim.AdamW(model.parameters()),
+        step=1,
+        history=[],
+        config={},
+        tokenizer_metadata=tokenizer.metadata(),
+    )
+    loaded_model, loaded_tokenizer = load_inference_checkpoint(path, device=torch.device("cpu"), tokenizer_path=tokenizer_path)
+    assert loaded_model.config.vocab_size == loaded_tokenizer.vocab_size
+    other_path = tmp_path / "other.json"
+    ByteBPETokenizer(280).train(["outro vocabulário " * 20]).save(other_path)
+    with pytest.raises(ValueError, match="vocabulário local"):
+        load_inference_checkpoint(path, device=torch.device("cpu"), tokenizer_path=other_path)
 
 
 def test_seed_makes_initialization_reproducible() -> None:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import time
@@ -18,10 +19,12 @@ from brain.tokenizer import ByteTokenizer
 
 from .dataset import (
     CorpusStats,
+    TokenStore,
+    iter_document_chunks,
     load_corpus,
     make_batch,
+    prepare_token_store,
     split_documents,
-    tokenize_documents,
     write_source_manifest,
 )
 from .evaluate import evaluate_loss
@@ -77,6 +80,11 @@ def _model_config(values: dict[str, Any]) -> ModelConfig:
     )
 
 
+def _stable_fingerprint(value: Any) -> str:
+    encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def save_checkpoint(
     path: str | Path,
     *,
@@ -87,9 +95,10 @@ def save_checkpoint(
     config: dict[str, Any],
     batch_generator: torch.Generator | None = None,
     tokenizer_metadata: dict[str, str | int] | None = None,
+    data_metadata: dict[str, Any] | None = None,
 ) -> None:
     checkpoint = {
-        "checkpoint_version": 2,
+        "checkpoint_version": 3,
         "step": step,
         "model_config": model.config_dict(),
         "model_state": model.state_dict(),
@@ -97,6 +106,8 @@ def save_checkpoint(
         "history": history,
         "training_config": config,
         "tokenizer": tokenizer_metadata,
+        "data": data_metadata,
+        "architecture": {"config": model.config_dict(), "fingerprint": _stable_fingerprint(model.config_dict())},
         "rng_state": capture_rng_state(batch_generator),
     }
     checkpoint_path = Path(path)
@@ -111,6 +122,7 @@ def load_checkpoint(
     optimizer: torch.optim.Optimizer | None = None,
     device: torch.device,
     expected_tokenizer: dict[str, str | int] | None = None,
+    expected_data: dict[str, Any] | None = None,
     batch_generator: torch.Generator | None = None,
 ) -> dict[str, Any]:
     """Load only the tensor/primitive checkpoint format created by this project."""
@@ -125,13 +137,22 @@ def load_checkpoint(
     if expected_tokenizer is not None:
         saved_tokenizer = checkpoint.get("tokenizer")
         if not isinstance(saved_tokenizer, dict):
-            if checkpoint.get("checkpoint_version", 1) == 1 and expected_tokenizer.get("type") == "byte_utf8":
+            if checkpoint.get("checkpoint_version", 1) == 1 and expected_tokenizer.get("type") == "byte_utf8" and expected_data is None:
                 saved_tokenizer = expected_tokenizer
             else:
                 raise ValueError("Checkpoint sem metadados do tokenizador")
         for key in ("type", "vocab_size", "fingerprint"):
             if saved_tokenizer.get(key) != expected_tokenizer.get(key):
                 raise ValueError(f"Tokenizador incompatível no checkpoint: {key}")
+    if expected_data is not None:
+        saved_data = checkpoint.get("data")
+        if not isinstance(saved_data, dict):
+            raise ValueError("Checkpoint legado não pode retomar treinamento auditado")
+        if saved_data.get("fingerprint") != expected_data.get("fingerprint"):
+            raise ValueError("Dados ou divisão incompatíveis no checkpoint")
+        architecture = checkpoint.get("architecture")
+        if not isinstance(architecture, dict) or architecture.get("fingerprint") != _stable_fingerprint(model.config_dict()):
+            raise ValueError("Arquitetura incompatível no checkpoint")
     model.load_state_dict(checkpoint["model_state"])
     if optimizer is not None:
         if "optimizer_state" not in checkpoint:
@@ -142,7 +163,9 @@ def load_checkpoint(
     return checkpoint
 
 
-def _prepare_tokenizer(config: dict[str, Any], documents: list[Any]) -> ByteTokenizer | ByteBPETokenizer:
+def _prepare_tokenizer(
+    config: dict[str, Any], documents: list[Any], *, training_fingerprint: str, work_dir: Path
+) -> ByteTokenizer | ByteBPETokenizer:
     tokenizer_config = config.get("tokenizer", {"type": "byte_utf8"})
     tokenizer_type = tokenizer_config.get("type", "byte_utf8")
     if tokenizer_type == "byte_utf8":
@@ -150,11 +173,30 @@ def _prepare_tokenizer(config: dict[str, Any], documents: list[Any]) -> ByteToke
     if tokenizer_type != "byte_bpe":
         raise ValueError(f"Tipo de tokenizador desconhecido: {tokenizer_type}")
     path = Path(tokenizer_config["path"])
+    manifest_path = path.with_suffix(".manifest.json")
     if path.exists():
+        if not manifest_path.exists():
+            raise ValueError("Tokenizador existente sem manifesto auditado; use um novo caminho")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("training_split_fingerprint") != training_fingerprint:
+            raise ValueError("Tokenizador existente foi treinado com outro conjunto de treino")
         return ByteBPETokenizer.load(path)
     tokenizer = ByteBPETokenizer(int(tokenizer_config.get("vocab_size", 512)))
-    tokenizer.train((document.text for document in documents), min_pair_frequency=int(tokenizer_config.get("min_pair_frequency", 2)))
+    tokenizer.train_documents(
+        (iter_document_chunks(document) for document in documents),
+        min_pair_frequency=int(tokenizer_config.get("min_pair_frequency", 2)),
+        work_dir=work_dir,
+    )
     tokenizer.save(path)
+    manifest_path.write_text(
+        json.dumps(
+            {"schema_version": 1, "training_split_fingerprint": training_fingerprint, "tokenizer": tokenizer.metadata()},
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     return tokenizer
 
 
@@ -183,7 +225,13 @@ def train_model(
         test_fraction=float(config["data"].get("test_fraction", 0.15)),
         seed=seed,
     )
-    tokenizer = _prepare_tokenizer(config, documents)
+    split_metadata = split.metadata()
+    tokenizer = _prepare_tokenizer(
+        config,
+        split.train,
+        training_fingerprint=_stable_fingerprint({"split": split_metadata, "partition": "train"}),
+        work_dir=Path(data_dir).parent / "processed" / "bpe-work",
+    )
     write_source_manifest(
         documents,
         Path(data_dir).parent / "SOURCES.generated.md",
@@ -191,9 +239,11 @@ def train_model(
         stats=corpus_stats,
     )
     _write_stats(corpus_stats, Path(data_dir).parent / "processed" / "dataset-stats.json")
-    train_tokens = tokenize_documents(split.train, tokenizer)
-    validation_tokens = tokenize_documents(split.validation, tokenizer)
-    test_tokens = tokenize_documents(split.test, tokenizer)
+    processed = Path(data_dir).parent / "processed"
+    token_suffix = split_metadata["fingerprint"][:12]
+    train_tokens = prepare_token_store(split.train, tokenizer, processed / f"tokens-train-{token_suffix}.bin", split_metadata=split_metadata)
+    validation_tokens = prepare_token_store(split.validation, tokenizer, processed / f"tokens-validation-{token_suffix}.bin", split_metadata=split_metadata)
+    test_tokens = prepare_token_store(split.test, tokenizer, processed / f"tokens-test-{token_suffix}.bin", split_metadata=split_metadata)
 
     model_values = dict(config["model"])
     if model_values.get("vocab_size") is None:
@@ -202,6 +252,16 @@ def train_model(
     if model_config.vocab_size != tokenizer.vocab_size:
         raise ValueError("A configuração do vocabulário não corresponde ao tokenizador")
     tokenizer_metadata = tokenizer.metadata()
+    data_metadata = {
+        "raw_files": corpus_stats.raw_files,
+        "split": split_metadata,
+        "tokenizer": tokenizer_metadata,
+        "token_stores": {
+            name: {"path": str(store.path), "token_count": store.token_count, "sha256": store.sha256}
+            for name, store in (("train", train_tokens), ("validation", validation_tokens), ("test", test_tokens))
+        },
+    }
+    data_metadata["fingerprint"] = _stable_fingerprint(data_metadata)
     model = ElysiaTransformer(model_config).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),
@@ -219,6 +279,7 @@ def train_model(
             optimizer=optimizer,
             device=device,
             expected_tokenizer=tokenizer_metadata,
+            expected_data=data_metadata,
             batch_generator=batch_generator,
         )
         step = int(saved["step"])
@@ -284,6 +345,7 @@ def train_model(
                 config=config,
                 batch_generator=batch_generator,
                 tokenizer_metadata=tokenizer_metadata,
+                data_metadata=data_metadata,
             )
 
     test_loss = evaluate_loss(
@@ -307,6 +369,7 @@ def train_model(
         "tokenizer": tokenizer_metadata,
         "corpus": corpus_stats.to_dict(),
         "checkpoint": str(checkpoint),
+        "data": data_metadata,
     }
 
 

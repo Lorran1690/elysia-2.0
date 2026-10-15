@@ -44,13 +44,13 @@ O checkpoint fica em `learning/checkpoints/elysia-v0.1.pt`. Executar novamente c
 
 ## ELYSIA-Seed v0.2
 
-A v0.2 vive em uma branch separada e preserva a configuração e o checkpoint da v0.1. Ela adiciona um Byte-Level BPE treinado somente sobre os textos locais de demonstração:
+A v0.2 vive em uma branch separada e preserva a configuração e o checkpoint da v0.1. A revisão auditada divide as obras antes do BPE, treina o BPE somente no split de treino e usa armazenamento de tokens em disco:
 
 ```powershell
-.\.venv\Scripts\python.exe -m learning.train --config configs/seed-v0.2.yaml --data-dir data/raw --checkpoint learning/checkpoints/elysia-seed-v0.2.pt --steps 100
+.\.venv\Scripts\python.exe -m learning.train --config configs/seed-v0.2.yaml --data-dir data/raw --checkpoint learning/checkpoints/elysia-seed-v0.2-audited.pt --steps 100
 ```
 
-O pipeline v0.2 aceita TXT e JSONL, valida UTF-8, normaliza NFC, remove duplicações e separa documentos em treino, validação e teste. Dados externos ainda não foram baixados; qualquer fonte pública deverá ser aprovada antes do uso.
+TXT é tratado como uma obra inteira; JSONL agrupa registros por identificador de fonte quando disponível. O checkpoint recusa retomada quando corpus, split, tokenizador ou arquitetura não correspondem. Dados externos ainda não foram baixados; qualquer fonte pública deverá ser aprovada antes do uso.
 
 ## Geração
 
@@ -63,7 +63,7 @@ Depois do treinamento, gere tokens a partir dos pesos salvos:
 Para gerar com o checkpoint BPE da v0.2:
 
 ```powershell
-.\.venv\Scripts\python.exe -m learning.generate_text --checkpoint learning/checkpoints/elysia-seed-v0.2.pt --tokenizer-path data/processed/tokenizer-v0.2.json --prompt "E.L.Y.S.I.A." --tokens 80
+.\.venv\Scripts\python.exe -m learning.generate_text --checkpoint learning/checkpoints/elysia-seed-v0.2-audited.pt --tokenizer-path data/processed/tokenizer-v0.2-audited.json --prompt "E.L.Y.S.I.A." --tokens 80
 ```
 
 ## Estrutura

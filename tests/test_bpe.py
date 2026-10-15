@@ -66,3 +66,13 @@ def test_incompatible_vocabulary_is_rejected(tmp_path: Path) -> None:
     path.write_text(payload, encoding="utf-8")
     with pytest.raises(ValueError, match="incompatível"):
         ByteBPETokenizer.load(path)
+
+
+def test_disk_training_never_learns_held_out_phrase(tmp_path: Path) -> None:
+    train_documents = [["treino local repetido " * 30]]
+    held_out_phrase = "UNSEEN_QZ_991"
+    tokenizer = ByteBPETokenizer(320).train_documents(train_documents, work_dir=tmp_path)
+    frozen = tokenizer.metadata()
+    tokenizer.encode(held_out_phrase, add_bos=False, add_eos=False)
+    assert tokenizer.metadata() == frozen
+    assert held_out_phrase.encode("utf-8") not in tokenizer._token_bytes

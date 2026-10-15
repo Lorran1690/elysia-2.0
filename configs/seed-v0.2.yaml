@@ -4,7 +4,7 @@ tokenizer:
   type: byte_bpe
   vocab_size: 512
   min_pair_frequency: 2
-  path: data/processed/tokenizer-v0.2.json
+  path: data/processed/tokenizer-v0.2-audited.json
 
 model:
   vocab_size: null

@@ -10,10 +10,12 @@ import base64
 import codecs
 import hashlib
 import json
+import tempfile
 import unicodedata
+from array import array
 from collections import Counter
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Iterator
 
 
 class ByteBPETokenizer:
@@ -93,6 +95,104 @@ class ByteBPETokenizer:
             self._token_bytes.append(self._token_bytes[left] + self._token_bytes[right])
             self.merges.append(pair)
             sequences = [self._merge_pair(sequence, left, right, merged_id) for sequence in sequences]
+        self._refresh_special_ids()
+        return self
+
+    @staticmethod
+    def _read_token_file(path: Path, *, buffer_tokens: int = 65_536) -> Iterator[int]:
+        with path.open("rb") as handle:
+            while raw := handle.read(buffer_tokens * 4):
+                values = array("I")
+                values.frombytes(raw)
+                yield from values
+
+    @classmethod
+    def _count_pairs_in_file(cls, path: Path) -> Counter[tuple[int, int]]:
+        counts: Counter[tuple[int, int]] = Counter()
+        previous: int | None = None
+        for token in cls._read_token_file(path):
+            if previous is not None:
+                counts[(previous, token)] += 1
+            previous = token
+        return counts
+
+    @classmethod
+    def _merge_file(cls, source: Path, destination: Path, left: int, right: int, merged: int) -> None:
+        with destination.open("wb") as handle:
+            output = array("I")
+            previous: int | None = None
+            for token in cls._read_token_file(source):
+                if previous is None:
+                    previous = token
+                elif previous == left and token == right:
+                    output.append(merged)
+                    previous = None
+                else:
+                    output.append(previous)
+                    previous = token
+                if len(output) >= 65_536:
+                    output.tofile(handle)
+                    output = array("I")
+            if previous is not None:
+                output.append(previous)
+            if output:
+                output.tofile(handle)
+
+    def train_documents(
+        self,
+        documents: Iterable[Iterable[str]],
+        *,
+        min_pair_frequency: int = 2,
+        work_dir: str | Path | None = None,
+    ) -> "ByteBPETokenizer":
+        """Train BPE with temporary on-disk token streams instead of RAM-held corpora."""
+        root = Path(work_dir) if work_dir is not None else None
+        if root is not None:
+            root.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix="elysia-bpe-", dir=root) as temporary:
+            current_dir = Path(temporary) / "initial"
+            current_dir.mkdir()
+            token_files: list[Path] = []
+            for document_index, chunks in enumerate(documents):
+                path = current_dir / f"document-{document_index:08d}.bin"
+                has_tokens = False
+                with path.open("wb") as handle:
+                    for chunk in chunks:
+                        normalized = unicodedata.normalize("NFC", chunk)
+                        if not normalized:
+                            continue
+                        values = array("I", (value for value in normalized.encode("utf-8")))
+                        values.tofile(handle)
+                        has_tokens = True
+                if has_tokens:
+                    token_files.append(path)
+                else:
+                    path.unlink(missing_ok=True)
+            if not token_files:
+                raise ValueError("Não há textos válidos para treinar o BPE")
+
+            maximum_merges = self.requested_vocab_size - 256 - len(self.special_tokens)
+            for merge_index in range(maximum_merges):
+                counts: Counter[tuple[int, int]] = Counter()
+                for path in token_files:
+                    counts.update(self._count_pairs_in_file(path))
+                if not counts:
+                    break
+                pair, frequency = counts.most_common(1)[0]
+                if frequency < min_pair_frequency:
+                    break
+                left, right = pair
+                merged_id = len(self._token_bytes)
+                self._token_bytes.append(self._token_bytes[left] + self._token_bytes[right])
+                self.merges.append(pair)
+                next_dir = Path(temporary) / f"merge-{merge_index:04d}"
+                next_dir.mkdir()
+                next_files: list[Path] = []
+                for file_index, path in enumerate(token_files):
+                    target = next_dir / f"document-{file_index:08d}.bin"
+                    self._merge_file(path, target, left, right, merged_id)
+                    next_files.append(target)
+                token_files = next_files
         self._refresh_special_ids()
         return self
 

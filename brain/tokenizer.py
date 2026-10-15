@@ -17,6 +17,14 @@ class ByteTokenizer:
     def vocab_size(self) -> int:
         return 259
 
+    @property
+    def bos_id(self) -> int:
+        return self.BOS_ID
+
+    @property
+    def eos_id(self) -> int:
+        return self.EOS_ID
+
     def encode(
         self,
         text: str,
