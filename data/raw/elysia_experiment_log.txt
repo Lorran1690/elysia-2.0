@@ -1,0 +1,7 @@
+O primeiro experimento comeca com uma pergunta simples: a rede consegue memorizar um conjunto curto e organizado quando recebe os mesmos dados por varias etapas? Para responder, o teste observa a perda de treino e nao apenas o texto gerado.
+
+Em cada etapa o otimizador AdamW calcula gradientes a partir da entropia cruzada. O gradiente e limitado por norma para evitar atualizacoes explosivas. A acumulacao de gradientes pode simular um lote maior sem exigir toda a memoria ao mesmo tempo.
+
+Um checkpoint guarda os parametros do modelo, o estado do otimizador, a configuracao e o historico. Recarregar esse arquivo deve permitir continuar o mesmo experimento. A reproducao deterministica usa uma semente fixa, mas pequenas diferencas de hardware ou kernels podem alterar ultimas casas decimais.
+
+A geracao usa temperatura e top-k. Temperatura zero escolhe o maior logit; temperaturas positivas permitem amostragem. Top-k restringe as escolhas aos tokens mais provaveis. Esses controles sao mecanismos de teste e nao garantem respostas uteis.

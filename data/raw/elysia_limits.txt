@@ -1,0 +1,7 @@
+O computador de teste possui processador AMD Ryzen 5 3400G, dezesseis gigabytes de memoria e uma NVIDIA GeForce GTX 1650 com quatro gigabytes de VRAM. O tamanho do modelo foi escolhido para caber nesse limite e permitir um ciclo experimental pratico.
+
+A GTX 1650 nao transforma este pequeno modelo em um sistema de producao. Ela apenas acelera operacoes matriciais locais. O codigo oferece fallback para CPU para que os testes continuem funcionando quando CUDA nao estiver instalado ou quando a memoria da GPU estiver ocupada.
+
+Nao ha Ollama nesta arquitetura. Nao ha checkpoint baixado. Nao ha API remota. Nao ha tokenizador pronto. Os pesos sao inicializados pelo proprio PyTorch com uma distribuicao aleatoria controlada pela semente. O proposito e verificar a rede, nao imitar um modelo comercial.
+
+Resultados devem ser registrados com numero de parametros, dispositivo real, tempo, perdas e observacoes. Se um resultado vier de overfitting controlado, ele deve ser descrito como tal. Uma demonstracao pequena nao deve ser apresentada como inteligencia concluida.

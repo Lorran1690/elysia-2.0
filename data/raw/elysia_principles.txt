@@ -1,0 +1,7 @@
+E.L.Y.S.I.A. 2.0 e um experimento local de aprendizado de linguagem. Este texto foi escrito exclusivamente para validar o pipeline, a tokenizacao, a memoria dos lotes e a geracao autoregressiva. Ele nao representa uma fonte externa e nao deve ser usado para afirmar que o modelo aprendeu portugues.
+
+Um modelo pequeno observa sequencias de simbolos e ajusta seus parametros para prever o proximo simbolo. No inicio, os pesos sao aleatorios. O treinamento mede a diferenca entre a previsao e o proximo byte real. A perda pode diminuir quando o modelo encontra regularidades no pequeno conjunto de demonstracao.
+
+A experiencia deve ser reproduzivel. A semente fixa, a configuracao declarada e o checkpoint permitem repetir uma execucao e comparar resultados. O dispositivo pode ser uma GPU NVIDIA ou a CPU. A escolha real precisa ser detectada em tempo de execucao, nunca presumida pela existencia de um driver.
+
+Esta primeira fase valoriza observacao e honestidade. Uma perda menor em um corpus pequeno mostra que a implementacao funciona, mas nao prova conhecimento geral, raciocinio, consciencia ou dominio de um idioma. Esses limites fazem parte do relatorio e orientam os proximos experimentos.

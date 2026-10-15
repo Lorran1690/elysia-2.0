@@ -1,0 +1,7 @@
+Uma sequencia de treinamento e formada por um contexto e por seus alvos deslocados em uma posicao. Se o contexto contem os tokens A, B e C, os alvos correspondentes sao B, C e o proximo token. A mascara causal permite que cada posicao veja apenas o passado e o proprio presente.
+
+O Transformer deste projeto possui quatro blocos decoder-only, quatro cabecas de atencao, embeddings de dimensao 256, camada feedforward de dimensao 1024 e contexto inicial de 256 tokens. Cada bloco combina normalizacao, atencao causal, conexao residual e rede feedforward com outra conexao residual.
+
+O tokenizador trabalha sobre bytes UTF-8. Isso mantem o primeiro vocabulario pequeno e transparente. Os tres tokens reservados sao padding, inicio e fim de sequencia. Caracteres acentuados ocupam mais de um byte, por isso os testes verificam a ida e volta completa da codificacao.
+
+O lote e amostrado somente depois da separacao entre documentos de treino e validacao. Arquivos diferentes evitam misturar trechos identicos entre os dois conjuntos. A validacao serve para acompanhar uma medida separada durante o experimento e nao para atualizar os pesos.
