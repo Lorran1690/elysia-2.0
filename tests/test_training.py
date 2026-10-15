@@ -1,3 +1,4 @@
+import random
 from pathlib import Path
 
 import pytest
@@ -6,7 +7,7 @@ import torch
 from brain.generate import generate
 from brain.model import ElysiaTransformer, ModelConfig
 from learning.dataset import make_batch
-from learning.train import save_checkpoint, set_seed
+from learning.train import load_checkpoint, save_checkpoint, set_seed
 
 
 def tiny_config() -> ModelConfig:
@@ -80,6 +81,47 @@ def test_checkpoint_round_trip(tmp_path: Path) -> None:
     restored.load_state_dict(loaded["model_state"])
     assert loaded["step"] == 7
     assert all(torch.equal(a, b) for a, b in zip(model.parameters(), restored.parameters()))
+
+
+def test_checkpoint_restores_random_states_and_rejects_wrong_config(tmp_path: Path) -> None:
+    set_seed(21)
+    model = ElysiaTransformer(tiny_config())
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001)
+    generator = torch.Generator(device="cpu").manual_seed(88)
+    path = tmp_path / "safe-checkpoint.pt"
+    save_checkpoint(
+        path,
+        model=model,
+        optimizer=optimizer,
+        step=3,
+        history=[],
+        config={"seed": 21},
+        batch_generator=generator,
+        tokenizer_metadata={"type": "byte_utf8", "vocab_size": 259, "fingerprint": "test"},
+    )
+    expected_python = random.random()
+    expected_torch = torch.rand(3)
+    expected_batch = torch.randint(100, (3,), generator=generator)
+
+    set_seed(999)
+    restored_model = ElysiaTransformer(tiny_config())
+    restored_optimizer = torch.optim.AdamW(restored_model.parameters(), lr=0.001)
+    restored_generator = torch.Generator(device="cpu").manual_seed(1)
+    load_checkpoint(
+        path,
+        model=restored_model,
+        optimizer=restored_optimizer,
+        device=torch.device("cpu"),
+        expected_tokenizer={"type": "byte_utf8", "vocab_size": 259, "fingerprint": "test"},
+        batch_generator=restored_generator,
+    )
+    assert random.random() == expected_python
+    assert torch.equal(torch.rand(3), expected_torch)
+    assert torch.equal(torch.randint(100, (3,), generator=restored_generator), expected_batch)
+
+    wrong_model = ElysiaTransformer(ModelConfig(**{**tiny_config().__dict__, "embedding_dim": 16, "num_heads": 4}))
+    with pytest.raises(ValueError, match="incompatível"):
+        load_checkpoint(path, model=wrong_model, device=torch.device("cpu"))
 
 
 def test_seed_makes_initialization_reproducible() -> None:
