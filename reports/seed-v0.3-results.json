@@ -1,0 +1,791 @@
+{
+  "device": "cuda",
+  "experiments": {
+    "baseline": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3483640,
+        "elapsed_seconds": 0.9589491000006092,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.24896764755249,
+            "validation_loss": 6.109906991322835
+          },
+          {
+            "step": 15.0,
+            "train_loss": 4.997804164886475,
+            "validation_loss": 5.8015468915303545
+          },
+          {
+            "step": 30.0,
+            "train_loss": 4.193652153015137,
+            "validation_loss": 5.533875942230225
+          }
+        ],
+        "test_loss": 5.4744618733723955,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-baseline.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3483640,
+        "train_seconds": 0.11660249999840744,
+        "train_step_seconds": 0.02332049999968149,
+        "tokens_per_second": 5488.733088988153,
+        "last_loss": 4.304003715515137,
+        "rss_bytes": 1226895360,
+        "peak_vram_bytes": 88021504,
+        "generation_uncached_seconds": 0.18298610000056215,
+        "generation_uncached_tokens_per_second": 174.87667095971602,
+        "generation_cached_seconds": 1.1706704000025638,
+        "generation_cached_tokens_per_second": 27.334764763788268,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    },
+    "rope": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3418104,
+        "elapsed_seconds": 0.9230844000048819,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.232123851776123,
+            "validation_loss": 6.154154300689697
+          },
+          {
+            "step": 15.0,
+            "train_loss": 4.763952255249023,
+            "validation_loss": 5.826580206553142
+          },
+          {
+            "step": 30.0,
+            "train_loss": 3.9195566177368164,
+            "validation_loss": 5.63729206720988
+          }
+        ],
+        "test_loss": 5.4918212890625,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-rope.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3418104,
+        "train_seconds": 0.11498990000109188,
+        "train_step_seconds": 0.022997980000218375,
+        "tokens_per_second": 5565.706205448678,
+        "last_loss": 4.3741021156311035,
+        "rss_bytes": 1298391040,
+        "peak_vram_bytes": 86710784,
+        "generation_uncached_seconds": 0.24676500000350643,
+        "generation_uncached_tokens_per_second": 129.6780337549705,
+        "generation_cached_seconds": 0.26140969999687513,
+        "generation_cached_tokens_per_second": 122.41320808058204,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    },
+    "rmsnorm": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3481336,
+        "elapsed_seconds": 1.9468018999978085,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.248781204223633,
+            "validation_loss": 6.113448937733968
+          },
+          {
+            "step": 15.0,
+            "train_loss": 5.041619300842285,
+            "validation_loss": 5.87122901280721
+          },
+          {
+            "step": 30.0,
+            "train_loss": 4.216196060180664,
+            "validation_loss": 5.508153597513835
+          }
+        ],
+        "test_loss": 5.439935366312663,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-rmsnorm.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3481336,
+        "train_seconds": 0.10509299999830546,
+        "train_step_seconds": 0.021018599999661092,
+        "tokens_per_second": 6089.844233301166,
+        "last_loss": 4.315772533416748,
+        "rss_bytes": 1311051776,
+        "peak_vram_bytes": 87975424,
+        "generation_uncached_seconds": 0.15821069999947213,
+        "generation_uncached_tokens_per_second": 202.26192033855338,
+        "generation_cached_seconds": 0.16992849999951432,
+        "generation_cached_tokens_per_second": 188.31449698015024,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    },
+    "swiglu": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3486032,
+        "elapsed_seconds": 0.8838364999974146,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.318887710571289,
+            "validation_loss": 6.167075792948405
+          },
+          {
+            "step": 15.0,
+            "train_loss": 5.473343849182129,
+            "validation_loss": 5.549463589986165
+          },
+          {
+            "step": 30.0,
+            "train_loss": 4.932276248931885,
+            "validation_loss": 5.399907271067302
+          }
+        ],
+        "test_loss": 5.323574701944987,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-swiglu.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3486032,
+        "train_seconds": 0.0815502999976161,
+        "train_step_seconds": 0.01631005999952322,
+        "tokens_per_second": 7847.9171752735265,
+        "last_loss": 5.03099250793457,
+        "rss_bytes": 1319313408,
+        "peak_vram_bytes": 88246784,
+        "generation_uncached_seconds": 0.14017810000223108,
+        "generation_uncached_tokens_per_second": 228.28102249560158,
+        "generation_cached_seconds": 0.12870349999866448,
+        "generation_cached_tokens_per_second": 248.63348704838683,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    },
+    "sdpa": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3483640,
+        "elapsed_seconds": 0.7819283000062569,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.24896764755249,
+            "validation_loss": 6.109906991322835
+          },
+          {
+            "step": 15.0,
+            "train_loss": 4.997804164886475,
+            "validation_loss": 5.801549116770427
+          },
+          {
+            "step": 30.0,
+            "train_loss": 4.193652153015137,
+            "validation_loss": 5.533875942230225
+          }
+        ],
+        "test_loss": 5.474461396535237,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-sdpa.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3483640,
+        "train_seconds": 0.06313330000557471,
+        "train_step_seconds": 0.012626660001114943,
+        "tokens_per_second": 10137.280958598514,
+        "last_loss": 4.304003715515137,
+        "rss_bytes": 1322733568,
+        "peak_vram_bytes": 88021504,
+        "generation_uncached_seconds": 0.09581279999838443,
+        "generation_uncached_tokens_per_second": 333.98460331541895,
+        "generation_cached_seconds": 0.6836941000001389,
+        "generation_cached_tokens_per_second": 46.804557769320375,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    },
+    "combined": {
+      "training": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce GTX 1650",
+        "steps": 30,
+        "parameters": 3418192,
+        "elapsed_seconds": 1.1034233000027598,
+        "history": [
+          {
+            "step": 1.0,
+            "train_loss": 6.259632110595703,
+            "validation_loss": 6.133615016937256
+          },
+          {
+            "step": 15.0,
+            "train_loss": 5.390409469604492,
+            "validation_loss": 5.609817822774251
+          },
+          {
+            "step": 30.0,
+            "train_loss": 4.753881454467773,
+            "validation_loss": 5.506045977274577
+          }
+        ],
+        "test_loss": 5.5191911061604815,
+        "tokenizer": {
+          "type": "byte_bpe",
+          "schema_version": 1,
+          "vocab_size": 504,
+          "requested_vocab_size": 512,
+          "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+        },
+        "corpus": {
+          "files_seen": 4,
+          "documents_loaded": 4,
+          "duplicate_documents": 0,
+          "invalid_documents": 0,
+          "source_groups": 4,
+          "near_duplicate_clusters": 4,
+          "total_bytes": 4445,
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          }
+        },
+        "checkpoint": "learning\\checkpoints\\elysia-seed-v0.3-combined.pt",
+        "data": {
+          "raw_files": {
+            "data\\raw\\elysia_experiment_log.txt": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+            "data\\raw\\elysia_limits.txt": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+            "data\\raw\\elysia_principles.txt": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+            "data\\raw\\elysia_training_notes.txt": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93"
+          },
+          "split": {
+            "seed": 2026,
+            "validation_fraction": 0.15,
+            "test_fraction": 0.15,
+            "members": {
+              "train": [
+                {
+                  "sha256": "201cd5d40035d8f9f2773895d158ae73f09d45d5a52ad821351414454d4927d6",
+                  "group": "related:0",
+                  "path": "data\\raw\\elysia_experiment_log.txt"
+                },
+                {
+                  "sha256": "63ddbafe333d17741e28afaf87dd8ce0232eff260ccd2a07f5029cde4e190635",
+                  "group": "related:1",
+                  "path": "data\\raw\\elysia_limits.txt"
+                }
+              ],
+              "validation": [
+                {
+                  "sha256": "9989a3653f9f31888c5177ae6e416aaa8517bfe08a88712f8762548e07555b93",
+                  "group": "related:3",
+                  "path": "data\\raw\\elysia_training_notes.txt"
+                }
+              ],
+              "test": [
+                {
+                  "sha256": "c3043bf2872855bdf32a94da25675c7ac3d5bbf79ebd2faa5ae52dcc9633d5c7",
+                  "group": "related:2",
+                  "path": "data\\raw\\elysia_principles.txt"
+                }
+              ]
+            },
+            "fingerprint": "c9a65101755a05aa2358eecbc176e42cedd969383bd8334fa026c2657deb8fea"
+          },
+          "tokenizer": {
+            "type": "byte_bpe",
+            "schema_version": 1,
+            "vocab_size": 504,
+            "requested_vocab_size": 512,
+            "fingerprint": "a32081fee958e524c42168236253f9c9a21c4f3868cd8d99114ed241ebae15b6"
+          },
+          "token_stores": {
+            "train": {
+              "path": "data\\processed\\tokens-train-c9a65101755a.bin",
+              "token_count": 767,
+              "sha256": "a9fe5f5e4c81d2f5a6a8b1df0749d38d15b62b5fb64ce7f9cb6fd0d2525bc737"
+            },
+            "validation": {
+              "path": "data\\processed\\tokens-validation-c9a65101755a.bin",
+              "token_count": 565,
+              "sha256": "258621a545c5c8c155de0a187f80705037f504f93128f7a8535687cd35abda9d"
+            },
+            "test": {
+              "path": "data\\processed\\tokens-test-c9a65101755a.bin",
+              "token_count": 557,
+              "sha256": "bd7be6f7b0e753479d6626ad2c0c1c93877e02e2691b2eabeecd20dbf644d5fc"
+            }
+          },
+          "fingerprint": "3d0502249685b2867fcfa3da6a17585ef7541baf4b2e2e096c8a5b260bd5965e"
+        }
+      },
+      "benchmark": {
+        "parameters": 3418192,
+        "train_seconds": 0.12788780000119004,
+        "train_step_seconds": 0.02557756000023801,
+        "tokens_per_second": 5004.386657633055,
+        "last_loss": 5.095943927764893,
+        "rss_bytes": 1322385408,
+        "peak_vram_bytes": 86889984,
+        "generation_uncached_seconds": 0.23672890000307234,
+        "generation_uncached_tokens_per_second": 135.17572210061675,
+        "generation_cached_seconds": 0.28687540000100853,
+        "generation_cached_tokens_per_second": 111.54668542470878,
+        "kv_cache_bytes_for_prompt": 131072.0
+      }
+    }
+  }
+}

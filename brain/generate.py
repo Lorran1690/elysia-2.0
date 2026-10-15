@@ -16,6 +16,7 @@ def generate(
     temperature: float = 1.0,
     top_k: int | None = 50,
     eos_id: int | None = None,
+    use_cache: bool = False,
 ) -> torch.Tensor:
     if input_ids.ndim != 2:
         raise ValueError("input_ids precisa ter o formato [batch, sequência]")
@@ -24,10 +25,18 @@ def generate(
     was_training = model.training
     model.eval()
     generated = input_ids
+    cache = None
     try:
-        for _ in range(max_new_tokens):
+        for step in range(max_new_tokens):
             context = generated[:, -model.config.block_size :]
-            logits = model(context)[:, -1, :]
+            if use_cache and (cache is None or cache[0][0].size(-2) >= model.config.block_size):
+                logits, cache = model(context, use_cache=True)
+                logits = logits[:, -1, :]
+            elif use_cache:
+                logits, cache = model(generated[:, -1:], past_key_values=cache, use_cache=True)
+                logits = logits[:, -1, :]
+            else:
+                logits = model(context)[:, -1, :]
             if temperature == 0:
                 next_token = logits.argmax(dim=-1, keepdim=True)
             else:

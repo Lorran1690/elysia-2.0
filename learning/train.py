@@ -77,6 +77,11 @@ def _model_config(values: dict[str, Any]) -> ModelConfig:
         num_heads=int(values.get("num_heads", 4)),
         feedforward_dim=int(values.get("feedforward_dim", 1024)),
         dropout=float(values.get("dropout", 0.0)),
+        positional_embedding=str(values.get("positional_embedding", "absolute")),
+        norm_type=str(values.get("norm_type", "layernorm")),
+        feedforward_type=str(values.get("feedforward_type", "gelu")),
+        attention_backend=str(values.get("attention_backend", "manual")),
+        rope_theta=float(values.get("rope_theta", 10_000.0)),
     )
 
 

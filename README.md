@@ -66,6 +66,16 @@ Para gerar com o checkpoint BPE da v0.2:
 .\.venv\Scripts\python.exe -m learning.generate_text --checkpoint learning/checkpoints/elysia-seed-v0.2-audited.pt --tokenizer-path data/processed/tokenizer-v0.2-audited.json --prompt "E.L.Y.S.I.A." --tokens 80
 ```
 
+## ELYSIA-Seed v0.3
+
+A v0.3 mantém a v0.2 como baseline e adiciona escolhas experimentais para RoPE, RMSNorm, SwiGLU, SDPA e KV cache. As ablações locais podem ser reproduzidas sem dados externos:
+
+```powershell
+.\.venv\Scripts\python.exe -m learning.ablate --device cuda --steps 30
+```
+
+O relatório e o resultado completo ficam em `reports/seed-v0.3.md` e `reports/seed-v0.3-results.json`. Use `use_cache=True` com `brain.generate.generate` para a geração com cache.
+
 ## Estrutura
 
 `brain/` contém o tokenizador e o Transformer; `learning/` contém dados, treino e avaliação; `tests/` contém os testes automatizados; `data/raw/` contém somente o corpus de demonstração local.
