@@ -1,0 +1,268 @@
+.desktop-shell {
+  background: #0a111a;
+  color: #dce2eb;
+  display: grid;
+  grid-template-rows: 64px minmax(0, 1fr) 48px;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.topbar,
+.bottombar {
+  align-items: center;
+  border-color: #1c2a38;
+  border-style: solid;
+  display: flex;
+  padding: 0 28px;
+}
+
+.topbar {
+  border-width: 0 0 1px;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-mark {
+  align-items: center;
+  border: 1px solid #b78335;
+  color: #ffc96a;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 700;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.brand div {
+  display: grid;
+  gap: 2px;
+}
+
+.brand strong {
+  color: #f2d6a0;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+.brand span:not(.brand-mark) {
+  color: #718092;
+  font-size: 10px;
+  line-height: 1.1;
+}
+
+.topbar-status {
+  align-items: center;
+  color: #9ca9b9;
+  display: flex;
+  font-size: 11px;
+  gap: 7px;
+  margin-left: auto;
+}
+
+.status-dot,
+.stage-mode-dot {
+  background: #e5a945;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(239, 173, 69, 0.85);
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+}
+
+.icon-button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid #2b3a49;
+  color: #d8c7a1;
+  cursor: pointer;
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+  width: 32px;
+}
+
+.icon-button:hover {
+  background: #15202c;
+  border-color: #b78335;
+  color: #ffd378;
+}
+
+.icon-button:focus-visible,
+.quality-control select:focus-visible {
+  outline: 2px solid #d8a449;
+  outline-offset: 2px;
+}
+
+.orb-stage {
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.orb-canvas {
+  height: 100%;
+  inset: 0;
+  position: absolute !important;
+  width: 100%;
+}
+
+.stage-heading {
+  display: grid;
+  gap: 6px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: 28px;
+  transform: translateX(-50%);
+}
+
+.stage-heading span {
+  color: #9c7440;
+  font-size: 10px;
+}
+
+.stage-heading strong {
+  color: #c9984a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stage-mode {
+  align-items: center;
+  bottom: 26px;
+  color: #8795a5;
+  display: flex;
+  font-size: 10px;
+  gap: 7px;
+  left: 28px;
+  pointer-events: none;
+  position: absolute;
+}
+
+.stage-mode-dot {
+  height: 5px;
+  width: 5px;
+}
+
+.inspector {
+  background: rgba(11, 19, 29, 0.88);
+  border-left: 1px solid #263544;
+  bottom: 0;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  transition: transform 220ms ease;
+  width: 248px;
+}
+
+.inspector-open {
+  transform: translateX(0);
+}
+
+.inspector-heading {
+  align-items: center;
+  color: #d4a85c;
+  display: flex;
+  font-size: 11px;
+  justify-content: space-between;
+}
+
+.quality-control {
+  display: grid;
+  gap: 8px;
+}
+
+.quality-control > span,
+.metrics-list dt {
+  color: #7e8d9f;
+  font-size: 10px;
+}
+
+.quality-control select {
+  appearance: none;
+  background: #101c28;
+  border: 1px solid #324355;
+  border-radius: 3px;
+  color: #e1e7ed;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  min-height: 34px;
+  padding: 0 10px;
+}
+
+.metrics-list {
+  border-top: 1px solid #233241;
+  display: grid;
+  margin: 0;
+}
+
+.metrics-list div {
+  align-items: center;
+  border-bottom: 1px solid #233241;
+  display: flex;
+  justify-content: space-between;
+  min-height: 41px;
+}
+
+.metrics-list dt {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+
+.metrics-list dd {
+  color: #edbd64;
+  font-size: 12px;
+  margin: 0;
+}
+
+.bottombar {
+  border-width: 1px 0 0;
+  color: #758496;
+  font-size: 10px;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .desktop-shell {
+    grid-template-rows: 58px minmax(0, 1fr) 44px;
+  }
+
+  .topbar,
+  .bottombar {
+    padding: 0 16px;
+  }
+
+  .inspector {
+    bottom: 16px;
+    max-width: calc(100% - 24px);
+    top: auto;
+    width: 224px;
+  }
+
+  .stage-mode {
+    bottom: 18px;
+    left: 16px;
+  }
+
+  .bottombar span:last-child {
+    display: none;
+  }
+}
