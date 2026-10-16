@@ -26,6 +26,32 @@
       "start_marker_removed": true,
       "end_marker_removed": true,
       "modern_front_matter_detected": false,
+      "quality_audit": {
+        "sample_count": 5,
+        "samples": [
+          {
+            "offset": 0,
+            "marker_hits": []
+          },
+          {
+            "offset": 95269,
+            "marker_hits": []
+          },
+          {
+            "offset": 190539,
+            "marker_hits": []
+          },
+          {
+            "offset": 285808,
+            "marker_hits": []
+          },
+          {
+            "offset": 376078,
+            "marker_hits": []
+          }
+        ],
+        "modern_front_matter_detected": false
+      },
       "split": "train"
     },
     {
@@ -50,6 +76,32 @@
       "start_marker_removed": true,
       "end_marker_removed": true,
       "modern_front_matter_detected": false,
+      "quality_audit": {
+        "sample_count": 5,
+        "samples": [
+          {
+            "offset": 0,
+            "marker_hits": []
+          },
+          {
+            "offset": 91955,
+            "marker_hits": []
+          },
+          {
+            "offset": 183910,
+            "marker_hits": []
+          },
+          {
+            "offset": 275865,
+            "marker_hits": []
+          },
+          {
+            "offset": 362821,
+            "marker_hits": []
+          }
+        ],
+        "modern_front_matter_detected": false
+      },
       "split": "validation"
     },
     {
@@ -74,6 +126,32 @@
       "start_marker_removed": true,
       "end_marker_removed": true,
       "modern_front_matter_detected": false,
+      "quality_audit": {
+        "sample_count": 5,
+        "samples": [
+          {
+            "offset": 0,
+            "marker_hits": []
+          },
+          {
+            "offset": 113376,
+            "marker_hits": []
+          },
+          {
+            "offset": 226753,
+            "marker_hits": []
+          },
+          {
+            "offset": 340130,
+            "marker_hits": []
+          },
+          {
+            "offset": 448507,
+            "marker_hits": []
+          }
+        ],
+        "modern_front_matter_detected": false
+      },
       "split": "test"
     }
   ],

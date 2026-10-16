@@ -1,6 +1,6 @@
-# ELYSIA-Seed v0.4 — Fases 1 e 2
+# ELYSIA-Seed v0.4 — Fases 1 a 4
 
-Status: proposta e piloto de arquitetura concluídos; corpus externo não baixado e pré-treinamento principal aguardando aprovação explícita.
+Status: proposta, coleta auditada e piloto controlado concluídos; pré-treinamento principal aguardando aprovação explícita.
 
 Branch: `codex/elysia-seed-v0.4`, criada a partir de `8dedd83`.
 
@@ -110,7 +110,7 @@ Total original: 1.314.323 bytes. Total limpo: 1.225.526 bytes, 1.202.406 caracte
 
 ### Limpeza e direitos
 
-Os três arquivos são UTF-8 e foram conferidos com decodificação estrita. O script `learning/prepare_corpus_v04.py` normaliza NFC, remove somente o cabeçalho anterior ao marcador `START OF THE PROJECT GUTENBERG EBOOK` e o rodapé posterior ao marcador `END OF THE PROJECT GUTENBERG EBOOK`, normaliza finais de linha e reduz linhas vazias consecutivas. Não foi detectada introdução moderna, tradução ou seção de tradutor nos primeiros 5.000 caracteres de nenhuma cópia limpa. As páginas individuais declaram as obras como public domain in the USA; a política do [Project Gutenberg](https://www.gutenberg.org/policy/permission.html) alerta que a situação fora dos EUA deve ser confirmada separadamente. A autorização desta coleta no Brasil foi fornecida pelo solicitante; atribuição, URLs, avisos e hashes permanecem no manifesto.
+Os três arquivos são UTF-8 e foram conferidos com decodificação estrita. O script `learning/prepare_corpus_v04.py` normaliza NFC, remove somente o cabeçalho anterior ao marcador `START OF THE PROJECT GUTENBERG EBOOK` e o rodapé posterior ao marcador `END OF THE PROJECT GUTENBERG EBOOK`, normaliza finais de linha e reduz linhas vazias consecutivas. A auditoria amostrou cinco janelas distribuídas em cada cópia limpa e não detectou introdução moderna, tradução ou seção de tradutor. As páginas individuais declaram as obras como public domain in the USA; a política do [Project Gutenberg](https://www.gutenberg.org/policy/permission.html) alerta que a situação fora dos EUA deve ser confirmada separadamente. A autorização desta coleta no Brasil foi fornecida pelo solicitante; atribuição, URLs, avisos e hashes permanecem no manifesto.
 
 ### Deduplicação, divisão e BPE
 
@@ -123,7 +123,7 @@ Os três arquivos são UTF-8 e foram conferidos com decodificação estrita. O s
 - Bytes por token: 2,1729 treino, 2,0962 validação e 2,0950 teste; média ponderada 2,1195.
 - O BPE foi congelado antes de tokenizar validação e teste. Os token stores e o vocabulário ficam locais e ignorados pelo Git até nova verificação de redistribuição.
 
-O manifesto completo está em `data/corpus-v0.4/audit-manifest.json`. O procedimento é reproduzível com `python -m learning.prepare_corpus_v04`; ele não baixa arquivos e não inicia treinamento.
+O manifesto completo está em `data/corpus-v0.4/audit-manifest.json`. O procedimento é reproduzível com `python -m learning.prepare_corpus_v04`; ele não baixa arquivos e não inicia treinamento. A auditoria de qualidade agora amostra cinco janelas por obra, incluindo início, quartos, meio e final; as três obras tiveram zero marcador moderno nas cinco janelas.
 
 ### Proposta contemporânea futura
 
@@ -138,4 +138,54 @@ A composição pretendida é variada: explicativos, informativos, conversacionai
 
 ### Custo para o futuro treinamento
 
-O corpus experimental tem 578.207 tokens BPE, mas é pequeno demais para um pré-treinamento linguístico relevante. O piloto anterior de 10 etapas usou cerca de 1,03 s na GTX 1650, mas esse número não estima uma época real deste corpus nem deve ser extrapolado sem um piloto com a nova divisão e tokenizador. O próximo passo computacional deve medir tokens/s, VRAM, RAM, espaço em disco, acumulação e frequência de checkpoint com o corpus aprovado antes de definir duração. Nenhum treinamento principal foi iniciado nesta etapa.
+O corpus experimental tem 578.207 tokens BPE, mas é pequeno demais para um pré-treinamento linguístico relevante. O piloto anterior de 10 etapas usou cerca de 1,03 s na GTX 1650, mas esse número não estima uma época real deste corpus nem deve ser extrapolado sem um piloto com a nova divisão e tokenizador. O piloto da Fase 4 abaixo fornece essa medição controlada. Nenhum treinamento principal foi iniciado nesta etapa.
+
+## Fase 4 — piloto controlado no corpus auditado
+
+O piloto foi executado a partir de `configs/seed-v0.4-machado-pilot.yaml`, sobre `data/corpus-v0.4/clean`, com o BPE congelado em `data/corpus-v0.4/processed/tokenizer-v0.4-machado.json`. O treinamento verificou os hashes dos três originais, das três cópias limpas e do manifesto antes de criar o primeiro batch. O checkpoint novo é separado do piloto de arquitetura anterior e permanece ignorado pelo Git.
+
+### Configuração e divisão
+
+- Modelo próprio decoder-only, inicialização aleatória: 4 blocos, embedding 256, 4 cabeças, SwiGLU, SDPA, contexto 256, dropout 0, vocabulário 512.
+- Otimizador AdamW, learning rate inicial `0,0003`, weight decay `0,01`, clipping `1,0`, acumulação `1`.
+- Scheduler cosseno com warmup de 10 etapas, FP32 e GPU CUDA; nenhum BF16/FP16 foi usado.
+- Limite configurado: 200 etapas ou 600 segundos, o que ocorresse primeiro. O piloto atingiu 200 etapas em `5,383 s`; não atingiu o limite de tempo.
+- Divisão preservada por obra: Dom Casmurro no treino, Memórias Póstumas de Brás Cubas na validação e Quincas Borba no teste reservado.
+- Contagens BPE: 179.099 treino, 178.618 validação e 220.490 teste. O piloto processou 51.200 tokens, aproximadamente `0,2859` época do treino.
+
+### Loss e validação
+
+A validação inicial, antes da primeira atualização, foi `6,3094`. As validações programadas foram feitas nas etapas 25, 50, 75, 100, 125, 150, 175 e 200; a melhor observação foi `5,2936` na etapa 125, enquanto a etapa 200 terminou em `5,6090`. A loss do teste reservado foi medida somente no final, `5,2785`, e não foi usada para escolher checkpoint, hiperparâmetro ou etapa.
+
+| Etapa | Loss treino | Loss validação | Learning rate |
+| ---: | ---: | ---: | ---: |
+| 1 | 6,2867 | 6,2928 | 0,000060 |
+| 25 | 5,4776 | 5,5179 | 0,000295 |
+| 50 | 5,3753 | 5,3881 | 0,000268 |
+| 75 | 5,4625 | 5,3371 | 0,000221 |
+| 100 | 5,2568 | 5,7021 | 0,000162 |
+| 125 | 5,4133 | 5,2936 | 0,000101 |
+| 150 | 5,3410 | 5,3420 | 0,000048 |
+| 175 | 5,4325 | 5,3532 | 0,000013 |
+| 200 | 5,5340 | 5,6090 | 0,000000 |
+
+### Custo observado
+
+- GPU: NVIDIA GeForce GTX 1650; dispositivo usado: `cuda`.
+- Parâmetros: 3.490.136.
+- Throughput real do corpus: 9.511,7 tokens/s, cerca de 18,8 s por época equivalente no mesmo regime.
+- Estimativa linear aproximada: 1 milhão de tokens em 1,75 min e 1 bilhão em 29,2 h, sem assumir que memória, checkpoints, temperatura ou estabilidade permaneçam iguais em uma execução longa.
+- RAM residente: 1,159 GB no início e pico amostrado de 1,351 GB.
+- VRAM: pico alocado pelo PyTorch de 84,3 MiB.
+- Checkpoint: 41.973.056 bytes, 8 salvamentos, último salvamento em 0,117 s; SHA-256 local `e5a0134d793942eeb5905f1aacd01ad0ccde41b4657650bfe99ee8455c04a117`.
+- Caminho local: `learning/checkpoints/elysia-seed-v0.4-machado-pilot.pt`. O arquivo não foi publicado automaticamente.
+
+### Gerações fixas antes e depois
+
+Foram usados quatro prompts fixos, 80 tokens novos, temperatura `0,8`, top-k `20` e a mesma semente antes e depois. Antes do treino, o modelo aleatório produziu bytes ilegíveis e caracteres de substituição. Depois das 200 etapas, os quatro exemplos passaram a conter fragmentos parecidos com português, mas todos continuaram com palavras quebradas, repetição e falta de coerência; por exemplo, a continuação de `Capítulo primeiro.` começou com `que ira mo os iaoaduado...`. Isso é evidência qualitativa de um piloto curto, não demonstra compreensão, factualidade, diálogo ou capacidade de programação. Os textos completos estão em `reports/seed-v0.4-pilot-results.json`, inclusive as amostras que não parecem boas.
+
+### Resultado e ponto de parada
+
+O manifesto atualizado está em `data/corpus-v0.4/audit-manifest.json`; o checkpoint registra o fingerprint dos dados e o estado do scheduler para retomada segura. O relatório detalhado da execução está em `reports/seed-v0.4-pilot-results.json`. Os testes automatizados terminaram com `39 passed`.
+
+Não foi iniciado o pré-treinamento principal, não houve aumento da arquitetura, nenhuma fonte adicional foi baixada e a Fase 4 não avançará automaticamente. O corpus continua pequeno, histórico e concentrado em um único autor; uma proposta contemporânea foi mantida acima, sem coleta. O próximo passo depende da aprovação explícita do solicitante.

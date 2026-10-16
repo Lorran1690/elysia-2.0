@@ -10,6 +10,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+import psutil
 import torch
 import yaml
 
@@ -90,6 +91,95 @@ def _stable_fingerprint(value: Any) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while chunk := handle.read(1024 * 1024):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _resolve_audit_path(value: str | Path, manifest_path: Path) -> Path:
+    path = Path(value)
+    if path.is_absolute() or path.exists():
+        return path
+    repository_root = manifest_path.parent.parent.parent
+    return repository_root / path
+
+
+def _verify_audit_manifest(path: str | Path) -> dict[str, Any]:
+    """Verify every original and cleaned file before an audited pilot starts."""
+    manifest_path = Path(path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("status") != "local-only-audit":
+        raise ValueError("Manifesto de auditoria não está marcado como local-only-audit")
+    works = manifest.get("works")
+    if not isinstance(works, list) or len(works) != 3:
+        raise ValueError("O manifesto precisa conter exatamente as três obras aprovadas")
+    verified_works: list[dict[str, Any]] = []
+    for work in works:
+        original = _resolve_audit_path(work["original_path"], manifest_path)
+        clean = _resolve_audit_path(work["clean_path"], manifest_path)
+        for label, file_path, expected_hash, expected_size in (
+            ("original", original, work["original_sha256"], work["original_bytes"]),
+            ("clean", clean, work["clean_sha256"], work["clean_bytes"]),
+        ):
+            if not file_path.exists():
+                raise FileNotFoundError(f"Arquivo {label} do manifesto ausente: {file_path}")
+            if file_path.stat().st_size != int(expected_size) or _file_sha256(file_path) != expected_hash:
+                raise ValueError(f"Hash ou tamanho divergente no arquivo {label}: {file_path}")
+        verified_works.append(
+            {
+                "id": work["id"],
+                "title": work["title"],
+                "split": work.get("split"),
+                "original_sha256": work["original_sha256"],
+                "clean_sha256": work["clean_sha256"],
+                "original_bytes": int(work["original_bytes"]),
+                "clean_bytes": int(work["clean_bytes"]),
+            }
+        )
+    audit_split = manifest.get("split", {})
+    return {
+        "path": str(manifest_path),
+        "sha256": _file_sha256(manifest_path),
+        "schema_version": manifest.get("schema_version"),
+        "split_fingerprint": audit_split.get("fingerprint"),
+        "works": verified_works,
+    }
+
+
+def _build_scheduler(
+    optimizer: torch.optim.Optimizer,
+    *,
+    name: str,
+    warmup_steps: int,
+    total_steps: int,
+) -> torch.optim.lr_scheduler.LambdaLR | None:
+    if name in {"", "none", "constant"}:
+        return None
+    if name != "cosine":
+        raise ValueError(f"Scheduler desconhecido: {name}")
+    warmup_steps = max(0, int(warmup_steps))
+    total_steps = max(1, int(total_steps))
+
+    def schedule(step: int) -> float:
+        if warmup_steps and step < warmup_steps:
+            return float(step + 1) / warmup_steps
+        progress = min(1.0, max(0.0, (step - warmup_steps) / max(1, total_steps - warmup_steps)))
+        return 0.5 * (1.0 + torch.cos(torch.tensor(progress * torch.pi)).item())
+
+    return torch.optim.lr_scheduler.LambdaLR(optimizer, schedule)
+
+
+def _runtime_snapshot(device: torch.device) -> dict[str, int]:
+    snapshot = {"ram_bytes": int(psutil.Process().memory_info().rss)}
+    if device.type == "cuda":
+        snapshot["vram_allocated_bytes"] = int(torch.cuda.memory_allocated(device))
+        snapshot["vram_reserved_bytes"] = int(torch.cuda.memory_reserved(device))
+    return snapshot
+
+
 def save_checkpoint(
     path: str | Path,
     *,
@@ -101,13 +191,17 @@ def save_checkpoint(
     batch_generator: torch.Generator | None = None,
     tokenizer_metadata: dict[str, str | int] | None = None,
     data_metadata: dict[str, Any] | None = None,
+    scheduler: torch.optim.lr_scheduler.LRScheduler | None = None,
+    processed_tokens: int = 0,
 ) -> None:
     checkpoint = {
-        "checkpoint_version": 3,
+        "checkpoint_version": 4,
         "step": step,
         "model_config": model.config_dict(),
         "model_state": model.state_dict(),
         "optimizer_state": optimizer.state_dict(),
+        "scheduler_state": scheduler.state_dict() if scheduler is not None else None,
+        "progress": {"processed_tokens": int(processed_tokens)},
         "history": history,
         "training_config": config,
         "tokenizer": tokenizer_metadata,
@@ -129,6 +223,7 @@ def load_checkpoint(
     expected_tokenizer: dict[str, str | int] | None = None,
     expected_data: dict[str, Any] | None = None,
     batch_generator: torch.Generator | None = None,
+    scheduler: torch.optim.lr_scheduler.LRScheduler | None = None,
 ) -> dict[str, Any]:
     """Load only the tensor/primitive checkpoint format created by this project."""
     # Load serialized state on CPU first; RNG byte tensors are CPU-only inputs.
@@ -163,13 +258,22 @@ def load_checkpoint(
         if "optimizer_state" not in checkpoint:
             raise ValueError("Checkpoint sem estado do otimizador")
         optimizer.load_state_dict(checkpoint["optimizer_state"])
+    if scheduler is not None:
+        if checkpoint.get("scheduler_state") is None:
+            raise ValueError("Checkpoint sem estado do scheduler")
+        scheduler.load_state_dict(checkpoint["scheduler_state"])
     if isinstance(checkpoint.get("rng_state"), dict):
         restore_rng_state(checkpoint["rng_state"], batch_generator)
     return checkpoint
 
 
 def _prepare_tokenizer(
-    config: dict[str, Any], documents: list[Any], *, training_fingerprint: str, work_dir: Path
+    config: dict[str, Any],
+    documents: list[Any],
+    *,
+    training_fingerprint: str,
+    split_fingerprint: str | None = None,
+    work_dir: Path,
 ) -> ByteTokenizer | ByteBPETokenizer:
     tokenizer_config = config.get("tokenizer", {"type": "byte_utf8"})
     tokenizer_type = tokenizer_config.get("type", "byte_utf8")
@@ -183,7 +287,14 @@ def _prepare_tokenizer(
         if not manifest_path.exists():
             raise ValueError("Tokenizador existente sem manifesto auditado; use um novo caminho")
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if manifest.get("training_split_fingerprint") != training_fingerprint:
+        valid_fingerprints = {training_fingerprint}
+        if split_fingerprint is not None:
+            valid_fingerprints.add(split_fingerprint)
+        saved_fingerprints = {
+            manifest.get("training_partition_fingerprint"),
+            manifest.get("training_split_fingerprint"),
+        }
+        if not valid_fingerprints.intersection(saved_fingerprints):
             raise ValueError("Tokenizador existente foi treinado com outro conjunto de treino")
         return ByteBPETokenizer.load(path)
     tokenizer = ByteBPETokenizer(int(tokenizer_config.get("vocab_size", 512)))
@@ -195,7 +306,12 @@ def _prepare_tokenizer(
     tokenizer.save(path)
     manifest_path.write_text(
         json.dumps(
-            {"schema_version": 1, "training_split_fingerprint": training_fingerprint, "tokenizer": tokenizer.metadata()},
+            {
+                "schema_version": 1,
+                "training_split_fingerprint": split_fingerprint or training_fingerprint,
+                "training_partition_fingerprint": training_fingerprint,
+                "tokenizer": tokenizer.metadata(),
+            },
             ensure_ascii=False,
             indent=2,
         )
@@ -223,6 +339,8 @@ def train_model(
     seed = int(config["seed"])
     set_seed(seed)
     device = resolve_device(device_name or config["training"].get("device", "auto"))
+    audit_manifest_path = config.get("data", {}).get("audit_manifest")
+    audit_metadata = _verify_audit_manifest(audit_manifest_path) if audit_manifest_path else None
     documents, corpus_stats = load_corpus(data_dir)
     split = split_documents(
         documents,
@@ -231,10 +349,14 @@ def train_model(
         seed=seed,
     )
     split_metadata = split.metadata()
+    if audit_metadata and audit_metadata.get("split_fingerprint") != split_metadata["fingerprint"]:
+        raise ValueError("A divisão calculada diverge do fingerprint do manifesto auditado")
+    training_partition_fingerprint = _stable_fingerprint({"split": split_metadata, "partition": "train"})
     tokenizer = _prepare_tokenizer(
         config,
         split.train,
-        training_fingerprint=_stable_fingerprint({"split": split_metadata, "partition": "train"}),
+        training_fingerprint=training_partition_fingerprint,
+        split_fingerprint=split_metadata["fingerprint"],
         work_dir=Path(data_dir).parent / "processed" / "bpe-work",
     )
     write_source_manifest(
@@ -266,15 +388,27 @@ def train_model(
             for name, store in (("train", train_tokens), ("validation", validation_tokens), ("test", test_tokens))
         },
     }
+    if audit_metadata:
+        data_metadata["audit_manifest"] = audit_metadata
     data_metadata["fingerprint"] = _stable_fingerprint(data_metadata)
     model = ElysiaTransformer(model_config).to(device)
+    if device.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=float(config["training"]["learning_rate"]),
         weight_decay=float(config["training"].get("weight_decay", 0.01)),
     )
+    total_steps = max_steps if max_steps is not None else int(config["training"]["steps"])
+    scheduler = _build_scheduler(
+        optimizer,
+        name=str(config["training"].get("lr_scheduler", "none")).lower(),
+        warmup_steps=int(config["training"].get("warmup_steps", 0)),
+        total_steps=total_steps,
+    )
     history: list[dict[str, float]] = []
     step = 0
+    processed_tokens = 0
     checkpoint = Path(checkpoint_path)
     batch_generator = torch.Generator(device="cpu").manual_seed(seed + 1)
     if checkpoint.exists():
@@ -286,11 +420,12 @@ def train_model(
             expected_tokenizer=tokenizer_metadata,
             expected_data=data_metadata,
             batch_generator=batch_generator,
+            scheduler=scheduler,
         )
         step = int(saved["step"])
         history = list(saved.get("history", []))
+        processed_tokens = int(saved.get("progress", {}).get("processed_tokens", 0))
 
-    total_steps = max_steps if max_steps is not None else int(config["training"]["steps"])
     batch_size = int(config["training"]["batch_size"])
     block_size = model_config.block_size
     validation_block_size = min(block_size, validation_tokens.numel() - 1)
@@ -302,10 +437,28 @@ def train_model(
     eval_interval = int(config["training"].get("eval_interval", 50))
     eval_batches = int(config["training"].get("eval_batches", 5))
     checkpoint_interval = int(config["training"].get("checkpoint_interval", 100))
+    max_duration_seconds = float(config["training"].get("max_duration_seconds", 0))
+    process = psutil.Process()
+    resource_samples = [_runtime_snapshot(device)]
+    checkpoint_save_seconds: list[float] = []
+    last_saved_step = -1
     model.train()
     started = time.perf_counter()
+    initial_validation_loss = evaluate_loss(
+        model,
+        validation_tokens,
+        batch_size=batch_size,
+        block_size=validation_block_size,
+        batches=eval_batches,
+        device=device,
+        seed=seed,
+    )
+    stop_reason = "steps_limit"
 
     while step < total_steps:
+        if max_duration_seconds > 0 and time.perf_counter() - started >= max_duration_seconds:
+            stop_reason = "duration_limit"
+            break
         optimizer.zero_grad(set_to_none=True)
         accumulated_loss = 0.0
         for _ in range(accumulation):
@@ -318,10 +471,14 @@ def train_model(
             )
             _, loss = model(inputs, targets)
             accumulated_loss += float(loss.item())
+            processed_tokens += int(inputs.numel())
             (loss / accumulation).backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), clip_norm)
         optimizer.step()
+        if scheduler is not None:
+            scheduler.step()
         step += 1
+        resource_samples.append(_runtime_snapshot(device))
 
         if step == 1 or step % eval_interval == 0 or step == total_steps:
             validation_loss = evaluate_loss(
@@ -338,9 +495,11 @@ def train_model(
                     "step": float(step),
                     "train_loss": accumulated_loss / accumulation,
                     "validation_loss": validation_loss,
+                    "learning_rate": float(optimizer.param_groups[0]["lr"]),
                 }
             )
         if step % checkpoint_interval == 0 or step == total_steps:
+            checkpoint_started = time.perf_counter()
             save_checkpoint(
                 checkpoint,
                 model=model,
@@ -351,8 +510,35 @@ def train_model(
                 batch_generator=batch_generator,
                 tokenizer_metadata=tokenizer_metadata,
                 data_metadata=data_metadata,
+                scheduler=scheduler,
+                processed_tokens=processed_tokens,
             )
+            checkpoint_save_seconds.append(time.perf_counter() - checkpoint_started)
+            last_saved_step = step
+        if max_duration_seconds > 0 and time.perf_counter() - started >= max_duration_seconds:
+            stop_reason = "duration_limit"
+            break
 
+    if step >= total_steps:
+        stop_reason = "steps_limit"
+    if last_saved_step != step:
+        checkpoint_started = time.perf_counter()
+        save_checkpoint(
+            checkpoint,
+            model=model,
+            optimizer=optimizer,
+            step=step,
+            history=history,
+            config=config,
+            batch_generator=batch_generator,
+            tokenizer_metadata=tokenizer_metadata,
+            data_metadata=data_metadata,
+            scheduler=scheduler,
+            processed_tokens=processed_tokens,
+        )
+        checkpoint_save_seconds.append(time.perf_counter() - checkpoint_started)
+
+    model.eval()
     test_loss = evaluate_loss(
         model,
         test_tokens,
@@ -363,12 +549,40 @@ def train_model(
         seed=seed + 999,
     )
     elapsed = time.perf_counter() - started
+    resource_samples.append(_runtime_snapshot(device))
+    tokens_per_second = processed_tokens / elapsed if elapsed > 0 else 0.0
+    train_token_count = train_tokens.numel()
+    checkpoint_bytes = checkpoint.stat().st_size if checkpoint.exists() else 0
+    checkpoint_sha256 = _file_sha256(checkpoint) if checkpoint.exists() else None
+    peak_vram = max((sample.get("vram_allocated_bytes", 0) for sample in resource_samples), default=0)
     return {
         "device": str(device),
         "gpu": torch.cuda.get_device_name(0) if device.type == "cuda" else None,
         "steps": step,
         "parameters": model.num_parameters(),
         "elapsed_seconds": elapsed,
+        "stop_reason": stop_reason,
+        "initial_validation_loss": initial_validation_loss,
+        "processed_tokens": processed_tokens,
+        "tokens_per_second": tokens_per_second,
+        "estimated_epochs": processed_tokens / train_token_count if train_token_count else 0.0,
+        "estimated_epoch_seconds": train_token_count / tokens_per_second if tokens_per_second else None,
+        "estimated_one_million_tokens_hours": 1_000_000 / tokens_per_second / 3600 if tokens_per_second else None,
+        "resource_usage": {
+            "ram_before_bytes": resource_samples[0]["ram_bytes"],
+            "ram_peak_sampled_bytes": max(sample["ram_bytes"] for sample in resource_samples),
+            "vram_peak_allocated_bytes": peak_vram or None,
+            "gpu_peak_allocated_bytes": int(torch.cuda.max_memory_allocated(device)) if device.type == "cuda" else None,
+            "cpu_count": psutil.cpu_count(logical=True),
+        },
+        "checkpoint_metrics": {
+            "path": str(checkpoint),
+            "bytes": checkpoint_bytes,
+            "sha256": checkpoint_sha256,
+            "save_count": len(checkpoint_save_seconds),
+            "save_seconds": checkpoint_save_seconds,
+            "last_save_seconds": checkpoint_save_seconds[-1] if checkpoint_save_seconds else None,
+        },
         "history": history,
         "test_loss": test_loss,
         "tokenizer": tokenizer_metadata,

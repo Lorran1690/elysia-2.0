@@ -73,7 +73,27 @@ def _word_count(text: str) -> int:
     return len(re.findall(r"\b[\wÀ-ÖØ-öø-ÿ]+\b", text, flags=re.UNICODE))
 
 
-def prepare(root: str | Path) -> dict[str, Any]:
+def _stable_fingerprint(value: Any) -> str:
+    encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _quality_audit(text: str) -> dict[str, Any]:
+    """Sample the beginning, middle and end so front matter is not checked only once."""
+    markers = re.compile(r"(?i)\b(introduction|translator|tradução|tradutor|project gutenberg)\b")
+    offsets = sorted({0, len(text) // 4, len(text) // 2, (len(text) * 3) // 4, max(0, len(text) - 5000)})
+    samples = []
+    for offset in offsets:
+        window = text[offset : offset + 5000]
+        samples.append({"offset": offset, "marker_hits": sorted(set(markers.findall(window)))})
+    return {
+        "sample_count": len(samples),
+        "samples": samples,
+        "modern_front_matter_detected": any(sample["marker_hits"] for sample in samples),
+    }
+
+
+def prepare(root: str | Path, *, skip_tokenizer: bool = False) -> dict[str, Any]:
     base = Path(root)
     originals = base / "originals"
     clean = base / "clean"
@@ -89,6 +109,7 @@ def prepare(root: str | Path) -> dict[str, Any]:
         clean_path = clean / f"{slug}.txt"
         clean_path.write_text(cleaned_text, encoding="utf-8", newline="\n")
         clean_bytes = cleaned_text.encode("utf-8")
+        quality = _quality_audit(cleaned_text)
         records.append(
             {
                 **work,
@@ -106,7 +127,8 @@ def prepare(root: str | Path) -> dict[str, Any]:
                 "words": _word_count(cleaned_text),
                 "start_marker_removed": True,
                 "end_marker_removed": True,
-                "modern_front_matter_detected": bool(re.search(r"(?i)\b(introduction|translator|tradução|tradutor)\b", cleaned_text[:5000])),
+                "modern_front_matter_detected": quality["modern_front_matter_detected"],
+                "quality_audit": quality,
             }
         )
     documents, stats = load_corpus(clean)
@@ -119,39 +141,49 @@ def prepare(root: str | Path) -> dict[str, Any]:
     processed.mkdir(parents=True, exist_ok=True)
     tokenizer_path = processed / "tokenizer-v0.4-machado.json"
     tokenizer_manifest_path = processed / "tokenizer-v0.4-machado.manifest.json"
-    tokenizer_started = time.perf_counter()
-    tokenizer = ByteBPETokenizer(512)
-    tokenizer.train_documents(
-        (iter_document_chunks(document) for document in split.train),
-        min_pair_frequency=2,
-        work_dir=processed / "bpe-work",
-    )
-    tokenizer.save(tokenizer_path)
-    tokenizer_manifest_path.write_text(
-        json.dumps(
-            {
-                "schema_version": 1,
-                "training_split_fingerprint": split.metadata()["fingerprint"],
-                "tokenizer": tokenizer.metadata(),
-                "training_seconds": time.perf_counter() - tokenizer_started,
-            },
-            ensure_ascii=False,
-            indent=2,
+    if skip_tokenizer:
+        previous_manifest_path = base / "audit-manifest.json"
+        if not previous_manifest_path.exists() or not tokenizer_path.exists() or not tokenizer_manifest_path.exists():
+            raise FileNotFoundError("--skip-tokenizer exige manifesto e tokenizador já existentes")
+        previous_manifest = json.loads(previous_manifest_path.read_text(encoding="utf-8"))
+        token_audit = previous_manifest["tokenizer_audit"]
+        tokenizer = ByteBPETokenizer.load(tokenizer_path)
+    else:
+        tokenizer_started = time.perf_counter()
+        tokenizer = ByteBPETokenizer(512)
+        tokenizer.train_documents(
+            (iter_document_chunks(document) for document in split.train),
+            min_pair_frequency=2,
+            work_dir=processed / "bpe-work",
         )
-        + "\n",
-        encoding="utf-8",
-    )
-    token_audit: dict[str, Any] = {"type": "byte_bpe", "tokenizer": tokenizer.metadata(), "splits": {}}
-    for partition, partition_documents in (("train", split.train), ("validation", split.validation), ("test", split.test)):
-        token_path = processed / f"tokens-{partition}.bin"
-        store = prepare_token_store(partition_documents, tokenizer, token_path, split_metadata=split.metadata())
-        byte_count = sum(len(chunk.encode("utf-8")) for document in partition_documents for chunk in iter_document_chunks(document))
-        token_audit["splits"][partition] = {
-            "bytes": byte_count,
-            "tokens": store.token_count,
-            "bytes_per_token": byte_count / store.token_count,
-            "token_store": {"path": str(store.path), "sha256": store.sha256, "metadata_path": str(store.metadata_path)},
-        }
+        tokenizer.save(tokenizer_path)
+        split_fingerprint = split.metadata()["fingerprint"]
+        tokenizer_manifest_path.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "training_split_fingerprint": split_fingerprint,
+                    "training_partition_fingerprint": _stable_fingerprint({"split": split.metadata(), "partition": "train"}),
+                    "tokenizer": tokenizer.metadata(),
+                    "training_seconds": time.perf_counter() - tokenizer_started,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        token_audit = {"type": "byte_bpe", "tokenizer": tokenizer.metadata(), "splits": {}}
+        for partition, partition_documents in (("train", split.train), ("validation", split.validation), ("test", split.test)):
+            token_path = processed / f"tokens-{partition}.bin"
+            store = prepare_token_store(partition_documents, tokenizer, token_path, split_metadata=split.metadata())
+            byte_count = sum(len(chunk.encode("utf-8")) for document in partition_documents for chunk in iter_document_chunks(document))
+            token_audit["splits"][partition] = {
+                "bytes": byte_count,
+                "tokens": store.token_count,
+                "bytes_per_token": byte_count / store.token_count,
+                "token_store": {"path": str(store.path), "sha256": store.sha256, "metadata_path": str(store.metadata_path)},
+            }
     manifest = {
         "schema_version": 1,
         "status": "local-only-audit",
@@ -170,8 +202,9 @@ def prepare(root: str | Path) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default="data/corpus-v0.4")
+    parser.add_argument("--skip-tokenizer", action="store_true", help="Reaudita amostras mantendo BPE e token stores existentes")
     args = parser.parse_args()
-    print(json.dumps(prepare(args.root), ensure_ascii=False, indent=2))
+    print(json.dumps(prepare(args.root, skip_tokenizer=args.skip_tokenizer), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

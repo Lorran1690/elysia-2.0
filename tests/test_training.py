@@ -8,7 +8,7 @@ from brain.generate import generate
 from brain.bpe_tokenizer import ByteBPETokenizer
 from brain.model import ElysiaTransformer, ModelConfig
 from learning.dataset import make_batch
-from learning.train import load_checkpoint, save_checkpoint, set_seed
+from learning.train import _build_scheduler, load_checkpoint, save_checkpoint, set_seed
 from learning.generate_text import load_inference_checkpoint
 
 
@@ -173,6 +173,22 @@ def test_generation_produces_tokens() -> None:
     output = generate(model, prompt, max_new_tokens=5, temperature=0.0)
     assert output.shape == (1, 8)
     assert output.dtype == torch.long
+
+
+def test_cosine_scheduler_warms_up_and_decays() -> None:
+    model = torch.nn.Linear(2, 2)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1.0)
+    scheduler = _build_scheduler(optimizer, name="cosine", warmup_steps=2, total_steps=6)
+    assert scheduler is not None
+    rates = [optimizer.param_groups[0]["lr"]]
+    for _ in range(6):
+        optimizer.step()
+        scheduler.step()
+        rates.append(optimizer.param_groups[0]["lr"])
+    assert rates[0] == 0.5
+    assert rates[1] == 1.0
+    assert rates[-1] == 0.0
+    assert rates[2] > rates[-1]
 
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA não disponível")

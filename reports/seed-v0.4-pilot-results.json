@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "phase": "v0.4-phase-4-bounded-pilot",
+  "corpus_policy": "Somente as três obras Machado de Assis já aprovadas e auditadas; nenhum download adicional.",
+  "training_policy": {
+    "main_pretraining_started": false,
+    "architecture_increased": false,
+    "test_split_used_for_selection": false,
+    "checkpoint_is_local_only": true
+  },
+  "fixed_generation_protocol": {
+    "prompts": [
+      "Capítulo primeiro. ",
+      "A vida é ",
+      "Quando o dia ",
+      "O leitor verá "
+    ],
+    "max_new_tokens": 80,
+    "temperature": 0.8,
+    "top_k": 20,
+    "seed": 12026,
+    "interpretation_note": "Amostras são observações qualitativas de um piloto curto e não demonstram compreensão, factualidade ou capacidade conversacional geral."
+  },
+  "before_training": [
+    {
+      "prompt": "Capítulo primeiro. ",
+      "generated_text": "Capítulo primeiro. ��e era primper\u0015á �}õter~7éperai7éo, ~noazo, e �a mãޱ�até�\u0015o, �~és �prim\u0015ies\u0015k�es~\n\nenses��7os���o, �~\u0016êêa mãa mã..até�ê�cor..�\u0015~om�",
+      "prompt_tokens": 11,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "A vida é ",
+      "generated_text": "A vida é �        ei 6\u0004emlhe �lhe \u0016em pr�emem mais os, az�tuQem�tuqui�Q6em istquitua, e atétua; \u0004�em �\u0016\u001b�\u0004\u0004tutuei tuegpr�a, e Ha, e tu\u001bera ��inha �b�CapitáellQa; �istististexp7�mais ",
+      "prompt_tokens": 6,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "Quando o dia ",
+      "generated_text": "Quando o dia prim�k�\u0004a s�pl~6\u0004�\u0010a sޑ�pl��per���ão �\u0017pl��mais �prim��mais prim�\u0015\u0010ex\u0010�ex\u0010a de ��\u0004��Taz�/prim���\u0017�\u0015ex-az\u0004ex\u0010or �que\n��squi/��erex",
+      "prompt_tokens": 6,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "O leitor verá ",
+      "generated_text": "O leitor verá us�ei 6Jperei isperazJ�ei azprim        ��ei �..�issperaz^as\n�Capitis        �êei ����de ^QJCapit�eu Capit..^da ....êê�~�isr��eu ei o ..~aiazda ~prim�eu \u0019�eu �azê",
+      "prompt_tokens": 7,
+      "generated_tokens": 80
+    }
+  ],
+  "after_training": [
+    {
+      "prompt": "Capítulo primeiro. ",
+      "generated_text": "Capítulo primeiro. que ira mo os iaoaduado ttvse iitada o cados sa pos ao sa que os issdivsmrsmo os que ffmdvea o tos mmlsiisos ofotmiuopu",
+      "prompt_tokens": 11,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "A vida é ",
+      "generated_text": "A vida é sque tsuas irore ccftrmpa rfoodppque srdumpda fos o o pfrque slodadsa a ro tla tvopaduoie ivittscdfufdce s",
+      "prompt_tokens": 6,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "Quando o dia ",
+      "generated_text": "Quando o dia ma fe dtlivto que da ca stade e tlque do va o ta otque sque dmvos e svioovdtne psde utdas tofo vuadvo sadmuos sos tos ris",
+      "prompt_tokens": 6,
+      "generated_tokens": 80
+    },
+    {
+      "prompt": "O leitor verá ",
+      "generated_text": "O leitor verá tque sadmos os vrcos os re u, oa as te adtadmdrposaofosdteque adque pfutnmtapa utvfmos me rspaado e a os tda oa que aapidque ",
+      "prompt_tokens": 7,
+      "generated_tokens": 80
+    }
+  ],
+  "training": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "steps": 200,
+    "parameters": 3490136,
+    "elapsed_seconds": 5.382832300005248,
+    "stop_reason": "steps_limit",
+    "initial_validation_loss": 6.3093743324279785,
+    "processed_tokens": 51200,
+    "tokens_per_second": 9511.721180678447,
+    "estimated_epochs": 0.285875409689613,
+    "estimated_epoch_seconds": 18.82929457223906,
+    "estimated_one_million_tokens_hours": 0.029203734266521526,
+    "resource_usage": {
+      "ram_before_bytes": 1158606848,
+      "ram_peak_sampled_bytes": 1351462912,
+      "vram_peak_allocated_bytes": 74461696,
+      "gpu_peak_allocated_bytes": 88422912,
+      "cpu_count": 8
+    },
+    "checkpoint_metrics": {
+      "path": "learning\\checkpoints\\elysia-seed-v0.4-machado-pilot.pt",
+      "bytes": 41973056,
+      "sha256": "e5a0134d793942eeb5905f1aacd01ad0ccde41b4657650bfe99ee8455c04a117",
+      "save_count": 8,
+      "save_seconds": [
+        0.09063109999988228,
+        0.10459109999646898,
+        0.11175260000163689,
+        0.1002405000035651,
+        0.10782669999753125,
+        0.08837330000096699,
+        0.08510289999685483,
+        0.11706569999660132
+      ],
+      "last_save_seconds": 0.11706569999660132
+    },
+    "history": [
+      {
+        "step": 1.0,
+        "train_loss": 6.286746025085449,
+        "validation_loss": 6.292758146921794,
+        "learning_rate": 5.9999999999999995e-05
+      },
+      {
+        "step": 25.0,
+        "train_loss": 5.477634429931641,
+        "validation_loss": 5.517922083536784,
+        "learning_rate": 0.0002954100430011749
+      },
+      {
+        "step": 50.0,
+        "train_loss": 5.375324249267578,
+        "validation_loss": 5.388050715128581,
+        "learning_rate": 0.00026837107837200165
+      },
+      {
+        "step": 75.0,
+        "train_loss": 5.46246337890625,
+        "validation_loss": 5.337052663167317,
+        "learning_rate": 0.00022139210253953933
+      },
+      {
+        "step": 100.0,
+        "train_loss": 5.2568254470825195,
+        "validation_loss": 5.702075799306233,
+        "learning_rate": 0.00016238690391182897
+      },
+      {
+        "step": 125.0,
+        "train_loss": 5.413254261016846,
+        "validation_loss": 5.293604056040446,
+        "learning_rate": 0.00010129507184028624
+      },
+      {
+        "step": 150.0,
+        "train_loss": 5.340961933135986,
+        "validation_loss": 5.341962178548177,
+        "learning_rate": 4.840776622295379e-05
+      },
+      {
+        "step": 175.0,
+        "train_loss": 5.432549953460693,
+        "validation_loss": 5.353248914082845,
+        "learning_rate": 1.2634000182151794e-05
+      },
+      {
+        "step": 200.0,
+        "train_loss": 5.533964157104492,
+        "validation_loss": 5.608962059020996,
+        "learning_rate": 0.0
+      }
+    ],
+    "test_loss": 5.278458913167317,
+    "tokenizer": {
+      "type": "byte_bpe",
+      "schema_version": 1,
+      "vocab_size": 512,
+      "requested_vocab_size": 512,
+      "fingerprint": "d7b27519afcc8a19deb57691617e7a1478893bbf3d71768508a998ca48d887a8"
+    },
+    "corpus": {
+      "files_seen": 3,
+      "documents_loaded": 3,
+      "duplicate_documents": 0,
+      "invalid_documents": 0,
+      "source_groups": 3,
+      "near_duplicate_clusters": 3,
+      "total_bytes": 1225526,
+      "raw_files": {
+        "data\\corpus-v0.4\\clean\\dom-casmurro.txt": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+        "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+        "data\\corpus-v0.4\\clean\\quincas-borba.txt": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974"
+      }
+    },
+    "checkpoint": "learning\\checkpoints\\elysia-seed-v0.4-machado-pilot.pt",
+    "data": {
+      "raw_files": {
+        "data\\corpus-v0.4\\clean\\dom-casmurro.txt": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+        "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+        "data\\corpus-v0.4\\clean\\quincas-borba.txt": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974"
+      },
+      "split": {
+        "seed": 2026,
+        "validation_fraction": 0.15,
+        "test_fraction": 0.15,
+        "members": {
+          "train": [
+            {
+              "sha256": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+              "group": "related:0",
+              "path": "data\\corpus-v0.4\\clean\\dom-casmurro.txt"
+            }
+          ],
+          "validation": [
+            {
+              "sha256": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+              "group": "related:1",
+              "path": "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt"
+            }
+          ],
+          "test": [
+            {
+              "sha256": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974",
+              "group": "related:2",
+              "path": "data\\corpus-v0.4\\clean\\quincas-borba.txt"
+            }
+          ]
+        },
+        "fingerprint": "7fca4ee72e780084b1a364cf80424e9d0d3a1cb2ad9cacc3c257c8002282e757"
+      },
+      "tokenizer": {
+        "type": "byte_bpe",
+        "schema_version": 1,
+        "vocab_size": 512,
+        "requested_vocab_size": 512,
+        "fingerprint": "d7b27519afcc8a19deb57691617e7a1478893bbf3d71768508a998ca48d887a8"
+      },
+      "token_stores": {
+        "train": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-train-7fca4ee72e78.bin",
+          "token_count": 179099,
+          "sha256": "143362ab3e576996b1a363820a19d2b6e2eb9e8e5bb69ec4f1d6a47a37f6a24d"
+        },
+        "validation": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-validation-7fca4ee72e78.bin",
+          "token_count": 178618,
+          "sha256": "04afd06dfe51274c23d293ca58ee3d839170a52fb8298d0fb4cae735dce4fb50"
+        },
+        "test": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-test-7fca4ee72e78.bin",
+          "token_count": 220490,
+          "sha256": "889ee0e6484d1ea890e814d6636f95c604647c502f362ad00592e40b1cff2469"
+        }
+      },
+      "audit_manifest": {
+        "path": "data\\corpus-v0.4\\audit-manifest.json",
+        "sha256": "d55cbe99459951fd7c8a053970f8ebedd6b1744f5a05403c779de26e00278b37",
+        "schema_version": 1,
+        "split_fingerprint": "7fca4ee72e780084b1a364cf80424e9d0d3a1cb2ad9cacc3c257c8002282e757",
+        "works": [
+          {
+            "id": "55752",
+            "title": "Dom Casmurro",
+            "split": "train",
+            "original_sha256": "0fc3dbf384544d81d87e5a731e67b7976ac3a57acb378f0f354d12a3b52bd0c7",
+            "clean_sha256": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+            "original_bytes": 418230,
+            "clean_bytes": 389167
+          },
+          {
+            "id": "54829",
+            "title": "Memorias Posthumas de Braz Cubas",
+            "split": "validation",
+            "original_sha256": "edfe4370698ed5716a9692b980a8d6ee77b4ff8116503bb2e08675f1d10d303a",
+            "clean_sha256": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+            "original_bytes": 403243,
+            "clean_bytes": 374427
+          },
+          {
+            "id": "55682",
+            "title": "Quincas Borba",
+            "split": "test",
+            "original_sha256": "d23baeb1a449950e20a3257df0452b860578246eed2f1d5f8a8e62cede6669b9",
+            "clean_sha256": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974",
+            "original_bytes": 492850,
+            "clean_bytes": 461932
+          }
+        ]
+      },
+      "fingerprint": "371ead7cb905e2e5b380f9487671d53b6690d322bee00661610cad0ee9efdc30"
+    }
+  }
+}

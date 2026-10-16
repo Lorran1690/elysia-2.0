@@ -1,0 +1,36 @@
+seed: 2026
+tokenizer:
+  type: byte_bpe
+  vocab_size: 512
+  min_pair_frequency: 2
+  path: data/corpus-v0.4/processed/tokenizer-v0.4-machado.json
+model:
+  vocab_size: null
+  block_size: 256
+  num_layers: 4
+  embedding_dim: 256
+  num_heads: 4
+  feedforward_dim: 1024
+  dropout: 0.0
+  positional_embedding: absolute
+  norm_type: layernorm
+  feedforward_type: swiglu
+  attention_backend: sdpa
+data:
+  audit_manifest: data/corpus-v0.4/audit-manifest.json
+  validation_fraction: 0.15
+  test_fraction: 0.15
+training:
+  device: auto
+  steps: 200
+  batch_size: 1
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  gradient_clip_norm: 1.0
+  gradient_accumulation_steps: 1
+  lr_scheduler: cosine
+  warmup_steps: 10
+  eval_interval: 25
+  eval_batches: 3
+  checkpoint_interval: 25
+  max_duration_seconds: 600
