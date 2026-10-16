@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "status": "local-only-audit",
+  "source_policy": "Somente as três obras aprovadas; nenhum outro corpus foi baixado.",
+  "legal_note": "O Project Gutenberg declara domínio público nos EUA; a situação brasileira foi aprovada pelo solicitante, mas a página, licença e atribuição foram preservadas para auditoria.",
+  "works": [
+    {
+      "id": "55752",
+      "title": "Dom Casmurro",
+      "author": "Machado de Assis",
+      "landing_url": "https://www.gutenberg.org/ebooks/55752",
+      "download_url": "https://www.gutenberg.org/cache/epub/55752/pg55752.txt",
+      "release_date": "2017-10-15",
+      "format": "UTF-8 plain text",
+      "accessed_at": "2026-10-15",
+      "source_status": "Project Gutenberg declara public domain in the USA; confirmação brasileira fornecida pelo solicitante.",
+      "source_conditions": "Preservar atribuição e avisos; a política do Project Gutenberg exige verificar a lei local e regula o uso da marca.",
+      "original_path": "data\\corpus-v0.4\\originals\\dom-casmurro.txt",
+      "clean_path": "data\\corpus-v0.4\\clean\\dom-casmurro.txt",
+      "original_bytes": 418230,
+      "clean_bytes": 389167,
+      "original_sha256": "0fc3dbf384544d81d87e5a731e67b7976ac3a57acb378f0f354d12a3b52bd0c7",
+      "clean_sha256": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+      "characters": 381078,
+      "words": 67381,
+      "start_marker_removed": true,
+      "end_marker_removed": true,
+      "modern_front_matter_detected": false,
+      "split": "train"
+    },
+    {
+      "id": "54829",
+      "title": "Memorias Posthumas de Braz Cubas",
+      "author": "Machado de Assis",
+      "landing_url": "https://www.gutenberg.org/ebooks/54829",
+      "download_url": "https://www.gutenberg.org/cache/epub/54829/pg54829.txt",
+      "release_date": "2017-06-02",
+      "format": "UTF-8 plain text",
+      "accessed_at": "2026-10-15",
+      "source_status": "Project Gutenberg declara public domain in the USA; confirmação brasileira fornecida pelo solicitante.",
+      "source_conditions": "Preservar atribuição e avisos; a política do Project Gutenberg exige verificar a lei local e regula o uso da marca.",
+      "original_path": "data\\corpus-v0.4\\originals\\memorias-postumas-de-bras-cubas.txt",
+      "clean_path": "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt",
+      "original_bytes": 403243,
+      "clean_bytes": 374427,
+      "original_sha256": "edfe4370698ed5716a9692b980a8d6ee77b4ff8116503bb2e08675f1d10d303a",
+      "clean_sha256": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+      "characters": 367821,
+      "words": 63538,
+      "start_marker_removed": true,
+      "end_marker_removed": true,
+      "modern_front_matter_detected": false,
+      "split": "validation"
+    },
+    {
+      "id": "55682",
+      "title": "Quincas Borba",
+      "author": "Machado de Assis",
+      "landing_url": "https://www.gutenberg.org/ebooks/55682",
+      "download_url": "https://www.gutenberg.org/cache/epub/55682/pg55682.txt",
+      "release_date": "2017-10-05",
+      "format": "UTF-8 plain text",
+      "accessed_at": "2026-10-15",
+      "source_status": "Project Gutenberg declara public domain in the USA; confirmação brasileira fornecida pelo solicitante.",
+      "source_conditions": "Preservar atribuição e avisos; a política do Project Gutenberg exige verificar a lei local e regula o uso da marca.",
+      "original_path": "data\\corpus-v0.4\\originals\\quincas-borba.txt",
+      "clean_path": "data\\corpus-v0.4\\clean\\quincas-borba.txt",
+      "original_bytes": 492850,
+      "clean_bytes": 461932,
+      "original_sha256": "d23baeb1a449950e20a3257df0452b860578246eed2f1d5f8a8e62cede6669b9",
+      "clean_sha256": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974",
+      "characters": 453507,
+      "words": 78553,
+      "start_marker_removed": true,
+      "end_marker_removed": true,
+      "modern_front_matter_detected": false,
+      "split": "test"
+    }
+  ],
+  "stats": {
+    "files_seen": 3,
+    "documents_loaded": 3,
+    "duplicate_documents": 0,
+    "invalid_documents": 0,
+    "source_groups": 3,
+    "near_duplicate_clusters": 3,
+    "total_bytes": 1225526,
+    "raw_files": {
+      "data\\corpus-v0.4\\clean\\dom-casmurro.txt": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+      "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+      "data\\corpus-v0.4\\clean\\quincas-borba.txt": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974"
+    }
+  },
+  "split": {
+    "seed": 2026,
+    "validation_fraction": 0.15,
+    "test_fraction": 0.15,
+    "members": {
+      "train": [
+        {
+          "sha256": "22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59",
+          "group": "related:0",
+          "path": "data\\corpus-v0.4\\clean\\dom-casmurro.txt"
+        }
+      ],
+      "validation": [
+        {
+          "sha256": "f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0",
+          "group": "related:1",
+          "path": "data\\corpus-v0.4\\clean\\memorias-postumas-de-bras-cubas.txt"
+        }
+      ],
+      "test": [
+        {
+          "sha256": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974",
+          "group": "related:2",
+          "path": "data\\corpus-v0.4\\clean\\quincas-borba.txt"
+        }
+      ]
+    },
+    "fingerprint": "7fca4ee72e780084b1a364cf80424e9d0d3a1cb2ad9cacc3c257c8002282e757"
+  },
+  "deduplication": {
+    "exact_duplicates": 0,
+    "near_duplicate_clusters": 3
+  },
+  "tokenizer_audit": {
+    "type": "byte_bpe",
+    "tokenizer": {
+      "type": "byte_bpe",
+      "schema_version": 1,
+      "vocab_size": 512,
+      "requested_vocab_size": 512,
+      "fingerprint": "d7b27519afcc8a19deb57691617e7a1478893bbf3d71768508a998ca48d887a8"
+    },
+    "splits": {
+      "train": {
+        "bytes": 389167,
+        "tokens": 179099,
+        "bytes_per_token": 2.1729155383335472,
+        "token_store": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-train.bin",
+          "sha256": "143362ab3e576996b1a363820a19d2b6e2eb9e8e5bb69ec4f1d6a47a37f6a24d",
+          "metadata_path": "data\\corpus-v0.4\\processed\\tokens-train.json"
+        }
+      },
+      "validation": {
+        "bytes": 374427,
+        "tokens": 178618,
+        "bytes_per_token": 2.0962444994345475,
+        "token_store": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-validation.bin",
+          "sha256": "04afd06dfe51274c23d293ca58ee3d839170a52fb8298d0fb4cae735dce4fb50",
+          "metadata_path": "data\\corpus-v0.4\\processed\\tokens-validation.json"
+        }
+      },
+      "test": {
+        "bytes": 461932,
+        "tokens": 220490,
+        "bytes_per_token": 2.095024717674271,
+        "token_store": {
+          "path": "data\\corpus-v0.4\\processed\\tokens-test.bin",
+          "sha256": "889ee0e6484d1ea890e814d6636f95c604647c502f362ad00592e40b1cff2469",
+          "metadata_path": "data\\corpus-v0.4\\processed\\tokens-test.json"
+        }
+      }
+    }
+  }
+}

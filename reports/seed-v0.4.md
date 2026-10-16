@@ -92,4 +92,50 @@ Fonte: [página do corpus](https://www.tycho.iel.unicamp.br/~tycho/corpus/), [ca
 3. Não usar Tycho Brahe até receber confirmação das condições de treinamento e redistribuição.
 4. Manter cada obra como unidade de split, registrar URL, autor, edição, licença, data de consulta, hash e tamanho, e excluir textos cuja licença não cubra o uso planejado.
 
-Nenhum arquivo externo foi baixado e nenhum pré-treinamento longo foi iniciado. Esta proposta aguarda aprovação explícita antes da Fase 3.
+Até a aprovação, nenhum arquivo externo foi baixado e nenhum pré-treinamento longo foi iniciado. A coleta descrita abaixo ocorreu somente depois da aprovação explícita.
+
+## Fase 3 — coleta autorizada e auditoria
+
+Após a aprovação, foram baixados somente os três TXT aprovados pelas URLs diretas do Project Gutenberg. Os originais ficam em `data/corpus-v0.4/originals/` e as cópias limpas em `data/corpus-v0.4/clean/`; ambos os diretórios são ignorados pelo Git. O repositório recebeu somente o script, o manifesto e esta documentação. Nenhuma obra da Wikisource ou do Tycho Brahe foi incorporada.
+
+### Proveniência e hashes
+
+| Obra | URL | Original | SHA-256 original | Limpo | SHA-256 limpo |
+| --- | --- | ---: | --- | ---: | --- |
+| Dom Casmurro | `https://www.gutenberg.org/ebooks/55752` | 418.230 B | `0fc3dbf384544d81d87e5a731e67b7976ac3a57acb378f0f354d12a3b52bd0c7` | 389.167 B | `22119569360067b6eb907f227b18be52d3883561c05b9070012eaf047cf4ac59` |
+| Memórias Póstumas de Brás Cubas | `https://www.gutenberg.org/ebooks/54829` | 403.243 B | `edfe4370698ed5716a9692b980a8d6ee77b4ff8116503bb2e08675f1d10d303a` | 374.427 B | `f91b052f708125757e73fdfcc90fc7b2dda9f76dd84b501ef1682d95c39bd9c0` |
+| Quincas Borba | `https://www.gutenberg.org/ebooks/55682` | 492.850 B | `d23baeb1a449950e20a3257df0452b860578246eed2f1d5f8a8e62cede6669b9` | 461.932 B | `0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974` |
+
+Total original: 1.314.323 bytes. Total limpo: 1.225.526 bytes, 1.202.406 caracteres e 209.472 palavras.
+
+### Limpeza e direitos
+
+Os três arquivos são UTF-8 e foram conferidos com decodificação estrita. O script `learning/prepare_corpus_v04.py` normaliza NFC, remove somente o cabeçalho anterior ao marcador `START OF THE PROJECT GUTENBERG EBOOK` e o rodapé posterior ao marcador `END OF THE PROJECT GUTENBERG EBOOK`, normaliza finais de linha e reduz linhas vazias consecutivas. Não foi detectada introdução moderna, tradução ou seção de tradutor nos primeiros 5.000 caracteres de nenhuma cópia limpa. As páginas individuais declaram as obras como public domain in the USA; a política do [Project Gutenberg](https://www.gutenberg.org/policy/permission.html) alerta que a situação fora dos EUA deve ser confirmada separadamente. A autorização desta coleta no Brasil foi fornecida pelo solicitante; atribuição, URLs, avisos e hashes permanecem no manifesto.
+
+### Deduplicação, divisão e BPE
+
+- 3 arquivos, 3 obras e 0 registros inválidos.
+- Duplicação exata: 0; clusters aproximados: 3, um por obra.
+- Split determinístico por obra, seed `2026`: Dom Casmurro em treino, Memórias Póstumas em validação e Quincas Borba em teste.
+- Fingerprint do split: `7fca4ee72e780084b1a364cf80424e9d0d3a1cb2ad9cacc3c257c8002282e757`.
+- BPE novo de 512 tokens, treinado exclusivamente em Dom Casmurro; fingerprint `d7b27519afcc8a19deb57691617e7a1478893bbf3d71768508a998ca48d887a8`.
+- Tokens armazenados incrementalmente: 179.099 treino, 178.618 validação e 220.490 teste; total 578.207.
+- Bytes por token: 2,1729 treino, 2,0962 validação e 2,0950 teste; média ponderada 2,1195.
+- O BPE foi congelado antes de tokenizar validação e teste. Os token stores e o vocabulário ficam locais e ignorados pelo Git até nova verificação de redistribuição.
+
+O manifesto completo está em `data/corpus-v0.4/audit-manifest.json`. O procedimento é reproduzível com `python -m learning.prepare_corpus_v04`; ele não baixa arquivos e não inicia treinamento.
+
+### Proposta contemporânea futura
+
+Ainda não foram baixadas fontes contemporâneas. A segunda proposta é:
+
+1. **Textos originais autorizados pelo projeto:** coletar textos brasileiros contemporâneos encomendados ou cedidos por autores, com autorização escrita cobrindo treinamento, armazenamento, avaliação e a forma de distribuição do modelo. É a opção prioritária para conversação e variante brasileira.
+2. **Dumps da Wikimedia em português:** [índice oficial de dumps](https://dumps.wikimedia.org/) e [Termos de Uso da Wikimedia](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/pt-br). Podem fornecer material explicativo e informativo com atribuição/share-alike, mas misturam Brasil, Portugal e outros países, têm discussões e metadados, e exigem filtrar páginas, históricos e dados pessoais.
+3. **Materiais educacionais e institucionais brasileiros com licença explícita:** selecionar portais ou autores que publiquem textos em CC BY ou CC BY-SA e cuja licença cubra reutilização e derivados. Cada item precisará ser verificado individualmente; a existência de uma licença no portal não autoriza automaticamente todo documento ali hospedado.
+4. **Textos conversacionais próprios anonimizados:** criar diálogos escritos especificamente para o projeto por colaboradores identificados, com consentimento e remoção de nomes, contatos, identificadores e informações sensíveis. Não usar conversas reais de terceiros sem autorização específica.
+
+A composição pretendida é variada: explicativos, informativos, conversacionais e narrativos, com metadados de gênero, data, autoria/licença e variante regional. Nenhuma dessas fontes será baixada sem nova aprovação. Cada fonte deverá apresentar URL, licença, consentimento quando aplicável, hash, deduplicação e auditoria de dados pessoais antes de qualquer download.
+
+### Custo para o futuro treinamento
+
+O corpus experimental tem 578.207 tokens BPE, mas é pequeno demais para um pré-treinamento linguístico relevante. O piloto anterior de 10 etapas usou cerca de 1,03 s na GTX 1650, mas esse número não estima uma época real deste corpus nem deve ser extrapolado sem um piloto com a nova divisão e tokenizador. O próximo passo computacional deve medir tokens/s, VRAM, RAM, espaço em disco, acumulação e frequência de checkpoint com o corpus aprovado antes de definir duração. Nenhum treinamento principal foi iniciado nesta etapa.
