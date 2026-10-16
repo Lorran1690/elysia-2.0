@@ -7,6 +7,9 @@ __pycache__/
 data/corpus-v0.4/originals/
 data/corpus-v0.4/clean/
 data/corpus-v0.4/processed/
+data/corpus-v0.5/originals/
+data/corpus-v0.5/clean/
+data/corpus-v0.5/processed/
 learning/checkpoints/elysia-seed-v0.4-machado-pilot.pt
 learning/checkpoints/elysia-seed-v0.4-machado-extended-best.pt
 learning/checkpoints/elysia-seed-v0.4-machado-extended-last.pt
