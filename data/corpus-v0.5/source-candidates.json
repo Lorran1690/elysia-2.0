@@ -92,8 +92,33 @@
       "text_collected": false,
       "content_hash": null,
       "content_hash_status": "Nao calculado: download e coleta estao bloqueados nesta fase.",
-      "status": "approved",
-      "status_rationale": "A licenca e a fonte oficial foram verificadas, mas a coleta continua dependente de nova aprovacao e de auditoria do arquivo final.",
+      "status": "pending",
+      "status_rationale": "A pagina oficial confirma a versao e a licenca, mas o URL oficial selecionado para o PDF nao entregou o arquivo na auditoria de 2026-10-16. Nenhuma fonte substituta foi aceita; uma nova autorizacao para um arquivo oficial acessivel sera necessaria.",
+      "collection_attempt": {
+        "phase": "v0.5-first-controlled-collection",
+        "attempted_at": "2026-10-16",
+        "authorized_scope": "Somente eMAG - Modelo de Acessibilidade em Governo Eletronico, versao 3.1.",
+        "official_page_url": "https://emag.governoeletronico.gov.br/",
+        "selected_file_url": "https://www.governoeletronico.gov.br/documentos-e-arquivos/eMAGv31.pdf",
+        "selected_file_label": "Download do Modelo em PDF (2.2 MBytes)",
+        "preflight": {
+          "version_confirmed_on_official_page": "Versao 3.1 - Abril 2014",
+          "license_confirmed_on_official_page": "CC BY 4.0",
+          "institutional_authority": "Equipe do DGE - Departamento de Governo Eletronico",
+          "third_party_elements": "Nao auditados no arquivo, pois o PDF oficial nao foi entregue."
+        },
+        "availability_check": {
+          "method": "Consulta de cabecalhos HTTP, sem salvar corpo de documento.",
+          "selected_url_status": 301,
+          "redirect_location": "https://www.gov.br/governodigital/pt-br/estrategia-de-governanca-digital/do-eletronico-ao-digital",
+          "final_response_status": 403,
+          "final_response_content_type": "text/html; charset=iso-8859-1"
+        },
+        "outcome": "blocked_file_unavailable",
+        "files_downloaded": 0,
+        "source_bytes_saved": 0,
+        "reason": "O URL oficial selecionado redirecionou para uma pagina generica e nao entregou o PDF eMAG v3.1. O ponto de parada obrigatorio foi acionado sem buscar ou aceitar substitutos."
+      },
       "future_collection_requirements": ["registrar versao e URL do arquivo", "preservar aviso de licenca", "revisar anexos e exemplos", "medir hash somente depois de autorizacao"]
     },
     {

@@ -22,7 +22,7 @@ def test_v05_manifest_is_metadata_only_and_has_required_scielo_screen() -> None:
     assert summary == {
         "candidate_count": 28,
         "source_counts": {"Padrao Digital de Governo": 1, "SciELO Brasil": 20, "eMAG": 1, "eduCAPES": 6},
-        "status_counts": {"approved": 3, "pending": 20, "rejected": 5},
+        "status_counts": {"approved": 2, "pending": 21, "rejected": 5},
         "scielo_preliminary_article_count": 20,
         "full_text_collected_count": 0,
         "collection_requires_explicit_approval": True,
@@ -43,7 +43,8 @@ def test_v05_manifest_rejects_embedded_source_content() -> None:
 
 def test_v05_manifest_rejects_an_approved_candidate_without_a_permissive_license() -> None:
     invalid = copy.deepcopy(manifest())
-    invalid["candidates"][0]["license"]["name"] = "desconhecida"  # type: ignore[index]
+    approved_candidate = next(candidate for candidate in invalid["candidates"] if candidate["status"] == "approved")  # type: ignore[index]
+    approved_candidate["license"]["name"] = "desconhecida"
     with pytest.raises(ManifestValidationError, match="CC BY 4.0 ou CC0 1.0"):
         validate_manifest(invalid)
 
@@ -53,3 +54,14 @@ def test_v05_manifest_rejects_collection_before_explicit_approval() -> None:
     invalid["collection_policy"]["new_dataset_downloaded"] = True  # type: ignore[index]
     with pytest.raises(ManifestValidationError, match="new_dataset_downloaded"):
         validate_manifest(invalid)
+
+
+def test_v05_manifest_records_the_blocked_emag_attempt_without_collecting_content() -> None:
+    emag = next(candidate for candidate in manifest()["candidates"] if candidate["id"] == "emag-v3-1")  # type: ignore[index]
+
+    assert emag["status"] == "pending"
+    assert emag["text_collected"] is False
+    assert emag["content_hash"] is None
+    assert emag["collection_attempt"]["outcome"] == "blocked_file_unavailable"
+    assert emag["collection_attempt"]["files_downloaded"] == 0
+    assert emag["collection_attempt"]["source_bytes_saved"] == 0
