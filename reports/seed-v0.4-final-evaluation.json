@@ -1,0 +1,3597 @@
+{
+  "schema_version": 1,
+  "phase": "v0.4-phase-6-final-test-evaluation",
+  "evaluation_count": 1,
+  "policy": {
+    "checkpoint_frozen": true,
+    "weights_updated": false,
+    "optimizer_loaded": false,
+    "architecture_changed": false,
+    "new_datasets_downloaded": false,
+    "existing_test_token_store_reused_without_writing": true,
+    "test_work": "Quincas Borba",
+    "test_was_previously_evaluated_in_phase_4": true,
+    "novel_global_test_claim_permitted": false,
+    "repeat_execution_blocked_when_manifest_exists": true
+  },
+  "checkpoint_audit": {
+    "checkpoint": {
+      "path": "learning\\checkpoints\\elysia-seed-v0.4-machado-extended-best.pt",
+      "sha256": "f8e2ec643cd963ebfd47c9c7b6d87a8a5b79af9c0fb7f8e1e75744106e1943d3",
+      "bytes": 41977224,
+      "step": 1000,
+      "progress": {
+        "processed_tokens": 256000,
+        "best_validation_loss": 4.2500019967556,
+        "best_step": 1000,
+        "early_stop_reference_loss": 4.2510166466236115,
+        "evaluations_without_improvement": 0,
+        "validation_protocol_fingerprint": "4463ddf827b154fcdb32ebc405450b23fe42f574d30c71a55a05e3689a9b6090",
+        "checkpoint_role": "best_validation"
+      }
+    },
+    "last_checkpoint": {
+      "path": "learning\\checkpoints\\elysia-seed-v0.4-machado-extended-last.pt",
+      "sha256": "0585ed247ccc7d8259390e250393b27b43a429368424f9d6de71c6b02fbc15c1",
+      "bytes": 41977224,
+      "step": 1000
+    },
+    "model": {
+      "config": {
+        "vocab_size": 512,
+        "block_size": 256,
+        "num_layers": 4,
+        "embedding_dim": 256,
+        "num_heads": 4,
+        "feedforward_dim": 1024,
+        "dropout": 0.0,
+        "positional_embedding": "absolute",
+        "norm_type": "layernorm",
+        "feedforward_type": "swiglu",
+        "attention_backend": "sdpa",
+        "rope_theta": 10000.0
+      },
+      "architecture_fingerprint": "1ec4192799a32ee7a0320ccf71a9bfe1f3f708f2e5c9193faa294a3b1e776ae7",
+      "parameter_count": 3490136
+    },
+    "tokenizer": {
+      "type": "byte_bpe",
+      "schema_version": 1,
+      "vocab_size": 512,
+      "requested_vocab_size": 512,
+      "fingerprint": "d7b27519afcc8a19deb57691617e7a1478893bbf3d71768508a998ca48d887a8"
+    },
+    "corpus": {
+      "checkpoint_data_fingerprint": "eb4d6655b08d35a51e91779ff72c15d8f904c6b1fd64a4321d3ed87ea484ca06",
+      "split_fingerprint": "7fca4ee72e780084b1a364cf80424e9d0d3a1cb2ad9cacc3c257c8002282e757",
+      "audit_manifest_sha256": "d55cbe99459951fd7c8a053970f8ebedd6b1744f5a05403c779de26e00278b37"
+    },
+    "best_and_last_weights_identical": true,
+    "weight_tensor_count": 54,
+    "file_hashes_differ_despite_identical_model_weights": true
+  },
+  "audit_manifest": {
+    "path": "data\\corpus-v0.4\\audit-manifest.json",
+    "sha256": "d55cbe99459951fd7c8a053970f8ebedd6b1744f5a05403c779de26e00278b37",
+    "fingerprint": null
+  },
+  "test_partition": {
+    "document": {
+      "path": "data\\corpus-v0.4\\clean\\quincas-borba.txt",
+      "sha256": "0476447eba5a37435d26a9090d8f467e3292c3109975f29574d3c92e6492c974",
+      "characters": 453507,
+      "utf8_bytes": 461932
+    },
+    "token_store": {
+      "path": "data\\corpus-v0.4\\processed\\tokens-test-7fca4ee72e78.bin",
+      "sha256": "889ee0e6484d1ea890e814d6636f95c604647c502f362ad00592e40b1cff2469",
+      "token_count": 220490
+    },
+    "corpus_files_seen": 3
+  },
+  "execution": {
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce GTX 1650",
+    "inference_only": true,
+    "determinism": {
+      "deterministic_algorithms_enforced": true,
+      "previously_enabled": false,
+      "previous_warn_only": false
+    }
+  },
+  "metrics": {
+    "loss": 4.192848831277173,
+    "content_token_loss": 4.192816773518384,
+    "perplexity": 66.21114692209275,
+    "bits_per_byte": 2.887269561632633,
+    "evaluated_target_tokens": 220489,
+    "content_target_tokens": 220488,
+    "excluded_special_target_tokens": 1,
+    "text_bytes": 461932,
+    "window_count": 862,
+    "batch_count": 109,
+    "seconds": 1.8202348000049824,
+    "resources": {
+      "ram_before_bytes": 816082944,
+      "ram_after_bytes": 1077764096,
+      "ram_peak_sampled_bytes": 1077764096,
+      "vram_before_allocated_bytes": 13961216,
+      "vram_after_allocated_bytes": 23682048,
+      "vram_peak_allocated_bytes": 59947008,
+      "vram_before_reserved_bytes": 31457280,
+      "vram_after_reserved_bytes": 75497472,
+      "vram_peak_reserved_bytes": 75497472
+    },
+    "protocol": {
+      "schema_version": 1,
+      "partition": "test",
+      "token_store_sha256": "889ee0e6484d1ea890e814d6636f95c604647c502f362ad00592e40b1cff2469",
+      "token_count": 220490,
+      "block_size": 256,
+      "window_count": 862,
+      "evaluated_target_tokens": 220489,
+      "full_window_count": 861,
+      "trailing_window_target_tokens": 73,
+      "windows": [
+        {
+          "offset": 0,
+          "target_tokens": 256
+        },
+        {
+          "offset": 256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 1024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 1280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 1536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 1792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 2048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 2304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 2560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 2816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 3072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 3328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 3584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 3840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 4096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 4352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 4608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 4864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 5120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 5376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 5632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 5888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 6144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 6400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 6656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 6912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 7168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 7424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 7680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 7936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 8192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 8448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 8704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 8960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 9216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 9472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 9728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 9984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 10240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 10496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 10752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 11008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 11264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 11520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 11776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 12032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 12288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 12544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 12800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 13056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 13312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 13568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 13824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 14080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 14336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 14592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 14848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 15104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 15360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 15616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 15872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 16128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 16384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 16640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 16896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 17152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 17408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 17664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 17920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 18176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 18432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 18688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 18944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 19200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 19456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 19712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 19968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 20224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 20480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 20736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 20992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 21248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 21504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 21760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 22016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 22272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 22528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 22784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 23040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 23296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 23552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 23808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 24064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 24320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 24576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 24832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 25088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 25344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 25600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 25856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 26112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 26368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 26624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 26880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 27136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 27392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 27648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 27904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 28160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 28416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 28672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 28928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 29184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 29440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 29696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 29952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 30208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 30464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 30720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 30976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 31232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 31488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 31744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 32000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 32256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 32512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 32768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 33024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 33280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 33536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 33792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 34048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 34304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 34560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 34816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 35072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 35328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 35584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 35840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 36096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 36352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 36608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 36864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 37120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 37376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 37632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 37888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 38144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 38400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 38656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 38912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 39168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 39424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 39680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 39936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 40192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 40448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 40704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 40960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 41216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 41472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 41728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 41984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 42240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 42496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 42752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 43008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 43264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 43520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 43776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 44032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 44288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 44544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 44800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 45056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 45312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 45568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 45824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 46080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 46336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 46592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 46848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 47104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 47360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 47616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 47872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 48128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 48384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 48640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 48896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 49152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 49408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 49664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 49920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 50176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 50432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 50688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 50944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 51200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 51456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 51712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 51968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 52224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 52480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 52736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 52992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 53248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 53504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 53760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 54016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 54272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 54528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 54784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 55040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 55296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 55552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 55808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 56064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 56320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 56576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 56832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 57088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 57344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 57600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 57856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 58112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 58368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 58624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 58880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 59136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 59392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 59648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 59904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 60160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 60416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 60672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 60928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 61184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 61440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 61696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 61952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 62208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 62464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 62720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 62976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 63232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 63488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 63744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 64000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 64256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 64512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 64768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 65024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 65280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 65536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 65792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 66048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 66304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 66560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 66816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 67072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 67328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 67584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 67840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 68096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 68352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 68608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 68864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 69120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 69376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 69632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 69888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 70144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 70400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 70656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 70912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 71168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 71424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 71680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 71936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 72192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 72448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 72704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 72960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 73216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 73472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 73728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 73984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 74240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 74496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 74752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 75008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 75264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 75520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 75776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 76032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 76288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 76544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 76800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 77056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 77312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 77568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 77824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 78080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 78336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 78592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 78848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 79104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 79360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 79616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 79872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 80128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 80384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 80640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 80896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 81152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 81408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 81664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 81920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 82176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 82432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 82688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 82944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 83200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 83456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 83712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 83968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 84224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 84480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 84736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 84992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 85248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 85504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 85760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 86016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 86272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 86528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 86784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 87040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 87296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 87552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 87808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 88064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 88320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 88576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 88832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 89088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 89344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 89600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 89856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 90112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 90368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 90624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 90880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 91136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 91392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 91648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 91904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 92160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 92416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 92672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 92928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 93184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 93440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 93696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 93952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 94208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 94464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 94720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 94976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 95232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 95488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 95744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 96000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 96256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 96512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 96768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 97024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 97280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 97536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 97792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 98048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 98304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 98560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 98816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 99072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 99328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 99584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 99840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 100096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 100352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 100608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 100864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 101120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 101376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 101632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 101888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 102144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 102400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 102656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 102912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 103168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 103424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 103680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 103936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 104192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 104448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 104704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 104960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 105216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 105472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 105728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 105984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 106240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 106496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 106752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 107008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 107264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 107520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 107776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 108032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 108288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 108544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 108800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 109056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 109312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 109568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 109824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 110080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 110336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 110592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 110848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 111104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 111360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 111616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 111872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 112128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 112384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 112640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 112896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 113152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 113408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 113664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 113920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 114176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 114432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 114688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 114944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 115200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 115456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 115712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 115968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 116224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 116480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 116736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 116992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 117248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 117504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 117760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 118016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 118272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 118528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 118784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 119040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 119296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 119552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 119808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 120064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 120320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 120576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 120832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 121088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 121344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 121600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 121856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 122112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 122368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 122624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 122880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 123136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 123392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 123648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 123904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 124160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 124416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 124672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 124928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 125184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 125440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 125696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 125952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 126208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 126464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 126720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 126976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 127232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 127488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 127744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 128000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 128256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 128512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 128768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 129024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 129280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 129536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 129792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 130048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 130304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 130560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 130816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 131072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 131328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 131584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 131840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 132096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 132352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 132608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 132864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 133120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 133376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 133632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 133888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 134144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 134400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 134656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 134912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 135168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 135424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 135680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 135936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 136192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 136448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 136704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 136960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 137216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 137472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 137728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 137984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 138240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 138496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 138752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 139008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 139264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 139520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 139776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 140032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 140288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 140544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 140800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 141056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 141312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 141568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 141824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 142080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 142336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 142592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 142848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 143104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 143360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 143616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 143872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 144128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 144384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 144640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 144896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 145152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 145408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 145664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 145920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 146176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 146432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 146688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 146944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 147200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 147456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 147712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 147968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 148224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 148480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 148736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 148992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 149248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 149504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 149760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 150016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 150272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 150528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 150784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 151040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 151296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 151552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 151808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 152064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 152320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 152576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 152832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 153088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 153344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 153600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 153856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 154112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 154368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 154624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 154880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 155136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 155392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 155648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 155904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 156160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 156416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 156672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 156928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 157184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 157440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 157696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 157952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 158208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 158464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 158720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 158976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 159232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 159488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 159744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 160000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 160256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 160512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 160768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 161024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 161280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 161536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 161792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 162048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 162304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 162560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 162816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 163072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 163328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 163584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 163840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 164096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 164352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 164608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 164864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 165120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 165376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 165632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 165888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 166144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 166400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 166656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 166912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 167168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 167424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 167680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 167936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 168192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 168448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 168704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 168960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 169216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 169472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 169728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 169984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 170240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 170496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 170752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 171008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 171264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 171520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 171776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 172032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 172288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 172544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 172800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 173056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 173312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 173568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 173824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 174080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 174336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 174592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 174848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 175104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 175360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 175616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 175872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 176128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 176384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 176640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 176896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 177152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 177408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 177664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 177920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 178176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 178432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 178688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 178944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 179200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 179456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 179712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 179968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 180224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 180480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 180736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 180992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 181248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 181504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 181760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 182016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 182272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 182528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 182784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 183040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 183296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 183552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 183808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 184064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 184320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 184576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 184832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 185088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 185344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 185600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 185856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 186112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 186368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 186624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 186880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 187136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 187392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 187648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 187904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 188160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 188416,
+          "target_tokens": 256
+        },
+        {
+          "offset": 188672,
+          "target_tokens": 256
+        },
+        {
+          "offset": 188928,
+          "target_tokens": 256
+        },
+        {
+          "offset": 189184,
+          "target_tokens": 256
+        },
+        {
+          "offset": 189440,
+          "target_tokens": 256
+        },
+        {
+          "offset": 189696,
+          "target_tokens": 256
+        },
+        {
+          "offset": 189952,
+          "target_tokens": 256
+        },
+        {
+          "offset": 190208,
+          "target_tokens": 256
+        },
+        {
+          "offset": 190464,
+          "target_tokens": 256
+        },
+        {
+          "offset": 190720,
+          "target_tokens": 256
+        },
+        {
+          "offset": 190976,
+          "target_tokens": 256
+        },
+        {
+          "offset": 191232,
+          "target_tokens": 256
+        },
+        {
+          "offset": 191488,
+          "target_tokens": 256
+        },
+        {
+          "offset": 191744,
+          "target_tokens": 256
+        },
+        {
+          "offset": 192000,
+          "target_tokens": 256
+        },
+        {
+          "offset": 192256,
+          "target_tokens": 256
+        },
+        {
+          "offset": 192512,
+          "target_tokens": 256
+        },
+        {
+          "offset": 192768,
+          "target_tokens": 256
+        },
+        {
+          "offset": 193024,
+          "target_tokens": 256
+        },
+        {
+          "offset": 193280,
+          "target_tokens": 256
+        },
+        {
+          "offset": 193536,
+          "target_tokens": 256
+        },
+        {
+          "offset": 193792,
+          "target_tokens": 256
+        },
+        {
+          "offset": 194048,
+          "target_tokens": 256
+        },
+        {
+          "offset": 194304,
+          "target_tokens": 256
+        },
+        {
+          "offset": 194560,
+          "target_tokens": 256
+        },
+        {
+          "offset": 194816,
+          "target_tokens": 256
+        },
+        {
+          "offset": 195072,
+          "target_tokens": 256
+        },
+        {
+          "offset": 195328,
+          "target_tokens": 256
+        },
+        {
+          "offset": 195584,
+          "target_tokens": 256
+        },
+        {
+          "offset": 195840,
+          "target_tokens": 256
+        },
+        {
+          "offset": 196096,
+          "target_tokens": 256
+        },
+        {
+          "offset": 196352,
+          "target_tokens": 256
+        },
+        {
+          "offset": 196608,
+          "target_tokens": 256
+        },
+        {
+          "offset": 196864,
+          "target_tokens": 256
+        },
+        {
+          "offset": 197120,
+          "target_tokens": 256
+        },
+        {
+          "offset": 197376,
+          "target_tokens": 256
+        },
+        {
+          "offset": 197632,
+          "target_tokens": 256
+        },
+        {
+          "offset": 197888,
+          "target_tokens": 256
+        },
+        {
+          "offset": 198144,
+          "target_tokens": 256
+        },
+        {
+          "offset": 198400,
+          "target_tokens": 256
+        },
+        {
+          "offset": 198656,
+          "target_tokens": 256
+        },
+        {
+          "offset": 198912,
+          "target_tokens": 256
+        },
+        {
+          "offset": 199168,
+          "target_tokens": 256
+        },
+        {
+          "offset": 199424,
+          "target_tokens": 256
+        },
+        {
+          "offset": 199680,
+          "target_tokens": 256
+        },
+        {
+          "offset": 199936,
+          "target_tokens": 256
+        },
+        {
+          "offset": 200192,
+          "target_tokens": 256
+        },
+        {
+          "offset": 200448,
+          "target_tokens": 256
+        },
+        {
+          "offset": 200704,
+          "target_tokens": 256
+        },
+        {
+          "offset": 200960,
+          "target_tokens": 256
+        },
+        {
+          "offset": 201216,
+          "target_tokens": 256
+        },
+        {
+          "offset": 201472,
+          "target_tokens": 256
+        },
+        {
+          "offset": 201728,
+          "target_tokens": 256
+        },
+        {
+          "offset": 201984,
+          "target_tokens": 256
+        },
+        {
+          "offset": 202240,
+          "target_tokens": 256
+        },
+        {
+          "offset": 202496,
+          "target_tokens": 256
+        },
+        {
+          "offset": 202752,
+          "target_tokens": 256
+        },
+        {
+          "offset": 203008,
+          "target_tokens": 256
+        },
+        {
+          "offset": 203264,
+          "target_tokens": 256
+        },
+        {
+          "offset": 203520,
+          "target_tokens": 256
+        },
+        {
+          "offset": 203776,
+          "target_tokens": 256
+        },
+        {
+          "offset": 204032,
+          "target_tokens": 256
+        },
+        {
+          "offset": 204288,
+          "target_tokens": 256
+        },
+        {
+          "offset": 204544,
+          "target_tokens": 256
+        },
+        {
+          "offset": 204800,
+          "target_tokens": 256
+        },
+        {
+          "offset": 205056,
+          "target_tokens": 256
+        },
+        {
+          "offset": 205312,
+          "target_tokens": 256
+        },
+        {
+          "offset": 205568,
+          "target_tokens": 256
+        },
+        {
+          "offset": 205824,
+          "target_tokens": 256
+        },
+        {
+          "offset": 206080,
+          "target_tokens": 256
+        },
+        {
+          "offset": 206336,
+          "target_tokens": 256
+        },
+        {
+          "offset": 206592,
+          "target_tokens": 256
+        },
+        {
+          "offset": 206848,
+          "target_tokens": 256
+        },
+        {
+          "offset": 207104,
+          "target_tokens": 256
+        },
+        {
+          "offset": 207360,
+          "target_tokens": 256
+        },
+        {
+          "offset": 207616,
+          "target_tokens": 256
+        },
+        {
+          "offset": 207872,
+          "target_tokens": 256
+        },
+        {
+          "offset": 208128,
+          "target_tokens": 256
+        },
+        {
+          "offset": 208384,
+          "target_tokens": 256
+        },
+        {
+          "offset": 208640,
+          "target_tokens": 256
+        },
+        {
+          "offset": 208896,
+          "target_tokens": 256
+        },
+        {
+          "offset": 209152,
+          "target_tokens": 256
+        },
+        {
+          "offset": 209408,
+          "target_tokens": 256
+        },
+        {
+          "offset": 209664,
+          "target_tokens": 256
+        },
+        {
+          "offset": 209920,
+          "target_tokens": 256
+        },
+        {
+          "offset": 210176,
+          "target_tokens": 256
+        },
+        {
+          "offset": 210432,
+          "target_tokens": 256
+        },
+        {
+          "offset": 210688,
+          "target_tokens": 256
+        },
+        {
+          "offset": 210944,
+          "target_tokens": 256
+        },
+        {
+          "offset": 211200,
+          "target_tokens": 256
+        },
+        {
+          "offset": 211456,
+          "target_tokens": 256
+        },
+        {
+          "offset": 211712,
+          "target_tokens": 256
+        },
+        {
+          "offset": 211968,
+          "target_tokens": 256
+        },
+        {
+          "offset": 212224,
+          "target_tokens": 256
+        },
+        {
+          "offset": 212480,
+          "target_tokens": 256
+        },
+        {
+          "offset": 212736,
+          "target_tokens": 256
+        },
+        {
+          "offset": 212992,
+          "target_tokens": 256
+        },
+        {
+          "offset": 213248,
+          "target_tokens": 256
+        },
+        {
+          "offset": 213504,
+          "target_tokens": 256
+        },
+        {
+          "offset": 213760,
+          "target_tokens": 256
+        },
+        {
+          "offset": 214016,
+          "target_tokens": 256
+        },
+        {
+          "offset": 214272,
+          "target_tokens": 256
+        },
+        {
+          "offset": 214528,
+          "target_tokens": 256
+        },
+        {
+          "offset": 214784,
+          "target_tokens": 256
+        },
+        {
+          "offset": 215040,
+          "target_tokens": 256
+        },
+        {
+          "offset": 215296,
+          "target_tokens": 256
+        },
+        {
+          "offset": 215552,
+          "target_tokens": 256
+        },
+        {
+          "offset": 215808,
+          "target_tokens": 256
+        },
+        {
+          "offset": 216064,
+          "target_tokens": 256
+        },
+        {
+          "offset": 216320,
+          "target_tokens": 256
+        },
+        {
+          "offset": 216576,
+          "target_tokens": 256
+        },
+        {
+          "offset": 216832,
+          "target_tokens": 256
+        },
+        {
+          "offset": 217088,
+          "target_tokens": 256
+        },
+        {
+          "offset": 217344,
+          "target_tokens": 256
+        },
+        {
+          "offset": 217600,
+          "target_tokens": 256
+        },
+        {
+          "offset": 217856,
+          "target_tokens": 256
+        },
+        {
+          "offset": 218112,
+          "target_tokens": 256
+        },
+        {
+          "offset": 218368,
+          "target_tokens": 256
+        },
+        {
+          "offset": 218624,
+          "target_tokens": 256
+        },
+        {
+          "offset": 218880,
+          "target_tokens": 256
+        },
+        {
+          "offset": 219136,
+          "target_tokens": 256
+        },
+        {
+          "offset": 219392,
+          "target_tokens": 256
+        },
+        {
+          "offset": 219648,
+          "target_tokens": 256
+        },
+        {
+          "offset": 219904,
+          "target_tokens": 256
+        },
+        {
+          "offset": 220160,
+          "target_tokens": 256
+        },
+        {
+          "offset": 220416,
+          "target_tokens": 73
+        }
+      ],
+      "target_coverage": "Every next-token target from index 1 through token_count - 1 is scored exactly once.",
+      "boundary_context": "Each later window reuses only the preceding boundary token as unscored input context; target ranges never overlap and no target is counted twice.",
+      "tail_policy": "The final window is shorter when needed; no overlapping final window is added.",
+      "mode": "complete_non_overlapping_target_coverage",
+      "fingerprint": "49d353af41a641f0052fe55e9022f02534dfb9afbd8187e2e9862346a2ba4b70"
+    },
+    "metrics_definition": {
+      "loss": "Média ponderada da entropia cruzada em todos os alvos de próximo token, incluindo o EOS final.",
+      "perplexity": "exp(loss), calculada sobre a mesma média de loss.",
+      "bits_per_byte": "NLL dos tokens textuais, excluindo tokens especiais, dividida pelos bytes UTF-8 do texto limpo e por ln(2)."
+    }
+  }
+}
