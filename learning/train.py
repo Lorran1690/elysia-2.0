@@ -193,7 +193,13 @@ def save_checkpoint(
     data_metadata: dict[str, Any] | None = None,
     scheduler: torch.optim.lr_scheduler.LRScheduler | None = None,
     processed_tokens: int = 0,
+    progress_metadata: dict[str, Any] | None = None,
 ) -> None:
+    progress = {"processed_tokens": int(processed_tokens)}
+    if progress_metadata:
+        if "processed_tokens" in progress_metadata:
+            raise ValueError("processed_tokens é controlado pelo loop de treinamento")
+        progress.update(progress_metadata)
     checkpoint = {
         "checkpoint_version": 4,
         "step": step,
@@ -201,7 +207,7 @@ def save_checkpoint(
         "model_state": model.state_dict(),
         "optimizer_state": optimizer.state_dict(),
         "scheduler_state": scheduler.state_dict() if scheduler is not None else None,
-        "progress": {"processed_tokens": int(processed_tokens)},
+        "progress": progress,
         "history": history,
         "training_config": config,
         "tokenizer": tokenizer_metadata,

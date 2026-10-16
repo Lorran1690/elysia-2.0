@@ -191,6 +191,40 @@ def test_cosine_scheduler_warms_up_and_decays() -> None:
     assert rates[2] > rates[-1]
 
 
+def test_checkpoint_restores_scheduler_and_progress_metadata(tmp_path: Path) -> None:
+    model = ElysiaTransformer(tiny_config())
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.01)
+    scheduler = _build_scheduler(optimizer, name="cosine", warmup_steps=1, total_steps=4)
+    assert scheduler is not None
+    optimizer.step()
+    scheduler.step()
+    path = tmp_path / "resumable.pt"
+    save_checkpoint(
+        path,
+        model=model,
+        optimizer=optimizer,
+        scheduler=scheduler,
+        step=1,
+        history=[],
+        config={},
+        processed_tokens=32,
+        progress_metadata={"best_step": 1, "best_validation_loss": 2.0},
+    )
+    restored_model = ElysiaTransformer(tiny_config())
+    restored_optimizer = torch.optim.AdamW(restored_model.parameters(), lr=0.01)
+    restored_scheduler = _build_scheduler(restored_optimizer, name="cosine", warmup_steps=1, total_steps=4)
+    assert restored_scheduler is not None
+    checkpoint = load_checkpoint(
+        path,
+        model=restored_model,
+        optimizer=restored_optimizer,
+        scheduler=restored_scheduler,
+        device=torch.device("cpu"),
+    )
+    assert checkpoint["progress"] == {"processed_tokens": 32, "best_step": 1, "best_validation_loss": 2.0}
+    assert restored_optimizer.param_groups[0]["lr"] == optimizer.param_groups[0]["lr"]
+
+
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA não disponível")
 def test_gpu_forward_when_cuda_is_available() -> None:
     model = ElysiaTransformer(tiny_config()).cuda()
