@@ -822,7 +822,7 @@ def main() -> None:
     parser.add_argument("--headers", default="data/corpus-v0.5/originals/emag-v3-1.headers.txt")
     parser.add_argument("--extracted", default="data/corpus-v0.5/processed/emag-v3-1.extracted.txt")
     parser.add_argument("--clean", default="data/corpus-v0.5/clean/emag-v3-1.clean.txt")
-    parser.add_argument("--audit", default="data/corpus-v0.5/collection-audit.json")
+    parser.add_argument("--audit", default="data/corpus-v0.5/collection-audit.phase-2b.json")
     parser.add_argument("--preflight-at", required=True)
     parser.add_argument("--collected-at", required=True)
     args = parser.parse_args()
