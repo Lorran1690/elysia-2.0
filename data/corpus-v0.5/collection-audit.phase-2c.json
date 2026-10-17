@@ -1,0 +1,460 @@
+{
+  "authorization": {
+    "alternative_conci_representations_downloaded": false,
+    "existing_documents_reauthorized_for_final_review": [
+      "emag-v3-1-html"
+    ],
+    "external_links_followed": false,
+    "new_full_document_collection": [
+      "conci-2021-alternative-licenses-html"
+    ],
+    "other_full_documents_authorized": 0
+  },
+  "created_at": "2026-10-16T19:13:57.8286216-03:00",
+  "documents": [
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "class:img": 50,
+          "class:recomendacao": 8,
+          "class:topo": 1,
+          "class:voltar": 65
+        },
+        "rules": [
+          "Decodificar o HTML original estritamente como UTF-8 e normalizar o texto resultante para Unicode NFC.",
+          "Extrair a coluna tecnica p-esquerda para a versao limpa e manter titulos, subtitulos, listas, recomendacoes, explicacoes, glossario e anexo textual.",
+          "Excluir navegacao, controles, sumario lateral, links Voltar ao sumario, botoes Topo e links de exemplos navegaveis.",
+          "Excluir scripts, estilos, formularios, imagens, legendas visuais e blocos citacionais de terceiros sem auditoria propria; textareas de exemplos sao preservados como codigo tecnico.",
+          "Remover URLs externas soltas do texto corrido e redigir citacoes diretas de terceiros em exemplos de codigo, preservando a estrutura do exemplo.",
+          "Excluir a secao Agradecimentos, que contem nomes de pessoas e nao e conteudo tecnico do modelo.",
+          "Remover somente duplicacoes tecnicas consecutivas exatamente iguais; nao deduplicar prosa nao consecutiva."
+        ],
+        "third_party_handling": "Nenhum recurso externo foi baixado. URLs externas soltas foram removidas do texto corrido e citacoes diretas em exemplos de codigo foram redigidas."
+      },
+      "final_review": {
+        "all_phase_2b_hashes_confirmed": true,
+        "clean_corrections_applied": [],
+        "cleaning_recheck": {
+          "acknowledgement_blocks_removed": 11,
+          "consecutive_blocks_removed": 0,
+          "excluded_elements_match": true,
+          "inline_urls_removed": 19,
+          "third_party_code_redactions_adequate": true,
+          "third_party_code_redactions_confirmed": 4
+        },
+        "original_unchanged": true,
+        "reviewed_at": "2026-10-16T19:26:09.9806964-03:00",
+        "sampled_sections": [
+          {
+            "heading": "1. Introdução",
+            "heading_index": 1,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "2.3 Terceiro passo: Avaliação de Acessibilidade",
+            "heading_index": 9,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 1.4 – Ordenar de forma lógica e intuitiva a leitura e tabulação",
+            "heading_index": 17,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 2.2 – Garantir que os objetos programáveis sejam acessíveis",
+            "heading_index": 25,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 3.2 – Informar mudança de idioma no conteúdo",
+            "heading_index": 33,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 3.9 – Em tabelas, utilizar títulos e resumos de forma apropriada",
+            "heading_index": 40,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 4.4 – Possibilitar que o elemento com foco seja visualmente evidente",
+            "heading_index": 48,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 6.1 – Fornecer alternativa em texto para os botões de imagem de formulários",
+            "heading_index": 56,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "4. Elementos padronizados de acessibilidade digital no Governo Federal",
+            "heading_index": 64,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "7. Anexo 1 – Tabela de Contraste de Cores",
+            "heading_index": 72,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          }
+        ],
+        "structural_comparison": {
+          "clean_projection_matches_original": true,
+          "list_items_preserved": 132,
+          "recommendation_headings_preserved": 45,
+          "technical_examples_preserved": 83,
+          "technical_table_rows_preserved": 75,
+          "titles_preserved": true
+        }
+      },
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "A revisao final da Fase 2C aprovou somente a inclusao posterior em um corpus ainda sujeito a autorizacao explicita. Nao autoriza tokenizacao, split ou treinamento.",
+      "id": "emag-v3-1-html",
+      "identity": {
+        "institutional_author": "Equipe do DGE - Departamento de Governo Eletronico",
+        "title": "eMAG - Modelo de Acessibilidade em Governo Eletrônico",
+        "version": "Versão 3.1 - Abril 2014"
+      },
+      "license": {
+        "attribution_obligations": "Creditar a Equipe do DGE - Departamento de Governo Eletronico, a fonte oficial, a licenca CC BY 4.0 e indicar alteracoes em derivados.",
+        "declared_on_document": true,
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 245543,
+          "format": "text/html; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/emag-v3-1.html",
+          "role": "original_html",
+          "sha256": "200884cddfa8a769473899f2db6cd34cc819a6573439f9409eec7806ea368d0f"
+        },
+        {
+          "bytes": 852,
+          "format": "text/plain; HTTP headers",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/emag-v3-1.headers.txt",
+          "role": "response_headers",
+          "sha256": "fd9714bdcdcf8a3878f1bbea94c86e737a2e9870f1bcf2bdccfd6dbab479b1d0"
+        },
+        {
+          "bytes": 149093,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/emag-v3-1.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "493d9a901f48f14b721799cd8ea8a440f59381622a810820a6f022a1c04d8dcd"
+        },
+        {
+          "bytes": 141172,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/emag-v3-1.clean.txt",
+          "role": "clean_text",
+          "sha256": "a050365d151328d18d7a8ccbb5fe39aaaacbafe4ef24212c4d9d47ea4bb36dbc"
+        }
+      ],
+      "quality": {
+        "clean_text_statistics": {
+          "bytes": 141172,
+          "characters": 135493,
+          "sha256": "a050365d151328d18d7a8ccbb5fe39aaaacbafe4ef24212c4d9d47ea4bb36dbc",
+          "words": 19693
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Somente blocos tecnicos consecutivos exatamente iguais sao removidos; navegacao repetida e removida por seletor de interface."
+        },
+        "estimated_tokens": {
+          "maximum": 30525,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 24617
+        },
+        "extracted_text_statistics": {
+          "bytes": 149093,
+          "characters": 143162,
+          "sha256": "493d9a901f48f14b721799cd8ea8a440f59381622a810820a6f022a1c04d8dcd",
+          "words": 20791
+        },
+        "html_repairs_in_memory": {
+          "malformed_paragraph_closures_before_headings": 1,
+          "original_html_modified": false
+        },
+        "inline_urls_removed": 19,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 245543,
+          "sha256": "200884cddfa8a769473899f2db6cd34cc819a6573439f9409eec7806ea368d0f",
+          "utf8_valid": true
+        },
+        "personal_data_scan": {
+          "acknowledgement_blocks_removed": 11,
+          "cpf_matches": 0,
+          "email_matches": 0,
+          "note": "A verificacao automatica cobre e-mail, CPF e telefone. A secao de agradecimentos com nomes de pessoas foi excluida por nao ser conteudo tecnico.",
+          "phone_matches": 0
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "7. Anexo 1 – Tabela de Contraste de Cores",
+          "middle": "Recomendação 3.6 – Fornecer alternativa em texto para as imagens do sítio",
+          "start": "1. Introdução"
+        },
+        "sections_extracted": 72,
+        "third_party_code_redactions": 4
+      },
+      "source": {
+        "collected_at": "2026-10-16T18:15:16.7369580-03:00",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://emag.governoeletronico.gov.br/",
+        "host": "emag.governoeletronico.gov.br",
+        "http_date": "Fri, 16 Oct 2026 21:15:14 GMT",
+        "http_status": 200,
+        "preflight_checked_at": "2026-10-16T18:14:52.9755768-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/emag-v3-1.headers.txt",
+        "requested_url": "https://emag.governoeletronico.gov.br/"
+      },
+      "states": {
+        "approved_for_future_inclusion": true,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "approved_for_future_inclusion",
+        "rejected": false
+      }
+    },
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "consecutive_blocks_removed": 0,
+          "direct_quote_blocks_redacted": 8,
+          "figure_caption_blocks_removed": 2,
+          "figure_source_blocks_removed": 2,
+          "foreign_abstract_blocks_removed": 6,
+          "front_matter_blocks_removed": 9,
+          "references_blocks_removed": 39
+        },
+        "rules": [
+          "Preservar o HTML original em Windows-1252 e converter somente textos derivados para UTF-8 normalizado em NFC.",
+          "Extrair paragrafos e linhas de tabela do HTML Word fornecido pela revista, preservando o resumo em portugues, as secoes do artigo, listas e tabelas textuais.",
+          "Excluir capa, autores, afiliacoes e contato da materia preliminar, pois a atribuicao estruturada permanece no preambulo local.",
+          "Excluir resumos em ingles e espanhol para manter a colecao linguistica em portugues brasileiro.",
+          "Excluir figura, legenda e fonte imediatamente associada quando a imagem nao e preservada.",
+          "Excluir referencias e bibliografia para evitar material repetitivo e conteudo de terceiros sem auditoria individual.",
+          "Redigir blocos que aparentam conter citacao direta de terceiros, preservando somente uma marcacao de remocao.",
+          "Remover somente blocos consecutivos exatamente iguais; nao resumir nem reescrever a argumentacao dos autores."
+        ],
+        "third_party_handling": "Nenhuma referencia externa, imagem ou anexo foi baixado. Bibliografia, legendas de figura e blocos identificados como citacao direta de terceiro foram retirados da versao limpa."
+      },
+      "future_inclusion_decision": "pending_explicit_approval",
+      "future_inclusion_reason": "A coleta e auditoria desta representacao nao autorizam tokenizacao, split, treinamento ou inclusao automatica no futuro corpus.",
+      "id": "conci-2021-alternative-licenses-html",
+      "identity": {
+        "authors": [
+          "Natalia Rodrigues Silva",
+          "Nivaldo Calixto Ribeiro",
+          "Dalgiza Andrade Oliveira"
+        ],
+        "doi": "10.33467/conci.v4i.15670",
+        "edition": "v. 4, 2021, artigo original, p. 1-30",
+        "publication": "ConCI: Convergencias em Ciencia da Informacao",
+        "title": "Licencas alternativas de protecao intelectual atribuidas a periodicos tecnicos e/ou cientificos da area da Ciencia da Informacao no contexto da Ciencia Aberta"
+      },
+      "license": {
+        "attribution_obligations": "Creditar Natalia Rodrigues Silva, Nivaldo Calixto Ribeiro, Dalgiza Andrade Oliveira e a publicacao inicial na ConCI; indicar a licenca CC BY 4.0 e alteracoes em derivados.",
+        "declared_on_landing_page": true,
+        "evidence_url": "https://periodicos.ufs.br/conci/article/view/15670",
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 275974,
+          "format": "text/html; embedded charset=windows-1252; HTTP header declared UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/conci-2021-licenses.html",
+          "role": "original_html",
+          "sha256": "9b2fcbf03e68c371317da99a589f283a981c45171d7553529eb19303f83a82f4"
+        },
+        {
+          "bytes": 729,
+          "format": "text/plain; HTTP headers",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/conci-2021-licenses.headers.txt",
+          "role": "response_headers",
+          "sha256": "ffd45f8412d6ee10c198e0b8f05f5e7c21e4db73aa58c6c4598cf0ba09f13e0f"
+        },
+        {
+          "bytes": 51962,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/conci-2021-licenses.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "66fb3738457050d92fe823cc6fbc112335388511927f58ec2507225a41fc3bec"
+        },
+        {
+          "bytes": 32194,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/conci-2021-licenses.clean.txt",
+          "role": "clean_text",
+          "sha256": "3e130a86bf96ac5fe6ce7c30330231c943f9dedbdcce3a7a53b84d0fb1696ad7"
+        }
+      ],
+      "quality": {
+        "clean_text_statistics": {
+          "bytes": 32194,
+          "characters": 31130,
+          "sha256": "3e130a86bf96ac5fe6ce7c30330231c943f9dedbdcce3a7a53b84d0fb1696ad7",
+          "words": 4742
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Somente blocos consecutivos exatamente iguais sao removidos apos a limpeza dirigida."
+        },
+        "derived_text_encoding": "UTF-8",
+        "estimated_tokens": {
+          "maximum": 7351,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 5928
+        },
+        "extracted_text_statistics": {
+          "bytes": 51962,
+          "characters": 50409,
+          "sha256": "66fb3738457050d92fe823cc6fbc112335388511927f58ec2507225a41fc3bec",
+          "words": 7691
+        },
+        "image_elements_omitted": 4,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 275974,
+          "embedded_charset": "windows-1252",
+          "encoding_mismatch_recorded": true,
+          "http_declared_content_type": "text/html; charset=UTF-8",
+          "sha256": "9b2fcbf03e68c371317da99a589f283a981c45171d7553529eb19303f83a82f4",
+          "utf8_valid": false
+        },
+        "paragraphs_extracted": 122,
+        "personal_data_scan": {
+          "clean": {
+            "cpf_matches": 0,
+            "email_matches": 0,
+            "phone_matches": 0
+          },
+          "note": "Identificadores de autoria necessarios para atribuicao permanecem apenas no preambulo. Dados de contato da materia preliminar nao seguem para a versao limpa.",
+          "source": {
+            "cpf_matches": 0,
+            "email_matches": 2,
+            "phone_matches": 0
+          }
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "5 CONSIDERAÇÕES FINAIS",
+          "middle": "2.2 Creative Commons",
+          "start": "RESUMO"
+        },
+        "sections_extracted": 8,
+        "table_rows_extracted": 41
+      },
+      "source": {
+        "available_representations": [
+          {
+            "downloaded": true,
+            "format": "HTML",
+            "selected": true
+          },
+          {
+            "downloaded": false,
+            "format": "XML",
+            "selected": false
+          },
+          {
+            "downloaded": false,
+            "format": "PDF-A",
+            "selected": false
+          }
+        ],
+        "collected_at": "2026-10-16T19:13:57.8286216-03:00",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://periodicos.ufs.br/conci/article/download/15670/12129?inline=1",
+        "host": "periodicos.ufs.br",
+        "http_date": "Fri, 16 Oct 2026 22:13:56 GMT",
+        "http_status": 200,
+        "landing_page_url": "https://periodicos.ufs.br/conci/article/view/15670",
+        "preflight_checked_at": "2026-10-16T19:13:32-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/conci-2021-licenses.headers.txt",
+        "requested_url": "https://periodicos.ufs.br/conci/article/download/15670/12129?inline=1"
+      },
+      "states": {
+        "approved_for_future_inclusion": false,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "audited",
+        "rejected": false
+      }
+    }
+  ],
+  "historical_phase_2b": {
+    "original_document_state": "audited",
+    "original_future_inclusion_decision": "pending_explicit_approval",
+    "path": "data/corpus-v0.5/collection-audit.phase-2b.json",
+    "preserved": true,
+    "schema_version": 1,
+    "sha256": "1fe003668cc80033df6da7c89b8ce09710592faac98ea76bb256d781ca91d160"
+  },
+  "historical_research_manifest": {
+    "path": "data/corpus-v0.5/source-candidates.json",
+    "phase": "research-and-corpus-plan-only",
+    "preserved_without_relaxing_its_zero-download_validation": true
+  },
+  "phase": "controlled-multi-document-collection",
+  "project": "ELYSIA-Seed v0.5",
+  "safeguards": {
+    "additional_dataset_downloaded": false,
+    "ai_api_used": false,
+    "bpe_trained": false,
+    "external_model_or_weights_used": false,
+    "final_split_created": false,
+    "neural_training_started": false,
+    "ollama_used": false,
+    "other_conci_representation_downloaded": false,
+    "pdf_a_downloaded": false,
+    "scielo_content_collected": false,
+    "v04_weights_or_checkpoints_modified": false,
+    "xml_downloaded": false
+  },
+  "schema_version": 2
+}

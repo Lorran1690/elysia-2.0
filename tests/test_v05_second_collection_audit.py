@@ -18,7 +18,7 @@ from learning.v05_second_collection_audit import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.json"
+AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.phase-2c.json"
 
 
 def audit() -> dict[str, object]:
