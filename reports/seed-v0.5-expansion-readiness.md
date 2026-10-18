@@ -125,6 +125,6 @@ The four-source lot is intentionally small. It provides a controlled test of pro
 
 `learning/v05_expansion_readiness.py` validates all Phase 2G gates: exact base commit, metadata-only catalog, 15-25 source limit, candidate-status licensing, no collection/tokenization/training, the ten conversational scenario families, 5M and 20M planning targets, required ingestion controls, `group_id`, and the non-substitutable first lot. `tests/test_v05_expansion_readiness.py` adds regression coverage for those gates.
 
-The local Windows environment does not currently expose a usable Python interpreter through `python`, so focused pytest and the validator could not run locally. The repository CI installs Python 3.12 and will be the complete test verification after publication. Static repository checks and JSON parsing were run separately before commit.
+The local Windows environment does not currently expose a usable Python interpreter through `python`, so focused pytest and the validator could not run locally. Static repository checks and JSON parsing passed before commit. The repository CI installs Python 3.12 and its complete suite passed for the substantive Phase 2G commit `0c12c34` in [GitHub Actions run 39124316217](https://github.com/Lorran1690/elysia-2.0/actions/runs/39124316217).
 
 Phase 2G stops here. No source is authorized for collection, no tokenizer or split exists, and no neural training may begin without explicit user approval.
