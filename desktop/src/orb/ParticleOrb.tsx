@@ -3,6 +3,13 @@ import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { clamp, sampleFlowField, seededUnit, smoothstep, smoothToward, type MutableVector3 } from './math'
 import type { QualitySettings } from './quality'
+import {
+  interpolateVisualParameters,
+  reduceMotionParameters,
+  targetParametersForState,
+  type OrbState,
+  type OrbVisualParameters,
+} from './state'
 
 export type OrbMetrics = {
   connections: number
@@ -47,8 +54,11 @@ type ParticleField = {
 }
 
 type ParticleOrbProps = {
+  audioLevel: number
   onMetrics: (metrics: OrbMetrics) => void
   quality: QualitySettings
+  reducedMotion: boolean
+  state: OrbState
 }
 
 const CELL_OFFSETS: Array<[number, number, number]> = []
@@ -191,20 +201,23 @@ function disposeField(field: ParticleField) {
   field.sprite.dispose()
 }
 
-function updateParticles(field: ParticleField, time: number) {
-  const breath = 1 + Math.sin(time * 0.61) * 0.028 + Math.sin(time * 0.17 + 0.9) * 0.022
-  const cavityAX = Math.sin(time * 0.23) * 0.44
-  const cavityAY = Math.cos(time * 0.19 + 0.4) * 0.31
-  const cavityAZ = Math.sin(time * 0.16 + 1.5) * 0.35
-  const cavityBX = Math.cos(time * 0.13 + 2.2) * 0.34
-  const cavityBY = Math.sin(time * 0.21 + 0.7) * 0.39
-  const cavityBZ = Math.cos(time * 0.18) * 0.28
-  const nodeAX = Math.sin(time * 0.17 + 0.6) * 0.48
-  const nodeAY = Math.cos(time * 0.2) * 0.29
-  const nodeAZ = Math.cos(time * 0.14 + 0.9) * 0.43
-  const nodeBX = Math.cos(time * 0.12 + 2.1) * 0.4
-  const nodeBY = Math.sin(time * 0.16 + 1.1) * 0.37
-  const nodeBZ = Math.sin(time * 0.2 + 2.5) * 0.34
+function updateParticles(field: ParticleField, time: number, parameters: OrbVisualParameters) {
+  const flowTime = time * (0.72 + parameters.flowIntensity * 0.28)
+  const breath = 1
+    + (Math.sin(flowTime * 0.61) * 0.028 + Math.sin(flowTime * 0.17 + 0.9) * 0.022)
+      * (0.5 + parameters.radialAmplitude * 1.6)
+  const cavityAX = Math.sin(flowTime * 0.23) * 0.44
+  const cavityAY = Math.cos(flowTime * 0.19 + 0.4) * 0.31
+  const cavityAZ = Math.sin(flowTime * 0.16 + 1.5) * 0.35
+  const cavityBX = Math.cos(flowTime * 0.13 + 2.2) * 0.34
+  const cavityBY = Math.sin(flowTime * 0.21 + 0.7) * 0.39
+  const cavityBZ = Math.cos(flowTime * 0.18) * 0.28
+  const nodeAX = Math.sin(flowTime * 0.17 + 0.6) * 0.48
+  const nodeAY = Math.cos(flowTime * 0.2) * 0.29
+  const nodeAZ = Math.cos(flowTime * 0.14 + 0.9) * 0.43
+  const nodeBX = Math.cos(flowTime * 0.12 + 2.1) * 0.4
+  const nodeBY = Math.sin(flowTime * 0.16 + 1.1) * 0.37
+  const nodeBZ = Math.sin(flowTime * 0.2 + 2.5) * 0.34
   const flow: MutableVector3 = { x: 0, y: 0, z: 0 }
   let anchorCursor = 0
 
@@ -215,15 +228,17 @@ function updateParticles(field: ParticleField, time: number) {
     const baseX = field.basePositions[offset]
     const baseY = field.basePositions[offset + 1]
     const baseZ = field.basePositions[offset + 2]
-    const lobe = Math.sin(baseX * 2.2 + baseZ * 1.7 + time * 0.19) * 0.062
-      + Math.cos(baseY * 2.6 - baseX * 1.15 - time * 0.13) * 0.052
-    const shellScale = breath * (1 + lobe + Math.sin(phase + time * 0.31) * 0.026)
+    const baseRadius = Math.hypot(baseX, baseY, baseZ)
+    const lobe = Math.sin(baseX * 2.2 + baseZ * 1.7 + flowTime * 0.19) * 0.062
+      + Math.cos(baseY * 2.6 - baseX * 1.15 - flowTime * 0.13) * 0.052
+    const cohesion = 1 + (parameters.cohesion - 1) * (0.08 + (1 - clamp(baseRadius / 1.34, 0, 1)) * 0.16)
+    const shellScale = breath * cohesion * (1 + lobe + Math.sin(phase + flowTime * 0.31) * 0.026)
     let x = baseX * shellScale
     let y = baseY * shellScale
     let z = baseZ * shellScale
 
-    sampleFlowField(x * 0.84, y * 0.84, z * 0.84, time, phase, flow)
-    const flowStrength = 0.035 + strength * 0.071
+    sampleFlowField(x * 0.84, y * 0.84, z * 0.84, flowTime, phase, flow)
+    const flowStrength = (0.035 + strength * 0.071) * (0.46 + parameters.flowIntensity * 0.54)
     x += flow.x * flowStrength
     y += flow.y * flowStrength
     z += flow.z * flowStrength
@@ -235,15 +250,15 @@ function updateParticles(field: ParticleField, time: number) {
     const cavity = Math.max(cavityA, cavityB)
 
     if (cavityA > 0) {
-      x += (x - cavityAX) * cavityA * 0.25
-      y += (y - cavityAY) * cavityA * 0.25
-      z += (z - cavityAZ) * cavityA * 0.25
+      x += (x - cavityAX) * cavityA * 0.25 * parameters.cavityStrength
+      y += (y - cavityAY) * cavityA * 0.25 * parameters.cavityStrength
+      z += (z - cavityAZ) * cavityA * 0.25 * parameters.cavityStrength
     }
 
     if (cavityB > 0) {
-      x += (x - cavityBX) * cavityB * 0.19
-      y += (y - cavityBY) * cavityB * 0.19
-      z += (z - cavityBZ) * cavityB * 0.19
+      x += (x - cavityBX) * cavityB * 0.19 * parameters.cavityStrength
+      y += (y - cavityBY) * cavityB * 0.19 * parameters.cavityStrength
+      z += (z - cavityBZ) * cavityB * 0.19 * parameters.cavityStrength
     }
 
     const nodeA = 1 - smoothstep(0.16, 0.78, Math.hypot(x - nodeAX, y - nodeAY, z - nodeAZ))
@@ -251,23 +266,45 @@ function updateParticles(field: ParticleField, time: number) {
     const density = Math.max(nodeA, nodeB)
 
     if (nodeA > 0) {
-      x += (nodeAX - x) * nodeA * 0.045
-      y += (nodeAY - y) * nodeA * 0.045
-      z += (nodeAZ - z) * nodeA * 0.045
+      x += (nodeAX - x) * nodeA * 0.045 * parameters.cohesion
+      y += (nodeAY - y) * nodeA * 0.045 * parameters.cohesion
+      z += (nodeAZ - z) * nodeA * 0.045 * parameters.cohesion
     }
 
     if (nodeB > 0) {
-      x += (nodeBX - x) * nodeB * 0.037
-      y += (nodeBY - y) * nodeB * 0.037
-      z += (nodeBZ - z) * nodeB * 0.037
+      x += (nodeBX - x) * nodeB * 0.037 * parameters.cohesion
+      y += (nodeBY - y) * nodeB * 0.037 * parameters.cohesion
+      z += (nodeBZ - z) * nodeB * 0.037 * parameters.cohesion
+    }
+
+    const surfaceWeight = smoothstep(0.44, 1.2, baseRadius)
+    const surfaceWave = Math.sin(flowTime * (1.06 + parameters.audioLevel * 0.68) - baseY * 3.4 + phase * 0.58)
+      * Math.cos(baseX * 1.74 - flowTime * 0.24 + baseZ * 0.46)
+    const rippleDistance = surfaceWeight * surfaceWave * parameters.surfaceRipple
+      * (0.004 + parameters.radialAmplitude * 0.13)
+    if (baseRadius > 0.0001) {
+      x += (baseX / baseRadius) * rippleDistance
+      y += (baseY / baseRadius) * rippleDistance
+      z += (baseZ / baseRadius) * rippleDistance
     }
 
     field.positions[offset] = x
     field.positions[offset + 1] = y
     field.positions[offset + 2] = z
 
-    const localPulse = Math.max(0, Math.sin(time * 0.74 + phase * 1.8 + baseY * 1.5))
-    const brightness = clamp(0.2 + strength * 0.34 + density * 0.23 + localPulse * 0.12 - cavity * 0.09, 0, 1)
+    const localPulse = Math.max(0, Math.sin(flowTime * 0.74 + phase * 1.8 + baseY * 1.5))
+    const slowPulse = Math.max(0, Math.sin(flowTime * 0.29 + phase * 0.71 + baseX * 1.12))
+    const brightness = clamp(
+      0.2
+        + strength * 0.34
+        + density * 0.23
+        + (localPulse * 0.1 + slowPulse * 0.055) * parameters.pulseIntensity
+        + (parameters.luminance - 1) * 0.28
+        + parameters.audioLevel * surfaceWeight * 0.1
+        - cavity * 0.09,
+      0,
+      1,
+    )
     field.colors[offset] = 0.52 + brightness * 0.42
     field.colors[offset + 1] = 0.13 + brightness * 0.55
     field.colors[offset + 2] = 0.008 + brightness * 0.08
@@ -308,8 +345,15 @@ function reserveEdge(field: ParticleField, key: number) {
   return null
 }
 
-function refreshConnectionTargets(field: ParticleField, quality: QualitySettings, time: number) {
-  const { connectionDistance, maxConnections, maxLinksPerParticle } = quality
+function refreshConnectionTargets(
+  field: ParticleField,
+  quality: QualitySettings,
+  time: number,
+  parameters: OrbVisualParameters,
+) {
+  const { maxConnections: connectionCapacity, maxLinksPerParticle } = quality
+  const connectionDistance = quality.connectionDistance * (0.93 + parameters.connectionDensity * 0.07)
+  const maxConnections = Math.max(1, Math.min(connectionCapacity, Math.round(connectionCapacity * parameters.connectionDensity)))
   const distanceSquared = connectionDistance * connectionDistance
   const cells = field.cells
   const degrees = field.degrees
@@ -367,8 +411,9 @@ function refreshConnectionTargets(field: ParticleField, quality: QualitySettings
               if (edge) {
                 edge.from = index
                 edge.to = candidate
-                edge.targetOpacity = 0.05 + proximity * 0.24 + cadence * 0.035
-                edge.luminosity = 0.52 + (field.strengths[index] + field.strengths[candidate]) * 0.24
+                edge.targetOpacity = (0.05 + proximity * 0.24 + cadence * 0.035) * parameters.networkVisibility
+                edge.luminosity = (0.52 + (field.strengths[index] + field.strengths[candidate]) * 0.24)
+                  * (0.78 + parameters.luminance * 0.22)
                 degrees[index] += 1
                 degrees[candidate] += 1
                 desired += 1
@@ -387,7 +432,12 @@ function refreshConnectionTargets(field: ParticleField, quality: QualitySettings
   }
 }
 
-function updateConnectionGeometry(field: ParticleField, quality: QualitySettings, delta: number) {
+function updateConnectionGeometry(
+  field: ParticleField,
+  quality: QualitySettings,
+  delta: number,
+  parameters: OrbVisualParameters,
+) {
   let links = 0
 
   for (const edge of field.edges) {
@@ -413,7 +463,7 @@ function updateConnectionGeometry(field: ParticleField, quality: QualitySettings
     const fromOffset = edge.from * 3
     const toOffset = edge.to * 3
     const writeOffset = links * 6
-    const brightness = clamp(edge.opacity * edge.luminosity, 0, 1)
+    const brightness = clamp(edge.opacity * edge.luminosity * (0.78 + parameters.networkVisibility * 0.22), 0, 1)
     const red = 0.18 + brightness * 0.69
     const green = 0.025 + brightness * 0.39
     const blue = 0.002 + brightness * 0.04
@@ -439,16 +489,23 @@ function updateConnectionGeometry(field: ParticleField, quality: QualitySettings
   field.connectionColorAttribute.needsUpdate = true
 }
 
-export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
+export function ParticleOrb({ audioLevel, onMetrics, quality, reducedMotion, state: orbState }: ParticleOrbProps) {
   const field = useMemo(() => createField(quality), [quality])
   const lastConnectionRefresh = useRef(Number.NEGATIVE_INFINITY)
   const lifecycleRef = useRef<{ activeField: ParticleField; mounted: boolean } | null>(null)
   const metricsRef = useRef({ elapsed: 0, frames: 0 })
   const onMetricsRef = useRef(onMetrics)
+  const targetParametersRef = useRef(targetParametersForState(orbState, audioLevel))
+  const visualParametersRef = useRef(targetParametersForState(orbState, audioLevel))
 
   useEffect(() => {
     onMetricsRef.current = onMetrics
   }, [onMetrics])
+
+  useEffect(() => {
+    const target = targetParametersForState(orbState, audioLevel)
+    targetParametersRef.current = reducedMotion ? reduceMotionParameters(target) : target
+  }, [audioLevel, orbState, reducedMotion])
 
   useEffect(() => {
     const lifecycle = lifecycleRef.current ?? { activeField: field, mounted: false }
@@ -471,14 +528,21 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
 
   useFrame((state, delta) => {
     const time = state.clock.elapsedTime
-    updateParticles(field, time)
+    visualParametersRef.current = interpolateVisualParameters(
+      visualParametersRef.current,
+      targetParametersRef.current,
+      delta,
+      reducedMotion ? 10 : 4.6,
+    )
+    const parameters = visualParametersRef.current
+    updateParticles(field, time, parameters)
 
     if (time * 1000 - lastConnectionRefresh.current >= quality.linkRefreshMs) {
-      refreshConnectionTargets(field, quality, time)
+      refreshConnectionTargets(field, quality, time, parameters)
       lastConnectionRefresh.current = time * 1000
     }
 
-    updateConnectionGeometry(field, quality, delta)
+    updateConnectionGeometry(field, quality, delta, parameters)
 
     metricsRef.current.elapsed += delta
     metricsRef.current.frames += 1
