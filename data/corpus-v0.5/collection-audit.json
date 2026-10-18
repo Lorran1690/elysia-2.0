@@ -1,16 +1,11 @@
 {
   "authorization": {
-    "approved_scielo_html_collection": [
+    "documents_reviewed": [
       "scielo-rbeped-affectivity-2024",
       "scielo-rap-redistribution-2024"
     ],
-    "blocked_without_download": [
-      "scielo-rbeped-triangles-2024"
-    ],
-    "conci_final_review": [
-      "conci-2021-alternative-licenses-html"
-    ],
-    "other_full_documents_authorized": 0
+    "new_full_documents_authorized": 0,
+    "new_full_documents_collected": 0
   },
   "deduplication_report": {
     "automatic_content_removal": false,
@@ -53,7 +48,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.136999
+        "word_set_jaccard": 0.142026
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -79,7 +74,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.167374
+        "word_set_jaccard": 0.163303
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -92,7 +87,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.159394
+        "word_set_jaccard": 0.154746
       }
     ],
     "potential_duplicate_pairs": []
@@ -598,8 +593,8 @@
         ],
         "third_party_handling": "Nenhum recurso citado, PDF, XML, imagem ou anexo foi baixado. Referencias, figuras e citacoes diretas de terceiros foram deixadas fora do texto limpo."
       },
-      "future_inclusion_decision": "pending_explicit_approval",
-      "future_inclusion_reason": "A coleta e auditoria autorizadas nesta fase nao constituem inclusao automatica em corpus, tokenizacao, split ou treinamento.",
+      "future_inclusion_decision": "audited_pending_inline_quote_rights_review",
+      "future_inclusion_reason": "The twelve standalone quotations were confirmed as third-party material and remain redacted, but inline quotation rights review remains incomplete.",
       "id": "scielo-rbeped-affectivity-2024",
       "identity": {
         "authors": [
@@ -658,6 +653,109 @@
           "sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0"
         }
       ],
+      "phase2e_review": {
+        "all_reviewed_blocks_are_direct_third_party_quotes": true,
+        "paragraph_continuity_review": {
+          "authorial_commentary_restored": false,
+          "context_before_and_after_each_redaction_checked": true,
+          "distributed_sections_reviewed": [
+            "Resumo",
+            "Introducao",
+            "desenvolvimento",
+            "Consideracoes finais"
+          ]
+        },
+        "prior_clean_derivative_reused_without_change": true,
+        "prior_clean_sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0",
+        "remaining_limitation": "The text retains many inline quotations mixed with authorial paragraphs. They require a separate, semantic quote-by-quote rights review before promotion.",
+        "reviewed_blockquote_count": 12,
+        "reviewed_blockquotes": [
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Platao, 1980",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 1
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Aristoteles, 2014",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 2
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Maritain, 1959",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 3
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Macedo, 1980",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 4
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Rates e Sucupira Lins, 2021",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 5
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2007",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 6
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Maritain, 2006",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 7
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Mounier, 2004",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 8
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Piaget, 1973",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 9
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2007",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 10
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Sucupira Lins, 2022b",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 11
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2020",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 12
+          }
+        ]
+      },
       "quality": {
         "blockquotes_extracted": 12,
         "clean_text_statistics": {
@@ -704,6 +802,12 @@
             "phone_matches": 1
           }
         },
+        "phase2e_utf8_and_nfc_checked": {
+          "clean_invalid_control_characters": [],
+          "clean_nfc": true,
+          "clean_replacement_character_count": 0,
+          "clean_utf8": true
+        },
         "replacement_character_count": 0,
         "sampled_sections": {
           "end": "Considerações finais",
@@ -746,20 +850,20 @@
           "figure_caption_blocks_removed": 8,
           "foreign_abstract_blocks_removed": 6,
           "front_matter_blocks_removed": 0,
-          "inline_direct_quote_spans_redacted": 0,
+          "inline_direct_quote_spans_redacted": 1,
           "references_blocks_removed": 51
         },
         "rules": [
-          "Preservar o HTML oficial imutavel e produzir derivados em UTF-8 normalizado em NFC.",
-          "Extrair somente o conteudo de article#articleText e conservar resumo em portugues, secoes, listas e tabelas textuais.",
-          "Excluir resumos estrangeiros, navegacao, referencias, elementos editoriais posteriores, imagens e legendas de figuras.",
-          "Redigir blocos de citacao direta de terceiros e somente spans de citacao identificados com reticencias, preservando a analise autoral ao redor.",
-          "Remover apenas duplicacoes consecutivas exatamente iguais; nao resumir nem reescrever o texto dos autores."
+          "Preserve the immutable official HTML and make only UTF-8 NFC derivatives.",
+          "Retain the Portuguese article body and the four text tables available in official HTML modals.",
+          "Represent each table cell in official HTML order and expose colspan or rowspan when present; do not infer missing cells or values.",
+          "Remove foreign abstracts, references, editorial material, figures, and graph captions from the cleaned derivative.",
+          "Redact the one reviewed substantive direct quotation while keeping its surrounding authorial analysis."
         ],
-        "third_party_handling": "Nenhum recurso citado, PDF, XML, imagem ou anexo foi baixado. Referencias, figuras e citacoes diretas de terceiros foram deixadas fora do texto limpo."
+        "third_party_handling": "No PDF, XML, image, attachment, or external link was downloaded. Graph-only information remains omitted; HTML text tables and authorial interpretation are preserved."
       },
-      "future_inclusion_decision": "pending_explicit_approval",
-      "future_inclusion_reason": "A coleta e auditoria autorizadas nesta fase nao constituem inclusao automatica em corpus, tokenizacao, split ou treinamento.",
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "The official HTML, attribution, CC BY 4.0 evidence, UTF-8/NFC derivatives, table completeness, and no-data-personal scan passed the bounded Phase 2E audit. This does not authorize training.",
       "id": "scielo-rap-redistribution-2024",
       "identity": {
         "authors": [
@@ -804,46 +908,88 @@
           "sha256": "6c3b99cc26d5faa9aaf9562eb2149a56738a892052a22c9d1a0b68586ca57f7a"
         },
         {
-          "bytes": 70296,
+          "bytes": 73883,
           "format": "text/plain; charset=UTF-8",
           "git_ignored": true,
           "immutable": false,
-          "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.extracted.txt",
+          "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.phase-2e.extracted.txt",
           "role": "extracted_text",
-          "sha256": "5711dede700fe35297db0648507df42eb2fbc6a55621e985b8869aaadaccb568"
+          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2"
         },
         {
-          "bytes": 59507,
+          "bytes": 62981,
           "format": "text/plain; charset=UTF-8",
           "git_ignored": true,
           "immutable": false,
-          "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.clean.txt",
+          "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.phase-2e.clean.txt",
           "role": "clean_text",
-          "sha256": "21b612fb4683447cc1876b52ddc0fc5dd710553c7f9250eb4b9a459d5bf2c234"
+          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e"
         }
       ],
+      "phase2e_review": {
+        "clean_revision_changed": true,
+        "html_comparison": {
+          "article_body_tables_detected": 0,
+          "graph_only_information_not_reconstructed": true,
+          "modal_table_identifiers": [
+            "ModalTablet1",
+            "ModalTablet2",
+            "ModalTablet3",
+            "ModalTablet4"
+          ],
+          "modal_tables_detected_outside_article_body": 4,
+          "numeric_cells_preserved_without_reconstruction": 136,
+          "table_rows_preserved": 35,
+          "table_text_source": "official HTML modal tables"
+        },
+        "inline_direct_quote_review": {
+          "short_notational_quotation_marks_retained": true,
+          "substantive_spans_redacted": 1
+        },
+        "prior_derivatives": {
+          "clean_derivative_artifact": {
+            "bytes": 59507,
+            "format": "text/plain; charset=UTF-8",
+            "git_ignored": true,
+            "immutable": false,
+            "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.clean.txt",
+            "role": "clean_text",
+            "sha256": "21b612fb4683447cc1876b52ddc0fc5dd710553c7f9250eb4b9a459d5bf2c234"
+          },
+          "extracted_derivative_artifact": {
+            "bytes": 70296,
+            "format": "text/plain; charset=UTF-8",
+            "git_ignored": true,
+            "immutable": false,
+            "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.extracted.txt",
+            "role": "extracted_text",
+            "sha256": "5711dede700fe35297db0648507df42eb2fbc6a55621e985b8869aaadaccb568"
+          }
+        },
+        "quality_decision": "approved_for_future_inclusion"
+      },
       "quality": {
         "blockquotes_extracted": 0,
         "clean_text_statistics": {
-          "bytes": 59507,
-          "characters": 57456,
-          "sha256": "21b612fb4683447cc1876b52ddc0fc5dd710553c7f9250eb4b9a459d5bf2c234",
-          "words": 8449
+          "bytes": 62981,
+          "characters": 60881,
+          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e",
+          "words": 8996
         },
         "deduplication": {
           "consecutive_blocks_removed": 0,
-          "strategy": "Somente blocos consecutivos exatamente iguais sao removidos apos a limpeza dirigida."
+          "strategy": "Only exactly equal consecutive blocks are removed; table rows are preserved in source order."
         },
         "estimated_tokens": {
-          "maximum": 13096,
+          "maximum": 13944,
           "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
-          "minimum": 10562
+          "minimum": 11245
         },
         "extracted_text_statistics": {
-          "bytes": 70296,
-          "characters": 68032,
-          "sha256": "5711dede700fe35297db0648507df42eb2fbc6a55621e985b8869aaadaccb568",
-          "words": 9878
+          "bytes": 73883,
+          "characters": 71559,
+          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2",
+          "words": 10439
         },
         "image_elements_omitted": 9,
         "invalid_control_characters": [],
@@ -861,7 +1007,7 @@
             "email_matches": 0,
             "phone_matches": 0
           },
-          "note": "Autoria para atribuicao fica no preambulo; contatos e elementos posteriores a referencias nao seguem para a versao limpa.",
+          "note": "Contact material remains outside the cleaned article and table transcription.",
           "source": {
             "cpf_matches": 0,
             "email_matches": 10,
@@ -870,12 +1016,14 @@
         },
         "replacement_character_count": 0,
         "sampled_sections": {
-          "end": "4. CONSIDERAÇÕES FINAIS",
-          "middle": "2.3. O semiárido: aspectos geográficos, econômicos e fiscais",
+          "end": "Tabela 4 Matriz de correlação: receitas próprias, transferências intergovernamentais e indicadores socioeconômicos dos municípios brasileiros",
+          "middle": "3.1. Efeito redistributivo das transferências intergovernamentais",
           "start": "Resumo"
         },
-        "sections_extracted": 10,
-        "table_rows_extracted": 0
+        "sections_extracted": 15,
+        "table_modal_count": 4,
+        "table_numeric_cells_preserved": 136,
+        "table_rows_extracted": 35
       },
       "source": {
         "canonical_page_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
@@ -893,16 +1041,84 @@
         "selected_representation": "HTML"
       },
       "states": {
-        "approved_for_future_inclusion": false,
+        "approved_for_future_inclusion": true,
         "audited": true,
         "candidate": true,
         "collected": true,
         "collection_authorized": true,
-        "current_state": "audited",
+        "current_state": "approved_for_future_inclusion",
         "rejected": false
       }
     }
   ],
+  "future_corpus_plan": {
+    "candidate_families": [
+      {
+        "genre": "original dialogues, support instructions, and explanatory prose",
+        "id": "elysia-original-dialogues-and-guides",
+        "rights_basis": "signed contributor authorization with CC0 1.0 preferred",
+        "risks": [
+          "synthetic or copied content",
+          "personal data in examples"
+        ],
+        "status": "requires_authoring_protocol_and_explicit_collection_approval"
+      },
+      {
+        "genre": "technical documentation",
+        "id": "ibict-omeka-guide-2018",
+        "rights_basis": "CC BY 4.0 stated in the official repository record",
+        "risks": [
+          "PDF extraction quality",
+          "third-party screenshots and references"
+        ],
+        "source_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+        "status": "metadata-reviewed_only"
+      },
+      {
+        "genre": "informative and explanatory academic prose",
+        "id": "individual-scielo-cc-by-articles",
+        "rights_basis": "license must be confirmed on the selected item, not inferred from the portal",
+        "risks": [
+          "quotations",
+          "figures",
+          "references",
+          "near-duplicate editions"
+        ],
+        "status": "requires_individual_preflight_and_explicit_collection_approval"
+      },
+      {
+        "genre": "educational material",
+        "id": "educapes-individual-cc-by-records",
+        "rights_basis": "canonical file and individual rights metadata must match before collection",
+        "risks": [
+          "repository metadata/version mismatch",
+          "third-party material in attachments"
+        ],
+        "status": "requires_canonical_version_audit_and_explicit_collection_approval"
+      },
+      {
+        "genre": "institutional and legal texts",
+        "id": "brazilian-official-acts",
+        "rights_basis": "Brazilian Copyright Law, art. 8 IV, excludes official acts from copyright protection",
+        "risks": [
+          "highly formal register",
+          "outdated versions",
+          "politically sensitive material"
+        ],
+        "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l9610.htm",
+        "status": "requires_scope_and_currency_protocol_before_collection"
+      }
+    ],
+    "collection_or_tokenization_started": false,
+    "rejected_license_families": [
+      "CC BY-NC, CC BY-NC-SA, CC BY-ND, unknown licenses, and portal-level claims without file-level evidence"
+    ],
+    "split_policy": {
+      "rule": "A group_id remains entirely in one future partition; no BPE or split is created in this phase.",
+      "unit": "whole-document-author-origin-and-derivation-group"
+    },
+    "status": "proposal_only_no_collection_authorized"
+  },
   "historical_phase_2b": {
     "original_document_state": "audited",
     "original_future_inclusion_decision": "pending_explicit_approval",
@@ -917,77 +1133,21 @@
     "schema_version": 2,
     "sha256": "9d217f293b2169b6e90b84c53586c593f230270cdd7b5491fb61f82b96538be0"
   },
+  "historical_phase_2d": {
+    "path": "data/corpus-v0.5/collection-audit.phase-2d.json",
+    "preserved": true,
+    "schema_version": 3,
+    "sha256": "199896aeb63a3d2d603458ca339b12d39008c45dc07e31c03e6b35e9c971a855"
+  },
   "historical_research_manifest": {
     "path": "data/corpus-v0.5/source-candidates.json",
     "phase": "research-and-corpus-plan-only",
     "preserved_without_relaxing_its_zero-download_validation": true
   },
-  "phase": "conci-consolidation-and-controlled-scielo-expansion",
-  "preflight": [
-    {
-      "canonical_page_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
-      "content_downloaded": true,
-      "duplicate_risk": "Pagina HTML, PDF e versoes de resumo existem; somente o HTML em portugues foi selecionado.",
-      "id": "scielo-rbeped-affectivity-2024",
-      "license": {
-        "covers_selected_html_representation": true,
-        "evidence_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
-        "name": "CC BY 4.0"
-      },
-      "personal_data_risks": [
-        "e-mails e afiliacoes na materia preliminar"
-      ],
-      "status": "passed",
-      "third_party_risks": [
-        "citacoes diretas",
-        "referencias",
-        "figura e legenda"
-      ],
-      "title_and_doi_confirmed": true
-    },
-    {
-      "authors": [
-        "Bárbara Silva Gumiero",
-        "Vinícius Pazuch"
-      ],
-      "canonical_page_url": "https://www.scielo.br/j/rbeped/a/9HwMzH7xZBLqnRTS33df56K/?format=html&lang=pt",
-      "content_downloaded": false,
-      "doi": "10.24109/2176-6681.rbep.105.5980",
-      "id": "scielo-rbeped-triangles-2024",
-      "license": {
-        "covers_selected_html_representation": false,
-        "evidence_url": "https://www.scielo.br/j/rbeped/a/9HwMzH7xZBLqnRTS33df56K/?format=html&lang=pt",
-        "name": "CC BY-NC 4.0"
-      },
-      "local_artifacts_created": false,
-      "reason": "A fase exige verificacao individual de CC BY 4.0; a pagina oficial aponta CC BY-NC 4.0.",
-      "status": "blocked_license_not_cc_by_4_0",
-      "title": "Tecnologias digitais e o ensino de triângulos: uma revisão sistemática da literatura"
-    },
-    {
-      "canonical_page_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
-      "content_downloaded": true,
-      "duplicate_risk": "Pagina HTML, PDF e versao em outro idioma existem; somente o HTML em portugues foi selecionado.",
-      "id": "scielo-rap-redistribution-2024",
-      "license": {
-        "covers_selected_html_representation": true,
-        "evidence_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
-        "name": "CC BY 4.0"
-      },
-      "personal_data_risks": [
-        "e-mails de correspondencia e nomes editoriais apos as referencias"
-      ],
-      "status": "passed",
-      "third_party_risks": [
-        "referencias",
-        "graficos e fontes externas",
-        "dados citados"
-      ],
-      "title_and_doi_confirmed": true
-    }
-  ],
+  "phase": "final-scielo-quality-review-and-corpus-planning",
   "project": "ELYSIA-Seed v0.5",
   "safeguards": {
+    "additional_dataset_downloaded": false,
     "ai_api_used": false,
     "bpe_trained": false,
     "desktop_interface_branch_modified": false,
@@ -1001,5 +1161,5 @@
     "v04_weights_or_checkpoints_modified": false,
     "xml_downloaded": false
   },
-  "schema_version": 3
+  "schema_version": 4
 }

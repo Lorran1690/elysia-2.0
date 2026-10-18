@@ -22,7 +22,7 @@ from learning.v05_third_collection_audit import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.json"
+AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.phase-2d.json"
 
 
 def audit() -> dict[str, object]:
