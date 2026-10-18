@@ -1,13 +1,22 @@
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { clamp, seededUnit, smoothstep } from './math'
+import { clamp, sampleFlowField, seededUnit, smoothstep, smoothToward, type MutableVector3 } from './math'
 import type { QualitySettings } from './quality'
 
 export type OrbMetrics = {
   connections: number
   fps: number
   particles: number
+}
+
+type ConnectionEdge = {
+  from: number
+  key: number
+  luminosity: number
+  opacity: number
+  targetOpacity: number
+  to: number
 }
 
 type ParticleField = {
@@ -24,6 +33,9 @@ type ParticleField = {
   connectionPositionAttribute: THREE.BufferAttribute
   connectionPositions: Float32Array
   connectionsGeometry: THREE.BufferGeometry
+  degrees: Uint8Array
+  edgeByKey: Map<number, ConnectionEdge>
+  edges: ConnectionEdge[]
   linkCount: number
   nextInCell: Int32Array
   phases: Float32Array
@@ -53,23 +65,27 @@ function cellKey(x: number, y: number, z: number) {
   return (x * 73856093) ^ (y * 19349663) ^ (z * 83492791)
 }
 
+function edgeKey(first: number, second: number, particleCount: number) {
+  return first < second ? first * particleCount + second : second * particleCount + first
+}
+
 function createParticleSprite() {
   const canvas = document.createElement('canvas')
-  canvas.width = 32
-  canvas.height = 32
+  canvas.width = 48
+  canvas.height = 48
   const context = canvas.getContext('2d')
 
   if (!context) {
     throw new Error('Could not create the particle sprite')
   }
 
-  const glow = context.createRadialGradient(16, 16, 0, 16, 16, 16)
-  glow.addColorStop(0, 'rgba(255, 249, 221, 1)')
-  glow.addColorStop(0.22, 'rgba(255, 207, 105, 0.95)')
-  glow.addColorStop(0.58, 'rgba(243, 143, 37, 0.28)')
-  glow.addColorStop(1, 'rgba(243, 143, 37, 0)')
+  const glow = context.createRadialGradient(24, 24, 0, 24, 24, 24)
+  glow.addColorStop(0, 'rgba(255, 246, 214, 0.92)')
+  glow.addColorStop(0.18, 'rgba(255, 199, 92, 0.74)')
+  glow.addColorStop(0.5, 'rgba(239, 137, 34, 0.16)')
+  glow.addColorStop(1, 'rgba(239, 137, 34, 0)')
   context.fillStyle = glow
-  context.fillRect(0, 0, 32, 32)
+  context.fillRect(0, 0, 48, 48)
 
   const sprite = new THREE.CanvasTexture(canvas)
   sprite.colorSpace = THREE.SRGBColorSpace
@@ -78,6 +94,7 @@ function createParticleSprite() {
 
 function createField(quality: QualitySettings): ParticleField {
   const { particles, maxConnections } = quality
+  const connectionCapacity = maxConnections
   const basePositions = new Float32Array(particles * 3)
   const positions = new Float32Array(particles * 3)
   const colors = new Float32Array(particles * 3)
@@ -88,9 +105,11 @@ function createField(quality: QualitySettings): ParticleField {
   for (let index = 0; index < particles; index += 1) {
     const phi = Math.acos(1 - 2 * seededUnit(index, 1))
     const theta = Math.PI * 2 * seededUnit(index, 2)
-    const radius = 0.06 + Math.pow(seededUnit(index, 3), 1.1) * 1.44
+    const radialSeed = seededUnit(index, 3)
+    const radius = Math.cbrt(radialSeed) * (1.05 + seededUnit(index, 4) * 0.28)
     const sinPhi = Math.sin(phi)
     const offset = index * 3
+    const strength = 0.25 + seededUnit(index, 5) * 0.58 + (1 - radius / 1.34) * 0.17
 
     basePositions[offset] = radius * sinPhi * Math.cos(theta)
     basePositions[offset + 1] = radius * Math.cos(phi)
@@ -98,10 +117,10 @@ function createField(quality: QualitySettings): ParticleField {
     positions[offset] = basePositions[offset]
     positions[offset + 1] = basePositions[offset + 1]
     positions[offset + 2] = basePositions[offset + 2]
-    phases[index] = seededUnit(index, 4) * Math.PI * 2
-    strengths[index] = 0.32 + seededUnit(index, 5) * 0.5 + (1 - Math.min(radius / 1.5, 1)) * 0.24
+    phases[index] = seededUnit(index, 6) * Math.PI * 2
+    strengths[index] = strength
 
-    if (radius < 0.72 && seededUnit(index, 6) > 0.995 && anchorIndices.length < 12) {
+    if (seededUnit(index, 7) > 0.9982 && anchorIndices.length < 5) {
       anchorIndices.push(index)
     }
   }
@@ -122,8 +141,8 @@ function createField(quality: QualitySettings): ParticleField {
   anchorsGeometry.setAttribute('position', anchorPositionAttribute)
 
   const connectionsGeometry = new THREE.BufferGeometry()
-  const connectionPositions = new Float32Array(maxConnections * 6)
-  const connectionColors = new Float32Array(maxConnections * 6)
+  const connectionPositions = new Float32Array(connectionCapacity * 6)
+  const connectionColors = new Float32Array(connectionCapacity * 6)
   const connectionPositionAttribute = new THREE.BufferAttribute(connectionPositions, 3).setUsage(THREE.DynamicDrawUsage)
   const connectionColorAttribute = new THREE.BufferAttribute(connectionColors, 3).setUsage(THREE.DynamicDrawUsage)
   connectionsGeometry.setAttribute('position', connectionPositionAttribute)
@@ -144,6 +163,16 @@ function createField(quality: QualitySettings): ParticleField {
     connectionPositionAttribute,
     connectionPositions,
     connectionsGeometry,
+    degrees: new Uint8Array(particles),
+    edgeByKey: new Map(),
+    edges: Array.from({ length: connectionCapacity }, () => ({
+      from: -1,
+      key: -1,
+      luminosity: 0,
+      opacity: 0,
+      targetOpacity: 0,
+      to: -1,
+    })),
     linkCount: 0,
     nextInCell: new Int32Array(particles),
     phases,
@@ -155,50 +184,93 @@ function createField(quality: QualitySettings): ParticleField {
   }
 }
 
+function disposeField(field: ParticleField) {
+  field.pointsGeometry.dispose()
+  field.anchorsGeometry.dispose()
+  field.connectionsGeometry.dispose()
+  field.sprite.dispose()
+}
+
 function updateParticles(field: ParticleField, time: number) {
-  const wave = Math.sin(time * 0.21)
-  const ringBias = Math.pow(Math.max(0, wave), 3.6)
-  const breath = 1 + Math.sin(time * 0.77) * 0.065
-  const voidX = Math.sin(time * 0.34) * 0.42
-  const voidY = Math.cos(time * 0.29) * 0.27
-  const voidZ = Math.sin(time * 0.23 + 1.7) * 0.31
+  const breath = 1 + Math.sin(time * 0.61) * 0.028 + Math.sin(time * 0.17 + 0.9) * 0.022
+  const cavityAX = Math.sin(time * 0.23) * 0.44
+  const cavityAY = Math.cos(time * 0.19 + 0.4) * 0.31
+  const cavityAZ = Math.sin(time * 0.16 + 1.5) * 0.35
+  const cavityBX = Math.cos(time * 0.13 + 2.2) * 0.34
+  const cavityBY = Math.sin(time * 0.21 + 0.7) * 0.39
+  const cavityBZ = Math.cos(time * 0.18) * 0.28
+  const nodeAX = Math.sin(time * 0.17 + 0.6) * 0.48
+  const nodeAY = Math.cos(time * 0.2) * 0.29
+  const nodeAZ = Math.cos(time * 0.14 + 0.9) * 0.43
+  const nodeBX = Math.cos(time * 0.12 + 2.1) * 0.4
+  const nodeBY = Math.sin(time * 0.16 + 1.1) * 0.37
+  const nodeBZ = Math.sin(time * 0.2 + 2.5) * 0.34
+  const flow: MutableVector3 = { x: 0, y: 0, z: 0 }
   let anchorCursor = 0
 
   for (let index = 0; index < field.strengths.length; index += 1) {
     const offset = index * 3
     const phase = field.phases[index]
     const strength = field.strengths[index]
-    const radialDrift = 1 + Math.sin(time * 0.93 + phase) * (0.035 + strength * 0.055)
-    const internalWave = Math.sin(time * 0.58 + phase * 2.1) * 0.095
-    let x = field.basePositions[offset] * breath * radialDrift
-    let y = field.basePositions[offset + 1] * breath * radialDrift
-    let z = field.basePositions[offset + 2] * breath * radialDrift
+    const baseX = field.basePositions[offset]
+    const baseY = field.basePositions[offset + 1]
+    const baseZ = field.basePositions[offset + 2]
+    const lobe = Math.sin(baseX * 2.2 + baseZ * 1.7 + time * 0.19) * 0.062
+      + Math.cos(baseY * 2.6 - baseX * 1.15 - time * 0.13) * 0.052
+    const shellScale = breath * (1 + lobe + Math.sin(phase + time * 0.31) * 0.026)
+    let x = baseX * shellScale
+    let y = baseY * shellScale
+    let z = baseZ * shellScale
 
-    x += Math.sin(time * 0.71 + y * 3.4 + phase) * 0.11 + internalWave
-    y += Math.cos(time * 0.65 + z * 4.1 + phase * 0.7) * 0.09
-    z += Math.sin(time * 0.61 + x * 3.7 + phase * 1.3) * 0.12
+    sampleFlowField(x * 0.84, y * 0.84, z * 0.84, time, phase, flow)
+    const flowStrength = 0.035 + strength * 0.071
+    x += flow.x * flowStrength
+    y += flow.y * flowStrength
+    z += flow.z * flowStrength
 
-    const voidDistance = Math.hypot(x - voidX, y - voidY, z - voidZ)
-    const cavity = 1 - smoothstep(0.1, 0.5, voidDistance)
-    if (cavity > 0) {
-      x += (x - voidX) * cavity * 0.32
-      y += (y - voidY) * cavity * 0.32
-      z += (z - voidZ) * cavity * 0.32
+    const cavityADistance = Math.hypot(x - cavityAX, y - cavityAY, z - cavityAZ)
+    const cavityBDistance = Math.hypot(x - cavityBX, y - cavityBY, z - cavityBZ)
+    const cavityA = 1 - smoothstep(0.1, 0.56, cavityADistance)
+    const cavityB = 1 - smoothstep(0.12, 0.48, cavityBDistance)
+    const cavity = Math.max(cavityA, cavityB)
+
+    if (cavityA > 0) {
+      x += (x - cavityAX) * cavityA * 0.25
+      y += (y - cavityAY) * cavityA * 0.25
+      z += (z - cavityAZ) * cavityA * 0.25
     }
 
-    x *= 1 + ringBias * 0.16
-    y *= 1 - ringBias * 0.43
-    z *= 1 - ringBias * 0.18
+    if (cavityB > 0) {
+      x += (x - cavityBX) * cavityB * 0.19
+      y += (y - cavityBY) * cavityB * 0.19
+      z += (z - cavityBZ) * cavityB * 0.19
+    }
+
+    const nodeA = 1 - smoothstep(0.16, 0.78, Math.hypot(x - nodeAX, y - nodeAY, z - nodeAZ))
+    const nodeB = 1 - smoothstep(0.13, 0.7, Math.hypot(x - nodeBX, y - nodeBY, z - nodeBZ))
+    const density = Math.max(nodeA, nodeB)
+
+    if (nodeA > 0) {
+      x += (nodeAX - x) * nodeA * 0.045
+      y += (nodeAY - y) * nodeA * 0.045
+      z += (nodeAZ - z) * nodeA * 0.045
+    }
+
+    if (nodeB > 0) {
+      x += (nodeBX - x) * nodeB * 0.037
+      y += (nodeBY - y) * nodeB * 0.037
+      z += (nodeBZ - z) * nodeB * 0.037
+    }
 
     field.positions[offset] = x
     field.positions[offset + 1] = y
     field.positions[offset + 2] = z
 
-    const focalPulse = Math.max(0, Math.sin(time * 1.4 + phase * 2.7))
-    const brightness = clamp(0.45 + strength * 0.42 + focalPulse * 0.16, 0, 1)
-    field.colors[offset] = 0.55 + brightness * 0.45
-    field.colors[offset + 1] = 0.14 + brightness * 0.63
-    field.colors[offset + 2] = 0.008 + brightness * 0.11
+    const localPulse = Math.max(0, Math.sin(time * 0.74 + phase * 1.8 + baseY * 1.5))
+    const brightness = clamp(0.2 + strength * 0.34 + density * 0.23 + localPulse * 0.12 - cavity * 0.09, 0, 1)
+    field.colors[offset] = 0.52 + brightness * 0.42
+    field.colors[offset + 1] = 0.13 + brightness * 0.55
+    field.colors[offset + 2] = 0.008 + brightness * 0.08
 
     if (anchorCursor < field.anchorIndices.length && field.anchorIndices[anchorCursor] === index) {
       const anchorOffset = anchorCursor * 3
@@ -214,13 +286,42 @@ function updateParticles(field: ParticleField, time: number) {
   field.anchorPositionAttribute.needsUpdate = true
 }
 
-function updateConnections(field: ParticleField, quality: QualitySettings) {
-  const { connectionDistance, maxConnections } = quality
+function reserveEdge(field: ParticleField, key: number) {
+  for (const edge of field.edges) {
+    if (edge.from === -1) {
+      edge.key = key
+      field.edgeByKey.set(key, edge)
+      return edge
+    }
+  }
+
+  for (const edge of field.edges) {
+    if (edge.targetOpacity === 0 && edge.opacity < 0.025) {
+      field.edgeByKey.delete(edge.key)
+      edge.key = key
+      edge.opacity = 0
+      field.edgeByKey.set(key, edge)
+      return edge
+    }
+  }
+
+  return null
+}
+
+function refreshConnectionTargets(field: ParticleField, quality: QualitySettings, time: number) {
+  const { connectionDistance, maxConnections, maxLinksPerParticle } = quality
   const distanceSquared = connectionDistance * connectionDistance
   const cells = field.cells
+  const degrees = field.degrees
+  const particleCount = field.strengths.length
   cells.clear()
+  degrees.fill(0)
 
-  for (let index = 0; index < field.strengths.length; index += 1) {
+  for (const edge of field.edges) {
+    edge.targetOpacity = 0
+  }
+
+  for (let index = 0; index < particleCount; index += 1) {
     const offset = index * 3
     const key = cellKey(
       Math.floor(field.positions[offset] / connectionDistance),
@@ -231,9 +332,15 @@ function updateConnections(field: ParticleField, quality: QualitySettings) {
     cells.set(key, index)
   }
 
-  let links = 0
+  let desired = 0
+  const start = Math.floor(time * 37) % particleCount
 
-  outer: for (let index = 0; index < field.strengths.length; index += 1) {
+  outer: for (let step = 0; step < particleCount; step += 1) {
+    const index = (start + step) % particleCount
+    if (degrees[index] >= maxLinksPerParticle) {
+      continue
+    }
+
     const offset = index * 3
     const cellX = Math.floor(field.positions[offset] / connectionDistance)
     const cellY = Math.floor(field.positions[offset + 1] / connectionDistance)
@@ -243,41 +350,33 @@ function updateConnections(field: ParticleField, quality: QualitySettings) {
       let candidate = cells.get(cellKey(cellX + xOffset, cellY + yOffset, cellZ + zOffset)) ?? -1
 
       while (candidate !== -1) {
-        if (candidate > index) {
+        if (candidate > index && degrees[candidate] < maxLinksPerParticle) {
           const candidateOffset = candidate * 3
           const dx = field.positions[offset] - field.positions[candidateOffset]
           const dy = field.positions[offset + 1] - field.positions[candidateOffset + 1]
           const dz = field.positions[offset + 2] - field.positions[candidateOffset + 2]
           const squared = dx * dx + dy * dy + dz * dz
 
-          if (squared < distanceSquared && squared > 0.0018) {
+          if (squared < distanceSquared && squared > 0.0024) {
             const proximity = 1 - Math.sqrt(squared) / connectionDistance
-            if (proximity < 0.16) {
-              candidate = field.nextInCell[candidate]
-              continue
-            }
-            const brightness = clamp(0.08 + proximity * 0.42 + (field.strengths[index] + field.strengths[candidate]) * 0.1, 0, 1)
-            const writeOffset = links * 6
-            const red = 0.3 + brightness * 0.62
-            const green = 0.025 + brightness * 0.4
-            const blue = 0.002 + brightness * 0.045
+            const cadence = 0.5 + Math.sin(time * 0.61 + field.phases[index] + field.phases[candidate]) * 0.5
+            if (proximity > 0.2 && cadence > 0.08) {
+              const key = edgeKey(index, candidate, particleCount)
+              const edge = field.edgeByKey.get(key) ?? reserveEdge(field, key)
 
-            field.connectionPositions[writeOffset] = field.positions[offset]
-            field.connectionPositions[writeOffset + 1] = field.positions[offset + 1]
-            field.connectionPositions[writeOffset + 2] = field.positions[offset + 2]
-            field.connectionPositions[writeOffset + 3] = field.positions[candidateOffset]
-            field.connectionPositions[writeOffset + 4] = field.positions[candidateOffset + 1]
-            field.connectionPositions[writeOffset + 5] = field.positions[candidateOffset + 2]
-            field.connectionColors[writeOffset] = red
-            field.connectionColors[writeOffset + 1] = green
-            field.connectionColors[writeOffset + 2] = blue
-            field.connectionColors[writeOffset + 3] = red
-            field.connectionColors[writeOffset + 4] = green
-            field.connectionColors[writeOffset + 5] = blue
+              if (edge) {
+                edge.from = index
+                edge.to = candidate
+                edge.targetOpacity = 0.05 + proximity * 0.24 + cadence * 0.035
+                edge.luminosity = 0.52 + (field.strengths[index] + field.strengths[candidate]) * 0.24
+                degrees[index] += 1
+                degrees[candidate] += 1
+                desired += 1
 
-            links += 1
-            if (links >= maxConnections) {
-              break outer
+                if (desired >= maxConnections) {
+                  break outer
+                }
+              }
             }
           }
         }
@@ -285,6 +384,53 @@ function updateConnections(field: ParticleField, quality: QualitySettings) {
         candidate = field.nextInCell[candidate]
       }
     }
+  }
+}
+
+function updateConnectionGeometry(field: ParticleField, quality: QualitySettings, delta: number) {
+  let links = 0
+
+  for (const edge of field.edges) {
+    if (edge.from === -1) {
+      continue
+    }
+
+    edge.opacity = smoothToward(edge.opacity, edge.targetOpacity, quality.connectionFade, delta)
+    if (edge.targetOpacity === 0 && edge.opacity < 0.012) {
+      field.edgeByKey.delete(edge.key)
+      edge.from = -1
+      edge.to = -1
+      edge.key = -1
+      edge.luminosity = 0
+      edge.opacity = 0
+      continue
+    }
+
+    if (edge.opacity < 0.008) {
+      continue
+    }
+
+    const fromOffset = edge.from * 3
+    const toOffset = edge.to * 3
+    const writeOffset = links * 6
+    const brightness = clamp(edge.opacity * edge.luminosity, 0, 1)
+    const red = 0.18 + brightness * 0.69
+    const green = 0.025 + brightness * 0.39
+    const blue = 0.002 + brightness * 0.04
+
+    field.connectionPositions[writeOffset] = field.positions[fromOffset]
+    field.connectionPositions[writeOffset + 1] = field.positions[fromOffset + 1]
+    field.connectionPositions[writeOffset + 2] = field.positions[fromOffset + 2]
+    field.connectionPositions[writeOffset + 3] = field.positions[toOffset]
+    field.connectionPositions[writeOffset + 4] = field.positions[toOffset + 1]
+    field.connectionPositions[writeOffset + 5] = field.positions[toOffset + 2]
+    field.connectionColors[writeOffset] = red
+    field.connectionColors[writeOffset + 1] = green
+    field.connectionColors[writeOffset + 2] = blue
+    field.connectionColors[writeOffset + 3] = red
+    field.connectionColors[writeOffset + 4] = green
+    field.connectionColors[writeOffset + 5] = blue
+    links += 1
   }
 
   field.linkCount = links
@@ -295,8 +441,8 @@ function updateConnections(field: ParticleField, quality: QualitySettings) {
 
 export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
   const field = useMemo(() => createField(quality), [quality])
-  const groupRef = useRef<THREE.Group>(null)
   const lastConnectionRefresh = useRef(Number.NEGATIVE_INFINITY)
+  const lifecycleRef = useRef<{ activeField: ParticleField; mounted: boolean } | null>(null)
   const metricsRef = useRef({ elapsed: 0, frames: 0 })
   const onMetricsRef = useRef(onMetrics)
 
@@ -304,22 +450,35 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
     onMetricsRef.current = onMetrics
   }, [onMetrics])
 
-  useEffect(() => () => field.sprite.dispose(), [field])
+  useEffect(() => {
+    const lifecycle = lifecycleRef.current ?? { activeField: field, mounted: false }
+    lifecycleRef.current = lifecycle
+    lifecycle.activeField = field
+    lifecycle.mounted = true
+
+    return () => {
+      lifecycle.mounted = false
+      const retiringField = field
+
+      // React's development replay remounts the same field before this frame runs.
+      requestAnimationFrame(() => {
+        if (!lifecycle.mounted || lifecycle.activeField !== retiringField) {
+          disposeField(retiringField)
+        }
+      })
+    }
+  }, [field])
 
   useFrame((state, delta) => {
     const time = state.clock.elapsedTime
     updateParticles(field, time)
 
     if (time * 1000 - lastConnectionRefresh.current >= quality.linkRefreshMs) {
-      updateConnections(field, quality)
+      refreshConnectionTargets(field, quality, time)
       lastConnectionRefresh.current = time * 1000
     }
 
-    if (groupRef.current) {
-      groupRef.current.rotation.y = time * 0.14 + Math.sin(time * 0.22) * 0.11
-      groupRef.current.rotation.x = Math.sin(time * 0.17) * 0.09
-      groupRef.current.rotation.z = Math.cos(time * 0.19) * 0.035
-    }
+    updateConnectionGeometry(field, quality, delta)
 
     metricsRef.current.elapsed += delta
     metricsRef.current.frames += 1
@@ -335,7 +494,7 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
   })
 
   return (
-    <group ref={groupRef}>
+    <group>
       <lineSegments geometry={field.connectionsGeometry} frustumCulled={false}>
         <lineBasicMaterial
           blending={THREE.AdditiveBlending}
@@ -348,11 +507,10 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
       <points geometry={field.pointsGeometry} frustumCulled={false}>
         <pointsMaterial
           blending={THREE.AdditiveBlending}
-          color="#cc751c"
           depthWrite={false}
           map={field.sprite}
-          opacity={0.14}
-          size={quality.pointSize * 4.2}
+          opacity={0.22}
+          size={quality.pointSize * 5.2}
           sizeAttenuation
           transparent
           vertexColors
@@ -361,11 +519,10 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
       <points geometry={field.pointsGeometry} frustumCulled={false}>
         <pointsMaterial
           blending={THREE.AdditiveBlending}
-          color="#fff5d4"
           depthWrite={false}
           map={field.sprite}
-          opacity={0.96}
-          size={quality.pointSize}
+          opacity={0.93}
+          size={quality.pointSize * 1.1}
           sizeAttenuation
           transparent
           vertexColors
@@ -374,11 +531,11 @@ export function ParticleOrb({ onMetrics, quality }: ParticleOrbProps) {
       <points geometry={field.anchorsGeometry} frustumCulled={false}>
         <pointsMaterial
           blending={THREE.AdditiveBlending}
-          color="#ffbd57"
+          color="#f2a33e"
           depthWrite={false}
-          opacity={0.85}
           map={field.sprite}
-          size={quality.pointSize * 2.2}
+          opacity={0.12}
+          size={quality.pointSize}
           sizeAttenuation
           transparent
         />

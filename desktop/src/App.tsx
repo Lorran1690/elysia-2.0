@@ -15,7 +15,7 @@ const INITIAL_METRICS: OrbMetrics = {
 function App() {
   const [quality, setQuality] = useState<QualityLevel>('high')
   const [metrics, setMetrics] = useState<OrbMetrics>(INITIAL_METRICS)
-  const [panelOpen, setPanelOpen] = useState(() => window.innerWidth > 760)
+  const [panelOpen, setPanelOpen] = useState(false)
   const settings = QUALITY_PRESETS[quality]
 
   const rendererOptions = useMemo(
@@ -36,7 +36,7 @@ function App() {
           </span>
           <div>
             <strong>E.L.Y.S.I.A.</strong>
-            <span>DESKTOP / ORB CORE</span>
+            <span>DESKTOP / CORE VISUAL</span>
           </div>
         </div>
 
@@ -59,27 +59,22 @@ function App() {
       <section className="orb-stage" aria-label="Previa do orbe de particulas em repouso">
         <Canvas
           className="orb-canvas"
-          camera={{ fov: 43, position: [0, 0, 4.2] }}
+          camera={{ fov: 42, position: [0, 0, 4.35] }}
           dpr={[1, settings.pixelRatio]}
           gl={rendererOptions}
         >
-          <color attach="background" args={['#0a111a']} />
+          <color attach="background" args={['#050505']} />
           <ParticleOrb quality={settings} onMetrics={setMetrics} />
         </Canvas>
 
-        <div className="stage-heading" aria-hidden="true">
-          <span>NEURAL ORBIT</span>
-          <strong>E.L.Y.S.I.A.</strong>
-        </div>
-
         <div className="stage-mode" aria-hidden="true">
           <span className="stage-mode-dot" />
-          IDLE / FLUXO ORGANICO
+          CORE / IDLE
         </div>
 
         <aside className={`inspector${panelOpen ? ' inspector-open' : ''}`} aria-label="Controles do orbe">
           <div className="inspector-heading">
-            <span>PREVIEW 0.1</span>
+            <span>QUALIDADE</span>
             <Info size={14} strokeWidth={1.6} aria-hidden="true" />
           </div>
 
@@ -118,7 +113,7 @@ function App() {
       </section>
 
       <footer className="bottombar">
-        <span>ORBE DE PARTICULAS / ESTADO INICIAL</span>
+        <span>ORBE DE PARTICULAS / IDLE</span>
         <span>QUALIDADE: {settings.label.toUpperCase()}</span>
       </footer>
     </main>

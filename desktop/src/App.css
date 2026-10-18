@@ -1,6 +1,6 @@
 .desktop-shell {
-  background: #0a111a;
-  color: #dce2eb;
+  background: #050505;
+  color: #e9e2d4;
   display: grid;
   grid-template-rows: 64px minmax(0, 1fr) 48px;
   min-height: 100svh;
@@ -10,7 +10,7 @@
 .topbar,
 .bottombar {
   align-items: center;
-  border-color: #1c2a38;
+  border-color: #29221a;
   border-style: solid;
   display: flex;
   padding: 0 28px;
@@ -31,8 +31,8 @@
 
 .brand-mark {
   align-items: center;
-  border: 1px solid #b78335;
-  color: #ffc96a;
+  border: 1px solid #a87027;
+  color: #f1b65c;
   display: inline-flex;
   font-size: 13px;
   font-weight: 700;
@@ -47,21 +47,21 @@
 }
 
 .brand strong {
-  color: #f2d6a0;
+  color: #efd7aa;
   font-size: 14px;
   font-weight: 650;
   line-height: 1;
 }
 
 .brand span:not(.brand-mark) {
-  color: #718092;
+  color: #7d7060;
   font-size: 10px;
   line-height: 1.1;
 }
 
 .topbar-status {
   align-items: center;
-  color: #9ca9b9;
+  color: #a89d8c;
   display: flex;
   font-size: 11px;
   gap: 7px;
@@ -70,9 +70,9 @@
 
 .status-dot,
 .stage-mode-dot {
-  background: #e5a945;
+  background: #d89736;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(239, 173, 69, 0.85);
+  box-shadow: 0 0 8px rgba(226, 151, 54, 0.7);
   display: inline-block;
   height: 6px;
   width: 6px;
@@ -81,8 +81,8 @@
 .icon-button {
   align-items: center;
   background: transparent;
-  border: 1px solid #2b3a49;
-  color: #d8c7a1;
+  border: 1px solid #40362a;
+  color: #d7c4a0;
   cursor: pointer;
   display: inline-flex;
   height: 32px;
@@ -93,7 +93,7 @@
 }
 
 .icon-button:hover {
-  background: #15202c;
+  background: #17130e;
   border-color: #b78335;
   color: #ffd378;
 }
@@ -105,6 +105,7 @@
 }
 
 .orb-stage {
+  background: #050505;
   min-height: 0;
   overflow: hidden;
   position: relative;
@@ -117,32 +118,10 @@
   width: 100%;
 }
 
-.stage-heading {
-  display: grid;
-  gap: 6px;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  text-align: center;
-  top: 28px;
-  transform: translateX(-50%);
-}
-
-.stage-heading span {
-  color: #9c7440;
-  font-size: 10px;
-}
-
-.stage-heading strong {
-  color: #c9984a;
-  font-size: 12px;
-  font-weight: 600;
-}
-
 .stage-mode {
   align-items: center;
   bottom: 26px;
-  color: #8795a5;
+  color: #877b6b;
   display: flex;
   font-size: 10px;
   gap: 7px;
@@ -157,8 +136,8 @@
 }
 
 .inspector {
-  background: rgba(11, 19, 29, 0.88);
-  border-left: 1px solid #263544;
+  background: rgba(9, 8, 6, 0.9);
+  border-left: 1px solid #393027;
   bottom: 0;
   display: grid;
   gap: 22px;
@@ -190,16 +169,16 @@
 
 .quality-control > span,
 .metrics-list dt {
-  color: #7e8d9f;
+  color: #918170;
   font-size: 10px;
 }
 
 .quality-control select {
   appearance: none;
-  background: #101c28;
-  border: 1px solid #324355;
+  background: #15110c;
+  border: 1px solid #493c2d;
   border-radius: 3px;
-  color: #e1e7ed;
+  color: #e8ddcd;
   cursor: pointer;
   font: inherit;
   font-size: 12px;
@@ -208,14 +187,14 @@
 }
 
 .metrics-list {
-  border-top: 1px solid #233241;
+  border-top: 1px solid #393027;
   display: grid;
   margin: 0;
 }
 
 .metrics-list div {
   align-items: center;
-  border-bottom: 1px solid #233241;
+  border-bottom: 1px solid #393027;
   display: flex;
   justify-content: space-between;
   min-height: 41px;
@@ -235,7 +214,7 @@
 
 .bottombar {
   border-width: 1px 0 0;
-  color: #758496;
+  color: #7e7366;
   font-size: 10px;
   justify-content: space-between;
 }
