@@ -59,7 +59,7 @@ from learning.v05_third_collection_audit import (
 SCHEMA_VERSION = 4
 PHASE = "final-scielo-quality-review-and-corpus-planning"
 PHASE2D_AUDIT_PATH = "data/corpus-v0.5/collection-audit.phase-2d.json"
-CURRENT_AUDIT_PATH = "data/corpus-v0.5/collection-audit.json"
+CURRENT_AUDIT_PATH = "data/corpus-v0.5/collection-audit.phase-2e.json"
 REDISTRIBUTION_REVISED_EXTRACTED = "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.phase-2e.extracted.txt"
 REDISTRIBUTION_REVISED_CLEAN = "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.phase-2e.clean.txt"
 

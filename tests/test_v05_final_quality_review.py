@@ -20,7 +20,7 @@ from learning.v05_third_collection_audit import CONCI_DOCUMENT_ID, EMAG_DOCUMENT
 
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.json"
+AUDIT_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.phase-2e.json"
 PHASE2D_PATH = ROOT / "data" / "corpus-v0.5" / "collection-audit.phase-2d.json"
 
 
