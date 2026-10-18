@@ -85,8 +85,9 @@ Nenhuma dessas familias esta aprovada para coleta nesta fase. Antes de qualquer 
 - Verificacao de hashes, proveniencia, somente leitura dos originais, UTF-8/NFC, dados pessoais e deduplicacao.
 - Testes de regressao adicionados para a classificacao de todas as 31 marcacoes inline, redacao obrigatoria das 28 citacoes diretas e nao associacao forcada da quarta tabela.
 - Compilacao sintatica dos novos modulos Python concluida.
+- A suite completa `cpu-tests` passou na [CI do GitHub](https://github.com/Lorran1690/elysia-2.0/actions/runs/39091815271) para o commit `932a3ae`.
 
-O ambiente local nao possui o interpretador Python/pytest do projeto; a verificacao integrada equivalente foi executada com o interpretador local disponivel. A suite completa deve ser confirmada pela CI apos o commit.
+O ambiente local nao possui o interpretador Python/pytest do projeto; por isso, a verificacao integrada equivalente foi executada com o interpretador local disponivel e a suite completa foi confirmada pela CI remota.
 
 ## Limites e ponto de parada
 
