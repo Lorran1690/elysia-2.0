@@ -1,0 +1,905 @@
+{
+  "schema_version": 1,
+  "project": "ELYSIA-Seed v0.5",
+  "phase": "phase-2g-expansion-readiness",
+  "created_at": "2026-10-18",
+  "approved_base_commit": "cabdb1010280df2f4ef24112841d790f9bee8311",
+  "purpose": "Metadata-only research, acquisition planning, and safety controls for a future Portuguese-Brazil corpus expansion.",
+  "preservation": {
+    "historical_manifests_preserved": true,
+    "phase_2f_audit_path": "data/corpus-v0.5/collection-audit.json",
+    "desktop_branch_modified": false,
+    "voice_command_life_modified": false,
+    "v04_modified": false
+  },
+  "collection_policy": {
+    "full_text_downloaded": false,
+    "new_dataset_downloaded": false,
+    "tokenization_started": false,
+    "bpe_trained": false,
+    "splits_created": false,
+    "neural_training_started": false,
+    "weights_or_checkpoints_modified": false,
+    "ollama_or_external_models_used": false,
+    "explicit_user_approval_required_before_collection": true,
+    "per_document_approval_required": true,
+    "no_source_substitution_without_new_approval": true
+  },
+  "status_definitions": {
+    "candidate": "A specific source with enough licensing evidence to merit a separately approved, bounded preflight. It is not approved for collection.",
+    "pending_verification": "A source with useful potential whose item-level license, provenance, language, privacy, or third-party material still needs confirmation.",
+    "rejected": "A source deliberately excluded from the recommended next lot because of policy, rights, duplication, language, or scope concerns."
+  },
+  "candidates": [
+    {
+      "id": "elysia-original-everyday-dialogues",
+      "name": "ELYSIA original everyday-dialogue program",
+      "official_url": "https://github.com/Lorran1690/elysia-2.0",
+      "evidence_url": "https://creativecommons.org/share-your-work/cclicenses/",
+      "authors_or_institution": "Future human contributors under an ELYSIA contribution agreement",
+      "genre": "Original everyday conversation, question-and-answer, ambiguity, correction, and uncertainty scenarios",
+      "language": "Portuguese (Brazil), written and reviewed by humans",
+      "license": {
+        "name": "not_yet_assigned",
+        "evidence_url": "https://creativecommons.org/share-your-work/cclicenses/",
+        "evidence": "No corpus exists yet. A future contribution agreement must state the exact license, authorship, consent, and allowed reuse before any text is accepted.",
+        "verification": "No item-level license exists in Phase 2G."
+      },
+      "format_available": ["Future UTF-8 JSONL records", "signed contribution and consent records", "scenario rubric"],
+      "volume": {
+        "documents": {"minimum": 80, "maximum": 300},
+        "tokens": {"minimum": 40000, "maximum": 180000},
+        "basis": "Planning pilot of 80 to 300 reviewed multi-turn conversations; no conversations were generated or collected."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Contributors can quote protected material or paste product content."},
+        "personal_data": {"level": "high", "notes": "Dialogue can contain names, contacts, account details, or sensitive situations; consent and redaction are mandatory."},
+        "duplication": {"level": "medium", "notes": "Prompt templates and repeated scenario answers can collapse diversity."}
+      },
+      "language_quality": "Can be high when each record is human authored, reviewed for natural pt-BR, and diversified by author and register.",
+      "elysia_utility": "Only planned source family that directly targets everyday dialogue, ambiguity, correction, and calibrated uncertainty.",
+      "status": "pending_verification",
+      "status_reason": "The provenance, consent, author agreement, and exact license protocol must exist before the source can be proposed for collection.",
+      "collection_scope": "No collection in Phase 2G. A future pilot must be separately approved and limited to named contributors and signed records.",
+      "group_id_rule": "One group_id per scenario family and contributing author batch; all turns and revisions of a conversation stay in that group.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "elysia-original-support-explanations",
+      "name": "ELYSIA original support and explanation program",
+      "official_url": "https://github.com/Lorran1690/elysia-2.0",
+      "evidence_url": "https://creativecommons.org/share-your-work/cclicenses/",
+      "authors_or_institution": "Future human contributors under an ELYSIA contribution agreement",
+      "genre": "Original instructional writing, support replies, step-by-step procedures, and explanations at multiple difficulty levels",
+      "language": "Portuguese (Brazil), written and reviewed by humans",
+      "license": {
+        "name": "not_yet_assigned",
+        "evidence_url": "https://creativecommons.org/share-your-work/cclicenses/",
+        "evidence": "No material exists yet. Future original work needs an explicit project license and contributor provenance before ingestion.",
+        "verification": "No item-level license exists in Phase 2G."
+      },
+      "format_available": ["Future UTF-8 Markdown or JSONL records", "review checklist", "signed contribution records"],
+      "volume": {
+        "documents": {"minimum": 120, "maximum": 500},
+        "tokens": {"minimum": 80000, "maximum": 350000},
+        "basis": "Planning estimate for short original explanations and support articles; no text was authored or collected in this phase."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Authors can reproduce manuals, screenshots, commands, or brand documentation."},
+        "personal_data": {"level": "medium", "notes": "Support examples can accidentally include account, device, or diagnostic information."},
+        "duplication": {"level": "high", "notes": "Template-driven instructions can be near duplicates without semantic review."}
+      },
+      "language_quality": "Potentially high with editorial review, factual validation, and explicit novice/intermediate/advanced labels.",
+      "elysia_utility": "Adds explanation and support registers missing from academic and institutional prose.",
+      "status": "pending_verification",
+      "status_reason": "The authoring protocol, factual-review ownership, and exact license must be approved before any future work is admitted.",
+      "collection_scope": "No collection in Phase 2G. Future work must use a bounded author list and a content-risk checklist.",
+      "group_id_rule": "One group_id per underlying task, source system, and authored revision family.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "ibict-enap-omeka-guide",
+      "name": "Guia do usuario do Omeka",
+      "official_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+      "evidence_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+      "authors_or_institution": "Milton Shintaku and collaborators; Instituto Brasileiro de Informacao em Ciencia e Tecnologia and Escola Nacional de Administracao Publica",
+      "genre": "Technical and educational user guide",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC BY 4.0",
+        "evidence_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+        "evidence": "The official item identifies the guide as CC BY 4.0; the future preflight must retain the page carrying the notice.",
+        "verification": "Official item-level publication page or file notice."
+      },
+      "format_available": ["PDF with selectable text", "repository metadata"],
+      "volume": {
+        "documents": {"minimum": 1, "maximum": 1},
+        "tokens": {"minimum": 35000, "maximum": 70000},
+        "basis": "140-page guide reported by the official repository; token range is a planning estimate, not tokenization."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Screenshots, product names, quotations, and cited examples require item-level review."},
+        "personal_data": {"level": "low", "notes": "Review credits, contact addresses, and examples before extraction."},
+        "duplication": {"level": "medium", "notes": "Guide versions and mirrored repository copies may overlap."}
+      },
+      "language_quality": "Likely edited institutional Brazilian Portuguese with procedural coverage.",
+      "elysia_utility": "Useful bounded technical instruction and explanation material with an identifiable edition.",
+      "status": "candidate",
+      "status_reason": "Clear official provenance and a reported CC BY 4.0 notice make it suitable for a narrow future preflight, not automatic collection.",
+      "collection_scope": "One named edition only; exclude non-textual assets and unresolved third-party material.",
+      "group_id_rule": "One group_id for this edition and every derivative or mirror of it.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "sgb-ogc-api-docs",
+      "name": "Servico Geologico do Brasil OGC API documentation",
+      "official_url": "https://geoservicos.sgb.gov.br/ogcapi?f=html",
+      "evidence_url": "https://geoservicos.sgb.gov.br/ogcapi?f=html",
+      "authors_or_institution": "Servico Geologico do Brasil",
+      "genre": "Technical API documentation and geoscience service instructions",
+      "language": "Portuguese (Brazil) with technical identifiers in English",
+      "license": {
+        "name": "CC BY 4.0",
+        "evidence_url": "https://geoservicos.sgb.gov.br/ogcapi?f=html",
+        "evidence": "The official service presents a CC BY 4.0 license notice.",
+        "verification": "Official service-level notice; each future endpoint snapshot still needs provenance capture."
+      },
+      "format_available": ["HTML", "machine-readable API descriptions", "service metadata"],
+      "volume": {
+        "documents": {"minimum": 25, "maximum": 75},
+        "tokens": {"minimum": 50000, "maximum": 180000},
+        "basis": "Bounded future scope of documentation pages and human-readable endpoint descriptions; schemas and repeated generated blocks are excluded from the estimate."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Standards excerpts, map attributions, and linked external specifications need review."},
+        "personal_data": {"level": "low", "notes": "Inspect contact records and request examples."},
+        "duplication": {"level": "high", "notes": "OpenAPI pages can repeat parameter and response text across endpoints."}
+      },
+      "language_quality": "Official technical prose, though schema-derived fragments require filtering.",
+      "elysia_utility": "Adds factual technical instructions, domain terminology, and tool-oriented language without relying on a broad scrape.",
+      "status": "candidate",
+      "status_reason": "License evidence and source authority are clear, while the future batch can be tightly capped and deduplicated.",
+      "collection_scope": "Only an approved endpoint list and its human-readable prose; no linked specifications, tiles, imagery, or automatic crawl.",
+      "group_id_rule": "One group_id per API collection and version; all endpoint renderings from the same specification remain together.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "govbr-design-system-guides",
+      "name": "Padrao Digital de Governo guides",
+      "official_url": "https://www.gov.br/ds/guias/wai-aria",
+      "evidence_url": "https://www.gov.br/ds/downloads/legislacao",
+      "authors_or_institution": "Secretaria de Governo Digital, Governo Federal do Brasil",
+      "genre": "Accessibility, design, and service-writing guidance",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC0 1.0 for declared content and MIT for declared code; per-artifact scope required",
+        "evidence_url": "https://www.gov.br/ds/downloads/legislacao",
+        "evidence": "The official licensing page distinguishes CC0 1.0 Universal and MIT and therefore requires a future artifact-by-artifact scope record.",
+        "verification": "Official program-level license page; future selected pages must carry compatible scope evidence."
+      },
+      "format_available": ["HTML guides", "design-system source assets", "license page"],
+      "volume": {
+        "documents": {"minimum": 10, "maximum": 40},
+        "tokens": {"minimum": 20000, "maximum": 80000},
+        "basis": "Estimate for a small explicitly named guide set; components, code, and duplicate navigation are excluded."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Examples, icons, linked standards, and components may use different terms."},
+        "personal_data": {"level": "low", "notes": "Review contact links and illustrative scenarios."},
+        "duplication": {"level": "high", "notes": "Shared design-system fragments recur across pages."}
+      },
+      "language_quality": "Likely high for concise public-service instruction and accessibility terminology.",
+      "elysia_utility": "Contributes clear service-writing and accessibility explanations absent from the current corpus.",
+      "status": "candidate",
+      "status_reason": "Promising only after a future item-level scope separates prose from code and shared interface fragments.",
+      "collection_scope": "An approved list of guide URLs with their license notices; exclude code repositories, UI chrome, and external linked documents.",
+      "group_id_rule": "One group_id per guide edition and all translations or component-derived variants.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "github-docs-pt",
+      "name": "GitHub Docs in Portuguese",
+      "official_url": "https://docs.github.com/pt",
+      "evidence_url": "https://github.com/github/docs/blob/main/LICENSE",
+      "authors_or_institution": "GitHub, Inc. and documentation contributors",
+      "genre": "Technical documentation, troubleshooting, and frequently asked questions",
+      "language": "Portuguese; Brazilian locale must be confirmed page by page",
+      "license": {
+        "name": "CC BY 4.0 for documentation; code and branded assets require separate handling",
+        "evidence_url": "https://github.com/github/docs/blob/main/LICENSE",
+        "evidence": "The official documentation repository license contains the Creative Commons Attribution 4.0 International text; future scope must exclude separately licensed code and brand assets.",
+        "verification": "Official source repository license plus future page-to-source mapping."
+      },
+      "format_available": ["HTML", "Markdown source repository", "structured documentation metadata"],
+      "volume": {
+        "documents": {"minimum": 40, "maximum": 150},
+        "tokens": {"minimum": 100000, "maximum": 400000},
+        "basis": "Future bounded collection of named introductory, help, and troubleshooting pages; no site-wide crawl is contemplated."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Code samples, screenshots, linked content, and product marks may have separate terms."},
+        "personal_data": {"level": "low", "notes": "Examples can contain account names or contact-like placeholders."},
+        "duplication": {"level": "high", "notes": "Localization branches and repeated reusable fragments can overlap."}
+      },
+      "language_quality": "Edited technical instructional prose with useful support and FAQ patterns.",
+      "elysia_utility": "Adds practical troubleshooting and developer-support language, not just academic explanation.",
+      "status": "candidate",
+      "status_reason": "Documentation license evidence is explicit, while a future preflight can isolate a small source-controlled page set.",
+      "collection_scope": "Only approved Markdown-backed documentation pages with an established source mapping; no issues, discussions, code, or user-generated pages.",
+      "group_id_rule": "One group_id per documentation article and all localized or versioned copies of that article.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "python-docs-pt-br",
+      "name": "Python documentation in Portuguese (Brazil)",
+      "official_url": "https://docs.python.org/pt-br/3/",
+      "evidence_url": "https://docs.python.org/pt-br/3/license.html",
+      "authors_or_institution": "Python Software Foundation and documentation contributors",
+      "genre": "Programming tutorial, reference, and FAQ documentation",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "Python Software Foundation License Version 2; code examples may use 0BSD",
+        "evidence_url": "https://docs.python.org/pt-br/3/license.html",
+        "evidence": "The official Portuguese documentation exposes the PSF License Version 2 and notes separate treatment for examples where applicable.",
+        "verification": "Official documentation license page; preserve notices and classify prose versus code at collection time."
+      },
+      "format_available": ["HTML", "documentation source files", "license page"],
+      "volume": {
+        "documents": {"minimum": 30, "maximum": 120},
+        "tokens": {"minimum": 80000, "maximum": 300000},
+        "basis": "Future scope limited to named tutorial and FAQ pages; large reference sections and generated indexes are outside the estimate."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Code snippets, quoted standards, and translated upstream examples need classification."},
+        "personal_data": {"level": "low", "notes": "Inspect illustrative e-mail addresses and contributor credits."},
+        "duplication": {"level": "medium", "notes": "Translated and versioned pages may share paragraphs."}
+      },
+      "language_quality": "High-value technical Brazilian Portuguese where the localized page is complete; some terminology remains English by design.",
+      "elysia_utility": "Provides step-by-step programming explanations and error-oriented instruction under a bounded scope.",
+      "status": "candidate",
+      "status_reason": "An official localized license page and a bounded tutorial/FAQ scope support a future preflight.",
+      "collection_scope": "Only explicitly named pt-BR tutorial and FAQ pages plus their license notices; preserve code/prose distinctions and skip external links.",
+      "group_id_rule": "One group_id per conceptual article across Python versions and translations.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "microsoft-learn-edge-pt-br",
+      "name": "Microsoft Learn Edge developer documentation in Portuguese (Brazil)",
+      "official_url": "https://learn.microsoft.com/pt-br/microsoft-edge/devtools/css/",
+      "evidence_url": "https://learn.microsoft.com/pt-br/microsoft-edge/devtools/css/",
+      "authors_or_institution": "Microsoft Learn and Microsoft Edge documentation contributors",
+      "genre": "Developer documentation, tool instructions, and troubleshooting",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC BY 4.0 on the selected page; upstream Chromium and Google attribution retained where stated",
+        "evidence_url": "https://learn.microsoft.com/pt-br/microsoft-edge/devtools/css/",
+        "evidence": "The selected official page includes a content-license section identifying CC BY 4.0 and identifies modified upstream material.",
+        "verification": "Page-level notice; every future page must expose equivalent terms."
+      },
+      "format_available": ["HTML", "page-level content-license section"],
+      "volume": {
+        "documents": {"minimum": 20, "maximum": 80},
+        "tokens": {"minimum": 60000, "maximum": 220000},
+        "basis": "Future collection would use only a list of pages that each display compatible content-license evidence."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Some pages adapt Chromium or Google material and require their stated attribution."},
+        "personal_data": {"level": "low", "notes": "Review examples and feedback embeds."},
+        "duplication": {"level": "medium", "notes": "Overlapping Edge and Chromium explanations can recur."}
+      },
+      "language_quality": "Likely edited technical pt-BR with clear procedural language.",
+      "elysia_utility": "Useful for tool use, configuration, and technical-support phrasing.",
+      "status": "candidate",
+      "status_reason": "The sample page establishes a workable per-page verification method, but collection remains subject to an approved URL list.",
+      "collection_scope": "Only pages with a visible compatible content license and recorded upstream attribution; no broad Microsoft Learn crawl.",
+      "group_id_rule": "One group_id per original upstream article and its Microsoft localized derivative.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "android-developers-pt-br",
+      "name": "Android Developers documentation in Portuguese (Brazil)",
+      "official_url": "https://developer.android.com/?hl=pt-br",
+      "evidence_url": "https://developer.android.com/license",
+      "authors_or_institution": "Google Android Developers",
+      "genre": "Technical documentation and programming instruction",
+      "language": "Portuguese (Brazil) on selected localized pages",
+      "license": {
+        "name": "Apache 2.0 for most documentation and code, with stated source-specific exceptions and CC BY 2.5 for other site content",
+        "evidence_url": "https://developer.android.com/license",
+        "evidence": "The official license page differentiates documentation/code from exceptions, third-party source licenses, and other site content.",
+        "verification": "Official global terms are insufficient alone; a future per-page classification is mandatory."
+      },
+      "format_available": ["HTML", "code samples", "API reference"],
+      "volume": {
+        "documents": {"minimum": 25, "maximum": 120},
+        "tokens": {"minimum": 75000, "maximum": 350000},
+        "basis": "Estimate for a future bounded page list; reference indexes and generated API material are excluded."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "The license page itself identifies exceptions and source-specific terms."},
+        "personal_data": {"level": "low", "notes": "Inspect examples, analytics embeds, and contributor information."},
+        "duplication": {"level": "high", "notes": "API reference and translated pages can repeat heavily."}
+      },
+      "language_quality": "Potentially useful technical prose, but localization completeness and item-level terms vary.",
+      "elysia_utility": "Could broaden programming instruction once rights and generated-reference filtering are resolved.",
+      "status": "pending_verification",
+      "status_reason": "The official terms explicitly require source-specific handling, so no page family is eligible without a tighter audit.",
+      "collection_scope": "No collection. A future proposal must name individual pages, license category, and code/excerpt handling.",
+      "group_id_rule": "One group_id per original Android article and all localized/versioned variants.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "mdn-web-docs-pt-br",
+      "name": "MDN Web Docs in Portuguese (Brazil)",
+      "official_url": "https://developer.mozilla.org/pt-BR/docs/Web",
+      "evidence_url": "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+      "authors_or_institution": "Mozilla and MDN contributors",
+      "genre": "Web-development documentation, reference, and tutorials",
+      "language": "Portuguese (Brazil) on selected pages",
+      "license": {
+        "name": "CC BY-SA 2.5 or later for MDN content, with separate code-example handling",
+        "evidence_url": "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+        "evidence": "MDN's official attribution and licensing guidance states CC BY-SA terms and distinguishes content and code examples.",
+        "verification": "Official license guidance; share-alike and source-attribution obligations require legal review before any training use."
+      },
+      "format_available": ["HTML", "documentation repository content", "code examples"],
+      "volume": {
+        "documents": {"minimum": 40, "maximum": 200},
+        "tokens": {"minimum": 120000, "maximum": 600000},
+        "basis": "Planning range for a small future selection of tutorial pages; no repository or website scrape occurred."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Collaborative articles, examples, and external citations need attribution and license treatment."},
+        "personal_data": {"level": "low", "notes": "Review author credit and example identifiers."},
+        "duplication": {"level": "high", "notes": "Translations, browser-specific variants, and reused references overlap."}
+      },
+      "language_quality": "High explanatory value but localization and licensing must be checked article by article.",
+      "elysia_utility": "Strong potential for technical explanation, tempered by share-alike and provenance obligations.",
+      "status": "pending_verification",
+      "status_reason": "The CC BY-SA obligations and source/code distinctions need a project-level rights decision before selection.",
+      "collection_scope": "No collection. Future proposal must include legal compatibility review and article-level attribution records.",
+      "group_id_rule": "One group_id per MDN article and all translation, browser, and version variants.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "fastapi-docs-pt",
+      "name": "FastAPI documentation in Portuguese",
+      "official_url": "https://fastapi.tiangolo.com/pt/",
+      "evidence_url": "https://fastapi.tiangolo.com/pt/",
+      "authors_or_institution": "FastAPI project and translation contributors",
+      "genre": "Technical documentation and programming tutorial",
+      "language": "Portuguese",
+      "license": {
+        "name": "MIT for the project, but localized content declares AI and human translation",
+        "evidence_url": "https://fastapi.tiangolo.com/pt/",
+        "evidence": "The official Portuguese site discloses AI and human translation while the project uses MIT licensing.",
+        "verification": "Official site disclosure."
+      },
+      "format_available": ["HTML", "documentation source repository"],
+      "volume": {
+        "documents": {"minimum": 50, "maximum": 180},
+        "tokens": {"minimum": 120000, "maximum": 450000},
+        "basis": "Potential documentation scope only; no files or pages were collected."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Code, framework dependencies, and examples need separate review."},
+        "personal_data": {"level": "low", "notes": "Typical documentation risk only."},
+        "duplication": {"level": "medium", "notes": "Translation and upstream English text overlap."}
+      },
+      "language_quality": "Useful technical material, but the project policy excludes model-assisted or synthetic source content from this future corpus plan.",
+      "elysia_utility": "Would be technically useful, but is intentionally excluded under the no-synthetic-content requirement.",
+      "status": "rejected",
+      "status_reason": "Rejected because the official Portuguese site declares AI-assisted translation, which is incompatible with this phase's source policy.",
+      "collection_scope": "No collection and no substitute source may be inferred from this rejection.",
+      "group_id_rule": "Not applicable unless a future policy explicitly changes; retain one group_id per article if reconsidered.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "mozilla-support-pt-br",
+      "name": "Mozilla Support in Portuguese (Brazil)",
+      "official_url": "https://support.mozilla.org/pt-BR/",
+      "evidence_url": "https://support.mozilla.org/pt-BR/kb/diretrizes-para-revisao-de-artigos",
+      "authors_or_institution": "Mozilla Support community and Mozilla",
+      "genre": "User support, troubleshooting, and frequently asked questions",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "not_verified_in_phase_2g",
+        "evidence_url": "https://support.mozilla.org/pt-BR/kb/diretrizes-para-revisao-de-artigos",
+        "evidence": "The official support site and contributor guidance identify the community context, but this phase did not establish an item-level reuse license for a future corpus.",
+        "verification": "License and translation provenance remain unresolved."
+      },
+      "format_available": ["HTML support articles", "community contribution pages"],
+      "volume": {
+        "documents": {"minimum": 50, "maximum": 300},
+        "tokens": {"minimum": 100000, "maximum": 500000},
+        "basis": "Range for a hypothetical small support-topic selection; it is not a collection target yet."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Community edits, screenshots, and external instructions need item-level audit."},
+        "personal_data": {"level": "medium", "notes": "Support examples can include account or device identifiers."},
+        "duplication": {"level": "high", "notes": "Product versions and localized variants repeat common answers."}
+      },
+      "language_quality": "Potentially valuable service language but mixed human and machine translation status must be resolved.",
+      "elysia_utility": "Could add real troubleshooting patterns, subject to rights and provenance controls.",
+      "status": "pending_verification",
+      "status_reason": "No exact reusable-license and translation-provenance determination was made for the candidate articles.",
+      "collection_scope": "No collection. Future work must select individual articles with verified terms and no machine-translation flag.",
+      "group_id_rule": "One group_id per original support article across product and locale versions.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "libreoffice-help-pt-br",
+      "name": "LibreOffice Help in Portuguese (Brazil)",
+      "official_url": "https://help.libreoffice.org/latest/pt-BR/",
+      "evidence_url": "https://help.libreoffice.org/latest/pt-BR/text/shared/05/new_help.html",
+      "authors_or_institution": "The Document Foundation and LibreOffice documentation contributors",
+      "genre": "Office-software help, task instructions, and troubleshooting",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "not_verified_in_phase_2g",
+        "evidence_url": "https://help.libreoffice.org/latest/pt-BR/text/shared/05/new_help.html",
+        "evidence": "The official help pages establish the source and locale, but a source-specific documentation license was not confirmed in this phase.",
+        "verification": "License, translation provenance, and code/example scope remain unresolved."
+      },
+      "format_available": ["HTML help pages", "localized help source files"],
+      "volume": {
+        "documents": {"minimum": 100, "maximum": 1000},
+        "tokens": {"minimum": 300000, "maximum": 2000000},
+        "basis": "Large help system estimate for planning only; no pages were downloaded or parsed."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Extensions, externally supplied examples, and screenshots may vary in rights."},
+        "personal_data": {"level": "low", "notes": "Review illustrative files and support links."},
+        "duplication": {"level": "high", "notes": "Module, version, and locale pages contain heavy reusable text."}
+      },
+      "language_quality": "Potentially strong procedural prose, but availability and legal status require audit.",
+      "elysia_utility": "Could contribute office-support and step-by-step vocabulary at scale.",
+      "status": "pending_verification",
+      "status_reason": "An official source exists but the relevant documentation-license and content-scope evidence was not established.",
+      "collection_scope": "No collection. A future proposal must identify a license-bearing source repository or item-level notice.",
+      "group_id_rule": "One group_id per help topic across versions and translated pages.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "common-voice-portuguese-text",
+      "name": "Mozilla Common Voice Portuguese text and metadata",
+      "official_url": "https://commonvoice.mozilla.org/pt/datasets",
+      "evidence_url": "https://commonvoice.mozilla.org/pt/guidelines",
+      "authors_or_institution": "Mozilla Common Voice and volunteer contributors",
+      "genre": "Short prompted sentences and speech-transcript metadata",
+      "language": "Portuguese locale; Brazilian-language share and regional composition require verification",
+      "license": {
+        "name": "CC0 1.0 for the stated Common Voice text and dataset policy, subject to release-specific confirmation",
+        "evidence_url": "https://commonvoice.mozilla.org/pt/guidelines",
+        "evidence": "Official contribution guidance describes public-domain/CC0 requirements, but a future release must be verified by exact version and locale.",
+        "verification": "Dataset-release and privacy conditions remain pending."
+      },
+      "format_available": ["Dataset release metadata", "short sentence text", "audio-associated records"],
+      "volume": {
+        "documents": {"minimum": 100000, "maximum": 1000000},
+        "tokens": {"minimum": 500000, "maximum": 5000000},
+        "basis": "Broad planning range for text-only records in a future verified Portuguese release; no release was downloaded."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Contributor-submitted prompts and release terms must be checked exactly."},
+        "personal_data": {"level": "high", "notes": "Audio-associated metadata and spontaneous contributions raise privacy and biometric-data concerns; audio is out of scope."},
+        "duplication": {"level": "medium", "notes": "Short prompts and common sentences can repeat heavily."}
+      },
+      "language_quality": "Short sentence data has limited discourse value and may not represent Brazilian Portuguese specifically.",
+      "elysia_utility": "Potential supplementary linguistic variety only; weak fit for long-form explanation or conversation.",
+      "status": "pending_verification",
+      "status_reason": "Locale composition, exact release license, text-only scope, and privacy controls must be resolved before consideration.",
+      "collection_scope": "No collection. Any future proposal must exclude audio and identify a single verified text-only release.",
+      "group_id_rule": "One group_id per source release, contributor partition where available, and sentence-derivation family.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "scielo-rap-per-article",
+      "name": "SciELO Revista de Administracao Publica article candidates",
+      "official_url": "https://www.scielo.br/j/rap/",
+      "evidence_url": "https://www.scielo.org/pt-br/sobre-o-scielo/declaracao-de-acesso-aberto/",
+      "authors_or_institution": "Individual authors and Revista de Administracao Publica / SciELO Brasil",
+      "genre": "Academic and explanatory public-administration articles",
+      "language": "Portuguese (Brazil) where selected",
+      "license": {
+        "name": "per_article_verification_required",
+        "evidence_url": "https://www.scielo.org/pt-br/sobre-o-scielo/declaracao-de-acesso-aberto/",
+        "evidence": "SciELO open-access policy is not treated as a license for any individual article; the future audit must capture the article's own license notice.",
+        "verification": "Not verified for any new article in Phase 2G."
+      },
+      "format_available": ["HTML article", "XML or PDF depending on item", "journal metadata"],
+      "volume": {
+        "documents": {"minimum": 20, "maximum": 100},
+        "tokens": {"minimum": 250000, "maximum": 1500000},
+        "basis": "Planning range for a future multi-author selection with article-level license clearance; no articles were downloaded."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Direct quotations, references, tables, figures, and cited datasets require review."},
+        "personal_data": {"level": "medium", "notes": "Case studies, acknowledgments, and author contacts need inspection."},
+        "duplication": {"level": "medium", "notes": "Preprints, accepted manuscripts, and citations may overlap."}
+      },
+      "language_quality": "Edited Brazilian Portuguese with high formal-register concentration.",
+      "elysia_utility": "Adds administration and policy reasoning but cannot be the dominant corpus genre.",
+      "status": "pending_verification",
+      "status_reason": "No new article license is inferred from the portal or journal family, in accordance with the project policy.",
+      "collection_scope": "No collection. A future list must name individual articles, DOI, license notice, and rights review outcome.",
+      "group_id_rule": "One group_id per article, author set, and all version or translation derivatives.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "scielo-rbep-per-article",
+      "name": "SciELO Revista Brasileira de Estudos Pedagogicos article candidates",
+      "official_url": "https://www.scielo.br/j/rbeped/",
+      "evidence_url": "https://www.scielo.org/pt-br/sobre-o-scielo/declaracao-de-acesso-aberto/",
+      "authors_or_institution": "Individual authors and Revista Brasileira de Estudos Pedagogicos / SciELO Brasil",
+      "genre": "Educational research and explanatory articles",
+      "language": "Portuguese (Brazil) where selected",
+      "license": {
+        "name": "per_article_verification_required",
+        "evidence_url": "https://www.scielo.org/pt-br/sobre-o-scielo/declaracao-de-acesso-aberto/",
+        "evidence": "The portal policy is recorded only as discovery context; an individual article's license and third-party material must be verified before future collection.",
+        "verification": "Not verified for any new article in Phase 2G."
+      },
+      "format_available": ["HTML article", "XML or PDF depending on item", "journal metadata"],
+      "volume": {
+        "documents": {"minimum": 20, "maximum": 100},
+        "tokens": {"minimum": 250000, "maximum": 1200000},
+        "basis": "Future planning range only; no article content was acquired."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Education articles frequently contain direct citations, instruments, and figures."},
+        "personal_data": {"level": "medium", "notes": "Research participants and school examples need review."},
+        "duplication": {"level": "medium", "notes": "Repository and journal versions can overlap."}
+      },
+      "language_quality": "Likely formal, edited Brazilian Portuguese with limited conversational diversity.",
+      "elysia_utility": "Contributes education vocabulary and explanatory prose if balanced with non-academic sources.",
+      "status": "pending_verification",
+      "status_reason": "Existing reviewed material does not authorize new article acquisition or infer rights for the journal family.",
+      "collection_scope": "No collection. Future proposal must audit each DOI, license, author/version relationship, quotations, tables, and figures.",
+      "group_id_rule": "One group_id per article, author set, and derivative publication family.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "scielo-ress-per-article",
+      "name": "SciELO Epidemiologia e Servicos de Saude article candidates",
+      "official_url": "https://www.scielo.br/j/ress/",
+      "evidence_url": "https://www.scielo.br/journal/ress/about/?ilang=pt_BR",
+      "authors_or_institution": "Individual authors and Epidemiologia e Servicos de Saude / SciELO Brasil",
+      "genre": "Public-health informational and research articles",
+      "language": "Portuguese (Brazil) where selected",
+      "license": {
+        "name": "CC BY 4.0 stated by the journal, with per-article and third-party review still required",
+        "evidence_url": "https://www.scielo.br/journal/ress/about/?ilang=pt_BR",
+        "evidence": "The journal page states CC BY 4.0 conditions, but that does not replace checking each selected article and its figures, data, and quotations.",
+        "verification": "Journal-level evidence only for Phase 2G."
+      },
+      "format_available": ["HTML article", "journal metadata", "PDF or XML where offered"],
+      "volume": {
+        "documents": {"minimum": 15, "maximum": 60},
+        "tokens": {"minimum": 180000, "maximum": 800000},
+        "basis": "Future bounded public-health explanatory article set; no content was collected."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Tables, figures, questionnaires, and references require rights review."},
+        "personal_data": {"level": "high", "notes": "Health narratives and case details may create sensitivity even when published."},
+        "duplication": {"level": "medium", "notes": "Versions can coexist in repositories and journal sites."}
+      },
+      "language_quality": "Edited formal prose with domain-specific health terminology.",
+      "elysia_utility": "Potential health-information register, but not appropriate without elevated privacy and factual-risk controls.",
+      "status": "pending_verification",
+      "status_reason": "The subject matter and item-level rights require a dedicated future audit; no broad health corpus is proposed.",
+      "collection_scope": "No collection. Future proposal must exclude sensitive case material and document article-level conditions.",
+      "group_id_rule": "One group_id per article, author group, and version family.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "em-aberto-per-article",
+      "name": "Em Aberto educational journal article candidates",
+      "official_url": "https://emaberto.inep.gov.br/ojs3/index.php/emaberto",
+      "evidence_url": "https://emaberto.inep.gov.br/ojs3/index.php/emaberto/about/submissions",
+      "authors_or_institution": "Individual authors and Instituto Nacional de Estudos e Pesquisas Educacionais Anisio Teixeira",
+      "genre": "Educational-policy articles and explanatory essays",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "journal policy presents CC BY conditions; exact article license remains required",
+        "evidence_url": "https://emaberto.inep.gov.br/ojs3/index.php/emaberto/about/submissions",
+        "evidence": "The official journal policy is useful discovery evidence, but individual article license statements can differ and must be captured later.",
+        "verification": "No article-level verification in Phase 2G."
+      },
+      "format_available": ["HTML article metadata", "PDF or journal files depending on article"],
+      "volume": {
+        "documents": {"minimum": 20, "maximum": 150},
+        "tokens": {"minimum": 300000, "maximum": 2000000},
+        "basis": "Estimate for a future title-diverse selection across issues; no documents were downloaded."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Academic citations, figures, and instruments often carry separate rights."},
+        "personal_data": {"level": "medium", "notes": "School or participant examples require review."},
+        "duplication": {"level": "medium", "notes": "Articles can appear in repositories or event collections."}
+      },
+      "language_quality": "Formal educational prose with limited register breadth by itself.",
+      "elysia_utility": "Useful for education topics only as one balanced portion of a wider corpus.",
+      "status": "pending_verification",
+      "status_reason": "Journal-level information cannot substitute for the precise license of a future selected article.",
+      "collection_scope": "No collection. Future audit must select named articles and preserve individual license and attribution evidence.",
+      "group_id_rule": "One group_id per article, author set, issue, and derivative version family.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "educapes-licencas-ciencia-informacao",
+      "name": "Licencas alternativas de protecao intelectual atribuidas a periodicos tecnicos e cientificos",
+      "official_url": "https://educapes.capes.gov.br/handle/capes/1140501?mode=full",
+      "evidence_url": "https://educapes.capes.gov.br/handle/capes/1140501?mode=full",
+      "authors_or_institution": "Record authors to be reconfirmed; Universidade Federal de Sergipe / eduCAPES",
+      "genre": "Open-science and information-science explanatory article",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC BY 4.0 in repository metadata; canonical file and author/version mapping unresolved",
+        "evidence_url": "https://educapes.capes.gov.br/handle/capes/1140501?mode=full",
+        "evidence": "The record exposes a CC BY 4.0 metadata field, but Phase 2G did not obtain a canonical file or substitute it from another location.",
+        "verification": "Metadata-only evidence; file-level audit pending."
+      },
+      "format_available": ["Repository metadata; associated file availability unresolved"],
+      "volume": {
+        "documents": {"minimum": 1, "maximum": 1},
+        "tokens": {"minimum": 6000, "maximum": 18000},
+        "basis": "Academic-article planning range; no file was downloaded or extracted."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "Article references and reused material need file-level inspection."},
+        "personal_data": {"level": "low", "notes": "Review author contacts and acknowledgments."},
+        "duplication": {"level": "high", "notes": "The same article may exist in journal or institutional repositories."}
+      },
+      "language_quality": "Likely formal Brazilian Portuguese with narrow topical breadth.",
+      "elysia_utility": "Small, traceable open-science explanatory source if a canonical licensed file is later found without substitution.",
+      "status": "pending_verification",
+      "status_reason": "The prior investigation found no approved canonical file; this phase only preserves the lead and does not seek an alternative.",
+      "collection_scope": "No collection. Revisit only with explicit approval for this record and a canonical-file license audit.",
+      "group_id_rule": "One group_id for this work, all repository records, DOI versions, and derivatives.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "educapes-ciencia-aberta-cnpq",
+      "name": "A ciencia aberta no CNPq: acesso aberto aos dados e resultados de pesquisas",
+      "official_url": "https://educapes.capes.gov.br/handle/capes/1023510?mode=full",
+      "evidence_url": "https://educapes.capes.gov.br/handle/capes/1023510?mode=full",
+      "authors_or_institution": "Adriana Maria Tonini, Paulo Henrique de Assis Santana, Thais Machado Scherrer; eduCAPES",
+      "genre": "Institutional and open-science explanatory article",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC BY 4.0 in repository metadata; canonical file and version relationship unresolved",
+        "evidence_url": "https://educapes.capes.gov.br/handle/capes/1023510?mode=full",
+        "evidence": "The record reports CC BY 4.0 but a future item-level audit must confirm the actual hosted or canonical file before collection.",
+        "verification": "Metadata-only evidence; file-level audit pending."
+      },
+      "format_available": ["Repository metadata; associated file availability unresolved"],
+      "volume": {
+        "documents": {"minimum": 1, "maximum": 1},
+        "tokens": {"minimum": 4500, "maximum": 15000},
+        "basis": "Short institutional-article estimate without downloading a file."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "References and external policy quotations need review."},
+        "personal_data": {"level": "low", "notes": "Review author contacts and acknowledgments."},
+        "duplication": {"level": "high", "notes": "May overlap with conference, journal, or repository versions."}
+      },
+      "language_quality": "Likely edited institutional prose with a narrow subject domain.",
+      "elysia_utility": "A small potential addition for science-policy vocabulary, not a scale source.",
+      "status": "pending_verification",
+      "status_reason": "The project cannot infer a source file or collect a different host from metadata alone.",
+      "collection_scope": "No collection. Only a future explicit authorization for this exact record can reopen file discovery.",
+      "group_id_rule": "One group_id for the work, all author versions, repository records, and publication derivatives.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "wikipedia-portuguese",
+      "name": "Portuguese Wikipedia",
+      "official_url": "https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal",
+      "evidence_url": "https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Direitos_de_autor",
+      "authors_or_institution": "Volunteer Wikimedia contributors",
+      "genre": "Collaborative encyclopedia and reference writing",
+      "language": "Portuguese with mixed Brazilian and European variants",
+      "license": {
+        "name": "CC BY-SA with historical GFDL obligations; exact page revision and attribution chain matter",
+        "evidence_url": "https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Direitos_de_autor",
+        "evidence": "The project rights page establishes copyleft and attribution obligations rather than a simple unrestricted corpus license.",
+        "verification": "License is broadly known but unsuitable for the recommended lot without a separate legal and provenance program."
+      },
+      "format_available": ["HTML", "revision histories", "data exports"],
+      "volume": {
+        "documents": {"minimum": 10000, "maximum": 1000000},
+        "tokens": {"minimum": 50000000, "maximum": 2000000000},
+        "basis": "Scale-only estimate based on an encyclopedia corpus; no dump, page, or export was downloaded."
+      },
+      "risks": {
+        "third_party": {"level": "high", "notes": "Contributor history, citations, media, and embedded quotations have complex provenance."},
+        "personal_data": {"level": "medium", "notes": "Biographical and current-event content can contain personal information."},
+        "duplication": {"level": "high", "notes": "Web mirrors, copies, and training-set contamination are pervasive."}
+      },
+      "language_quality": "Uneven register and variant mixture; quality is article-dependent.",
+      "elysia_utility": "Broad reference coverage is outweighed by provenance, duplication, language-variant, and copyleft-management burden for this project stage.",
+      "status": "rejected",
+      "status_reason": "Rejected from the next lot because it is too broad and hard to isolate by author, revision, rights, and duplication risk.",
+      "collection_scope": "No collection. This decision does not authorize a substitute wiki or mirror.",
+      "group_id_rule": "Not applicable now; any reconsideration would require one group_id per article revision family and contributor history.",
+      "text_collected": false,
+      "content_hash": null
+    },
+    {
+      "id": "emag-v3-1-historical",
+      "name": "eMAG - Modelo de Acessibilidade em Governo Eletronico, version 3.1",
+      "official_url": "https://emag.governoeletronico.gov.br/",
+      "evidence_url": "https://emag.governoeletronico.gov.br/",
+      "authors_or_institution": "Departamento de Governo Eletronico, Governo Federal do Brasil",
+      "genre": "Accessibility technical and educational guidance",
+      "language": "Portuguese (Brazil)",
+      "license": {
+        "name": "CC BY 4.0",
+        "evidence_url": "https://emag.governoeletronico.gov.br/",
+        "evidence": "The previous controlled collection documented the official source and CC BY 4.0 status.",
+        "verification": "Historical Phase 2F audit reference; no new file activity in Phase 2G."
+      },
+      "format_available": ["Existing local historical audit only", "official publication page"],
+      "volume": {
+        "documents": {"minimum": 1, "maximum": 1},
+        "tokens": {"minimum": 37500, "maximum": 75000},
+        "basis": "Historical planning range retained solely to prevent accidental duplicate acquisition."
+      },
+      "risks": {
+        "third_party": {"level": "medium", "notes": "The historical audit already applies its own review controls."},
+        "personal_data": {"level": "low", "notes": "No new review or extraction occurred in Phase 2G."},
+        "duplication": {"level": "high", "notes": "The source already exists in the local audited history and must not be recollected."}
+      },
+      "language_quality": "Established institutional technical prose, already represented in the audited local corpus history.",
+      "elysia_utility": "Historical context only; it is not an expansion source for the next lot.",
+      "status": "rejected",
+      "status_reason": "Rejected for new acquisition because it is already part of the preserved local audit history; recollection would inflate duplication.",
+      "collection_scope": "No new collection, reprocessing, or substitution. Preserve the historical audit unchanged.",
+      "group_id_rule": "One group_id for the documented 3.1 edition and any historical derivative already present locally.",
+      "text_collected": false,
+      "content_hash": null
+    }
+  ],
+  "conversational_data_protocol": {
+    "no_model_generated_content": true,
+    "no_automatic_mass_generation": true,
+    "protocol_status": "proposal_only",
+    "pretraining_linguistic_data": {
+      "purpose": "Build broad language exposure from licensed prose and carefully reviewed original instructional texts.",
+      "unit": "Document or section with source, author, version, license, and group_id metadata.",
+      "exclude": ["private conversations", "unconsented personal stories", "model-generated text", "unverified translations", "unreviewed support logs"],
+      "quality_controls": ["human authorship or verified source provenance", "UTF-8 and NFC validation", "personal-data scan", "exact and near-duplicate review", "third-party quotation review"]
+    },
+    "future_conversational_tuning": {
+      "purpose": "Teach response behavior after a separate future authorization, without pretending that the small pretraining corpus alone creates conversational ability.",
+      "unit": "Human-authored multi-turn scenario record with roles, intent, difficulty, safety notes, provenance, reviewer, and group_id.",
+      "exclude": ["automatically generated millions of dialogues", "Ollama output", "commercial API output", "unlicensed real support tickets", "private messages"],
+      "quality_controls": ["two-person review for representative records", "factual-source check for technical claims", "consent and redaction", "varied authors and registers", "holdout scenario groups kept isolated only in a future approved split plan"]
+    },
+    "required_scenario_families": [
+      "everyday_conversations",
+      "questions_and_answers",
+      "explanations_at_multiple_difficulty_levels",
+      "step_by_step_instructions",
+      "multi_turn_dialogues",
+      "ambiguous_requests",
+      "error_corrections",
+      "admission_of_uncertainty",
+      "local_tool_interactions",
+      "technical_support"
+    ],
+    "recording_requirements": [
+      "record a human author or authorized contributor identity outside training text",
+      "record the exact license and consent status",
+      "store source facts separately from the response text",
+      "mark uncertainty, refusal, correction, and tool-result boundaries explicitly",
+      "redact personal data before any derived training file is created",
+      "keep each scenario family and all revisions under a stable group_id"
+    ]
+  },
+  "scale_planning": {
+    "estimate_note": "All token counts are planning estimates, not tokenizer outputs. UTF-8 byte ranges use a conservative 4.0 to 5.5 bytes per future token and must be measured only after an approved collection.",
+    "scenarios": [
+      {
+        "id": "initial_5m",
+        "target_tokens": 5000000,
+        "clean_utf8_bytes": {"minimum": 20000000, "maximum": 27500000},
+        "expected_documents": {"minimum": 1200, "maximum": 5000},
+        "source_family_count": {"minimum": 7, "maximum": 12},
+        "human_cleaning_hours": {"minimum": 80, "maximum": 200},
+        "recommended_mix": "No family above 25 percent; include institutional, technical, educational, original explanatory, and later authorized human dialogue material.",
+        "duplication_risks": ["localized versions", "mirrors and repository copies", "shared templates", "API-generated fragments", "reused citations"],
+        "limitation": "Enough for controlled small-model experiments, not enough to establish robust general language, instruction following, factual reliability, or natural conversation."
+      },
+      {
+        "id": "expanded_20m",
+        "target_tokens": 20000000,
+        "clean_utf8_bytes": {"minimum": 80000000, "maximum": 110000000},
+        "expected_documents": {"minimum": 4800, "maximum": 20000},
+        "source_family_count": {"minimum": 12, "maximum": 20},
+        "human_cleaning_hours": {"minimum": 280, "maximum": 700},
+        "recommended_mix": "Cap any author, journal, site template, or source family; add deliberately authored service and dialogue data only under a separate protocol.",
+        "duplication_risks": ["scaled crawler-like repeats", "author self-reuse", "translation pairs", "syndicated institutional pages", "synthetic or copied support text"],
+        "limitation": "Broader than the initial scenario but still far below what supports a generally competent assistant trained from scratch; quality depends more on provenance and diversity than raw volume."
+      }
+    ],
+    "architecture_limitations": [
+      "The frozen v0.4 architecture is small and was trained on a very limited historical corpus.",
+      "More tokens alone do not create grounded knowledge, safe tool use, reliable reasoning, or a stable assistant persona.",
+      "Conversational quality requires separate human-authored behavior data, evaluation, and future safety review.",
+      "The scenarios are experimental corpus targets, not claims of sufficient data for a general AI."
+    ]
+  },
+  "batch_ingestion_architecture": {
+    "approval_gate": "Only a user-approved, enumerated source list can enter a batch. Unlisted URLs, mirrors, attachments, and substitutions are rejected before download.",
+    "manifest_fields": ["batch_id", "source_id", "document_id", "group_id", "canonical_url", "retrieval_time", "source_version", "author_or_institution", "license", "attribution", "approval_record", "original_sha256", "derived_sha256", "state"],
+    "states": ["proposed", "approved_for_preflight", "preflight_passed", "original_preserved", "extracted", "cleaned", "audited", "accepted_for_future_split", "rejected"],
+    "processing_order": ["record approval", "capture original without modification", "compute SHA-256", "extract to UTF-8", "normalize NFC", "scan personal data", "review third-party citations", "measure exact and near duplicates", "inspect cleaning artifacts", "write audit report", "require individual acceptance"],
+    "required_controls": ["versioned manifests", "original preservation", "UTF-8/NFC derivatives", "document provenance", "license and attribution record", "personal-data scan", "exact duplicate detection", "near-duplicate detection", "third-party quotation review", "cleaning-artifact detection", "audit reports", "individual approval control"],
+    "group_id_strategy": "Assign a stable group_id before any future split: all versions, translations, mirrors, author-related revisions, and documents derived from one source work share the group. No future train, validation, or test split may place members of one group in different partitions.",
+    "split_policy": "No split is created in Phase 2G. A future authorized split plan must operate after approval and group assignment, keeping the final test groups isolated until one final evaluation."
+  },
+  "first_recommended_authorization_lot": {
+    "requires_fresh_user_approval": true,
+    "collection_started": false,
+    "no_source_substitution": true,
+    "items": [
+      {
+        "source_id": "ibict-enap-omeka-guide",
+        "justification": "Single named technical guide with an identifiable edition and reported CC BY 4.0 notice.",
+        "license_evidence_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+        "expected_tokens": {"minimum": 35000, "maximum": 70000},
+        "risks": "PDF extraction, screenshots, references, and third-party examples.",
+        "acceptance_criteria": ["official named edition is available", "CC BY 4.0 notice is captured with the original", "text layer is usable", "third-party assets can be excluded or documented", "no unresolved personal data"],
+        "rejection_criteria": ["official item is unavailable", "license notice is absent or incompatible", "text cannot be separated from protected third-party content", "extraction is materially corrupt"]
+      },
+      {
+        "source_id": "sgb-ogc-api-docs",
+        "justification": "Public technical instructions with an official CC BY 4.0 notice and a naturally bounded endpoint list.",
+        "license_evidence_url": "https://geoservicos.sgb.gov.br/ogcapi?f=html",
+        "expected_tokens": {"minimum": 50000, "maximum": 180000},
+        "risks": "Repeated generated schema text, external standards, and map or data attributions.",
+        "acceptance_criteria": ["approved finite endpoint list exists", "every captured page resolves to the licensed service version", "generated repeats are measurable", "external standards and visual assets are excluded", "provenance is retained per endpoint"],
+        "rejection_criteria": ["scope expands beyond approved endpoints", "license notice disappears", "near-duplicate rate prevents useful prose recovery", "required text depends on unlicensed external material"]
+      },
+      {
+        "source_id": "github-docs-pt",
+        "justification": "Adds Portuguese support and troubleshooting language from source-controlled documentation with an explicit repository license.",
+        "license_evidence_url": "https://github.com/github/docs/blob/main/LICENSE",
+        "expected_tokens": {"minimum": 100000, "maximum": 400000},
+        "risks": "Code, product marks, reusable fragments, source/locale mismatch, and duplicated localization content.",
+        "acceptance_criteria": ["each page maps to a CC BY 4.0 documentation source", "only approved Markdown-backed pages are included", "code and branded assets are separated", "language variant is recorded", "duplicates across versions are grouped"],
+        "rejection_criteria": ["page lacks a license/source mapping", "content is user generated", "code or branded assets cannot be separated", "the selected locale is not documented"]
+      },
+      {
+        "source_id": "python-docs-pt-br",
+        "justification": "Bounded pt-BR tutorial and FAQ material broadens step-by-step programming explanation under an official license page.",
+        "license_evidence_url": "https://docs.python.org/pt-br/3/license.html",
+        "expected_tokens": {"minimum": 80000, "maximum": 300000},
+        "risks": "Version overlap, prose/code distinctions, upstream quotations, and incomplete translations.",
+        "acceptance_criteria": ["only named pt-BR tutorial and FAQ pages are used", "PSF license notice is retained", "code is labeled separately from prose", "version and translation group_ids are assigned", "no unrelated external page is followed"],
+        "rejection_criteria": ["license scope is incompatible", "page is not pt-BR", "translation or version provenance is unclear", "duplicate or generated index text dominates"]
+      }
+    ]
+  }
+}
