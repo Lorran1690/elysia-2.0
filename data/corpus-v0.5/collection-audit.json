@@ -1,6 +1,12 @@
 {
   "authorization": {
     "documents_reviewed": [
+      "emag-v3-1-html",
+      "conci-2021-alternative-licenses-html",
+      "scielo-rbeped-affectivity-2024",
+      "scielo-rap-redistribution-2024"
+    ],
+    "documents_with_new_local_derivatives": [
       "scielo-rbeped-affectivity-2024",
       "scielo-rap-redistribution-2024"
     ],
@@ -35,7 +41,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.123035
+        "word_set_jaccard": 0.118327
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -48,7 +54,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.142026
+        "word_set_jaccard": 0.141963
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -61,7 +67,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.156109
+        "word_set_jaccard": 0.156574
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -74,7 +80,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.163303
+        "word_set_jaccard": 0.163183
       },
       {
         "action": "report_only_no_automatic_removal",
@@ -87,7 +93,7 @@
         "same_first_author": false,
         "same_institution": false,
         "same_title": false,
-        "word_set_jaccard": 0.154746
+        "word_set_jaccard": 0.156239
       }
     ],
     "potential_duplicate_pairs": []
@@ -585,16 +591,16 @@
           "references_blocks_removed": 60
         },
         "rules": [
-          "Preservar o HTML oficial imutavel e produzir derivados em UTF-8 normalizado em NFC.",
-          "Extrair somente o conteudo de article#articleText e conservar resumo em portugues, secoes, listas e tabelas textuais.",
-          "Excluir resumos estrangeiros, navegacao, referencias, elementos editoriais posteriores, imagens e legendas de figuras.",
-          "Redigir blocos de citacao direta de terceiros e somente spans de citacao identificados com reticencias, preservando a analise autoral ao redor.",
-          "Remover apenas duplicacoes consecutivas exatamente iguais; nao resumir nem reescrever o texto dos autores."
+          "Preserve the read-only official HTML and build only UTF-8 NFC derivatives.",
+          "Keep the Portuguese article body, quoted technical expressions, paraphrases, and authorial analysis.",
+          "Replace each reviewed inline third-party direct quotation with a neutral marker while retaining surrounding paragraph context.",
+          "Retain the twelve standalone quotation redactions inherited from the prior audit.",
+          "Remove foreign abstracts, references, editorial material, and figure captions from the clean derivative."
         ],
-        "third_party_handling": "Nenhum recurso citado, PDF, XML, imagem ou anexo foi baixado. Referencias, figuras e citacoes diretas de terceiros foram deixadas fora do texto limpo."
+        "third_party_handling": "Twenty-eight inline third-party quotation spans and twelve standalone quotation blocks are redacted in the clean derivative."
       },
-      "future_inclusion_decision": "audited_pending_inline_quote_rights_review",
-      "future_inclusion_reason": "The twelve standalone quotations were confirmed as third-party material and remain redacted, but inline quotation rights review remains incomplete.",
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "The preserved official HTML was reviewed at inline-span level; third-party direct quotations were redacted, while technical terms, paraphrases, and surrounding authorial analysis were retained. This does not authorize training.",
       "id": "scielo-rbeped-affectivity-2024",
       "identity": {
         "authors": [
@@ -644,13 +650,13 @@
           "sha256": "2862cc123953c36ade53710905502ca9c82b6a4576702d9acd638fa2f155df87"
         },
         {
-          "bytes": 39733,
+          "bytes": 36138,
           "format": "text/plain; charset=UTF-8",
           "git_ignored": true,
           "immutable": false,
-          "local_path": "data/corpus-v0.5/clean/scielo-rbeped-affectivity-2024.clean.txt",
+          "local_path": "data/corpus-v0.5/clean/scielo-rbeped-affectivity-2024.phase-2f.clean.txt",
           "role": "clean_text",
-          "sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0"
+          "sha256": "267c4b3e5493111dc4abe984d2ef0fdca461f9c8ecdd32fc4f288a23e9e2c818"
         }
       ],
       "phase2e_review": {
@@ -756,22 +762,356 @@
           }
         ]
       },
+      "phase2f_review": {
+        "clean_revision_changed": true,
+        "historical_standalone_quote_blocks": {
+          "redaction_retained": true,
+          "reviewed_in_phase_2e": 12
+        },
+        "inline_quote_review": {
+          "all_surrounding_authorial_context_preserved": true,
+          "citation_without_a_delimited_direct_quote_treated_as_paraphrase_or_authorial_analysis": true,
+          "classification_counts": {
+            "direct_third_party_quote": 28,
+            "orthographic_symbol": 1,
+            "technical_expression": 2
+          },
+          "inline_quote_marked_spans_reviewed": 31,
+          "orthographic_symbols_retained": 1,
+          "reviewed_spans": [
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 16,
+              "source_attribution": "Aristoteles, 2014",
+              "span_characters": 219,
+              "span_sha256": "2ac9101e869ec916abc6b4107697503c6faefcb7056389c1ad6a9d3f25f371c0",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 16,
+              "source_attribution": "Aristoteles, 2014",
+              "span_characters": 235,
+              "span_sha256": "419d614e014a0a1453553e04922436cedcc477017d6b343999e71d5ac67c8986",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 17,
+              "source_attribution": "Maritain, 1985",
+              "span_characters": 158,
+              "span_sha256": "698bf3e1f90d807ee17f2739872fd160a1be9f97735dcf3d7c4c075e9d0e70fe",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 18,
+              "source_attribution": "Maritain, 1985",
+              "span_characters": 150,
+              "span_sha256": "919d059d207defc274467920cbb24c525ff42683dc514a4c650c49d4557f9785",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 18,
+              "source_attribution": "Maritain, 1985",
+              "span_characters": 158,
+              "span_sha256": "f56d97a4e38daa2c4d90e28da4aca0878c6e8d6abb0b2b5844c0d450521bb4c2",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "retain_term",
+              "classification": "technical_expression",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 27,
+              "source_attribution": null,
+              "span_characters": 39,
+              "span_sha256": "95e180641d42d73b646183c79c7b0c9a299e2bf3041ac99d61ac82b748103a21",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 28,
+              "source_attribution": "von Hildebrand, 2007",
+              "span_characters": 192,
+              "span_sha256": "774d5b775af930060e101d782819c64420dc1eb00d327573b7c1c371ea2c347a",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 39,
+              "source_attribution": "von Hildebrand, 2007",
+              "span_characters": 142,
+              "span_sha256": "f81c9d8187f227a53d90d6000d59e85bdc0e27bf0e2ee221b949bf8cdd0fd7a2",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 43,
+              "source_attribution": "Maritain, 1984",
+              "span_characters": 173,
+              "span_sha256": "ded8a7e0b0e928a3025c92ab5a6eca378518f8316de006971483437a373160dd",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 45,
+              "source_attribution": "Maritain, 1959",
+              "span_characters": 140,
+              "span_sha256": "bd53241e8807533e68601655bf838435615ad9b9f2080385cebc1f984f5f114f",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 46,
+              "source_attribution": "Maritain, 1959",
+              "span_characters": 144,
+              "span_sha256": "24adadd3c08bf1f0fe4355a1e35e94a608a73b5d916e561b3b9d8b989c975235",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 48,
+              "source_attribution": "Sucupira Lins, 2013",
+              "span_characters": 181,
+              "span_sha256": "2f7e3e738ea7573ba6e34ed3f55806b95c057569040c07a890401f04f6d5918d",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 49,
+              "source_attribution": "Sucupira Lins, 2018",
+              "span_characters": 165,
+              "span_sha256": "8e7776a1e8c3019fdaa80bc3e7e25c001a0b2496c8b336504d06e1d137e842da",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "retain_term",
+              "classification": "technical_expression",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 49,
+              "source_attribution": null,
+              "span_characters": 29,
+              "span_sha256": "79f550e137a28b822df9f27e19d74cf4afa0d8969c07c915d9fa71e236a6347e",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 52,
+              "source_attribution": "Saltini, 2022",
+              "span_characters": 117,
+              "span_sha256": "d0b023be7d9f334633266701cc812f620a04c0b9f1d905025ef8003fb0b2bef3",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 52,
+              "source_attribution": "Saltini, 2022",
+              "span_characters": 129,
+              "span_sha256": "61a5e3556e72c5b002373a88e17cc9e8277fadc937d62b8d4bb9e06b89520016",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 57,
+              "source_attribution": "Simmel, 2006",
+              "span_characters": 147,
+              "span_sha256": "82f09a3f641d24276fa762e17d9644d63069dfd1172287af489d6166242bf4ce",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 62,
+              "source_attribution": "Sucupira Lins, 2005",
+              "span_characters": 189,
+              "span_sha256": "5eca9a8711c41db6516eedfc10c8ba16411a02047c844ef0c49c4ac349fc71a8",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 63,
+              "source_attribution": "Maritain, 1959",
+              "span_characters": 109,
+              "span_sha256": "f422e7416f925c7eccc60147aafc32a4a8252264798c538960b4ce82abb6579a",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 73,
+              "source_attribution": "Nascentes, 1932",
+              "span_characters": 179,
+              "span_sha256": "4ac0967e045883a0744dc351b764bab00a66b1568ed48324e51b4be2a43ab819",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 73,
+              "source_attribution": "Lalande, 1993",
+              "span_characters": 91,
+              "span_sha256": "8dda001cbb6c009deab8eff55d9d361404290ea7e7e2700f4e9a322d19620dc6",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 3,
+              "paragraph_block_ordinal": 73,
+              "source_attribution": "Lewis, 2017",
+              "span_characters": 128,
+              "span_sha256": "278302f8e650c762edfefec2021d4c1690e674567b32e6953344de601b9f551d",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "retain_symbol",
+              "classification": "orthographic_symbol",
+              "inline_quote_ordinal": 4,
+              "paragraph_block_ordinal": 73,
+              "source_attribution": null,
+              "span_characters": 3,
+              "span_sha256": "c028027861b045eb4c2d2cbb2bc22cf48ff3800b29bf575ae9646de375f48750",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 75,
+              "source_attribution": "Aristoteles, 2011",
+              "span_characters": 155,
+              "span_sha256": "c5c72f77a8d06c0b572b2f9631c48e7a3732bcff904d90cd879394046ec39b6c",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 82,
+              "source_attribution": "Aquino, 2015",
+              "span_characters": 77,
+              "span_sha256": "9aeb8d883ea0364ab19eb99d68a59c3be82295661e2714696ca126c1650d4f5f",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 2,
+              "paragraph_block_ordinal": 82,
+              "source_attribution": "Aquino, 2015",
+              "span_characters": 129,
+              "span_sha256": "c479dd5bd36fe27d0f858ad301697df71304aceda9e6af4f77346e9ee691d491",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 83,
+              "source_attribution": "Piaget, 2014",
+              "span_characters": 191,
+              "span_sha256": "fff630e5437ed9ea4cf6649a31eea5561b0e058d1ed8d3ad40d34c6fb9b6ee09",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 85,
+              "source_attribution": "Piaget, 2014",
+              "span_characters": 220,
+              "span_sha256": "9967e9b7338c185469172e38b39c9e5880dba95a8b1eb3048959ae8f02840490",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 86,
+              "source_attribution": "Piaget, 2014",
+              "span_characters": 130,
+              "span_sha256": "baa52aedb239d9e980f430f6367eecaec4a1af24c2c454ce6578cfb7b6ade0fd",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 93,
+              "source_attribution": "von Hildebrand, 2007",
+              "span_characters": 191,
+              "span_sha256": "4f03efb40c3c7d8f37a49a5edfeb4a68d0bd6151cbbf7a58987c425b1a1c1944",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            },
+            {
+              "action": "redact_span_preserve_authorial_context",
+              "classification": "direct_third_party_quote",
+              "inline_quote_ordinal": 1,
+              "paragraph_block_ordinal": 94,
+              "source_attribution": "von Hildebrand, 1996",
+              "span_characters": 123,
+              "span_sha256": "749fcb0b5333da176ac1f0fe1afa77de45736bf2afc2efcf170e4ad2844b3126",
+              "surrounding_authorial_analysis_or_paraphrase_preserved": true
+            }
+          ],
+          "technical_expressions_retained": 2,
+          "third_party_direct_quotes_redacted": 28
+        },
+        "quality_decision": "approved_for_future_inclusion",
+        "source_basis": "preserved_local_original_html_only"
+      },
       "quality": {
         "blockquotes_extracted": 12,
         "clean_text_statistics": {
-          "bytes": 39733,
-          "characters": 38377,
-          "sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0",
-          "words": 5883
+          "bytes": 36138,
+          "characters": 35051,
+          "sha256": "267c4b3e5493111dc4abe984d2ef0fdca461f9c8ecdd32fc4f288a23e9e2c818",
+          "words": 5333
         },
         "deduplication": {
           "consecutive_blocks_removed": 0,
           "strategy": "Somente blocos consecutivos exatamente iguais sao removidos apos a limpeza dirigida."
         },
         "estimated_tokens": {
-          "maximum": 9119,
+          "maximum": 8267,
           "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
-          "minimum": 7354
+          "minimum": 6667
         },
         "extracted_text_statistics": {
           "bytes": 54519,
@@ -795,7 +1135,7 @@
             "email_matches": 0,
             "phone_matches": 0
           },
-          "note": "Autoria para atribuicao fica no preambulo; contatos e elementos posteriores a referencias nao seguem para a versao limpa.",
+          "note": "Contact material remains outside the cleaned article.",
           "source": {
             "cpf_matches": 0,
             "email_matches": 10,
@@ -833,12 +1173,12 @@
         "selected_representation": "HTML"
       },
       "states": {
-        "approved_for_future_inclusion": false,
+        "approved_for_future_inclusion": true,
         "audited": true,
         "candidate": true,
         "collected": true,
         "collection_authorized": true,
-        "current_state": "audited",
+        "current_state": "approved_for_future_inclusion",
         "rejected": false
       }
     },
@@ -854,16 +1194,17 @@
           "references_blocks_removed": 51
         },
         "rules": [
-          "Preserve the immutable official HTML and make only UTF-8 NFC derivatives.",
-          "Retain the Portuguese article body and the four text tables available in official HTML modals.",
-          "Represent each table cell in official HTML order and expose colspan or rowspan when present; do not infer missing cells or values.",
+          "Preserve the read-only official HTML and make only UTF-8 NFC derivatives.",
+          "Keep the four official text tables in source row and cell order without reconstructing values.",
+          "Place tables 1, 2, and 3 directly after their unique original body references.",
+          "Keep table 4 in a distinct appendix because the body references Tabela 6 while the official modal labels it Tabela 4.",
           "Remove foreign abstracts, references, editorial material, figures, and graph captions from the cleaned derivative.",
-          "Redact the one reviewed substantive direct quotation while keeping its surrounding authorial analysis."
+          "Redact the one reviewed substantive direct quotation while keeping surrounding authorial analysis."
         ],
-        "third_party_handling": "No PDF, XML, image, attachment, or external link was downloaded. Graph-only information remains omitted; HTML text tables and authorial interpretation are preserved."
+        "third_party_handling": "No PDF, XML, image, attachment, or external link was downloaded; graph-only information remains unavailable."
       },
       "future_inclusion_decision": "approved_for_future_inclusion",
-      "future_inclusion_reason": "The official HTML, attribution, CC BY 4.0 evidence, UTF-8/NFC derivatives, table completeness, and no-data-personal scan passed the bounded Phase 2E audit. This does not authorize training.",
+      "future_inclusion_reason": "The official HTML tables remain complete and unchanged. Three are rendered next to unique body references; the fourth remains separately preserved because a source numbering mismatch prevents a proven relocation.",
       "id": "scielo-rap-redistribution-2024",
       "identity": {
         "authors": [
@@ -908,22 +1249,22 @@
           "sha256": "6c3b99cc26d5faa9aaf9562eb2149a56738a892052a22c9d1a0b68586ca57f7a"
         },
         {
-          "bytes": 73883,
+          "bytes": 73899,
           "format": "text/plain; charset=UTF-8",
           "git_ignored": true,
           "immutable": false,
-          "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.phase-2e.extracted.txt",
+          "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.phase-2f.extracted.txt",
           "role": "extracted_text",
-          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2"
+          "sha256": "fc9b7b5f04a23f1e864ccf5472595e3ccd1f71b9e8ca456ad90e656bed145a6e"
         },
         {
-          "bytes": 62981,
+          "bytes": 62997,
           "format": "text/plain; charset=UTF-8",
           "git_ignored": true,
           "immutable": false,
-          "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.phase-2e.clean.txt",
+          "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.phase-2f.clean.txt",
           "role": "clean_text",
-          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e"
+          "sha256": "9961f6117a6306892667d0f2a86c26530dee89f1f1a40adbec8d101cd594a9cf"
         }
       ],
       "phase2e_review": {
@@ -968,28 +1309,82 @@
         },
         "quality_decision": "approved_for_future_inclusion"
       },
+      "phase2f_review": {
+        "clean_revision_changed": true,
+        "inline_direct_quote_review": {
+          "substantive_spans_redacted": 1
+        },
+        "quality_decision": "approved_for_future_inclusion",
+        "source_basis": "preserved_local_original_html_only",
+        "table_reference_review": {
+          "associations": [
+            {
+              "association": "unambiguous_exact_table_label",
+              "body_reference_block_ordinal": 43,
+              "body_reference_sha256": "290a138e528e338f54e7dede20785760593c08cd427ca1b86490d8c2edef4fc7",
+              "modal_table_identifier": "ModalTablet1",
+              "official_title": "Tabela 1 Trajetória da receita tributária por nível federativo (2002, 2012 e 2022) em percentuais relativos à arrecadação total",
+              "rendering_decision": "insert_after_original_body_reference",
+              "source_table_label": "Tabela 1"
+            },
+            {
+              "association": "unambiguous_exact_table_label",
+              "body_reference_block_ordinal": 83,
+              "body_reference_sha256": "d730057cba123255af38ecc0423ca62bac69886341a4f737e0c12a11d16a4ea5",
+              "modal_table_identifier": "ModalTablet2",
+              "official_title": "Tabela 2 Agrupamento por faixas populacionais dos municípios do semiárido (2022)",
+              "rendering_decision": "insert_after_original_body_reference",
+              "source_table_label": "Tabela 2"
+            },
+            {
+              "association": "unambiguous_exact_table_label",
+              "body_reference_block_ordinal": 104,
+              "body_reference_sha256": "245256f332c0f97f66ea2eac9d5ece7be4fad82eea00b430412263821817cb1e",
+              "modal_table_identifier": "ModalTablet3",
+              "official_title": "Tabela 3 Desvio-padrão, média, coeficiente de variação e coeficiente de Gini de receitas e transferências per capita nos municípios (Brasil e Semiárido, 2002-2022)",
+              "rendering_decision": "insert_after_original_body_reference",
+              "source_table_label": "Tabela 3"
+            },
+            {
+              "association": "not_proven_source_number_mismatch",
+              "body_reference_candidate_block_ordinal": 116,
+              "body_reference_candidate_label": "Tabela 6",
+              "body_reference_candidate_sha256": "01fdab3bfe2e94644eebc460f67d9ca029ae89a2af60a0e7345ed473f1acb4c7",
+              "modal_table_identifier": "ModalTablet4",
+              "official_title": "Tabela 4 Matriz de correlação: receitas próprias, transferências intergovernamentais e indicadores socioeconômicos dos municípios brasileiros",
+              "rendering_decision": "retain_in_unmatched_tables_appendix",
+              "source_table_label": "Tabela 4"
+            }
+          ],
+          "numeric_cells_preserved_without_value_reconstruction": 136,
+          "official_modal_tables_reviewed": 4,
+          "table_rows_preserved_without_value_reconstruction": 35,
+          "unambiguous_associations_rendered_near_body_reference": 3,
+          "unresolved_association_retained_without_forced_relocation": 1
+        }
+      },
       "quality": {
         "blockquotes_extracted": 0,
         "clean_text_statistics": {
-          "bytes": 62981,
-          "characters": 60881,
-          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e",
-          "words": 8996
+          "bytes": 62997,
+          "characters": 60897,
+          "sha256": "9961f6117a6306892667d0f2a86c26530dee89f1f1a40adbec8d101cd594a9cf",
+          "words": 8998
         },
         "deduplication": {
           "consecutive_blocks_removed": 0,
           "strategy": "Only exactly equal consecutive blocks are removed; table rows are preserved in source order."
         },
         "estimated_tokens": {
-          "maximum": 13944,
+          "maximum": 13947,
           "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
-          "minimum": 11245
+          "minimum": 11248
         },
         "extracted_text_statistics": {
-          "bytes": 73883,
-          "characters": 71559,
-          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2",
-          "words": 10439
+          "bytes": 73899,
+          "characters": 71575,
+          "sha256": "fc9b7b5f04a23f1e864ccf5472595e3ccd1f71b9e8ca456ad90e656bed145a6e",
+          "words": 10441
         },
         "image_elements_omitted": 9,
         "invalid_control_characters": [],
@@ -1017,7 +1412,7 @@
         "replacement_character_count": 0,
         "sampled_sections": {
           "end": "Tabela 4 Matriz de correlação: receitas próprias, transferências intergovernamentais e indicadores socioeconômicos dos municípios brasileiros",
-          "middle": "3.1. Efeito redistributivo das transferências intergovernamentais",
+          "middle": "3. PROCEDIMENTOS METODOLÓGICOS",
           "start": "Resumo"
         },
         "sections_extracted": 15,
@@ -1051,73 +1446,135 @@
       }
     }
   ],
-  "future_corpus_plan": {
+  "future_corpus_expansion_plan": {
     "candidate_families": [
       {
-        "genre": "original dialogues, support instructions, and explanatory prose",
-        "id": "elysia-original-dialogues-and-guides",
-        "rights_basis": "signed contributor authorization with CC0 1.0 preferred",
+        "estimated_tokens": {
+          "maximum": 1500000,
+          "minimum": 600000
+        },
+        "genre": "original conversational Portuguese from consenting contributors",
+        "id": "elysia-original-conversations",
+        "language_variant": "Portuguese Brasileiro contemporaneo",
+        "license": "CC0 1.0 preferred; alternatively CC BY 4.0 with a signed contributor authorization",
         "risks": [
-          "synthetic or copied content",
-          "personal data in examples"
+          "personal data",
+          "copied prompts",
+          "synthetic dialogue",
+          "speaker imbalance"
         ],
-        "status": "requires_authoring_protocol_and_explicit_collection_approval"
+        "source_url": null,
+        "status": "requires_authorship_protocol_and_explicit_collection_approval"
       },
       {
-        "genre": "technical documentation",
-        "id": "ibict-omeka-guide-2018",
-        "rights_basis": "CC BY 4.0 stated in the official repository record",
+        "estimated_tokens": {
+          "maximum": 2000000,
+          "minimum": 800000
+        },
+        "genre": "commissioned explanatory, instructional, and support prose",
+        "id": "elysia-original-explanatory-and-support-texts",
+        "language_variant": "Portuguese Brasileiro contemporaneo",
+        "license": "CC BY 4.0 or CC0 1.0 under a documented project authorship agreement",
         "risks": [
-          "PDF extraction quality",
-          "third-party screenshots and references"
+          "templated duplication",
+          "synthetic content",
+          "narrow domain coverage"
+        ],
+        "source_url": null,
+        "status": "requires_authorship_protocol_and_explicit_collection_approval"
+      },
+      {
+        "estimated_tokens": {
+          "maximum": 70000,
+          "minimum": 35000
+        },
+        "genre": "technical documentation",
+        "id": "ibict-enap-omeka-guide",
+        "language_variant": "Portuguese Brasileiro contemporaneo",
+        "license": "CC BY 4.0 stated by the official item",
+        "risks": [
+          "PDF extraction",
+          "third-party screenshots",
+          "references",
+          "small volume"
         ],
         "source_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
-        "status": "metadata-reviewed_only"
+        "status": "requires_item_level_preflight_and_explicit_collection_approval"
       },
       {
+        "estimated_tokens": {
+          "maximum": 4500000,
+          "minimum": 1500000
+        },
         "genre": "informative and explanatory academic prose",
-        "id": "individual-scielo-cc-by-articles",
-        "rights_basis": "license must be confirmed on the selected item, not inferred from the portal",
+        "id": "scielo-rac-item-level-articles",
+        "language_variant": "Portuguese Brasileiro contemporary articles selected individually",
+        "license": "CC BY 4.0 at journal level; each selected article must confirm its own license and third-party handling",
         "risks": [
           "quotations",
-          "figures",
           "references",
-          "near-duplicate editions"
+          "figures",
+          "author and topic concentration"
         ],
-        "status": "requires_individual_preflight_and_explicit_collection_approval"
+        "source_url": "https://www.scielo.br/journal/rac/about/?ilang=pt_BR",
+        "status": "requires_per_article_license_audit_and_explicit_collection_approval"
       },
       {
-        "genre": "educational material",
-        "id": "educapes-individual-cc-by-records",
-        "rights_basis": "canonical file and individual rights metadata must match before collection",
+        "estimated_tokens": {
+          "maximum": 1800000,
+          "minimum": 500000
+        },
+        "genre": "educational and policy-oriented explanatory prose",
+        "id": "inep-em-aberto-item-level-articles",
+        "language_variant": "Portuguese Brasileiro contemporary articles selected individually",
+        "license": "CC BY 4.0 reuse statement; verify every canonical article representation before collection",
         "risks": [
-          "repository metadata/version mismatch",
-          "third-party material in attachments"
+          "article-level license exceptions",
+          "citations",
+          "PDF-only layouts",
+          "academic-register bias"
         ],
-        "status": "requires_canonical_version_audit_and_explicit_collection_approval"
+        "source_url": "https://emaberto.inep.gov.br/ojs3/index.php/emaberto/about/submissions",
+        "status": "requires_per_article_license_audit_and_explicit_collection_approval"
       },
       {
-        "genre": "institutional and legal texts",
-        "id": "brazilian-official-acts",
-        "rights_basis": "Brazilian Copyright Law, art. 8 IV, excludes official acts from copyright protection",
+        "estimated_tokens": {
+          "maximum": 300000,
+          "minimum": 80000
+        },
+        "genre": "technical API documentation and structured explanatory text",
+        "id": "sgb-open-api-documentation",
+        "language_variant": "Portuguese Brasileiro contemporaneo",
+        "license": "CC BY 4.0 stated by the official service",
         "risks": [
-          "highly formal register",
-          "outdated versions",
-          "politically sensitive material"
+          "generated schema repetition",
+          "structured-data dominance",
+          "low conversational value"
         ],
-        "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l9610.htm",
-        "status": "requires_scope_and_currency_protocol_before_collection"
+        "source_url": "https://geoservicos.sgb.gov.br/ogcapi?f=html",
+        "status": "requires_endpoint_scope_review_and_explicit_collection_approval"
       }
     ],
-    "collection_or_tokenization_started": false,
-    "rejected_license_families": [
-      "CC BY-NC, CC BY-NC-SA, CC BY-ND, unknown licenses, and portal-level claims without file-level evidence"
+    "collection_sequence": [
+      "Write and audit the original-dialogue authorship and privacy protocol.",
+      "Select small, diverse, item-level samples with license and provenance preflight records.",
+      "Audit text quality, third-party quotations, personal data, and duplication before any corpus inclusion decision.",
+      "Only after a separately approved corpus composition, define splits and train a tokenizer from training text alone."
     ],
-    "split_policy": {
-      "rule": "A group_id remains entirely in one future partition; no BPE or split is created in this phase.",
-      "unit": "whole-document-author-origin-and-derivation-group"
+    "future_split_isolation_policy": {
+      "reserved_final_test": "Hold out approved, never-inspected documents from at least two genres and separate authors until one final evaluation.",
+      "rule": "No source, author group, translated version, near duplicate, or conversation contributor may cross train, validation, and final test partitions.",
+      "unit": "whole document, author group, source family, and derivation group"
     },
-    "status": "proposal_only_no_collection_authorized"
+    "new_documents_downloaded": 0,
+    "status": "proposal_only_no_collection_authorized",
+    "target_scale": {
+      "minimum_tokens_for_bounded_experiments": 5000000,
+      "note": "These are collection planning targets, not a claim that either volume is sufficient for a capable general-purpose language model.",
+      "preferred_tokens_before_claiming_broader_language_coverage": 20000000
+    },
+    "tokenizer_or_bpe_trained": false,
+    "training_started": false
   },
   "historical_phase_2b": {
     "original_document_state": "audited",
@@ -1139,12 +1596,18 @@
     "schema_version": 3,
     "sha256": "199896aeb63a3d2d603458ca339b12d39008c45dc07e31c03e6b35e9c971a855"
   },
+  "historical_phase_2e": {
+    "path": "data/corpus-v0.5/collection-audit.phase-2e.json",
+    "preserved": true,
+    "schema_version": 4,
+    "sha256": "f8568086b4b6454dee15edd44c729215a33f504c4ce588224ee1fb60ff7d6185"
+  },
   "historical_research_manifest": {
     "path": "data/corpus-v0.5/source-candidates.json",
     "phase": "research-and-corpus-plan-only",
     "preserved_without_relaxing_its_zero-download_validation": true
   },
-  "phase": "final-scielo-quality-review-and-corpus-planning",
+  "phase": "corpus-consolidation-and-textual-quality-closure",
   "project": "ELYSIA-Seed v0.5",
   "safeguards": {
     "additional_dataset_downloaded": false,
@@ -1161,5 +1624,5 @@
     "v04_weights_or_checkpoints_modified": false,
     "xml_downloaded": false
   },
-  "schema_version": 4
+  "schema_version": 5
 }

@@ -1,0 +1,1165 @@
+{
+  "authorization": {
+    "documents_reviewed": [
+      "scielo-rbeped-affectivity-2024",
+      "scielo-rap-redistribution-2024"
+    ],
+    "new_full_documents_authorized": 0,
+    "new_full_documents_collected": 0
+  },
+  "deduplication_report": {
+    "automatic_content_removal": false,
+    "method": "Comparacao por DOI, titulo, primeiro autor, instituicao, hashes e Jaccard de conjuntos de palavras normalizadas.",
+    "pairs": [
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "emag-v3-1-html",
+          "conci-2021-alternative-licenses-html"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.144828
+      },
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "emag-v3-1-html",
+          "scielo-rbeped-affectivity-2024"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.123035
+      },
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "emag-v3-1-html",
+          "scielo-rap-redistribution-2024"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.142026
+      },
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "conci-2021-alternative-licenses-html",
+          "scielo-rbeped-affectivity-2024"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.156109
+      },
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "conci-2021-alternative-licenses-html",
+          "scielo-rap-redistribution-2024"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.163303
+      },
+      {
+        "action": "report_only_no_automatic_removal",
+        "documents": [
+          "scielo-rbeped-affectivity-2024",
+          "scielo-rap-redistribution-2024"
+        ],
+        "same_clean_text_hash": false,
+        "same_doi": false,
+        "same_first_author": false,
+        "same_institution": false,
+        "same_title": false,
+        "word_set_jaccard": 0.154746
+      }
+    ],
+    "potential_duplicate_pairs": []
+  },
+  "documents": [
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "class:img": 50,
+          "class:recomendacao": 8,
+          "class:topo": 1,
+          "class:voltar": 65
+        },
+        "rules": [
+          "Decodificar o HTML original estritamente como UTF-8 e normalizar o texto resultante para Unicode NFC.",
+          "Extrair a coluna tecnica p-esquerda para a versao limpa e manter titulos, subtitulos, listas, recomendacoes, explicacoes, glossario e anexo textual.",
+          "Excluir navegacao, controles, sumario lateral, links Voltar ao sumario, botoes Topo e links de exemplos navegaveis.",
+          "Excluir scripts, estilos, formularios, imagens, legendas visuais e blocos citacionais de terceiros sem auditoria propria; textareas de exemplos sao preservados como codigo tecnico.",
+          "Remover URLs externas soltas do texto corrido e redigir citacoes diretas de terceiros em exemplos de codigo, preservando a estrutura do exemplo.",
+          "Excluir a secao Agradecimentos, que contem nomes de pessoas e nao e conteudo tecnico do modelo.",
+          "Remover somente duplicacoes tecnicas consecutivas exatamente iguais; nao deduplicar prosa nao consecutiva."
+        ],
+        "third_party_handling": "Nenhum recurso externo foi baixado. URLs externas soltas foram removidas do texto corrido e citacoes diretas em exemplos de codigo foram redigidas."
+      },
+      "final_review": {
+        "all_phase_2b_hashes_confirmed": true,
+        "clean_corrections_applied": [],
+        "cleaning_recheck": {
+          "acknowledgement_blocks_removed": 11,
+          "consecutive_blocks_removed": 0,
+          "excluded_elements_match": true,
+          "inline_urls_removed": 19,
+          "third_party_code_redactions_adequate": true,
+          "third_party_code_redactions_confirmed": 4
+        },
+        "original_unchanged": true,
+        "reviewed_at": "2026-10-16T19:26:09.9806964-03:00",
+        "sampled_sections": [
+          {
+            "heading": "1. Introdução",
+            "heading_index": 1,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "2.3 Terceiro passo: Avaliação de Acessibilidade",
+            "heading_index": 9,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 1.4 – Ordenar de forma lógica e intuitiva a leitura e tabulação",
+            "heading_index": 17,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 2.2 – Garantir que os objetos programáveis sejam acessíveis",
+            "heading_index": 25,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 3.2 – Informar mudança de idioma no conteúdo",
+            "heading_index": 33,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 3.9 – Em tabelas, utilizar títulos e resumos de forma apropriada",
+            "heading_index": 40,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 4.4 – Possibilitar que o elemento com foco seja visualmente evidente",
+            "heading_index": 48,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "Recomendação 6.1 – Fornecer alternativa em texto para os botões de imagem de formulários",
+            "heading_index": 56,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "4. Elementos padronizados de acessibilidade digital no Governo Federal",
+            "heading_index": 64,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          },
+          {
+            "heading": "7. Anexo 1 – Tabela de Contraste de Cores",
+            "heading_index": 72,
+            "present_in_clean": true,
+            "present_in_extracted": true,
+            "present_in_original": true
+          }
+        ],
+        "structural_comparison": {
+          "clean_projection_matches_original": true,
+          "list_items_preserved": 132,
+          "recommendation_headings_preserved": 45,
+          "technical_examples_preserved": 83,
+          "technical_table_rows_preserved": 75,
+          "titles_preserved": true
+        }
+      },
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "A revisao final da Fase 2C aprovou somente a inclusao posterior em um corpus ainda sujeito a autorizacao explicita. Nao autoriza tokenizacao, split ou treinamento.",
+      "id": "emag-v3-1-html",
+      "identity": {
+        "institutional_author": "Equipe do DGE - Departamento de Governo Eletronico",
+        "title": "eMAG - Modelo de Acessibilidade em Governo Eletrônico",
+        "version": "Versão 3.1 - Abril 2014"
+      },
+      "license": {
+        "attribution_obligations": "Creditar a Equipe do DGE - Departamento de Governo Eletronico, a fonte oficial, a licenca CC BY 4.0 e indicar alteracoes em derivados.",
+        "declared_on_document": true,
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 245543,
+          "format": "text/html; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/emag-v3-1.html",
+          "role": "original_html",
+          "sha256": "200884cddfa8a769473899f2db6cd34cc819a6573439f9409eec7806ea368d0f"
+        },
+        {
+          "bytes": 852,
+          "format": "text/plain; HTTP headers",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/emag-v3-1.headers.txt",
+          "role": "response_headers",
+          "sha256": "fd9714bdcdcf8a3878f1bbea94c86e737a2e9870f1bcf2bdccfd6dbab479b1d0"
+        },
+        {
+          "bytes": 149093,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/emag-v3-1.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "493d9a901f48f14b721799cd8ea8a440f59381622a810820a6f022a1c04d8dcd"
+        },
+        {
+          "bytes": 141172,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/emag-v3-1.clean.txt",
+          "role": "clean_text",
+          "sha256": "a050365d151328d18d7a8ccbb5fe39aaaacbafe4ef24212c4d9d47ea4bb36dbc"
+        }
+      ],
+      "quality": {
+        "clean_text_statistics": {
+          "bytes": 141172,
+          "characters": 135493,
+          "sha256": "a050365d151328d18d7a8ccbb5fe39aaaacbafe4ef24212c4d9d47ea4bb36dbc",
+          "words": 19693
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Somente blocos tecnicos consecutivos exatamente iguais sao removidos; navegacao repetida e removida por seletor de interface."
+        },
+        "estimated_tokens": {
+          "maximum": 30525,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 24617
+        },
+        "extracted_text_statistics": {
+          "bytes": 149093,
+          "characters": 143162,
+          "sha256": "493d9a901f48f14b721799cd8ea8a440f59381622a810820a6f022a1c04d8dcd",
+          "words": 20791
+        },
+        "html_repairs_in_memory": {
+          "malformed_paragraph_closures_before_headings": 1,
+          "original_html_modified": false
+        },
+        "inline_urls_removed": 19,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 245543,
+          "sha256": "200884cddfa8a769473899f2db6cd34cc819a6573439f9409eec7806ea368d0f",
+          "utf8_valid": true
+        },
+        "personal_data_scan": {
+          "acknowledgement_blocks_removed": 11,
+          "cpf_matches": 0,
+          "email_matches": 0,
+          "note": "A verificacao automatica cobre e-mail, CPF e telefone. A secao de agradecimentos com nomes de pessoas foi excluida por nao ser conteudo tecnico.",
+          "phone_matches": 0
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "7. Anexo 1 – Tabela de Contraste de Cores",
+          "middle": "Recomendação 3.6 – Fornecer alternativa em texto para as imagens do sítio",
+          "start": "1. Introdução"
+        },
+        "sections_extracted": 72,
+        "third_party_code_redactions": 4
+      },
+      "source": {
+        "collected_at": "2026-10-16T18:15:16.7369580-03:00",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://emag.governoeletronico.gov.br/",
+        "host": "emag.governoeletronico.gov.br",
+        "http_date": "Fri, 16 Oct 2026 21:15:14 GMT",
+        "http_status": 200,
+        "preflight_checked_at": "2026-10-16T18:14:52.9755768-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/emag-v3-1.headers.txt",
+        "requested_url": "https://emag.governoeletronico.gov.br/"
+      },
+      "states": {
+        "approved_for_future_inclusion": true,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "approved_for_future_inclusion",
+        "rejected": false
+      }
+    },
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "consecutive_blocks_removed": 0,
+          "direct_quote_blocks_redacted": 4,
+          "figure_caption_blocks_removed": 2,
+          "figure_source_blocks_removed": 2,
+          "foreign_abstract_blocks_removed": 6,
+          "front_matter_blocks_removed": 9,
+          "inline_direct_quote_spans_redacted": 4,
+          "references_blocks_removed": 39
+        },
+        "rules": [
+          "Preservar o HTML original em Windows-1252 e converter somente derivados para UTF-8 normalizado em NFC.",
+          "Preservar resumo, secoes, listas e tabelas textuais do artigo em portugues.",
+          "Excluir capa, contatos, resumos estrangeiros, figuras, legendas, referencias e material posterior ao artigo.",
+          "Redigir somente citacoes diretas de terceiros claramente delimitadas; preservar a analise autoral que as contextualiza.",
+          "Remover somente blocos consecutivos exatamente iguais; nao resumir nem reescrever a argumentacao dos autores."
+        ],
+        "third_party_handling": "Quatro blocos compostos apenas por citacao direta foram redigidos. Quatro spans de citacao em blocos mistos foram redigidos sem apagar a analise autoral. Quatro redacoes amplas da Fase 2C foram restauradas por nao conterem citacao direta."
+      },
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "A auditoria final da Fase 2D confirmou a qualidade dos derivados revisados. A decisao permite somente futura inclusao formalmente autorizada; nao permite tokenizacao, split ou treinamento.",
+      "id": "conci-2021-alternative-licenses-html",
+      "identity": {
+        "authors": [
+          "Natalia Rodrigues Silva",
+          "Nivaldo Calixto Ribeiro",
+          "Dalgiza Andrade Oliveira"
+        ],
+        "doi": "10.33467/conci.v4i.15670",
+        "edition": "v. 4, 2021, artigo original, p. 1-30",
+        "publication": "ConCI: Convergencias em Ciencia da Informacao",
+        "title": "Licencas alternativas de protecao intelectual atribuidas a periodicos tecnicos e/ou cientificos da area da Ciencia da Informacao no contexto da Ciencia Aberta"
+      },
+      "license": {
+        "attribution_obligations": "Creditar Natalia Rodrigues Silva, Nivaldo Calixto Ribeiro, Dalgiza Andrade Oliveira e a publicacao inicial na ConCI; indicar a licenca CC BY 4.0 e alteracoes em derivados.",
+        "declared_on_landing_page": true,
+        "evidence_url": "https://periodicos.ufs.br/conci/article/view/15670",
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 275974,
+          "format": "text/html; embedded charset=windows-1252; HTTP header declared UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/conci-2021-licenses.html",
+          "role": "original_html",
+          "sha256": "9b2fcbf03e68c371317da99a589f283a981c45171d7553529eb19303f83a82f4"
+        },
+        {
+          "bytes": 729,
+          "format": "text/plain; HTTP headers",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/conci-2021-licenses.headers.txt",
+          "role": "response_headers",
+          "sha256": "ffd45f8412d6ee10c198e0b8f05f5e7c21e4db73aa58c6c4598cf0ba09f13e0f"
+        },
+        {
+          "bytes": 51979,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/conci-2021-licenses.phase-2d.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "44692305689f0422ec93a8b2092c6b5f3a92aee5ef3be253f42962ecbd097322"
+        },
+        {
+          "bytes": 35313,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/conci-2021-licenses.phase-2d.clean.txt",
+          "role": "clean_text",
+          "sha256": "5cd116862e1012ea6e0380ba8aec92c2c16e32873e5062aacf05ce36fec21f6e"
+        }
+      ],
+      "phase2d_review": {
+        "clean_corrections_applied": [
+          "Restauracao de quatro blocos autorais indevidamente redigidos.",
+          "Redacao interna de tres citacoes diretas no bloco misto de direitos autorais.",
+          "Redacao de uma citacao interna e de um bloco completo identificados na nova auditoria."
+        ],
+        "eight_prior_redactions_individually_inspected": true,
+        "historical_phase2c_clean_artifact": "data/corpus-v0.5/clean/conci-2021-licenses.clean.txt",
+        "historical_phase2c_clean_sha256": "3e130a86bf96ac5fe6ce7c30330231c943f9dedbdcce3a7a53b84d0fb1696ad7",
+        "historical_phase2c_derivatives_preserved": true,
+        "newly_identified_direct_quote_findings": [
+          {
+            "outcome": "surgically_redacted",
+            "reason": "Citacao direta dentro de analise autoral; contexto preservado.",
+            "source_block_index": 21
+          },
+          {
+            "outcome": "redacted",
+            "reason": "Bloco composto apenas por citacao direta de terceiro.",
+            "source_block_index": 60
+          }
+        ],
+        "original_hash_rechecked": true,
+        "reviewed_prior_redactions": [
+          {
+            "outcome": "restored",
+            "reason": "Aspas enfaticas e citacao indireta; nenhuma citacao direta identificada.",
+            "source_block_index": 20
+          },
+          {
+            "outcome": "restored",
+            "reason": "Aspas em termo dos autores; nenhuma citacao direta identificada.",
+            "source_block_index": 30
+          },
+          {
+            "outcome": "kept_redacted",
+            "reason": "Bloco composto por citacao direta de terceiro.",
+            "source_block_index": 62
+          },
+          {
+            "outcome": "surgically_redacted",
+            "reason": "Analise autoral preservada; tres spans de citacao direta redigidos.",
+            "source_block_index": 63
+          },
+          {
+            "outcome": "restored",
+            "reason": "Descricao autoral com expressao entre aspas, sem citacao direta.",
+            "source_block_index": 66
+          },
+          {
+            "outcome": "kept_redacted",
+            "reason": "Bloco composto por citacao direta de terceiro.",
+            "source_block_index": 68
+          },
+          {
+            "outcome": "restored",
+            "reason": "Descricao autoral de obra citada, sem citacao direta.",
+            "source_block_index": 75
+          },
+          {
+            "outcome": "kept_redacted",
+            "reason": "Bloco composto por citacao direta de terceiro.",
+            "source_block_index": 116
+          }
+        ],
+        "sampled_start_middle_end_and_tables": true,
+        "windows_1252_to_utf8_nfc_rechecked": true
+      },
+      "quality": {
+        "clean_text_statistics": {
+          "bytes": 35313,
+          "characters": 34161,
+          "sha256": "5cd116862e1012ea6e0380ba8aec92c2c16e32873e5062aacf05ce36fec21f6e",
+          "words": 5207
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Somente blocos consecutivos exatamente iguais sao removidos apos a limpeza dirigida."
+        },
+        "derived_text_encoding": "UTF-8",
+        "estimated_tokens": {
+          "maximum": 8071,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 6509
+        },
+        "extracted_text_statistics": {
+          "bytes": 51979,
+          "characters": 50426,
+          "sha256": "44692305689f0422ec93a8b2092c6b5f3a92aee5ef3be253f42962ecbd097322",
+          "words": 7693
+        },
+        "image_elements_omitted": 4,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 275974,
+          "embedded_charset": "windows-1252",
+          "encoding_mismatch_recorded": true,
+          "http_declared_content_type": "text/html; charset=UTF-8",
+          "sha256": "9b2fcbf03e68c371317da99a589f283a981c45171d7553529eb19303f83a82f4",
+          "utf8_valid": false
+        },
+        "paragraphs_extracted": 122,
+        "personal_data_scan": {
+          "clean": {
+            "cpf_matches": 0,
+            "email_matches": 0,
+            "phone_matches": 0
+          },
+          "note": "Dados de contato da materia preliminar permanecem apenas no HTML original; o preambulo retem somente a atribuicao necessaria.",
+          "source": {
+            "cpf_matches": 0,
+            "email_matches": 2,
+            "phone_matches": 0
+          }
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "5 CONSIDERAÇÕES FINAIS",
+          "middle": "2.2 Creative Commons",
+          "start": "RESUMO"
+        },
+        "sections_extracted": 8,
+        "table_rows_extracted": 41
+      },
+      "source": {
+        "available_representations": [
+          {
+            "downloaded": true,
+            "format": "HTML",
+            "selected": true
+          },
+          {
+            "downloaded": false,
+            "format": "XML",
+            "selected": false
+          },
+          {
+            "downloaded": false,
+            "format": "PDF-A",
+            "selected": false
+          }
+        ],
+        "collected_at": "2026-10-16T19:13:57.8286216-03:00",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://periodicos.ufs.br/conci/article/download/15670/12129?inline=1",
+        "host": "periodicos.ufs.br",
+        "http_date": "Fri, 16 Oct 2026 22:13:56 GMT",
+        "http_status": 200,
+        "landing_page_url": "https://periodicos.ufs.br/conci/article/view/15670",
+        "preflight_checked_at": "2026-10-16T19:13:32-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/conci-2021-licenses.headers.txt",
+        "requested_url": "https://periodicos.ufs.br/conci/article/download/15670/12129?inline=1"
+      },
+      "states": {
+        "approved_for_future_inclusion": true,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "approved_for_future_inclusion",
+        "rejected": false
+      }
+    },
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "consecutive_blocks_removed": 0,
+          "direct_quote_blocks_redacted": 12,
+          "figure_caption_blocks_removed": 1,
+          "foreign_abstract_blocks_removed": 6,
+          "front_matter_blocks_removed": 0,
+          "inline_direct_quote_spans_redacted": 0,
+          "references_blocks_removed": 60
+        },
+        "rules": [
+          "Preservar o HTML oficial imutavel e produzir derivados em UTF-8 normalizado em NFC.",
+          "Extrair somente o conteudo de article#articleText e conservar resumo em portugues, secoes, listas e tabelas textuais.",
+          "Excluir resumos estrangeiros, navegacao, referencias, elementos editoriais posteriores, imagens e legendas de figuras.",
+          "Redigir blocos de citacao direta de terceiros e somente spans de citacao identificados com reticencias, preservando a analise autoral ao redor.",
+          "Remover apenas duplicacoes consecutivas exatamente iguais; nao resumir nem reescrever o texto dos autores."
+        ],
+        "third_party_handling": "Nenhum recurso citado, PDF, XML, imagem ou anexo foi baixado. Referencias, figuras e citacoes diretas de terceiros foram deixadas fora do texto limpo."
+      },
+      "future_inclusion_decision": "audited_pending_inline_quote_rights_review",
+      "future_inclusion_reason": "The twelve standalone quotations were confirmed as third-party material and remain redacted, but inline quotation rights review remains incomplete.",
+      "id": "scielo-rbeped-affectivity-2024",
+      "identity": {
+        "authors": [
+          "Agostinho Morosini",
+          "Maria Judith Sucupira da Costa Lins"
+        ],
+        "doi": "10.24109/2176-6681.rbep.105.5844",
+        "edition": "v. 105, 2024",
+        "institutions": [
+          "Universidade Federal do Rio de Janeiro (UFRJ)"
+        ],
+        "publication": "Revista Brasileira de Estudos Pedagógicos",
+        "title": "A ideia de afetividade na filosofia e na educação"
+      },
+      "license": {
+        "attribution_obligations": "Creditar autores, publicacao inicial, URL da fonte e CC BY 4.0; incluir o link da licenca e indicar as alteracoes nos derivados.",
+        "evidence_in_original_html": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 172821,
+          "format": "text/html; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/scielo-rbeped-affectivity-2024.html",
+          "role": "original_html",
+          "sha256": "7b424baead4364f5332176e7cf333e7fb26413a99df9ab881560a2ed0f229110"
+        },
+        {
+          "bytes": 350,
+          "format": "text/plain; HTTP response snapshot",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/scielo-rbeped-affectivity-2024.headers.txt",
+          "role": "response_headers",
+          "sha256": "1c498d170cbe276bccef9b9220a93c032eb47525f24d6a4834ac0f8f08236adf"
+        },
+        {
+          "bytes": 54519,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/scielo-rbeped-affectivity-2024.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "2862cc123953c36ade53710905502ca9c82b6a4576702d9acd638fa2f155df87"
+        },
+        {
+          "bytes": 39733,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/scielo-rbeped-affectivity-2024.clean.txt",
+          "role": "clean_text",
+          "sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0"
+        }
+      ],
+      "phase2e_review": {
+        "all_reviewed_blocks_are_direct_third_party_quotes": true,
+        "paragraph_continuity_review": {
+          "authorial_commentary_restored": false,
+          "context_before_and_after_each_redaction_checked": true,
+          "distributed_sections_reviewed": [
+            "Resumo",
+            "Introducao",
+            "desenvolvimento",
+            "Consideracoes finais"
+          ]
+        },
+        "prior_clean_derivative_reused_without_change": true,
+        "prior_clean_sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0",
+        "remaining_limitation": "The text retains many inline quotations mixed with authorial paragraphs. They require a separate, semantic quote-by-quote rights review before promotion.",
+        "reviewed_blockquote_count": 12,
+        "reviewed_blockquotes": [
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Platao, 1980",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 1
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Aristoteles, 2014",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 2
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Maritain, 1959",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 3
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Macedo, 1980",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 4
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Rates e Sucupira Lins, 2021",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 5
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2007",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 6
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Maritain, 2006",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 7
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Mounier, 2004",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 8
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Piaget, 1973",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 9
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2007",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 10
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Sucupira Lins, 2022b",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 11
+          },
+          {
+            "action": "prior_redaction_retained",
+            "attribution": "Von Hildebrand, 2020",
+            "authorial_context_before_and_after_preserved": true,
+            "classification": "direct_third_party_quote",
+            "ordinal": 12
+          }
+        ]
+      },
+      "quality": {
+        "blockquotes_extracted": 12,
+        "clean_text_statistics": {
+          "bytes": 39733,
+          "characters": 38377,
+          "sha256": "5ba727d08946d4da28d33069d438b1412c228e935898d6dc1c07878e5e63b6f0",
+          "words": 5883
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Somente blocos consecutivos exatamente iguais sao removidos apos a limpeza dirigida."
+        },
+        "estimated_tokens": {
+          "maximum": 9119,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 7354
+        },
+        "extracted_text_statistics": {
+          "bytes": 54519,
+          "characters": 52759,
+          "sha256": "2862cc123953c36ade53710905502ca9c82b6a4576702d9acd638fa2f155df87",
+          "words": 8131
+        },
+        "image_elements_omitted": 2,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 172821,
+          "http_declared_content_type": "text/html; charset=utf-8",
+          "sha256": "7b424baead4364f5332176e7cf333e7fb26413a99df9ab881560a2ed0f229110",
+          "utf8_valid": true
+        },
+        "paragraphs_extracted": 85,
+        "personal_data_scan": {
+          "clean": {
+            "cpf_matches": 0,
+            "email_matches": 0,
+            "phone_matches": 0
+          },
+          "note": "Autoria para atribuicao fica no preambulo; contatos e elementos posteriores a referencias nao seguem para a versao limpa.",
+          "source": {
+            "cpf_matches": 0,
+            "email_matches": 10,
+            "phone_matches": 1
+          }
+        },
+        "phase2e_utf8_and_nfc_checked": {
+          "clean_invalid_control_characters": [],
+          "clean_nfc": true,
+          "clean_replacement_character_count": 0,
+          "clean_utf8": true
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "Considerações finais",
+          "middle": "O papel da afetividade na educação integral",
+          "start": "Resumo:"
+        },
+        "sections_extracted": 6,
+        "table_rows_extracted": 0
+      },
+      "source": {
+        "canonical_page_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
+        "collected_at": "2026-10-16T20:27:53.7092238-03:00",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
+        "host": "www.scielo.br",
+        "http_date": "Fri, 16 Oct 2026 23:27:53 GMT",
+        "http_status": 200,
+        "other_representations_downloaded": false,
+        "preflight_checked_at": "2026-10-16T20:27:53.7092238-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/scielo-rbeped-affectivity-2024.headers.txt",
+        "requested_url": "https://www.scielo.br/j/rbeped/a/Yvgc3v3QyLL3nKYNSQvfkqy/?format=html&lang=pt",
+        "selected_representation": "HTML"
+      },
+      "states": {
+        "approved_for_future_inclusion": false,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "audited",
+        "rejected": false
+      }
+    },
+    {
+      "cleaning": {
+        "excluded_elements": {
+          "consecutive_blocks_removed": 0,
+          "direct_quote_blocks_redacted": 0,
+          "figure_caption_blocks_removed": 8,
+          "foreign_abstract_blocks_removed": 6,
+          "front_matter_blocks_removed": 0,
+          "inline_direct_quote_spans_redacted": 1,
+          "references_blocks_removed": 51
+        },
+        "rules": [
+          "Preserve the immutable official HTML and make only UTF-8 NFC derivatives.",
+          "Retain the Portuguese article body and the four text tables available in official HTML modals.",
+          "Represent each table cell in official HTML order and expose colspan or rowspan when present; do not infer missing cells or values.",
+          "Remove foreign abstracts, references, editorial material, figures, and graph captions from the cleaned derivative.",
+          "Redact the one reviewed substantive direct quotation while keeping its surrounding authorial analysis."
+        ],
+        "third_party_handling": "No PDF, XML, image, attachment, or external link was downloaded. Graph-only information remains omitted; HTML text tables and authorial interpretation are preserved."
+      },
+      "future_inclusion_decision": "approved_for_future_inclusion",
+      "future_inclusion_reason": "The official HTML, attribution, CC BY 4.0 evidence, UTF-8/NFC derivatives, table completeness, and no-data-personal scan passed the bounded Phase 2E audit. This does not authorize training.",
+      "id": "scielo-rap-redistribution-2024",
+      "identity": {
+        "authors": [
+          "Luis Alberto da Costa",
+          "Napiê Galvê Araújo Silva",
+          "Vilmar Antonio Gonçalves Tondolo",
+          "Lauro Nogueira"
+        ],
+        "doi": "10.1590/0034-761220240010",
+        "edition": "v. 58, n. 5, 2024",
+        "institutions": [
+          "Universidade Federal Rural do Semiárido (UFERSA)",
+          "Universidade Federal de Pelotas (UFPel)",
+          "Universidade do Estado do Rio Grande do Norte (UERN)"
+        ],
+        "publication": "Revista de Administração Pública",
+        "title": "Análise do efeito redistributivo das transferências intergovernamentais sobre as receitas municipais no semiárido brasileiro"
+      },
+      "license": {
+        "attribution_obligations": "Creditar autores, publicacao inicial, URL da fonte e CC BY 4.0; incluir o link da licenca e indicar as alteracoes nos derivados.",
+        "evidence_in_original_html": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
+        "name": "CC BY 4.0"
+      },
+      "local_artifacts": [
+        {
+          "bytes": 247824,
+          "format": "text/html; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": true,
+          "local_path": "data/corpus-v0.5/originals/scielo-rap-redistribution-2024.html",
+          "role": "original_html",
+          "sha256": "6228a271ecb046dc02e19395ac60414a3aad208484fc0141cd404a550fd19298"
+        },
+        {
+          "bytes": 344,
+          "format": "text/plain; HTTP response snapshot",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/originals/scielo-rap-redistribution-2024.headers.txt",
+          "role": "response_headers",
+          "sha256": "6c3b99cc26d5faa9aaf9562eb2149a56738a892052a22c9d1a0b68586ca57f7a"
+        },
+        {
+          "bytes": 73883,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.phase-2e.extracted.txt",
+          "role": "extracted_text",
+          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2"
+        },
+        {
+          "bytes": 62981,
+          "format": "text/plain; charset=UTF-8",
+          "git_ignored": true,
+          "immutable": false,
+          "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.phase-2e.clean.txt",
+          "role": "clean_text",
+          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e"
+        }
+      ],
+      "phase2e_review": {
+        "clean_revision_changed": true,
+        "html_comparison": {
+          "article_body_tables_detected": 0,
+          "graph_only_information_not_reconstructed": true,
+          "modal_table_identifiers": [
+            "ModalTablet1",
+            "ModalTablet2",
+            "ModalTablet3",
+            "ModalTablet4"
+          ],
+          "modal_tables_detected_outside_article_body": 4,
+          "numeric_cells_preserved_without_reconstruction": 136,
+          "table_rows_preserved": 35,
+          "table_text_source": "official HTML modal tables"
+        },
+        "inline_direct_quote_review": {
+          "short_notational_quotation_marks_retained": true,
+          "substantive_spans_redacted": 1
+        },
+        "prior_derivatives": {
+          "clean_derivative_artifact": {
+            "bytes": 59507,
+            "format": "text/plain; charset=UTF-8",
+            "git_ignored": true,
+            "immutable": false,
+            "local_path": "data/corpus-v0.5/clean/scielo-rap-redistribution-2024.clean.txt",
+            "role": "clean_text",
+            "sha256": "21b612fb4683447cc1876b52ddc0fc5dd710553c7f9250eb4b9a459d5bf2c234"
+          },
+          "extracted_derivative_artifact": {
+            "bytes": 70296,
+            "format": "text/plain; charset=UTF-8",
+            "git_ignored": true,
+            "immutable": false,
+            "local_path": "data/corpus-v0.5/processed/scielo-rap-redistribution-2024.extracted.txt",
+            "role": "extracted_text",
+            "sha256": "5711dede700fe35297db0648507df42eb2fbc6a55621e985b8869aaadaccb568"
+          }
+        },
+        "quality_decision": "approved_for_future_inclusion"
+      },
+      "quality": {
+        "blockquotes_extracted": 0,
+        "clean_text_statistics": {
+          "bytes": 62981,
+          "characters": 60881,
+          "sha256": "726897e129f433d01e64f60da5e5a9e45454c43a63b05d47a9aa8e43a5ab374e",
+          "words": 8996
+        },
+        "deduplication": {
+          "consecutive_blocks_removed": 0,
+          "strategy": "Only exactly equal consecutive blocks are removed; table rows are preserved in source order."
+        },
+        "estimated_tokens": {
+          "maximum": 13944,
+          "method": "Faixa heuristica de 1,25 a 1,55 unidades sublexicais por palavra em portugues; nenhum tokenizador foi treinado ou executado.",
+          "minimum": 11245
+        },
+        "extracted_text_statistics": {
+          "bytes": 73883,
+          "characters": 71559,
+          "sha256": "f860ad5dc73e8d3d632756542b3c3c51fc72a1194bf4ff17b93250157ddd31c2",
+          "words": 10439
+        },
+        "image_elements_omitted": 9,
+        "invalid_control_characters": [],
+        "normalization": "Unicode NFC",
+        "original_html": {
+          "bytes": 247824,
+          "http_declared_content_type": "text/html; charset=utf-8",
+          "sha256": "6228a271ecb046dc02e19395ac60414a3aad208484fc0141cd404a550fd19298",
+          "utf8_valid": true
+        },
+        "paragraphs_extracted": 123,
+        "personal_data_scan": {
+          "clean": {
+            "cpf_matches": 0,
+            "email_matches": 0,
+            "phone_matches": 0
+          },
+          "note": "Contact material remains outside the cleaned article and table transcription.",
+          "source": {
+            "cpf_matches": 0,
+            "email_matches": 10,
+            "phone_matches": 1
+          }
+        },
+        "replacement_character_count": 0,
+        "sampled_sections": {
+          "end": "Tabela 4 Matriz de correlação: receitas próprias, transferências intergovernamentais e indicadores socioeconômicos dos municípios brasileiros",
+          "middle": "3.1. Efeito redistributivo das transferências intergovernamentais",
+          "start": "Resumo"
+        },
+        "sections_extracted": 15,
+        "table_modal_count": 4,
+        "table_numeric_cells_preserved": 136,
+        "table_rows_extracted": 35
+      },
+      "source": {
+        "canonical_page_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
+        "collected_at": "2026-10-16T20:27:54.1953665-03:00",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
+        "host": "www.scielo.br",
+        "http_date": "Fri, 16 Oct 2026 23:27:54 GMT",
+        "http_status": 200,
+        "other_representations_downloaded": false,
+        "preflight_checked_at": "2026-10-16T20:27:54.1953665-03:00",
+        "redirect_detected": false,
+        "relevant_headers_artifact": "data/corpus-v0.5/originals/scielo-rap-redistribution-2024.headers.txt",
+        "requested_url": "https://www.scielo.br/j/rap/a/QpnmPNnQ8WmK8ckGFGgBv7w/?format=html&lang=pt",
+        "selected_representation": "HTML"
+      },
+      "states": {
+        "approved_for_future_inclusion": true,
+        "audited": true,
+        "candidate": true,
+        "collected": true,
+        "collection_authorized": true,
+        "current_state": "approved_for_future_inclusion",
+        "rejected": false
+      }
+    }
+  ],
+  "future_corpus_plan": {
+    "candidate_families": [
+      {
+        "genre": "original dialogues, support instructions, and explanatory prose",
+        "id": "elysia-original-dialogues-and-guides",
+        "rights_basis": "signed contributor authorization with CC0 1.0 preferred",
+        "risks": [
+          "synthetic or copied content",
+          "personal data in examples"
+        ],
+        "status": "requires_authoring_protocol_and_explicit_collection_approval"
+      },
+      {
+        "genre": "technical documentation",
+        "id": "ibict-omeka-guide-2018",
+        "rights_basis": "CC BY 4.0 stated in the official repository record",
+        "risks": [
+          "PDF extraction quality",
+          "third-party screenshots and references"
+        ],
+        "source_url": "https://repositorio.enap.gov.br/bitstream/1/3162/1/Guia%20do%20usu%C3%A1rio%20do%20Omeka%20-%20Ebook.pdf",
+        "status": "metadata-reviewed_only"
+      },
+      {
+        "genre": "informative and explanatory academic prose",
+        "id": "individual-scielo-cc-by-articles",
+        "rights_basis": "license must be confirmed on the selected item, not inferred from the portal",
+        "risks": [
+          "quotations",
+          "figures",
+          "references",
+          "near-duplicate editions"
+        ],
+        "status": "requires_individual_preflight_and_explicit_collection_approval"
+      },
+      {
+        "genre": "educational material",
+        "id": "educapes-individual-cc-by-records",
+        "rights_basis": "canonical file and individual rights metadata must match before collection",
+        "risks": [
+          "repository metadata/version mismatch",
+          "third-party material in attachments"
+        ],
+        "status": "requires_canonical_version_audit_and_explicit_collection_approval"
+      },
+      {
+        "genre": "institutional and legal texts",
+        "id": "brazilian-official-acts",
+        "rights_basis": "Brazilian Copyright Law, art. 8 IV, excludes official acts from copyright protection",
+        "risks": [
+          "highly formal register",
+          "outdated versions",
+          "politically sensitive material"
+        ],
+        "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l9610.htm",
+        "status": "requires_scope_and_currency_protocol_before_collection"
+      }
+    ],
+    "collection_or_tokenization_started": false,
+    "rejected_license_families": [
+      "CC BY-NC, CC BY-NC-SA, CC BY-ND, unknown licenses, and portal-level claims without file-level evidence"
+    ],
+    "split_policy": {
+      "rule": "A group_id remains entirely in one future partition; no BPE or split is created in this phase.",
+      "unit": "whole-document-author-origin-and-derivation-group"
+    },
+    "status": "proposal_only_no_collection_authorized"
+  },
+  "historical_phase_2b": {
+    "original_document_state": "audited",
+    "original_future_inclusion_decision": "pending_explicit_approval",
+    "path": "data/corpus-v0.5/collection-audit.phase-2b.json",
+    "preserved": true,
+    "schema_version": 1,
+    "sha256": "1fe003668cc80033df6da7c89b8ce09710592faac98ea76bb256d781ca91d160"
+  },
+  "historical_phase_2c": {
+    "path": "data/corpus-v0.5/collection-audit.phase-2c.json",
+    "preserved": true,
+    "schema_version": 2,
+    "sha256": "9d217f293b2169b6e90b84c53586c593f230270cdd7b5491fb61f82b96538be0"
+  },
+  "historical_phase_2d": {
+    "path": "data/corpus-v0.5/collection-audit.phase-2d.json",
+    "preserved": true,
+    "schema_version": 3,
+    "sha256": "199896aeb63a3d2d603458ca339b12d39008c45dc07e31c03e6b35e9c971a855"
+  },
+  "historical_research_manifest": {
+    "path": "data/corpus-v0.5/source-candidates.json",
+    "phase": "research-and-corpus-plan-only",
+    "preserved_without_relaxing_its_zero-download_validation": true
+  },
+  "phase": "final-scielo-quality-review-and-corpus-planning",
+  "project": "ELYSIA-Seed v0.5",
+  "safeguards": {
+    "additional_dataset_downloaded": false,
+    "ai_api_used": false,
+    "bpe_trained": false,
+    "desktop_interface_branch_modified": false,
+    "documents_outside_authorized_list_collected": false,
+    "external_link_content_downloaded": false,
+    "external_model_or_weights_used": false,
+    "final_split_created": false,
+    "neural_training_started": false,
+    "ollama_used": false,
+    "pdf_downloaded": false,
+    "v04_weights_or_checkpoints_modified": false,
+    "xml_downloaded": false
+  },
+  "schema_version": 4
+}
