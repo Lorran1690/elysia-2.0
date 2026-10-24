@@ -1,5 +1,12 @@
 # E.L.Y.S.I.A. 2.0
 
+## Recuperação — primeiras palavras (24/10/2026)
+
+Treino diagnóstico do Transformer próprio a partir de pesos aleatórios: 24/24
+exemplos ensinados e 4/8 variações próximas por correspondência exata. Ainda não
+é conversação confiável. Dados sintéticos, pesos, limites e instruções de execução
+estão em [reports/first-words/README.md](reports/first-words/README.md).
+
 Primeira etapa experimental: uma rede neural pequena, inicializada aleatoriamente e treinada localmente para validar um pipeline de linguagem. Este repositório é independente do projeto anterior.
 
 ## Limites desta etapa

@@ -1,0 +1,298 @@
+{
+  "status": "synthetic diagnostic; not conversational competence",
+  "seed": 24102026,
+  "steps": 1000,
+  "threads": 2,
+  "device": "cpu",
+  "torch": "2.14.1+cpu",
+  "parameters": 292291,
+  "elapsed_seconds_including_evaluation": 47.04310263299999,
+  "weights_updated": true,
+  "checkpoint_sha256": "339d0e22c8e928bce0b4c7985aa6d154a2d47cf8bd41ad32e844ef0844ea0607",
+  "train_sha256": "d5482ba75b0fc7d29bea4e9cd9662c1497ec93e4a8ae97407cd005f6e3604caa",
+  "heldout_sha256": "10923c3b8e7331f287bf52e90c7b99bde769153c567d2d0cb14c1e727327ace1",
+  "history": [
+    {
+      "step": 0,
+      "answer_train_loss": 5.587824821472168
+    },
+    {
+      "step": 100,
+      "answer_train_loss": 0.006879571825265884
+    },
+    {
+      "step": 200,
+      "answer_train_loss": 0.0024739543441683054
+    },
+    {
+      "step": 300,
+      "answer_train_loss": 0.0013607459841296077
+    },
+    {
+      "step": 400,
+      "answer_train_loss": 0.0008807428530417383
+    },
+    {
+      "step": 500,
+      "answer_train_loss": 0.0006254691397771239
+    },
+    {
+      "step": 600,
+      "answer_train_loss": 0.00047162864939309657
+    },
+    {
+      "step": 700,
+      "answer_train_loss": 0.0003709282318595797
+    },
+    {
+      "step": 800,
+      "answer_train_loss": 0.00030090977088548243
+    },
+    {
+      "step": 900,
+      "answer_train_loss": 0.0002499821421224624
+    },
+    {
+      "step": 1000,
+      "answer_train_loss": 0.00021159753669053316
+    }
+  ],
+  "results": {
+    "seen_memorization": {
+      "exact_matches": 24,
+      "total": 24,
+      "samples": [
+        {
+          "id": "train-00",
+          "question": "Oi.",
+          "answer": "Oi!",
+          "generated": "Oi!",
+          "exact_match": true
+        },
+        {
+          "id": "train-01",
+          "question": "Olá.",
+          "answer": "Olá!",
+          "generated": "Olá!",
+          "exact_match": true
+        },
+        {
+          "id": "train-02",
+          "question": "Bom dia.",
+          "answer": "Bom dia!",
+          "generated": "Bom dia!",
+          "exact_match": true
+        },
+        {
+          "id": "train-03",
+          "question": "Boa tarde.",
+          "answer": "Boa tarde!",
+          "generated": "Boa tarde!",
+          "exact_match": true
+        },
+        {
+          "id": "train-04",
+          "question": "Boa noite.",
+          "answer": "Boa noite!",
+          "generated": "Boa noite!",
+          "exact_match": true
+        },
+        {
+          "id": "train-05",
+          "question": "Qual é o seu nome?",
+          "answer": "Meu nome é Elysia.",
+          "generated": "Meu nome é Elysia.",
+          "exact_match": true
+        },
+        {
+          "id": "train-06",
+          "question": "Como você se chama?",
+          "answer": "Meu nome é Elysia.",
+          "generated": "Meu nome é Elysia.",
+          "exact_match": true
+        },
+        {
+          "id": "train-07",
+          "question": "Quem é você?",
+          "answer": "Sou a Elysia, uma IA em treinamento.",
+          "generated": "Sou a Elysia, uma IA em treinamento.",
+          "exact_match": true
+        },
+        {
+          "id": "train-08",
+          "question": "Você está aprendendo?",
+          "answer": "Sim, estou aprendendo minhas primeiras palavras.",
+          "generated": "Sim, estou aprendendo minhas primeiras palavras.",
+          "exact_match": true
+        },
+        {
+          "id": "train-09",
+          "question": "Tudo bem?",
+          "answer": "Tudo bem! E você?",
+          "generated": "Tudo bem! E você?",
+          "exact_match": true
+        },
+        {
+          "id": "train-10",
+          "question": "Como você está?",
+          "answer": "Estou pronta para aprender.",
+          "generated": "Estou pronta para aprender.",
+          "exact_match": true
+        },
+        {
+          "id": "train-11",
+          "question": "Obrigado.",
+          "answer": "De nada!",
+          "generated": "De nada!",
+          "exact_match": true
+        },
+        {
+          "id": "train-12",
+          "question": "Obrigada.",
+          "answer": "De nada!",
+          "generated": "De nada!",
+          "exact_match": true
+        },
+        {
+          "id": "train-13",
+          "question": "Até logo.",
+          "answer": "Até logo!",
+          "generated": "Até logo!",
+          "exact_match": true
+        },
+        {
+          "id": "train-14",
+          "question": "Tchau.",
+          "answer": "Tchau!",
+          "generated": "Tchau!",
+          "exact_match": true
+        },
+        {
+          "id": "train-15",
+          "question": "O que você sabe fazer?",
+          "answer": "Ainda sei muito pouco. Estou em treinamento.",
+          "generated": "Ainda sei muito pouco. Estou em treinamento.",
+          "exact_match": true
+        },
+        {
+          "id": "train-16",
+          "question": "Você sabe tudo?",
+          "answer": "Não. Ainda tenho muito a aprender.",
+          "generated": "Não. Ainda tenho muito a aprender.",
+          "exact_match": true
+        },
+        {
+          "id": "train-17",
+          "question": "Você é humana?",
+          "answer": "Não. Sou uma inteligência artificial.",
+          "generated": "Não. Sou uma inteligência artificial.",
+          "exact_match": true
+        },
+        {
+          "id": "train-18",
+          "question": "Você consegue falar?",
+          "answer": "Por enquanto, respondo por texto.",
+          "generated": "Por enquanto, respondo por texto.",
+          "exact_match": true
+        },
+        {
+          "id": "train-19",
+          "question": "Vamos aprender?",
+          "answer": "Vamos aprender juntos!",
+          "generated": "Vamos aprender juntos!",
+          "exact_match": true
+        },
+        {
+          "id": "train-20",
+          "question": "Diga uma palavra.",
+          "answer": "Olá!",
+          "generated": "Olá!",
+          "exact_match": true
+        },
+        {
+          "id": "train-21",
+          "question": "Diga seu nome.",
+          "answer": "Elysia.",
+          "generated": "Elysia.",
+          "exact_match": true
+        },
+        {
+          "id": "train-22",
+          "question": "Quanto é um mais um?",
+          "answer": "Um mais um é dois.",
+          "generated": "Um mais um é dois.",
+          "exact_match": true
+        },
+        {
+          "id": "train-23",
+          "question": "Quanto é dois mais dois?",
+          "answer": "Dois mais dois é quatro.",
+          "generated": "Dois mais dois é quatro.",
+          "exact_match": true
+        }
+      ]
+    },
+    "heldout_paraphrases": {
+      "exact_matches": 4,
+      "total": 8,
+      "samples": [
+        {
+          "id": "heldout-00",
+          "question": "Oi!",
+          "answer": "Oi!",
+          "generated": "Oi!",
+          "exact_match": true
+        },
+        {
+          "id": "heldout-01",
+          "question": "Olá!",
+          "answer": "Olá!",
+          "generated": "Olá!",
+          "exact_match": true
+        },
+        {
+          "id": "heldout-02",
+          "question": "Bom dia!",
+          "answer": "Bom dia!",
+          "generated": "Bom dia!",
+          "exact_match": true
+        },
+        {
+          "id": "heldout-03",
+          "question": "Me diga seu nome.",
+          "answer": "Elysia.",
+          "generated": "Estou ndonto eintoia.",
+          "exact_match": false
+        },
+        {
+          "id": "heldout-04",
+          "question": "Qual seu nome?",
+          "answer": "Meu nome é Elysia.",
+          "generated": "Elysia.",
+          "exact_match": false
+        },
+        {
+          "id": "heldout-05",
+          "question": "Você já sabe tudo?",
+          "answer": "Não. Ainda tenho muito a aprender.",
+          "generated": "Elysia, esa IA res nouro. ndo.",
+          "exact_match": false
+        },
+        {
+          "id": "heldout-06",
+          "question": "Muito obrigado.",
+          "answer": "De nada!",
+          "generated": "a Olo. endonde nto muito a a ardete!",
+          "exact_match": false
+        },
+        {
+          "id": "heldout-07",
+          "question": "Até logo!",
+          "answer": "Até logo!",
+          "generated": "Até logo!",
+          "exact_match": true
+        }
+      ]
+    }
+  }
+}
