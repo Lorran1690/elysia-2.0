@@ -1,0 +1,1 @@
+Interrompido antes de avaliação do teste: faltavam exemplos para ensinar as respostas intermediárias Entendi/Certo em chat real. Não é resultado final; não usar checkpoint como entrega. A execução seguinte inclui aquisições e avalia também rollout com respostas intermediárias geradas.

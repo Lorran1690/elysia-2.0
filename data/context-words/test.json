@@ -1,0 +1,455 @@
+{
+  "provenance": "Synthetic diagnostic templates written by Codex/OpenAI, 2026-10-24. No external corpus or private data. Not human-authored dialogue or production corpus.",
+  "scope": "Fixed combinations of eight names and eight colors. Complete name/color combination groups stay in one split. Templates and vocabulary are shared; this is not unseen-intent generalization. No corrections, factual reasoning or general conversation assessed.",
+  "split": "test",
+  "records": [
+    {
+      "id": "name-0-color-1-name",
+      "group_id": "name-0-color-1",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ana."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é verde."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Ana."
+    },
+    {
+      "id": "name-0-color-1-color",
+      "group_id": "name-0-color-1",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ana."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é verde."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "verde."
+    },
+    {
+      "id": "name-1-color-2-name",
+      "group_id": "name-1-color-2",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Bia."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é rosa."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Bia."
+    },
+    {
+      "id": "name-1-color-2-color",
+      "group_id": "name-1-color-2",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Bia."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é rosa."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "rosa."
+    },
+    {
+      "id": "name-2-color-3-name",
+      "group_id": "name-2-color-3",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Caio."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é roxo."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Caio."
+    },
+    {
+      "id": "name-2-color-3-color",
+      "group_id": "name-2-color-3",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Caio."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é roxo."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "roxo."
+    },
+    {
+      "id": "name-3-color-4-name",
+      "group_id": "name-3-color-4",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Davi."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é cinza."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Davi."
+    },
+    {
+      "id": "name-3-color-4-color",
+      "group_id": "name-3-color-4",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Davi."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é cinza."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "cinza."
+    },
+    {
+      "id": "name-4-color-5-name",
+      "group_id": "name-4-color-5",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Eva."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é preto."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Eva."
+    },
+    {
+      "id": "name-4-color-5-color",
+      "group_id": "name-4-color-5",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Eva."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é preto."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "preto."
+    },
+    {
+      "id": "name-5-color-6-name",
+      "group_id": "name-5-color-6",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ivo."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é branco."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Ivo."
+    },
+    {
+      "id": "name-5-color-6-color",
+      "group_id": "name-5-color-6",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ivo."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é branco."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "branco."
+    },
+    {
+      "id": "name-6-color-7-name",
+      "group_id": "name-6-color-7",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Lia."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é amarelo."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Lia."
+    },
+    {
+      "id": "name-6-color-7-color",
+      "group_id": "name-6-color-7",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Lia."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é amarelo."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "amarelo."
+    },
+    {
+      "id": "name-7-color-0-name",
+      "group_id": "name-7-color-0",
+      "intent": "name",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Rui."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é azul."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é o meu nome?"
+        }
+      ],
+      "answer": "Rui."
+    },
+    {
+      "id": "name-7-color-0-color",
+      "group_id": "name-7-color-0",
+      "intent": "color",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Rui."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Minha cor favorita é azul."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Qual é minha cor favorita?"
+        }
+      ],
+      "answer": "azul."
+    }
+  ]
+}
