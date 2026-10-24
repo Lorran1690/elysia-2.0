@@ -2,6 +2,11 @@
 
 ## Recuperação — primeiras palavras (24/10/2026)
 
+Segundo marco: [chat experimental com contexto](reports/context-words/README.md).
+Recuperação de informações em combinações sintéticas não vistas: 12/16, inclusive
+com respostas intermediárias geradas. Ainda não é conversação geral. O envio ao
+GitHub permanece pendente por erro 403; checkpoints e código estão no backup local.
+
 Treino diagnóstico do Transformer próprio a partir de pesos aleatórios: 24/24
 exemplos ensinados e 4/8 variações próximas por correspondência exata. Ainda não
 é conversação confiável. Dados sintéticos, pesos, limites e instruções de execução
