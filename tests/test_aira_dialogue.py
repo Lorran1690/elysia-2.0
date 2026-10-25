@@ -55,3 +55,42 @@ def test_cached_pair_construction_matches_reference_full_transcripts():
             labels[:len(prefix)] = [-100] * len(prefix)
             reference.append((ids, labels))
         assert answer_windows(tokenizer, messages, context) == reference
+
+
+def test_optimizer_boundary_resume_matches_continuous_run(tmp_path, monkeypatch):
+    """Mechanical tiny-model fixture, not a semantic benchmark or real run."""
+    import types
+    import learning.aira_dialogue as trainer
+    from brain.model import ElysiaTransformer, ModelConfig
+
+    torch.manual_seed(111)
+    model = ElysiaTransformer(ModelConfig(vocab_size=2048, block_size=512,
+                             num_layers=1, embedding_dim=16, num_heads=2,
+                             feedforward_dim=32, dropout=0.1))
+    source = tmp_path / 'initial.pt'
+    torch.save({'model_config': model.config_dict(), 'model_state': model.state_dict()}, source)
+    monkeypatch.setattr(trainer, 'BASE', source)
+    documents = [([1, 10, 20, 30, 40, 2], [-100, -100, -100, 30, 40, 2])]
+    monkeypatch.setattr(trainer, 'load_windows', lambda tokenizer, context:
+                        ({s: documents for s in ['train', 'validation', 'test']}, {'fixture': True}))
+    monkeypatch.setattr(trainer, 'reply', lambda *args, **kwargs: 'Mechanical test fixture.')
+    monkeypatch.setattr(trainer, 'time', types.SimpleNamespace(perf_counter=lambda: 0.0))
+    trainer.train(tmp_path/'continuous', steps=3)
+    ticks = iter([0.0, 0.0, 0.0, 2.0, 2.0])
+    monkeypatch.setattr(trainer, 'time', types.SimpleNamespace(perf_counter=lambda: next(ticks)))
+    trainer.train(tmp_path/'resumed', steps=3, max_seconds=1)
+    saved = torch.load(tmp_path/'resumed/last.pt', weights_only=True)
+    assert saved['progress']['step'] == 1
+    assert not (tmp_path/'resumed/results.json').exists()
+    monkeypatch.setattr(trainer, 'time', types.SimpleNamespace(perf_counter=lambda: 0.0))
+    trainer.train(tmp_path/'resumed', steps=3, resume=True)
+    a = torch.load(tmp_path/'continuous/last.pt', weights_only=True)
+    b = torch.load(tmp_path/'resumed/last.pt', weights_only=True)
+    assert a['progress']['history'] == b['progress']['history']
+    assert torch.equal(a['batch_rng'], b['batch_rng'])
+    assert torch.equal(a['torch_rng'], b['torch_rng'])
+    for key, value in a['model_state'].items():
+        assert torch.equal(value, b['model_state'][key])
+    import pytest
+    with pytest.raises(ValueError, match='frozen'):
+        trainer.train(tmp_path/'resumed', steps=3, resume=True)

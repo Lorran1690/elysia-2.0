@@ -124,3 +124,14 @@ A checagem adicional dos IDs originais encontrou 50.000 identificadores únicos
 em 50.000 linhas. Após otimização da preparação, suíte local: **136 passaram,
 9 ignorados** (17,75 s); CI também passou:
 https://github.com/Lorran1690/elysia-2.0/actions/runs/40186800707 .
+
+### Recuperação e verificação final do código
+
+O teste mecânico novo compara uma execução contínua de três passos com uma
+interrupção após o primeiro passo e retomada. Usa um Transformer minúsculo, dados
+artificiais e geração substituída por fixture; não mede respostas reais. Históricos
+de loss, tensores dos pesos, RNG dos batches e RNG do PyTorch coincidem exatamente.
+Também verifica que uma execução finalizada recusa nova avaliação por retomada.
+A suíte completa após esse teste passou: **137 aprovados, 9 ignorados** (34,33 s).
+O treino real continua com o mesmo código e protocolo congelados; apenas o teste
+e a documentação foram adicionados enquanto ele executava.
