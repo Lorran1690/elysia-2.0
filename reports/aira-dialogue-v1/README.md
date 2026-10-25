@@ -67,11 +67,13 @@ as respostas. É somente um marco experimental, muito menor que o objetivo geral
 ## Reprodução
 
 ```bash
-python -m pip install -r requirements-aira.txt
+python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+python -m pip install psutil -r requirements-aira.txt
 python -m learning.aira_corpus --fetch --cache /caminho/cache --output /caminho/novo
-python -m learning.aira_dialogue
-# Se interrompido, preservar o diretório e retomar sem mudar código/dados:
-python -m learning.aira_dialogue --resume
+# Os resultados publicados estão congelados. Para reprodução idêntica em diretório novo:
+python -c "from pathlib import Path; from learning.aira_dialogue import train; train(Path('scratch/aira-reproduction'))"
+# Se essa reprodução for interrompida, retomar o mesmo diretório:
+python -c "from pathlib import Path; from learning.aira_dialogue import train; train(Path('scratch/aira-reproduction'), resume=True)"
 ```
 
 O preparador recusa sobrescrever partições existentes. O treinador verifica hashes
@@ -180,3 +182,8 @@ final: à saudação “Bom dia, Elysia.”, respondeu repetidamente sobre não 
 a informações do “texto fornecido”. Isso confirma que o checkpoint é executável,
 mas também expõe a ausência de uma saudação pertinente. O smoke test não é
 pontuado como parte dos oito casos congelados.
+
+As instruções de reprodução usam um diretório novo, pois os resultados finais
+publicados são imutáveis. O checkpoint já incluído pode ser usado no chat sem
+repetir o treinamento. A repetição exata serve à reprodução, não transforma
+os oito casos já consumidos em um teste novo para escolher hiperparâmetros.
