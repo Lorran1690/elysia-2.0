@@ -1,0 +1,12 @@
+{
+  "tested_commit": "0b1f608",
+  "test_environment": "Linux local sparse clone, core.autocrlf=true and forced checkout; this is not a native Windows runtime test.",
+  "autocrlf_conversion_observed_on_control_readme": true,
+  "all_article_sources_and_token_stores_hash_valid": true,
+  "all_original_conversation_shards_hash_valid": true,
+  "all_curriculum_contract_hashes_valid": true,
+  "target_profile_hash_valid": true,
+  "powershell_utf8_bom_preserved": true,
+  "native_powershell_execution_verified": false,
+  "gpu_execution_verified": false
+}

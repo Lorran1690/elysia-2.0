@@ -213,3 +213,26 @@ com `core.autocrlf=true` no Windows. Os stores uint32 e gzip são binários; avi
 originais mantêm os bytes. O script PowerShell usa UTF-8 com BOM para que mensagens
 acentuadas sejam reconhecidas também pelo Windows PowerShell 5.1. Isso não substitui
 a execução nativa ainda pendente.
+
+A checagem `windows-checkout-integrity.json` usou um clone local esparso com
+`core.autocrlf=true` e checkout forçado. O README de controle foi convertido para
+CRLF, confirmando que a configuração estava ativa; os dados protegidos mantiveram
+todos os hashes, inclusive as partições Aira herdadas e os avisos originais.
+O BOM do script também foi preservado. Esse teste foi executado em Linux e não
+é um teste nativo de PowerShell ou CUDA.
+
+Para preparar o ambiente do Windows, o repositório já fixa uma build CUDA do
+PyTorch em `requirements.txt`; sua compatibilidade com o driver após a formatação
+precisa ser confirmada no teste real. A preparação local pode ser feita assim:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements-corpus.txt
+.\scripts\calibrate-gtx1650.ps1 -Context 512 -Precision auto
+```
+
+Esses comandos devem ser executados no computador com a GTX, na branch desta
+atualização. Não foram executados remotamente no Windows do proprietário. O
+relatório de calibração permite escolher o tamanho de contexto e o orçamento de
+treino usando medidas reais, em vez de supor que os 4 GB bastem para todo perfil.
