@@ -1,0 +1,14 @@
+{
+  "artifacts/aira-dialogue-v1/run-001/last.pt": {
+    "bytes": 30867955,
+    "sha256": "202ada73f0f6aa04cf2e46bd9162bfd4a0a2ef2aeb7aebbdf72268bc8610c567"
+  },
+  "artifacts/aira-dialogue-v1/run-001/sft-model.pt": {
+    "bytes": 10288963,
+    "sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06"
+  },
+  "artifacts/aira-dialogue-v1/run-001/results.json": {
+    "bytes": 12218,
+    "sha256": "afd229ee692ae8b1b5e23f46007336a58c148aadae92258d5b1cdd218cbd1a99"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "reviewer": "Codex",
+  "review_type": "Revisão semântica por Codex; não é avaliação humana independente.",
+  "scale": {
+    "0": "Não atende ao critério",
+    "1": "Atende parcialmente, com falhas materiais",
+    "2": "Integralmente pertinente e correto"
+  },
+  "decisions": [
+    {
+      "id": "aira-01",
+      "score": 0,
+      "generation_sha256": "c8ff3cd0d3faffaec87a794e47959b1b1fd0424ffece6cf9a78314f16256465e",
+      "reason": "Não cumprimenta nem ajuda a montar a lista; repete indisponibilidade de informações e contatos.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-02",
+      "score": 0,
+      "generation_sha256": "b3e291f88be5863293f0834cc4f3033e9e5eda1ece184eacc4dbf8870a6f34bd",
+      "reason": "Não explica vento, umidade nem evaporação; produz uma fórmula alheia à pergunta.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-03",
+      "score": 0,
+      "generation_sha256": "66ed665ed3c075c60ad90d76ea7314b484cddbd08a61f2716b75c122af93b8cc",
+      "reason": "Não escreve convite nem preserva os detalhes pedidos; repete fragmentos sem coerência.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-04",
+      "score": 0,
+      "generation_sha256": "e2b67fb2b988cef9cdfa637f7194ce1570e918f5817a08b63f6abb109004ab0d",
+      "reason": "Não responde oito nem calcula; repete uma fórmula sobre falta de informação e ajuda.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-05",
+      "score": 1,
+      "generation_sha256": "249855f81b204ec8b64699c648b9a22474b59e1bbb29b65adbc85843980fb369",
+      "reason": "Parcial: começa admitindo falta de acesso e não inventa número nem ferramenta. Porém fala de texto fornecido, repete frases e sugere pesquisa sem esclarecer a limitação sobre o documento; não é resposta integralmente pertinente e coerente.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-06",
+      "score": 0,
+      "generation_sha256": "5126bd509e0bcc13847fb99feb2586f6637b9209d1e5828e55d968dd9018bb91",
+      "reason": "Não recupera Pipoca no turno final; repete referências a sites e Shake.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-07",
+      "score": 0,
+      "generation_sha256": "ed961629cd780b98e6dd204f6b9f9d039f4444602453b25bfea15572a859a493",
+      "reason": "Não recupera segunda-feira nem respeita a correção; repete uma fórmula genérica.",
+      "critical_errors": []
+    },
+    {
+      "id": "aira-08",
+      "score": 0,
+      "generation_sha256": "3d7d25662d2203728835b442ca61b2d848f7ed5e70b1ca158e322ae8bd94e6e1",
+      "reason": "Não sugere duas bebidas nem usa a restrição; repete fórmulas sobre contato.",
+      "critical_errors": []
+    }
+  ],
+  "results_sha256": "afd229ee692ae8b1b5e23f46007336a58c148aadae92258d5b1cdd218cbd1a99"
+}

@@ -6,8 +6,9 @@ O [treino neural v2](reports/neural-dialogue-v2/README.md) completou 10.000 pass
 mas reprovou: 0/24 respostas estáticas e 0/8 conversas com contexto corretas.
 O [novo corpus e piloto Aira](reports/aira-dialogue-v1/README.md) adiciona 45.175
 conversas **sintéticas**, com licença Apache 2.0 publicada pela fonte e partições
-auditadas. O piloto está em andamento; preparar mais dados não prova ganho
-de inteligência. Pesos próprios, corpus, protocolo e avaliações são preservados
+auditadas. O piloto completou 2.000 passos e reprovou o novo teste: 0/8 casos
+integralmente corretos, incluindo 0/3 conversas com contexto. A loss melhorou, mas
+as respostas continuam repetitivas e sem pertinência. Pesos próprios, corpus, protocolo e avaliações são preservados
 na branch `recovery/neural-dialogue-v2`. Ainda não há conversas complexas
 comparáveis ao ChatGPT.
 

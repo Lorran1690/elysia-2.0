@@ -1,0 +1,320 @@
+{
+  "settings": {
+    "steps": 2000,
+    "context": 256,
+    "batch": 4,
+    "source_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+    "initial_checkpoint_sha256": "1c90c710cc9449577170871bc064018511a5626d8e61e9a6195e6160f41ca987",
+    "trainer_sha256": "30d8a3cf7a65805f7f55071a4078b838bf257339a6a5108f41aa94b2785f8a2d",
+    "dependencies_sha256": {
+      "learning/language_pilot.py": "3850a0100ec63a0da0254ad96d86d463d2c66aec41996f4776ba31dd5605a900",
+      "learning/aira_corpus.py": "e92aae2e6c42de4d536a0d9be48c0c4f3fb290cfcece106a35762277691a4b8c",
+      "brain/model.py": "c5c035376ae14b1aa1085efffa185a5eca4faa64ff1d8783164313e0ecd7abea",
+      "data/corpus-pt-v1/tokenizer/elysia-bpe.json": "90138f769718b7473f4d69d3a43c4edb628acec3ddd2a7928d3699d65d506191",
+      "evaluation/aira-v1.json": "34c0b794a961b6ce318594096139c6fdf28558f06d0fd6dcb02491b8210a902e"
+    },
+    "torch": "2.14.1+cpu",
+    "synthetic": true,
+    "selection": "Only fixed validation assistant-token loss; old 24-case benchmark is not run.",
+    "scope": "Short-dialogue research; not complex-conversation or ChatGPT equivalence."
+  },
+  "progress": {
+    "step": 2000,
+    "history": [
+      {
+        "step": 1,
+        "train_loss": 4.385166645050049,
+        "validation": {
+          "loss": 4.454710444498984,
+          "perplexity": 86.03123642049331,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 250,
+        "train_loss": 3.97003436088562,
+        "validation": {
+          "loss": 3.808290737668324,
+          "perplexity": 45.073330839601745,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 500,
+        "train_loss": 3.5056488513946533,
+        "validation": {
+          "loss": 3.6519711774346697,
+          "perplexity": 38.5505812391283,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 750,
+        "train_loss": 3.2519593238830566,
+        "validation": {
+          "loss": 3.567405834767856,
+          "perplexity": 35.424576645124866,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 1000,
+        "train_loss": 4.099277496337891,
+        "validation": {
+          "loss": 3.4909568270396685,
+          "perplexity": 32.81733320036859,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 1250,
+        "train_loss": 3.2123472690582275,
+        "validation": {
+          "loss": 3.4411426544189454,
+          "perplexity": 31.222614451399085,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 1500,
+        "train_loss": 2.991896390914917,
+        "validation": {
+          "loss": 3.4158926663792615,
+          "perplexity": 30.444113738208458,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 1750,
+        "train_loss": 2.940110921859741,
+        "validation": {
+          "loss": 3.401963773972121,
+          "perplexity": 30.02300058190772,
+          "targets": 5690
+        }
+      },
+      {
+        "step": 2000,
+        "train_loss": 3.6077866554260254,
+        "validation": {
+          "loss": 3.39319335119586,
+          "perplexity": 29.760837494817647,
+          "targets": 5690
+        }
+      }
+    ],
+    "best_loss": 3.39319335119586,
+    "best_step": 2000,
+    "seconds": 841.9695467190002,
+    "targets": 946013
+  },
+  "data_counts": {
+    "train": {
+      "source_records": 40745,
+      "usable_records": 7785,
+      "windows": 8697,
+      "usable_multiturn_records": 7785
+    },
+    "validation": {
+      "source_records": 2163,
+      "usable_records": 45,
+      "windows": 50,
+      "usable_multiturn_records": 45
+    },
+    "test": {
+      "source_records": 2267,
+      "usable_records": 55,
+      "windows": 58,
+      "usable_multiturn_records": 55
+    }
+  },
+  "test": {
+    "all": {
+      "loss": 3.5877584399042943,
+      "perplexity": 36.15294603051397,
+      "targets": 10394
+    },
+    "assistant": {
+      "loss": 3.174040742946764,
+      "perplexity": 23.90387890255566,
+      "targets": 6435
+    }
+  },
+  "generations": [
+    {
+      "id": "aira-01",
+      "user_turns": [
+        "Olá! Pode me ajudar a montar uma lista de compras?"
+      ],
+      "criterion": "Cumprimenta e oferece ajuda pertinente ou pede detalhes da compra.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Olá! Pode me ajudar a montar uma lista de compras?"
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre a preferência do produto específico das informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de cont"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-02",
+      "user_turns": [
+        "Por que roupas molhadas secam mais depressa quando há vento?"
+      ],
+      "criterion": "Explica que o vento remove ar úmido e favorece evaporação, sem confundir com congelamento.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Por que roupas molhadas secam mais depressa quando há vento?"
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre a pessoa ou pessoas ou pessoas ou pessoas ou pessoas que podem ajudá-lo a ajudá-lo a fazer uma compra mais pessoal."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-03",
+      "user_turns": [
+        "Escreva um convite curto para um piquenique no domingo, às 9 horas, no parque."
+      ],
+      "criterion": "Convite coerente preservando atividade, dia, hora e lugar.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Escreva um convite curto para um piquenique no domingo, às 9 horas, no parque."
+        },
+        {
+          "role": "assistant",
+          "content": "Sim, de acordo com o seu batato com batata com batalha de cerca de cerca de cerca de cerca de cerca de cerca de cerca de cerca de cerca de cerca de cerca de cerca de café de bolo cantanheiro."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-04",
+      "user_turns": [
+        "Uma caixa tinha doze copos. Quebraram quatro. Quantos sobraram inteiros?"
+      ],
+      "criterion": "Responde oito copos inteiros, com raciocínio coerente se explicar.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Uma caixa tinha doze copos. Quebraram quatro. Quantos sobraram inteiros?"
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre a pessoa ou pessoas ou felizes e se tornaram a sua receita ou feliz por poder ajudá-lo a ajudá-lo a se conectar com as pessoas que eu possa ajudá-lo a ajudá-lo a ajudá-lo a ajudá-lo a ajudá-lo a encontrar as "
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-05",
+      "user_turns": [
+        "Qual é o número do meu documento de identidade?"
+      ],
+      "criterion": "Admite não ter essa informação, sem inventar número ou afirmar acesso.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Qual é o número do meu documento de identidade?"
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre o texto fornecido no texto fornecido no texto fornecido no texto fornecido. No entanto, você pode tentar pesquisar on-line ou entrar em contato com o texto fornecido no texto fornecido no texto fornecido no texto fornecido. No entanto, você pode tentar pesquisar on-line ou entrar em contato diretamente com o texto fornecido no texto fornecido no texto fornecido. No entanto, você pode "
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-06",
+      "user_turns": [
+        "Meu coelho se chama Pipoca.",
+        "Como se chama meu coelho?"
+      ],
+      "criterion": "Responde Pipoca no último turno, usando o contexto real gerado.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu coelho se chama Pipoca."
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre o público dos dados do público dos seus sites e os seus dados e os dados do tempo real da sua receita. No entanto, você pode tentar pesquisar on-line ou entrar em contato com o site da Canat Shake Shake Shake Shake Shake Sh"
+        },
+        {
+          "role": "user",
+          "content": "Como se chama meu coelho?"
+        },
+        {
+          "role": "assistant",
+          "content": "Sim, não tenho acesso a informações sobre o site da The Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake Shake "
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-07",
+      "user_turns": [
+        "O passeio será no sábado.",
+        "Corrigindo: será na segunda-feira. Em que dia será o passeio?"
+      ],
+      "criterion": "Responde segunda-feira e respeita a correção.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "O passeio será no sábado."
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre o público dos dados do público dos seus dados do seu público dos seus dados do seu público dos seus dados do seu público dos seus dados do seu benefício dos seus dados do seu benefício dos seus dados do seu benefício dos seus dados do seu benefício dos seus dados "
+        },
+        {
+          "role": "user",
+          "content": "Corrigindo: será na segunda-feira. Em que dia será o passeio?"
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre o público dos seus dados de vida ou família ou feliz por poder ajudá-lo a ajudá-lo a encontrar as informações de contato com as informações de contato com seus próprios próprios dados e as informações de contato com as informações de contato com as informações de contato com as informações de contato com "
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "aira-08",
+      "user_turns": [
+        "Preciso de uma bebida sem açúcar adicionado.",
+        "Dê duas opções e mantenha minha restrição."
+      ],
+      "criterion": "Sugere duas bebidas adequadas e mantém a restrição, sem inventar informação pessoal.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Preciso de uma bebida sem açúcar adicionado."
+        },
+        {
+          "role": "assistant",
+          "content": "Não tenho acesso a informações específicas sobre a pessoa ou entrar em contato com o seu público e a pessoa e o seu público pode ajudá-lo a encontrar as informações de contato com as informações de contato com as informações de contato com as informações de contato com as informações de contato com as informações de contato com as informações de contato "
+        },
+        {
+          "role": "user",
+          "content": "Dê duas opções e mantenha minha restrição."
+        },
+        {
+          "role": "assistant",
+          "content": "Sim, de acordo com o seu planeta ou feliz por poder ajudá-lo a encontrar as informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de contato com base nas informações de cont"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "qualitative_generation_count": 1,
+  "checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "semantic_evaluation": "Not established; no claim of conversational success.",
+  "old_benchmark_rerun": false
+}

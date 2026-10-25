@@ -1,6 +1,6 @@
 # Expansão de conversas sintéticas e novo piloto
 
-Status: corpus preparado e auditado; novo piloto em andamento. Não há demonstração de conversas complexas.
+Status: corpus e treino concluídos. Marco experimental REPROVADO: 0/8 casos integralmente corretos, incluindo 0/3 conversas com contexto. A meta de conversas complexas permanece não atingida.
 
 ## Fonte e limites
 
@@ -135,3 +135,48 @@ Também verifica que uma execução finalizada recusa nova avaliação por retom
 A suíte completa após esse teste passou: **137 aprovados, 9 ignorados** (34,33 s).
 O treino real continua com o mesmo código e protocolo congelados; apenas o teste
 e a documentação foram adicionados enquanto ele executava.
+
+## Resultado final
+
+Treino concluído nos 2.000 passos previstos, com 946.013 tokens-alvo de assistente
+e 841,97 segundos de computação registrados (aproximadamente 14 minutos; não
+inclui a preparação). O melhor checkpoint foi o último, selecionado só pela
+validação. Loss de assistente de validação: 4,4547 no passo 1 → 3,3932 no passo
+2.000; perplexidade: 86,03 → 29,76. No teste sintético separado, executado uma vez,
+loss 3,1740 e perplexidade 23,90 em 6.435 tokens-alvo de assistente.
+
+**Revisão semântica: 0/8 casos integralmente corretos, 0/3 conversas com contexto,
+1/16 pontos.** Só o caso sobre informação pessoal recebeu crédito parcial:
+o modelo admite falta de acesso, mas desvia para texto fornecido e repetições.
+Os demais casos não respondem às perguntas. Nenhum caso tem uma fabricação
+crítica privada ou de acesso identificada nesta amostra pequena; isso não
+estabelece segurança geral. Não comparar diretamente essas contagens ou losses
+com os 24 casos antigos: são conjuntos distintos, não uma medição pareada.
+
+As saídas repetem “Não tenho acesso a informações específicas”, referências a
+contatos e fragmentos sem relação com o pedido. A geração gulosa entra em ciclos.
+A redução de loss não se traduziu em seguimento de instruções, cálculos simples
+ou recuperação do contexto. Não selecionar novas configurações ou novos exemplos
+de treino usando estes oito casos: agora são diagnóstico histórico.
+
+As saídas completas, inclusive as ruins, estão em
+`artifacts/aira-dialogue-v1/run-001/results.json`. A revisão registra uma nota,
+justificativa e hash por caso em `semantic-review.json`; as contagens e o marco
+fixo estão em `scores.json`. A revisão foi feita pelo Codex, sem avaliador humano
+independente. Os hashes do checkpoint de inferência, retomada e resultados estão
+em `artifact-hashes.json`. O checkpoint intermediário do passo 500 também foi
+preservado no GitHub durante o treinamento.
+
+O trabalho ampliou e auditou a base de conversas, melhorou a preparação e a
+recuperação do treino e produziu novos pesos próprios. **Não produziu uma
+assistente de conversa útil ou equivalente ao ChatGPT.** O objetivo amplo fica
+bloqueado pela escala atual de pré-treino, modelo, contexto e computação,
+e pela falta de validação humana independente. Os requisitos concretos para
+avançar estão em [next-stage.md](next-stage.md); ampliar só as épocas desse
+piloto não constitui uma solução demonstrada.
+
+O carregamento real pelo comando de chat também foi verificado com o checkpoint
+final: à saudação “Bom dia, Elysia.”, respondeu repetidamente sobre não ter acesso
+a informações do “texto fornecido”. Isso confirma que o checkpoint é executável,
+mas também expõe a ausência de uma saudação pertinente. O smoke test não é
+pontuado como parte dos oito casos congelados.
