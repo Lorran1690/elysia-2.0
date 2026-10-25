@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "source_manifest_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+  "fit_partition": "train only; validation and test remain untouched in source corpus",
+  "tokenizer_manifest_sha256": "5bf452258850af94a4dadc48c20d7736d5f8275d342fc6c3728ddbec1fdc1e79",
+  "tokenizer_sha256": "e378186d88299acbf9e6ff67ae4c0549ca61bf8304ca9adace17b0e0baadc73e",
+  "tokenizer_directory": "data/foundation-pt-v1/tokenizer",
+  "vocab_size": 8192,
+  "maximum_context": 2048,
+  "history_policy": "Entire conversation prefix from first user through target; no cropped earlier turns",
+  "selection": "At most two targets per original connected group, prefer deepest contextual then standalone then lexical deferral candidate",
+  "counts": {
+    "training_records": 40745,
+    "training_assistant_targets": 145957
+  },
+  "coverage_before_lexical_filters": {
+    "full_prefix_targets_512": 28862,
+    "full_prefix_contextual_targets_512": 7632,
+    "full_prefix_targets_1024": 75478,
+    "full_prefix_contextual_targets_1024": 41004,
+    "full_prefix_targets_2048": 131429,
+    "full_prefix_contextual_targets_2048": 90739,
+    "full_prefix_targets_256": 6337,
+    "full_prefix_contextual_targets_256": 762
+  },
+  "rejected_targets": {
+    "complete_history_exceeds_context": 14528,
+    "strong_repetition_in_prefix": 26
+  },
+  "candidate_targets": 131403,
+  "selected_targets": 79294,
+  "bucket_target_counts": {
+    "standalone": 32587,
+    "contextual": 37301,
+    "generic_deferral_candidate": 9406
+  },
+  "sampling_probability_mass": {
+    "contextual": 0.6,
+    "standalone": 0.3,
+    "generic_deferral_candidate": 0.10000000000000002
+  },
+  "prefix_family_adjustment": "inverse square root frequency inside each bucket, computed from selected training targets only",
+  "targets_sha256": "1c7b57878ba519d87d98cac2cc8538994523fca2cbee003726a7a1a9d3226648",
+  "review_queue_sha256": "fd125f6398422ad47bb428be54d7c231f21ec3e8d910a20714e550320e429589",
+  "review_queue_rows": 40,
+  "independent_human_approval": false,
+  "neural_weights_updated": false,
+  "limits": [
+    "Lexical deferral is a candidate label, not proof that uncertainty is unwarranted.",
+    "High verbatim repetition filter may reject legitimate repetitive writing.",
+    "Bucket proportions are a new experimental hypothesis, not validated conversation quality.",
+    "Synthetic answers remain factually unverified.",
+    "The new 8192-token vocabulary is incompatible with old 2048-token checkpoints; new pretraining is required."
+  ]
+}

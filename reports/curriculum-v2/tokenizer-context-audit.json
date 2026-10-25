@@ -1,0 +1,45 @@
+{
+  "scope": "First 1000 immutable content-hash-sorted training records; no validation/test fitting or qualitative benchmark.",
+  "sample_records": 1000,
+  "source_manifest_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+  "sample_id_sha256": "997769e47433cc6e3dcaae4b7e5dfed659f59a151de02874417c756b2b77ca81",
+  "tokenizers": {
+    "previous_2048": {
+      "vocab": 2048,
+      "own_sha256": "90138f769718b7473f4d69d3a43c4edb628acec3ddd2a7928d3699d65d506191",
+      "total_tokens": 2143834,
+      "median_conversation_tokens": 2009.0,
+      "complete_conversations_fitting_context": {
+        "256": 1,
+        "512": 18,
+        "1024": 119,
+        "2048": 514
+      }
+    },
+    "new_8192": {
+      "vocab": 8192,
+      "own_sha256": "e378186d88299acbf9e6ff67ae4c0549ca61bf8304ca9adace17b0e0baadc73e",
+      "total_tokens": 1550129,
+      "median_conversation_tokens": 1451.5,
+      "complete_conversations_fitting_context": {
+        "256": 5,
+        "512": 44,
+        "1024": 247,
+        "2048": 779
+      }
+    }
+  },
+  "new_to_previous_token_ratio": 0.7230639125977104,
+  "legacy_256_window_distribution": {
+    "windows": 261,
+    "generic_deferral_candidates": 96
+  },
+  "new_2048_complete_prefix_candidates_before_balancing": {
+    "standalone": 776,
+    "contextual": 1932,
+    "generic_deferral_candidate": 611
+  },
+  "comparison_limits": "Window distributions change tokenizer, context length and history policy together; this does not isolate a single cause. Prefix labels are lexical, not semantic quality judgments.",
+  "neural_weights_updated": false,
+  "limits": "Compression and context coverage are not comprehension or factual correctness. Tokenizer vocabularies are incompatible; old model embeddings cannot be reused unchanged."
+}

@@ -1,0 +1,122 @@
+{
+  "source": "wikimedia/wikipedia",
+  "revision": "b04c8d1ceb2f5cd4588862100d08de323dccfbaa",
+  "source_lock_sha256": "b9f00414dfc87f2846dcabec71e50d0f7826010fc46347738d32f3b966ed9df3",
+  "source_files": [
+    {
+      "type": "file",
+      "oid": "eebdb1cbfe35d9ab278616f374a2f3071a4e5678",
+      "size": 425972594,
+      "lfs": {
+        "oid": "059136d457150f9c033a4bdfb7fbea2eef2b6e58e03e2c0cb8275144ce99fb34",
+        "size": 425972594,
+        "pointerSize": 134
+      },
+      "xetHash": "852c8e18d880e734941224e8d1d84784e68ccf38d7fa11cd783c6536efb1f3ff",
+      "path": "20231101.pt/train-00000-of-00006.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "37f1eb91948e151a4e1eb789517533a6f3ab307e",
+      "size": 212472795,
+      "lfs": {
+        "oid": "5e9b4476c0d69b0bffdcf76529de424dfda9510e3a6867676e5d482e6c70f1be",
+        "size": 212472795,
+        "pointerSize": 134
+      },
+      "xetHash": "c02a7ad15806ce1ff1754188f5793a6fc716a095551f68c0fa2ed0aaab06ca6c",
+      "path": "20231101.pt/train-00001-of-00006.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "c2f09e8490e502bbd20f5d3e9413c68f9d902985",
+      "size": 202884385,
+      "lfs": {
+        "oid": "d136dc9359e96408ed739bedc3c7da0bb4ee4481597299eb5d4170b36d1fca9c",
+        "size": 202884385,
+        "pointerSize": 134
+      },
+      "xetHash": "e71c081cc732bcd9333f223c94dd2b575c4b624e380e2c4039cd76566e6194fe",
+      "path": "20231101.pt/train-00002-of-00006.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "3ab581d3ad28a06a81d65923c5f6bfe2d2af1ae3",
+      "size": 218920129,
+      "lfs": {
+        "oid": "786f1ee2e400298e4b0889de8eef4d8bc465629cf773970a84adb520ae900e4f",
+        "size": 218920129,
+        "pointerSize": 134
+      },
+      "xetHash": "0a585a2e90bdec59d952326abc0c95455532869ae2ade24b606f25e8a7442d94",
+      "path": "20231101.pt/train-00003-of-00006.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "f3d7b2f3f9b581daeb94c814fbc087c5c56ae645",
+      "size": 227282628,
+      "lfs": {
+        "oid": "181d7004d5cedf4704ec5baa5c1c549520634234e3bdf7ea9aa8cfeb0f505cbc",
+        "size": 227282628,
+        "pointerSize": 134
+      },
+      "xetHash": "f75a57b8a1f63b67b3ae7d8f88418ce6fbb7fa57b2f21c8b9ac587d621623f8e",
+      "path": "20231101.pt/train-00004-of-00006.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "964738db11fc45435a7eafd04c79a7d96e95a923",
+      "size": 292108528,
+      "lfs": {
+        "oid": "5d60245e7e8c8176e2b9f7f0ed5ba5dcf4eb748bb94f852582ccac01d7ec72fd",
+        "size": 292108528,
+        "pointerSize": 134
+      },
+      "xetHash": "e6967cccf84eecf3aad198bcc5126fcb395ba1c9e65222273b9b43e04b55124f",
+      "path": "20231101.pt/train-00005-of-00006.parquet"
+    }
+  ],
+  "sample": "1% of SHA256(pt:article_id) buckets across all six shards, before eligibility filters",
+  "counts": {
+    "source_rows_scanned": 1112246,
+    "sampled_by_id": 11158,
+    "excluded_length": 3193,
+    "excluded_disambiguation": 27,
+    "excluded_identifier_pattern": 400
+  },
+  "partitions": {
+    "train": {
+      "documents": 6787,
+      "characters": 17649890,
+      "bytes": 25214527,
+      "sha256": "b571609c4abbf001b1848eef1cbd3fd79f6c5e513c0084c7b23482983d0251f2"
+    },
+    "validation": {
+      "documents": 362,
+      "characters": 946953,
+      "bytes": 1351506,
+      "sha256": "1aedaee58933e0ec392058dcef18c2155dc2f5aa6dab16430a29f8f5919f9f8f"
+    },
+    "test": {
+      "documents": 389,
+      "characters": 1098317,
+      "bytes": 1533911,
+      "sha256": "cba88f7f051ba22c43d908f4d975ac79fa09f76f6050004c021149fc2e9863a4"
+    }
+  },
+  "grouping": "Exact normalized full text; no group crosses splits",
+  "license": "CC-BY-SA-3.0 per upstream card; attribution and history URL retained per article",
+  "source_notices": {
+    "sources/UPSTREAM-CARD.md": "a0f2055ac612f924721e9981fa2a49a18adec1c67cc8026f6c97d12f17211b21",
+    "sources/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
+    "sources/license-evidence.json": "2f53e53e9a643bbc090cf0a343ecb6341318209ecc4520dc67090dd9775a2ae0"
+  },
+  "neural_weights_updated": false,
+  "limitations": [
+    "Snapshot from November 2023, not current facts.",
+    "No independent factual, topic balance, bias or human-authorship audit.",
+    "Lexical identifier filters are not complete privacy review.",
+    "Near duplicates and shared paragraphs may remain between articles.",
+    "Encyclopedic text is not conversational behavior or an instruction corpus."
+  ]
+}

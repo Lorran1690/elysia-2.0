@@ -1,0 +1,30 @@
+{
+  "selected_targets": 79294,
+  "distinct_training_groups": 40669,
+  "maximum_targets_per_group": 2,
+  "bucket_counts": {
+    "standalone": 32587,
+    "contextual": 37301,
+    "generic_deferral_candidate": 9406
+  },
+  "sampling_mass": {
+    "standalone": 0.29999999999998306,
+    "contextual": 0.600000000000115,
+    "generic_deferral_candidate": 0.09999999999999629
+  },
+  "all_target_ids_belong_to_train_only": true,
+  "complete_prefix_metadata_valid": true,
+  "queue_rows_round_trip_and_target_mask_checked": 40,
+  "queue_human_decisions": "all pending; none approved",
+  "article_partition_counts": {
+    "train": 6787,
+    "validation": 362,
+    "test": 389
+  },
+  "article_ids_unique": 7538,
+  "article_full_text_groups_crossing_splits": 0,
+  "article_attribution_and_license_fields_present": true,
+  "all_language_partition_source_and_token_store_hashes_valid": true,
+  "neural_weights_updated": false,
+  "limits": "Structural/integrity audit; not independent human semantic or factual review. Near duplicates are not excluded by exact hash grouping."
+}

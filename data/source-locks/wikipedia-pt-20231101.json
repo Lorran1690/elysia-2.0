@@ -1,0 +1,74 @@
+[
+  {
+    "type": "file",
+    "oid": "eebdb1cbfe35d9ab278616f374a2f3071a4e5678",
+    "size": 425972594,
+    "lfs": {
+      "oid": "059136d457150f9c033a4bdfb7fbea2eef2b6e58e03e2c0cb8275144ce99fb34",
+      "size": 425972594,
+      "pointerSize": 134
+    },
+    "xetHash": "852c8e18d880e734941224e8d1d84784e68ccf38d7fa11cd783c6536efb1f3ff",
+    "path": "20231101.pt/train-00000-of-00006.parquet"
+  },
+  {
+    "type": "file",
+    "oid": "37f1eb91948e151a4e1eb789517533a6f3ab307e",
+    "size": 212472795,
+    "lfs": {
+      "oid": "5e9b4476c0d69b0bffdcf76529de424dfda9510e3a6867676e5d482e6c70f1be",
+      "size": 212472795,
+      "pointerSize": 134
+    },
+    "xetHash": "c02a7ad15806ce1ff1754188f5793a6fc716a095551f68c0fa2ed0aaab06ca6c",
+    "path": "20231101.pt/train-00001-of-00006.parquet"
+  },
+  {
+    "type": "file",
+    "oid": "c2f09e8490e502bbd20f5d3e9413c68f9d902985",
+    "size": 202884385,
+    "lfs": {
+      "oid": "d136dc9359e96408ed739bedc3c7da0bb4ee4481597299eb5d4170b36d1fca9c",
+      "size": 202884385,
+      "pointerSize": 134
+    },
+    "xetHash": "e71c081cc732bcd9333f223c94dd2b575c4b624e380e2c4039cd76566e6194fe",
+    "path": "20231101.pt/train-00002-of-00006.parquet"
+  },
+  {
+    "type": "file",
+    "oid": "3ab581d3ad28a06a81d65923c5f6bfe2d2af1ae3",
+    "size": 218920129,
+    "lfs": {
+      "oid": "786f1ee2e400298e4b0889de8eef4d8bc465629cf773970a84adb520ae900e4f",
+      "size": 218920129,
+      "pointerSize": 134
+    },
+    "xetHash": "0a585a2e90bdec59d952326abc0c95455532869ae2ade24b606f25e8a7442d94",
+    "path": "20231101.pt/train-00003-of-00006.parquet"
+  },
+  {
+    "type": "file",
+    "oid": "f3d7b2f3f9b581daeb94c814fbc087c5c56ae645",
+    "size": 227282628,
+    "lfs": {
+      "oid": "181d7004d5cedf4704ec5baa5c1c549520634234e3bdf7ea9aa8cfeb0f505cbc",
+      "size": 227282628,
+      "pointerSize": 134
+    },
+    "xetHash": "f75a57b8a1f63b67b3ae7d8f88418ce6fbb7fa57b2f21c8b9ac587d621623f8e",
+    "path": "20231101.pt/train-00004-of-00006.parquet"
+  },
+  {
+    "type": "file",
+    "oid": "964738db11fc45435a7eafd04c79a7d96e95a923",
+    "size": 292108528,
+    "lfs": {
+      "oid": "5d60245e7e8c8176e2b9f7f0ed5ba5dcf4eb748bb94f852582ccac01d7ec72fd",
+      "size": 292108528,
+      "pointerSize": 134
+    },
+    "xetHash": "e6967cccf84eecf3aad198bcc5126fcb395ba1c9e65222273b9b43e04b55124f",
+    "path": "20231101.pt/train-00005-of-00006.parquet"
+  }
+]

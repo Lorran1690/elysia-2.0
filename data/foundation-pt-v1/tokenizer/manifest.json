@@ -1,0 +1,55 @@
+{
+  "trained_from_scratch": true,
+  "fit_partition": "train only",
+  "pretrained_artifacts_used": false,
+  "implementation": "tokenizers Rust BPE trainer, byte-level with no regex segmentation; lossless export to project ByteBPETokenizer",
+  "source_manifest_sha256": "5e82b29a6c71e9c8b7485dd7fca03ea0973e2968c92fc8c113b9daaedacd22d9",
+  "training_file_sha256": "b571609c4abbf001b1848eef1cbd3fd79f6c5e513c0084c7b23482983d0251f2",
+  "vocab_size": 8192,
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 8192,
+    "requested_vocab_size": 8192,
+    "fingerprint": "81cc576db9863f23498dd80a4833dddcb98e1e9096bbaf3de935fe29a326cf32"
+  },
+  "custom_fast_encoding_samples_checked": 68,
+  "all_documents_round_trip_checked": true,
+  "partitions": {
+    "train": {
+      "tokens_including_bos_eos": 4623252,
+      "documents": 6787,
+      "by_family": {
+        "encyclopedia": 4623252
+      },
+      "store_sha256": "bb0daa5f915f8b97b297eb8f4364b8a3d3046092457f597a5b8250c4e60d3438",
+      "store_bytes": 18493008,
+      "dtype": "uint32",
+      "byteorder": "little"
+    },
+    "validation": {
+      "tokens_including_bos_eos": 250632,
+      "documents": 362,
+      "by_family": {
+        "encyclopedia": 250632
+      },
+      "store_sha256": "bba8c3525b68ab31811fde991f36babf34155fe972c078303d8c8bd7c368c1fb",
+      "store_bytes": 1002528,
+      "dtype": "uint32",
+      "byteorder": "little"
+    },
+    "test": {
+      "tokens_including_bos_eos": 288926,
+      "documents": 389,
+      "by_family": {
+        "encyclopedia": 288926
+      },
+      "store_sha256": "4e7c3783836a66e7f83c7ee61f2cd5cf1469a81b0fa2ead72a5b5039d32fe94f",
+      "store_bytes": 1155704,
+      "dtype": "uint32",
+      "byteorder": "little"
+    }
+  },
+  "elysia_tokenizer_sha256": "e378186d88299acbf9e6ff67ae4c0549ca61bf8304ca9adace17b0e0baadc73e",
+  "neural_weights_updated": false
+}

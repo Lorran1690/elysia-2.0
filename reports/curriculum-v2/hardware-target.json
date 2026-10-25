@@ -1,0 +1,13 @@
+{
+  "source": "User-provided E.L.Y.S.I.A. 2.0 master dossier, sections 7.2 and 25",
+  "source_sha256": "7664579f422c3d44b08e97a7059b21556ff730c4a21100559062c581c4a57085",
+  "hardware": {
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "gpu_memory_gib": 4,
+    "cpu": "AMD Ryzen 5 3400G",
+    "ram_gib": 16,
+    "os": "Windows",
+    "evidence": "User-provided master dossier, sections 7.2 and 25; historical configuration, not detected on this executor."
+  },
+  "current_executor_has_this_gpu": false
+}

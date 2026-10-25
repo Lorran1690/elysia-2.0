@@ -1,0 +1,23 @@
+{
+  "configuration_sha256": "d321174213170680570ddafcbfcb32778efdfc5242422597ed1b76238d3ef408",
+  "target_hardware_declared": null,
+  "parameters": 97640192,
+  "own_vocabulary": 8192,
+  "maximum_context": 2048,
+  "available_training_tokens": 4623252,
+  "corpus_tokens_per_parameter": 0.04734988640743353,
+  "training_token_type": "One pass over sampled encyclopedia train store, not total training exposure.",
+  "parameter_gradient_adam_bytes_estimate": 1562243072,
+  "memory_estimate_limits": "Parameter/gradient/Adam states only, not activations, attention, temporary buffers or runtime overhead. Not a GPU memory guarantee.",
+  "cuda_available": false,
+  "gpu_device_count": 0,
+  "gpu_calibration_ready": false,
+  "blocking_reasons": [
+    "No local CUDA GPU is available; no CPU fallback for the larger profile."
+  ],
+  "curriculum_human_review_complete": false,
+  "full_training_readiness": "Not established: broader pretraining and independent curriculum review remain necessary.",
+  "neural_weights_updated": false,
+  "old_checkpoint_compatible": false,
+  "incompatibility_reason": "New vocabulary and architecture require new own-model pretraining, not loading the old checkpoint."
+}

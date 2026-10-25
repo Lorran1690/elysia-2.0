@@ -1,0 +1,25 @@
+# Research candidate, not trained weights or a promise of conversational ability.
+seed: 27102028
+model:
+  vocab_size: 8192
+  block_size: 2048
+  num_layers: 12
+  embedding_dim: 768
+  num_heads: 12
+  feedforward_dim: 3072
+  dropout: 0.1
+  positional_embedding: rope
+  norm_type: rmsnorm
+  feedforward_type: swiglu
+  attention_backend: sdpa
+corpus: data/foundation-pt-v1
+curriculum: data/curriculum-v2
+calibration:
+  device: cuda
+  batch_size: 1
+  context: 1024
+  maximum_steps: 20
+  learning_rate: 0.0001
+  gradient_clip_norm: 1.0
+  checkpoint_output: null
+  purpose: Measure forward/backward memory and throughput; no conversational training claim.

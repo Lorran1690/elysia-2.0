@@ -1,0 +1,94 @@
+{
+  "source_manifest_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+  "scope": "Training split only; no validation/test contents inspected for these statistics.",
+  "counts": {
+    "conversations": 40745,
+    "answers": 145957,
+    "repeated_fourgram_at_least_four": 23227,
+    "under_60_words": 11573,
+    "generic_deferral_prefix": 2721
+  },
+  "common_eight_word_prefixes": [
+    [
+      "como modelo de linguagem de ia não tenho",
+      6455
+    ],
+    [
+      "como modelo de linguagem de ia não posso",
+      1555
+    ],
+    [
+      "lamento como modelo de linguagem de ia não",
+      521
+    ],
+    [
+      "infelizmente como modelo de linguagem de ia não",
+      418
+    ],
+    [
+      "sinto muito mas como modelo de linguagem de",
+      381
+    ],
+    [
+      "sinto muito como modelo de linguagem de ia",
+      266
+    ],
+    [
+      "como modelo de linguagem de ia posso fornecer",
+      218
+    ],
+    [
+      "como modelo de linguagem de ia não sou",
+      199
+    ],
+    [
+      "não tenho opiniões ou crenças pessoais no entanto",
+      194
+    ],
+    [
+      "como modelo de linguagem de ia concordo plenamente",
+      194
+    ],
+    [
+      "desculpe como modelo de linguagem de ia não",
+      180
+    ],
+    [
+      "claro ficarei feliz em fornecer mais informações sobre",
+      177
+    ],
+    [
+      "como modelo de linguagem de ia posso sugerir",
+      157
+    ],
+    [
+      "não tenho opiniões ou crenças pessoais mas posso",
+      154
+    ],
+    [
+      "não tenho acesso a informações em tempo real",
+      141
+    ],
+    [
+      "como modelo de linguagem de ia posso dizer",
+      129
+    ],
+    [
+      "claro aqui estão algumas dicas para ajudá lo",
+      128
+    ],
+    [
+      "não tenho crenças ou opiniões pessoais no entanto",
+      118
+    ],
+    [
+      "sim como modelo de linguagem de ia posso",
+      103
+    ],
+    [
+      "claro aqui estão alguns exemplos de como a",
+      101
+    ]
+  ],
+  "limits": "Lexical diagnostics, not semantic labels of truth, refusal correctness or quality."
+}

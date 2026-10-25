@@ -1,0 +1,8 @@
+{
+  "license_text_mirror": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-SA-3.0.txt",
+  "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
+  "upstream_license_declaration": "Pinned wikimedia/wikipedia README.md",
+  "original_license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "wikimedia_terms_url": "https://dumps.wikimedia.org/legal.html",
+  "direct_notice_download": "Original CC text URL and Wikimedia legal URL returned HTTP 403 during acquisition; full CC text is archived from the pinned SPDX mirror."
+}

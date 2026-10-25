@@ -1,5 +1,14 @@
 # E.L.Y.S.I.A. 2.0
 
+## Fundação e currículo novos — preparados, sem novo treino neural
+
+[Relatório e calibração para a GTX 1650](reports/curriculum-v2/README.md):
+7.538 artigos portugueses com procedência, BPE próprio de 8.192 tokens e 79.294
+alvos de conversa com histórico completo e amostragem equilibrada. Perfil local
+de 20,49 milhões de parâmetros e script Windows para medir a GPU de 4 GB informada
+no dossiê. Dados e código preparados; nenhum ganho conversacional demonstrado
+nesta etapa. Branch: `recovery/foundation-curriculum-v2`.
+
 ## Estado atual — pesquisa de conversação
 
 O [treino neural v2](reports/neural-dialogue-v2/README.md) completou 10.000 passos,
