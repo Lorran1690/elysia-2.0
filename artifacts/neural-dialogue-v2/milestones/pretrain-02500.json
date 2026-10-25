@@ -1,0 +1,8 @@
+{
+  "stage": "pretrain",
+  "step": 2500,
+  "validation_loss": 4.25544246584177,
+  "sha256": "ae16a8f31ee798973e9ff512d0ebea71d4f51ac9e36fc6877c9f1630c012e333",
+  "scope": "Intermediate language-pretraining checkpoint, not a conversational assistant.",
+  "parameters": 2567616
+}
