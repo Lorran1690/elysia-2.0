@@ -207,3 +207,9 @@ integral não foi incluído nesta atualização. A preparação de dados e os pe
 estão concluídos; o próximo treinamento depende de medir o hardware real e
 definir um orçamento de pré-treino compatível com os dados e recursos. A meta
 de conversas complexas ainda não foi demonstrada.
+
+As regras Git de fim de linha preservam os hashes dos dados preparados mesmo
+com `core.autocrlf=true` no Windows. Os stores uint32 e gzip são binários; avisos
+originais mantêm os bytes. O script PowerShell usa UTF-8 com BOM para que mensagens
+acentuadas sejam reconhecidas também pelo Windows PowerShell 5.1. Isso não substitui
+a execução nativa ainda pendente.

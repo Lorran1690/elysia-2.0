@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateRange(2, 20)][int]$Steps = 5,
     [ValidateSet(256, 512, 1024, 2048)][int]$Context = 512,
     [ValidateSet('auto', 'fp16', 'fp32')][string]$Precision = 'auto',
