@@ -194,3 +194,12 @@ prévio e teste novo independente; os 24 casos atuais passam a ser diagnóstico
 histórico. Só aumentar as épocas na mesma amostra não resolve o sobreajuste
 observado. Escalar para conversas complexas exige muito mais dados e computação
 do que este modelo de 2,57 milhões de parâmetros treinado em CPU.
+
+## Verificação da implementação
+
+Suíte local: **129 testes passaram e 9 foram ignorados** (14,45 s), incluindo
+retomada exata em limites do otimizador, integridade das partições e validação
+da revisão semântica. `git diff --check` passou. O comando de chat carregou o
+checkpoint final e respondeu “De nada!” a “Olá, quem é você?”: o carregamento
+funciona, mas a resposta é inadequada. Testes de software não atestam capacidade
+conversacional.
