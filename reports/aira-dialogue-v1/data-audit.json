@@ -24,5 +24,8 @@
     "Near-duplicate paraphrases and upstream benchmark contamination may remain.",
     "No weights trained or improved by corpus preparation.",
     "All old evaluation remains historical; a new independent evaluation is needed."
-  ]
+  ],
+  "original_conversation_id_count": 50000,
+  "original_unique_conversation_ids": 50000,
+  "original_duplicate_conversation_ids": 0
 }

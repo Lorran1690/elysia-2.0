@@ -110,3 +110,17 @@ de referência. Em uma amostra fixa dos primeiros 100 registros do fragmento
 train-0000, ambas produzem 19 janelas; o tempo observado caiu de 3,519 s para
 0,367 s. É uma medição de preparação, não ganho de capacidade neural nem benchmark
 de treinamento. O protocolo estatístico e os dados permaneceram iguais.
+
+### Janelas efetivamente usadas
+
+O corpus completo contém 45.175 conversas, mas este piloto curto não treina em
+todas. Cabem 8.697 janelas de 7.785 registros de treino. A validação fixa possui
+50 janelas de 45 registros e o teste fixo 58 janelas de 55 registros. A contagem
+`usable_multiturn_records` indica registros de origem com vários turnos; não
+significa que todos os turnos caibam na janela. A restrição a respostas completas
+curtas cria viés de seleção, registrado como limite do experimento.
+
+A checagem adicional dos IDs originais encontrou 50.000 identificadores únicos
+em 50.000 linhas. Após otimização da preparação, suíte local: **136 passaram,
+9 ignorados** (17,75 s); CI também passou:
+https://github.com/Lorran1690/elysia-2.0/actions/runs/40186800707 .
