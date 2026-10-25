@@ -1,6 +1,6 @@
 # Expansão de conversas sintéticas e novo piloto
 
-Status: preparação em andamento. Não há demonstração de conversas complexas.
+Status: corpus preparado e auditado; novo piloto em andamento. Não há demonstração de conversas complexas.
 
 ## Fonte e limites
 
@@ -82,3 +82,19 @@ modelo, otimizador e RNG; uma execução finalizada não pode ser reavaliada por
 ```bash
 python -m learning.dialogue_v2_chat --checkpoint artifacts/aira-dialogue-v1/run-001/sft-model.pt
 ```
+
+## Auditoria e verificações
+
+50.000 registros originais, 45.175 retidos: 40.745 de treino, 2.163 de validação
+e 2.267 de teste. Destes, apenas um registro de validação tem um único par;
+os demais têm vários turnos. 4.825 foram rejeitados pelos filtros declarados.
+O corpus comprimido ocupa cerca de 93 MiB, em fragmentos de até 500 registros.
+A auditoria independente do preparador (`python -m learning.aira_audit`) confirmou
+hashes, tamanhos, contagens, IDs únicos e nenhuma pergunta inicial ou mensagem
+longa idêntica entre partições. Isso não mede diversidade semântica nem factualidade.
+
+Suíte local após a implementação: 135 testes aprovados, 9 ignorados (33,76 s).
+CI do commit de preparação: sucesso,
+https://github.com/Lorran1690/elysia-2.0/actions/runs/40186336468 .
+Recursos observados em `resources.json`: 3 CPUs lógicas, cerca de 9,7 GiB RAM,
+PyTorch CPU, nenhuma GPU CUDA.

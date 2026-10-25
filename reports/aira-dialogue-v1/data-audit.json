@@ -1,0 +1,28 @@
+{
+  "source_revision": "1ca52371453cc9e52b650ba4314f2ca0a69f58ba",
+  "manifest_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+  "all_shards_hash_size_and_record_count_valid": true,
+  "records": {
+    "train": 40745,
+    "validation": 2163,
+    "test": 2267
+  },
+  "multiturn_records": {
+    "train": 40745,
+    "validation": 2162,
+    "test": 2267
+  },
+  "unique_ids": 45175,
+  "group_count": 45163,
+  "cross_split_shared_roots_or_long_messages": 0,
+  "all_retained_pass_declared_structural_and_regex_filters": true,
+  "source_count_reconciles": true,
+  "independent_human_quality_review": false,
+  "limitations": [
+    "No independent factual or language review; source labels portuguese.",
+    "Regex checks cannot guarantee absence of private data.",
+    "Near-duplicate paraphrases and upstream benchmark contamination may remain.",
+    "No weights trained or improved by corpus preparation.",
+    "All old evaluation remains historical; a new independent evaluation is needed."
+  ]
+}

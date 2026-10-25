@@ -1,0 +1,10 @@
+{
+  "cpu_logical": 3,
+  "cpu_affinity": 3,
+  "memory_total_bytes": 10452471808,
+  "torch": "2.14.1+cpu",
+  "cuda_available": false,
+  "cuda_device_count": 0,
+  "configured_credentials_or_external_compute": false,
+  "scope": "Current CPU-only executor; this is a resource observation, not a performance guarantee."
+}

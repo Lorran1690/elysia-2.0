@@ -1,10 +1,21 @@
 # E.L.Y.S.I.A. 2.0
 
+## Estado atual — pesquisa de conversação
+
+O [treino neural v2](reports/neural-dialogue-v2/README.md) completou 10.000 passos,
+mas reprovou: 0/24 respostas estáticas e 0/8 conversas com contexto corretas.
+O [novo corpus e piloto Aira](reports/aira-dialogue-v1/README.md) adiciona 45.175
+conversas **sintéticas**, com licença Apache 2.0 publicada pela fonte e partições
+auditadas. O piloto está em andamento; preparar mais dados não prova ganho
+de inteligência. Pesos próprios, corpus, protocolo e avaliações são preservados
+na branch `recovery/neural-dialogue-v2`. Ainda não há conversas complexas
+comparáveis ao ChatGPT.
+
 ## Corpus português v1 — preparado e auditado
 
 [Relatório, fontes e reprodução](reports/corpus-pt-v1/README.md): 2.163 documentos,
 2.277.416 tokens BPE (1.760.474 no treino), três fontes com licenças e atribuições,
-splits por grupos e 24 casos novos de avaliação ainda não consumidos. BPE treinado
+splits por grupos e 24 casos de avaliação, consumidos posteriormente no treino v2. BPE treinado
 do zero só no treino e exportado para o formato próprio da Elysia. Pesos neurais
 anteriores preservados, sem novo treino nesta etapa. A base ainda é técnica e não
 constitui um currículo de conversação ampla. Branch: `recovery/portuguese-corpus-v1`.
@@ -36,7 +47,7 @@ Primeira etapa experimental: uma rede neural pequena, inicializada aleatoriament
 
 - Não usa Ollama, APIs de IA, pesos ou tokenizadores pré-treinados.
 - Não oferece interface gráfica, holograma, voz ou controle do computador.
-- O corpus incluído é pequeno e criado apenas para testes; não prova que o modelo aprendeu português.
+- Os primeiros corpora sintéticos eram diagnósticos. As fontes ampliadas têm procedência e limites próprios; sua inclusão não prova que o modelo aprendeu a conversar.
 - Redução de loss em overfitting controlado demonstra o funcionamento do treinamento, não inteligência geral.
 
 ## Ambiente Windows
@@ -49,7 +60,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-O arquivo de requisitos fixa a build CUDA 12.8 do PyTorch. Ela foi validada neste computador com driver NVIDIA 610.62, CUDA reportada 13.3 e GTX 1650. Em outro computador, o código continua usando CPU quando `torch.cuda.is_available()` for falso.
+O arquivo de requisitos fixa a build CUDA 12.8 do PyTorch. O registro histórico cita validação em outro computador com driver NVIDIA 610.62, CUDA reportada 13.3 e GTX 1650. O ambiente atual de pesquisa tem somente CPU; essa configuração de GPU não foi revalidada aqui. Em outro computador, o código continua usando CPU quando `torch.cuda.is_available()` for falso.
 
 ## Testes
 
