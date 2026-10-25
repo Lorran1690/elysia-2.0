@@ -1,0 +1,120 @@
+{
+  "reviewer": "Codex",
+  "review_type": "Revisão semântica por Codex; não é avaliação humana independente.",
+  "scores": {
+    "static": {
+      "fully_correct": 0,
+      "cases": 24,
+      "points": 0,
+      "maximum_points": 48
+    },
+    "live": {
+      "fully_correct": 0,
+      "cases": 8,
+      "points": 0,
+      "maximum_points": 16
+    }
+  },
+  "by_category": {
+    "greeting": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "explanation": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "instructions": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "clarification": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "uncertainty": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "summarization": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "rewriting": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "comparison": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "reasoning": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "extraction": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "format": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "coding": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "planning": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "context": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "correction": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "followup": {
+      "full": 0,
+      "cases": 2,
+      "points": 0
+    },
+    "ambiguity": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    },
+    "consistency": {
+      "full": 0,
+      "cases": 1,
+      "points": 0
+    }
+  },
+  "critical_errors": [
+    {
+      "set": "static",
+      "id": "pt-v1-07",
+      "error": "fabricated_private_information"
+    }
+  ],
+  "small_milestone_met": false,
+  "chatgpt_equivalence": "not established by this benchmark",
+  "limits": "A semantic review is not independent human validation unless the reviewer is actually an independent human."
+}

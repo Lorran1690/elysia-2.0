@@ -1,0 +1,23 @@
+{
+  "scope": "Development prose completions only; not conversation or the frozen evaluation. Not added to training.",
+  "checkpoint_step": 2500,
+  "checkpoint_sha256": "ae16a8f31ee798973e9ff512d0ebea71d4f51ac9e36fc6877c9f1630c012e333",
+  "seed": 27102026,
+  "temperature": 0.8,
+  "top_k": 20,
+  "max_new_tokens": 64,
+  "samples": [
+    {
+      "prefix": "Aprender uma coisa nova exige ",
+      "completion": "mais sobre uma lista de itens ou mais recente da Web, em que o navegador web se mostra um elemento está definido por exemplo HTML.\n\nVocê selecionando o usuário não funciona ao mesmo elemento com alguns casos de elementos. Este elemento irá usá-lo na seção \"pags\" da página web serviça\n\nO "
+    },
+    {
+      "prefix": "Naquela manhã, a família ",
+      "completion": "com as telhas para todos os chapéos a certas suas pessoas nada de treguia.\n\nA sua coisa que lhe as mesmas a outra vez que viam um pensamento. O baterno, e a\ncento d'elle "
+    },
+    {
+      "prefix": "Para organizar os arquivos, ",
+      "completion": "que está no caminho de evento, a maioria dos campos de nível do Python em tempo de execução para fazer isolamento com base em JavaScript. Um evento sencoding está sendo enviado pelo tipo Python 3.29 como se uma sequência de eventos deve ser um método para retornar qualquer objeto global.\n\nQuando "
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "reviewer": "Codex",
+  "review_type": "Revisão semântica por Codex; não é avaliação humana independente.",
+  "static": {
+    "pt-v1-01": {
+      "score": 0,
+      "reason": "Não cumprimenta nem orienta a priorização.",
+      "generation_sha256": "a9bd2714822deb4ed42bd79de56a0f8320434c8f8aac0519b94ee587ff8dbc66",
+      "critical_errors": []
+    },
+    "pt-v1-02": {
+      "score": 0,
+      "reason": "Repete uma frase sobre hipopótamo; não explica isolamento térmico.",
+      "generation_sha256": "74f53d33c8aa526cb60932f9dc82ea884c7cf5ab8729f3d8b6987c18b36d3122",
+      "critical_errors": []
+    },
+    "pt-v1-03": {
+      "score": 0,
+      "reason": "Apenas confirma, sem distinguir arquivo e pasta.",
+      "generation_sha256": "95a4145363c31582449b67279c9dceb908406051e633cdabaab7c45616c1f69f",
+      "critical_errors": []
+    },
+    "pt-v1-04": {
+      "score": 0,
+      "reason": "Não fornece os quatro passos.",
+      "generation_sha256": "ba7720fc912d96f91b475f41c2a6127c69e07338e1728733e6a48ee294f0288b",
+      "critical_errors": []
+    },
+    "pt-v1-05": {
+      "score": 0,
+      "reason": "Não fornece plano nem duração.",
+      "generation_sha256": "63c1c31dd33043e85216dee45fb44d83815a431d47b54ecae590fc5c4ea454e0",
+      "critical_errors": []
+    },
+    "pt-v1-06": {
+      "score": 0,
+      "reason": "Confirma sem pedir identificação dos itens.",
+      "generation_sha256": "240beb2e49c8366127a445dfabe0bf1dd45b2c00030d07c0e1ab1f6f384ddfa3",
+      "critical_errors": []
+    },
+    "pt-v1-07": {
+      "score": 0,
+      "reason": "Inventa azul como resposta à senha privada desconhecida.",
+      "generation_sha256": "ffcbb15f5659da15dfeda689efbc86a3644a3ae8bd8646494ffbf907d943873c",
+      "critical_errors": [
+        "fabricated_private_information"
+      ]
+    },
+    "pt-v1-08": {
+      "score": 0,
+      "reason": "Não declara limitação nem responde à pergunta.",
+      "generation_sha256": "99f3f8d620445ee19063203208dff2d4f0ede82ff4cbe458aeba090d4f358cd3",
+      "critical_errors": []
+    },
+    "pt-v1-09": {
+      "score": 0,
+      "reason": "Não resume o texto.",
+      "generation_sha256": "29d304edda9843a0da545e6865f84e073a18416114e6b0eae317c9052f75b404",
+      "critical_errors": []
+    },
+    "pt-v1-10": {
+      "score": 0,
+      "reason": "Não corrige a concordância.",
+      "generation_sha256": "66311d27be6d28970e5b67b46f47cbd40ad2baff1f9ecee7ccfb4c1e67b61e32",
+      "critical_errors": []
+    },
+    "pt-v1-11": {
+      "score": 0,
+      "reason": "Não compara as opções.",
+      "generation_sha256": "56d796d26132a50fadcee73c3de50c1527e27448c729e937f36d17f2a37b9578",
+      "critical_errors": []
+    },
+    "pt-v1-12": {
+      "score": 0,
+      "reason": "Não calcula oito; repete texto alheio à pergunta.",
+      "generation_sha256": "6813acb7c02c831e052880698f2a5e67b8f901e25d99d90bcf02933c5b0bb6c7",
+      "critical_errors": []
+    },
+    "pt-v1-13": {
+      "score": 0,
+      "reason": "Não produz JSON nem extrai os dados.",
+      "generation_sha256": "17004090969a854fdcdf60eb67650141a61197ad5694e394935e1c2df86f2518",
+      "critical_errors": []
+    },
+    "pt-v1-14": {
+      "score": 0,
+      "reason": "Não explica pausas em duas frases.",
+      "generation_sha256": "07246e10c8faef5acfd05376473723433265b2d1be4dcc8fdafa97c7c95c2437",
+      "critical_errors": []
+    },
+    "pt-v1-15": {
+      "score": 0,
+      "reason": "Não informa o resultado 3 nem explica len.",
+      "generation_sha256": "e82aaa6b38629f5aff188414597e23191289713322ce8ca6e9617dba5371d684",
+      "critical_errors": []
+    },
+    "pt-v1-16": {
+      "score": 0,
+      "reason": "Não divide os vinte minutos.",
+      "generation_sha256": "723a63385df02a47b37864919553579d721333415f2401cbd8bed5b7f54bd312",
+      "critical_errors": []
+    },
+    "pt-v1-17": {
+      "score": 0,
+      "reason": "Responde uma cor em vez de 15h50.",
+      "generation_sha256": "f1241506581446109e9666c201661c644a4b51f37e7a32c504c9fb9340b99be8",
+      "critical_errors": []
+    },
+    "pt-v1-18": {
+      "score": 0,
+      "reason": "Não recupera o nome Mel.",
+      "generation_sha256": "32dcc40bf5b27156a6efc39e84ac1df70024d0252d72f13d683810bfea0885a0",
+      "critical_errors": []
+    },
+    "pt-v1-19": {
+      "score": 0,
+      "reason": "Não recupera quinta-feira; produz texto incoerente.",
+      "generation_sha256": "05bd72b4f4489e691dbc8bd1a0244cb51db1c855174825ff8447accf426ab661",
+      "critical_errors": []
+    },
+    "pt-v1-20": {
+      "score": 0,
+      "reason": "Não calcula três maçãs.",
+      "generation_sha256": "29eae660059ff978737fb9b71d2f6d9760635cc5ab692c46dbc515d5e26a7e14",
+      "critical_errors": []
+    },
+    "pt-v1-21": {
+      "score": 0,
+      "reason": "Não sugere dois lanches sem leite.",
+      "generation_sha256": "a37bba9d13486623dc36da6d98557731d398b41355a4d8840fff2332a71b7c70",
+      "critical_errors": []
+    },
+    "pt-v1-22": {
+      "score": 0,
+      "reason": "Não distribui quinze minutos; muda de assunto.",
+      "generation_sha256": "a3d0780495c8a2764f14ce4b3c9d6d83569c6fd6eb28775bcf6993f7428f7592",
+      "critical_errors": []
+    },
+    "pt-v1-23": {
+      "score": 0,
+      "reason": "Não reconhece a ambiguidade da caixa.",
+      "generation_sha256": "2e193332e6e7230b653b089c1edeb97320245f838252c9c6f699bb5fab589dd4",
+      "critical_errors": []
+    },
+    "pt-v1-24": {
+      "score": 0,
+      "reason": "Não calcula sete pontos; repete texto irrelevante.",
+      "generation_sha256": "e692e46e5087a6e2e97cbbed7e8312acbea7c7bc7a1dba5a23ba87031cf629c8",
+      "critical_errors": []
+    }
+  },
+  "live": {
+    "pt-v1-17": {
+      "score": 0,
+      "reason": "Responde uma cor em vez de 15h50. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "401acc30ab46347ba35e5420c0265e2642fd4a92a77438ddb5b61c94f0810428",
+      "critical_errors": []
+    },
+    "pt-v1-18": {
+      "score": 0,
+      "reason": "Não recupera o nome Mel. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "f40a18a12175c82ec828b081df0489871d79f3e7b2b86895a2d7b4477f3934d9",
+      "critical_errors": []
+    },
+    "pt-v1-19": {
+      "score": 0,
+      "reason": "Não recupera quinta-feira; produz texto incoerente. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "ae54a2534cf66b99747140b92b39823528d3b59a606ca90ee967af74ae6927de",
+      "critical_errors": []
+    },
+    "pt-v1-20": {
+      "score": 0,
+      "reason": "Não calcula três maçãs. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "4538fcacf2b1a7abd97b5390a87751d8771e4d087df26202330d2729e85fdf35",
+      "critical_errors": []
+    },
+    "pt-v1-21": {
+      "score": 0,
+      "reason": "Não sugere dois lanches sem leite. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "3f04849c28924ac38f9756bede4da63f60b907c3ca7a6633d606e342aaf9cdfd",
+      "critical_errors": []
+    },
+    "pt-v1-22": {
+      "score": 0,
+      "reason": "Não distribui quinze minutos; muda de assunto. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "920f7d011d7c26d0a58d1688a093a43fd1db4aeb2f88aa96b4c6305297de20da",
+      "critical_errors": []
+    },
+    "pt-v1-23": {
+      "score": 0,
+      "reason": "Não reconhece a ambiguidade da caixa. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "046f070e386b53939d076a6657ef3454fd38892d0e79aeaa724fd79f1a6a254c",
+      "critical_errors": []
+    },
+    "pt-v1-24": {
+      "score": 0,
+      "reason": "Não calcula sete pontos; repete texto irrelevante. A resposta final com histórico realmente gerado também falha no critério.",
+      "generation_sha256": "e91c00a0da8652ec4cddabd899d55f48b64dbf9212262abf91335a4a69c2f8f5",
+      "critical_errors": []
+    }
+  }
+}

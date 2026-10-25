@@ -1,0 +1,9 @@
+{
+  "training_paths": 149,
+  "training_groups": 42,
+  "maximum_group_path_share": 0.053691275167785234,
+  "long_frozen_prompt_matches_in_training": [],
+  "old_trees_excluded": 165,
+  "sources_are_not_independently_fact_checked": true,
+  "scope": "Data audit only; no model evaluation or claim of conversational competence."
+}

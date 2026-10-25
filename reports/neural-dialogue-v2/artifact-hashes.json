@@ -1,0 +1,18 @@
+{
+  "artifacts/neural-dialogue-v2/run-001/last.pt": {
+    "bytes": 30874867,
+    "sha256": "d96f3bca37589878871b709a6bfa300b10751eabcbed73669ff045eb987719f7"
+  },
+  "artifacts/neural-dialogue-v2/run-001/sft-model.pt": {
+    "bytes": 10290499,
+    "sha256": "85f745b80f0c3732c71fc5ed87438e4c5e60c713da455484b42f0bc3656b9ff5"
+  },
+  "artifacts/neural-dialogue-v2/run-001/pretrain-model.pt": {
+    "bytes": 10290749,
+    "sha256": "1c90c710cc9449577170871bc064018511a5626d8e61e9a6195e6160f41ca987"
+  },
+  "artifacts/neural-dialogue-v2/run-001/results.json": {
+    "bytes": 47148,
+    "sha256": "d1ff736392a8862a3472eb78b31072956365d00cfb965327ce7ef6290b84ef53"
+  }
+}

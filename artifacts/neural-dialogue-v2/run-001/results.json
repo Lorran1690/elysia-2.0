@@ -1,0 +1,1693 @@
+{
+  "settings": {
+    "protocol": {
+      "purpose": "Bounded research on first useful conversations, not equivalence to ChatGPT.",
+      "seed": 26102026,
+      "pretrain_steps": 8000,
+      "sft_steps": 2000,
+      "pretrain_context": 256,
+      "sft_context": 256,
+      "batch_size": 4,
+      "mixture_pretrain": {
+        "technical_corpus_v1": 0.7,
+        "historical_literature": 0.3
+      },
+      "mixture_sft": {
+        "fresh_oasst2": 0.8,
+        "preexisting_synthetic_diagnostic": 0.2
+      },
+      "model": {
+        "vocab_size": 2048,
+        "block_size": 512,
+        "num_layers": 4,
+        "embedding_dim": 192,
+        "num_heads": 4,
+        "feedforward_dim": 768,
+        "dropout": 0.1,
+        "positional_embedding": "rope",
+        "norm_type": "rmsnorm",
+        "feedforward_type": "swiglu",
+        "attention_backend": "sdpa"
+      },
+      "selection": "Validation only: weighted prose loss for pretraining; weighted assistant-token loss for tuning.",
+      "evaluation": "Frozen 24-case portuguese-v1 specification, once after final model selection; include live rollouts for multi-turn cases.",
+      "milestone_criterion": {
+        "fully_correct_static_cases_minimum": 12,
+        "fully_correct_live_multiturn_cases_minimum": 4,
+        "critical_personal_information_or_tool_access_fabrications_maximum": 0,
+        "review": "Semantic review with identified reviewer; no keyword passing. Passing is only a small milestone, not general intelligence."
+      },
+      "resources": {
+        "device": "cpu",
+        "threads": 2,
+        "no_paid_services": true,
+        "resume_required": true
+      },
+      "data_limitations": [
+        "Source moderation labels are not a full independent factual review.",
+        "Historical fiction is not present-day knowledge or behavioral supervision.",
+        "Synthetic supplement is separate, limited, and predates this evaluation."
+      ]
+    },
+    "torch": "2.14.1+cpu",
+    "sources": {
+      "data/neural-dialogue-v2/manifest.json": "590a3547f189acb902d42fa95d747c4a524a0d0389ed318510f4dfbe32474c98",
+      "data/neural-dialogue-v2/protocol.json": "c0d94fae921866d61756e95016192ca995c3c445dfa5a8ac150f0db66ce3f635",
+      "data/neural-dialogue-v2/dialogues/legacy-synthetic-train.json": "1eef5c1db0f6d5df0b44fccaa0ab9b1befccce46c2047917e4e96033b39e0a43",
+      "data/corpus-pt-v1/manifest.json": "3851764abf87b48ff0740860e4cea6606e1e6fead474a85a9a77433d9fb96986",
+      "data/corpus-pt-v1/tokenizer/manifest.json": "92393b5218e8a6cb851dc123b82ac5dc63470c062058a7bb27d31663628bd071",
+      "data/context-words/validation.json": "bf893627ca218fc4e8422fd7b800699b3043d4dfc2123bcab2c23a0aabe2c4ca",
+      "evaluation/portuguese-v1.json": "87977e9e07c3e2c9e1a5c4698f8c294210933b477aefa0aec0f1bdcf52f21b5c"
+    }
+  },
+  "progress": {
+    "stage": "complete",
+    "step": 2000,
+    "global_step": 10000,
+    "best_loss": 3.475273586096506,
+    "best_step": 500,
+    "history": [
+      {
+        "stage": "pretrain",
+        "step": 1,
+        "global_step": 1,
+        "batch_loss": 7.671633720397949,
+        "validation_loss": 7.656736180186272,
+        "detail": {
+          "technical": {
+            "loss": 7.6568377912044525,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 7.656499087810516,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 500,
+        "global_step": 500,
+        "batch_loss": 5.100138187408447,
+        "validation_loss": 5.469356149435043,
+        "detail": {
+          "technical": {
+            "loss": 5.59062123298645,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 5.186404287815094,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 1000,
+        "global_step": 1000,
+        "batch_loss": 4.823812961578369,
+        "validation_loss": 4.827876329421997,
+        "detail": {
+          "technical": {
+            "loss": 4.8338039219379425,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.814045280218124,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 1500,
+        "global_step": 1500,
+        "batch_loss": 4.4066548347473145,
+        "validation_loss": 4.551593515276909,
+        "detail": {
+          "technical": {
+            "loss": 4.525281250476837,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.6129887998104095,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 2000,
+        "global_step": 2000,
+        "batch_loss": 4.220701694488525,
+        "validation_loss": 4.357286229729652,
+        "detail": {
+          "technical": {
+            "loss": 4.305048823356628,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.479173511266708,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 2500,
+        "global_step": 2500,
+        "batch_loss": 3.66903018951416,
+        "validation_loss": 4.25544246584177,
+        "detail": {
+          "technical": {
+            "loss": 4.198991045355797,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.387162446975708,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 3000,
+        "global_step": 3000,
+        "batch_loss": 3.821068525314331,
+        "validation_loss": 4.152714835107326,
+        "detail": {
+          "technical": {
+            "loss": 4.076383426785469,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.330821454524994,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 3500,
+        "global_step": 3500,
+        "batch_loss": 3.8056259155273438,
+        "validation_loss": 4.071333283185958,
+        "detail": {
+          "technical": {
+            "loss": 3.9869329631328583,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.26826736330986,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 4000,
+        "global_step": 4000,
+        "batch_loss": 3.525038242340088,
+        "validation_loss": 4.025125855207443,
+        "detail": {
+          "technical": {
+            "loss": 3.935491159558296,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.234273478388786,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 4500,
+        "global_step": 4500,
+        "batch_loss": 3.715214967727661,
+        "validation_loss": 3.9545626670122145,
+        "detail": {
+          "technical": {
+            "loss": 3.8491576462984085,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.200507715344429,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 5000,
+        "global_step": 5000,
+        "batch_loss": 3.74940824508667,
+        "validation_loss": 3.928736692667007,
+        "detail": {
+          "technical": {
+            "loss": 3.8201981633901596,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.181993260979652,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 5500,
+        "global_step": 5500,
+        "batch_loss": 3.5939486026763916,
+        "validation_loss": 3.909467668831348,
+        "detail": {
+          "technical": {
+            "loss": 3.7982781380414963,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.168909907341003,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 6000,
+        "global_step": 6000,
+        "batch_loss": 3.67880916595459,
+        "validation_loss": 3.8831758618354795,
+        "detail": {
+          "technical": {
+            "loss": 3.7651789784431458,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.158501923084259,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 6500,
+        "global_step": 6500,
+        "batch_loss": 3.8026554584503174,
+        "validation_loss": 3.8729533717036246,
+        "detail": {
+          "technical": {
+            "loss": 3.7507705837488174,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.158046543598175,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 7000,
+        "global_step": 7000,
+        "batch_loss": 3.777777910232544,
+        "validation_loss": 3.855015072226524,
+        "detail": {
+          "technical": {
+            "loss": 3.7298856675624847,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.1469836831092834,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 7500,
+        "global_step": 7500,
+        "batch_loss": 3.3357560634613037,
+        "validation_loss": 3.8416987851262085,
+        "detail": {
+          "technical": {
+            "loss": 3.716553255915642,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.133705019950867,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "pretrain",
+        "step": 8000,
+        "global_step": 8000,
+        "batch_loss": 3.23380184173584,
+        "validation_loss": 3.834018649160862,
+        "detail": {
+          "technical": {
+            "loss": 3.7088617384433746,
+            "targets": 4096,
+            "offsets": [
+              0,
+              16605,
+              33209,
+              49814,
+              66419,
+              83024,
+              99628,
+              116233,
+              132838,
+              149443,
+              166047,
+              182652,
+              199257,
+              215862,
+              232466,
+              249071
+            ]
+          },
+          "literature": {
+            "loss": 4.126051440834999,
+            "targets": 4096,
+            "offsets": [
+              0,
+              5077,
+              10154,
+              15231,
+              20307,
+              25384,
+              30461,
+              35538,
+              40615,
+              45692,
+              50769,
+              55846,
+              60922,
+              65999,
+              71076,
+              76153
+            ]
+          }
+        }
+      },
+      {
+        "stage": "sft",
+        "step": 1,
+        "global_step": 8001,
+        "batch_loss": 4.1013593673706055,
+        "validation_loss": 4.524487912578364,
+        "detail": {
+          "fresh_dialogues": {
+            "loss": 4.300441145980803,
+            "perplexity": 73.7323132397772,
+            "targets": 8526
+          },
+          "synthetic_diagnostic": {
+            "loss": 5.420674978968608,
+            "perplexity": 226.03163762562986,
+            "targets": 249
+          }
+        }
+      },
+      {
+        "stage": "sft",
+        "step": 500,
+        "global_step": 8500,
+        "batch_loss": 2.1413135528564453,
+        "validation_loss": 3.475273586096506,
+        "detail": {
+          "fresh_dialogues": {
+            "loss": 4.298543641020819,
+            "perplexity": 73.59253846329803,
+            "targets": 8526
+          },
+          "synthetic_diagnostic": {
+            "loss": 0.1821933663992518,
+            "perplexity": 1.1998461813856016,
+            "targets": 249
+          }
+        }
+      },
+      {
+        "stage": "sft",
+        "step": 1000,
+        "global_step": 9000,
+        "batch_loss": 2.495007276535034,
+        "validation_loss": 3.6584543653306185,
+        "detail": {
+          "fresh_dialogues": {
+            "loss": 4.539078607096125,
+            "perplexity": 93.60451383897333,
+            "targets": 8526
+          },
+          "synthetic_diagnostic": {
+            "loss": 0.1359573982685924,
+            "perplexity": 1.1456330866021909,
+            "targets": 249
+          }
+        }
+      },
+      {
+        "stage": "sft",
+        "step": 1500,
+        "global_step": 9500,
+        "batch_loss": 1.2432200908660889,
+        "validation_loss": 3.7418186722340465,
+        "detail": {
+          "fresh_dialogues": {
+            "loss": 4.652661384843812,
+            "perplexity": 104.86369718753852,
+            "targets": 8526
+          },
+          "synthetic_diagnostic": {
+            "loss": 0.09844782179498289,
+            "perplexity": 1.1034568264957283,
+            "targets": 249
+          }
+        }
+      },
+      {
+        "stage": "sft",
+        "step": 2000,
+        "global_step": 10000,
+        "batch_loss": 1.0032312870025635,
+        "validation_loss": 3.7712384883658414,
+        "detail": {
+          "fresh_dialogues": {
+            "loss": 4.7001938760602195,
+            "perplexity": 109.96849064322747,
+            "targets": 8526
+          },
+          "synthetic_diagnostic": {
+            "loss": 0.055416937588328816,
+            "perplexity": 1.056981218017013,
+            "targets": 249
+          }
+        }
+      }
+    ],
+    "supervised_tokens": 9635818,
+    "compute_seconds": 2314.4990602979997
+  },
+  "parameters": 2567616,
+  "selected_sft_step": 500,
+  "selected_sft_validation_loss": 3.475273586096506,
+  "final_test_evaluation_count": 1,
+  "fresh_dialogue_test": {
+    "all": {
+      "loss": 4.488013405107463,
+      "perplexity": 88.94457341459724,
+      "targets": 17141
+    },
+    "assistant": {
+      "loss": 4.400761288062618,
+      "perplexity": 81.51289984777625,
+      "targets": 13914
+    }
+  },
+  "generation_cases": [
+    {
+      "id": "pt-v1-01",
+      "category": "greeting",
+      "title": "Saudação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Boa tarde! Quero organizar meu dia. Por onde começo?"
+        }
+      ],
+      "criterion": "Cumprimenta e oferece uma forma simples de priorizar tarefas, sem inventar compromissos.",
+      "generated": "Aqui está sua vida!",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-02",
+      "category": "explanation",
+      "title": "Explicação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Como uma garrafa térmica ajuda a manter o café quente?"
+        }
+      ],
+      "criterion": "Relaciona isolamento à redução de troca de calor, em linguagem compreensível.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como podemos mostrar por que ele está sendo executado e as pessoas do antagonista. Isso pode ajudar a manter o bem-estar no meio dos principais problemas no seu trabalho. No entanto, a teoria da sua vida:** A pessoa tem sido criada por um relacionamento muito mais potenciais, ",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-03",
+      "category": "explanation",
+      "title": "Explicação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explique a diferença entre um arquivo e uma pasta para quem nunca usou computador."
+        }
+      ],
+      "criterion": "Distingue conteúdo individual de recipiente organizador, com exemplo simples.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-04",
+      "category": "instructions",
+      "title": "Instrução",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Dê quatro passos curtos para preparar a mochila na noite anterior à escola."
+        }
+      ],
+      "criterion": "Fornece exatamente quatro ações pertinentes e ordenadas.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-05",
+      "category": "instructions",
+      "title": "Instrução",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Quero começar a ler todos os dias. Sugira um plano de três dias, com dez minutos por dia."
+        }
+      ],
+      "criterion": "Respeita três dias e dez minutos, com ações viáveis.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-06",
+      "category": "clarification",
+      "title": "Esclarecimento",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Troque esse item pelo outro e deixe tudo melhor."
+        }
+      ],
+      "criterion": "Pede identificação dos itens e do objetivo, sem fingir que viu uma lista.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-07",
+      "category": "uncertainty",
+      "title": "Incerteza",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Qual é a senha da minha rede de casa?"
+        }
+      ],
+      "criterion": "Admite não ter essa informação; não inventa senha nem afirma acesso.",
+      "generated": "azul.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-08",
+      "category": "uncertainty",
+      "title": "Incerteza",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Você sabe se deixei a janela da cozinha aberta?"
+        }
+      ],
+      "criterion": "Diz não poder verificar sem informação ou ferramenta, sem inventar observação.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que contém as palavras hipopótamo, amora e árvore: O grande hipopótamo comeu amora debaixo de uma árvore frondosa.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-09",
+      "category": "summarization",
+      "title": "Resumo",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Resuma em uma frase: Marina foi ao mercado comprar frutas. A loja estava fechada. Ela decidiu voltar na manhã seguinte."
+        }
+      ],
+      "criterion": "Preserva tentativa, loja fechada e decisão de voltar, sem detalhes inventados.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-10",
+      "category": "rewriting",
+      "title": "Reescrita",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Corrija a concordância sem mudar a ideia: As criança brincou no quintal."
+        }
+      ],
+      "criterion": "Produz As crianças brincaram no quintal, ou correção equivalente.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-11",
+      "category": "comparison",
+      "title": "Comparação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compare bicicleta e caminhada para um trajeto curto, citando um benefício de cada."
+        }
+      ],
+      "criterion": "Oferece benefícios pertinentes de ambos sem afirmações absolutas.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-12",
+      "category": "reasoning",
+      "title": "Raciocínio",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Lara tinha sete lápis, deu dois a Bruno e ganhou três. Com quantos lápis Lara ficou?"
+        }
+      ],
+      "criterion": "Responde oito e mantém a operação coerente.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: O grande hipopótamo ",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-13",
+      "category": "extraction",
+      "title": "Extração",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Responda apenas com JSON contendo cidade e quantidade: Foram enviados seis cadernos para Natal."
+        }
+      ],
+      "criterion": "Objeto JSON válido com cidade Natal e quantidade numérica 6, sem texto externo.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-14",
+      "category": "format",
+      "title": "Formato",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Em duas frases curtas, explique por que fazer pausas durante o estudo pode ajudar."
+        }
+      ],
+      "criterion": "Duas frases pertinentes, sem enumeração ou parágrafos extras.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-15",
+      "category": "coding",
+      "title": "Código",
+      "messages": [
+        {
+          "role": "user",
+          "content": "O que retorna a expressão Python len([4, 8, 12])? Explique em uma frase."
+        }
+      ],
+      "criterion": "Retorna 3 porque há três elementos, sem confundir soma e tamanho.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-16",
+      "category": "planning",
+      "title": "Planejamento",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho vinte minutos para arrumar a mesa e revisar uma página. Divida o tempo entre essas duas atividades."
+        }
+      ],
+      "criterion": "Propõe divisão explícita que some vinte minutos e inclua ambas atividades.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-17",
+      "category": "context",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Minha reunião começa às 16 horas."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Quero chegar dez minutos antes. A que horas devo chegar?"
+        }
+      ],
+      "criterion": "Responde 15h50 com base no contexto.",
+      "generated": "azul.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-18",
+      "category": "context",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho um gato chamado Nino e uma cadela chamada Mel."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Como se chama a cadela?"
+        }
+      ],
+      "criterion": "Responde Mel, sem confundir os animais.",
+      "generated": "Certo.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-19",
+      "category": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A entrega será na terça-feira."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Mudou para quinta-feira. Em qual dia será a entrega?"
+        }
+      ],
+      "criterion": "Usa quinta-feira, respeitando a correção.",
+      "generated": "Crianças correndo, a avalia, a ideia de Raturgência Estágia para melhorar a polia e a danificação e reduzir as desigualdades sociais e regionais. * ********************: ************************************************",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-20",
+      "category": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Preciso comprar cinco maçãs."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Na verdade, serão duas maçãs a menos. Quantas compro?"
+        }
+      ],
+      "criterion": "Responde três maçãs.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como podemos ajudar a manter o amor e os riscos do antagonista. 6. **Plantio da planta mãe. ****",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-21",
+      "category": "followup",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Quero um lanche sem leite."
+        },
+        {
+          "role": "assistant",
+          "content": "Podemos pensar em frutas e outros alimentos adequados."
+        },
+        {
+          "role": "user",
+          "content": "Dê duas sugestões e lembre da restrição."
+        }
+      ],
+      "criterion": "Sugere duas opções sem leite e não inclui queijo, iogurte ou manteiga comum.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que contém as palavras hipopótamo, amora e árvore: O grande hipopótamo comeu amora debaixo de uma árvore frondosa.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-22",
+      "category": "followup",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Estou aprendendo violão e só tenho quinze minutos por dia."
+        },
+        {
+          "role": "assistant",
+          "content": "Podemos montar uma rotina curta."
+        },
+        {
+          "role": "user",
+          "content": "Como distribuo esse tempo entre aquecimento e prática?"
+        }
+      ],
+      "criterion": "Divide quinze minutos entre ambas atividades e mantém o assunto violão.",
+      "generated": "A ideia de segurança pode ajudar a manter o buraco e a concentração. 3. **Preparação do DNA: Aqui está um exemplo de como criar um menu com um botão que envia um botão que envie as pessoas que enviam a mensagem no console em CubeScript, você pode usar o comando `addglowmenu` para criar um menu com um botão que envia um menu com um botão que envia um menu com um botão que envia um botão que envia um botão que envie ",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-23",
+      "category": "ambiguity",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho uma caixa azul e uma amarela."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Ela está muito pesada. O que você sugere?"
+        }
+      ],
+      "criterion": "Reconhece ambiguidade de qual caixa, podendo pedir esclarecimento e oferecer orientação geral.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que contém as palavras hipopótamo, amora e árvore: O grande hipopótamo comeu amora debaixo de uma árvore frondosa.",
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-24",
+      "category": "consistency",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Neste jogo, todo bloco vermelho vale dois pontos e todo bloco azul vale três."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi as regras."
+        },
+        {
+          "role": "user",
+          "content": "Tenho dois vermelhos e um azul. Qual é minha pontuação?"
+        }
+      ],
+      "criterion": "Calcula sete pontos usando as regras fornecidas, sem inventar regras novas.",
+      "generated": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que envia um horário muito policial que envia um horário com base em diferentes tipos de amor, enquanto a razão de viver é realiz",
+      "error": null,
+      "semantic_score": null
+    }
+  ],
+  "live_rollouts": [
+    {
+      "id": "pt-v1-17",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Minha reunião começa às 16 horas."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Quero chegar dez minutos antes. A que horas devo chegar?"
+        },
+        {
+          "role": "assistant",
+          "content": "azul."
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-18",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho um gato chamado Nino e uma cadela chamada Mel."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Como se chama a cadela?"
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-19",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A entrega será na terça-feira."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Mudou para quinta-feira. Em qual dia será a entrega?"
+        },
+        {
+          "role": "assistant",
+          "content": "Aqui está sua frase de 10 centímetros de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como criar um menu com um botão que envia um menu com um botão que envia um botão que envie ao violão ao violento. "
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-20",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Preciso comprar cinco maçãs."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Na verdade, serão duas maçãs a menos. Quantas compro?"
+        },
+        {
+          "role": "assistant",
+          "content": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um exemplo de como podemos ajudar a manter o amor e os riscos do antagonista. 6. **Plantio da planta mãe. ****"
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-21",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Quero um lanche sem leite."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Dê duas sugestões e lembre da restrição."
+        },
+        {
+          "role": "assistant",
+          "content": "Crianças engost entram em resolver e avaliadas."
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-22",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Estou aprendendo violão e só tenho quinze minutos por dia."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Como distribuo esse tempo entre aquecimento e prática?"
+        },
+        {
+          "role": "assistant",
+          "content": "branco."
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-23",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho uma caixa azul e uma amarela."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Ela está muito pesada. O que você sugere?"
+        },
+        {
+          "role": "assistant",
+          "content": "Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está sua frase de 10 palavras que contém as palavras hipopótamo, amora e árvore: 1. **Aqui está um humano com plantio:** Aqui está um exemplo de como criar um menu com um botão que envia sua história, um humano mais pop"
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    },
+    {
+      "id": "pt-v1-24",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Neste jogo, todo bloco vermelho vale dois pontos e todo bloco azul vale três."
+        },
+        {
+          "role": "assistant",
+          "content": "Aqui está um exemplo de como criar um menu com um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um bot"
+        },
+        {
+          "role": "user",
+          "content": "Tenho dois vermelhos e um azul. Qual é minha pontuação?"
+        },
+        {
+          "role": "assistant",
+          "content": "O antagonista não há uma mensagem no console em CubeScript, modernos: O menu tem sido criado um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que enviam um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que envia um botão que "
+        }
+      ],
+      "error": null,
+      "semantic_score": null
+    }
+  ],
+  "checkpoint_sha256": "85f745b80f0c3732c71fc5ed87438e4c5e60c713da455484b42f0bc3656b9ff5",
+  "resume_sha256": "d96f3bca37589878871b709a6bfa300b10751eabcbed73669ff045eb987719f7",
+  "milestone_result": "requires semantic review; no automatic success inference"
+}
