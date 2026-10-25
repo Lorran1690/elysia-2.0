@@ -1,0 +1,35 @@
+{
+  "configuration_sha256": "cc40e0115703337177f167443618b4ec6066ab27ca7ea2a5fee54578c6258276",
+  "target_hardware_declared": {
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "gpu_memory_gib": 4,
+    "cpu": "AMD Ryzen 5 3400G",
+    "ram_gib": 16,
+    "os": "Windows",
+    "evidence": "User-provided master dossier, sections 7.2 and 25; historical configuration, not detected on this executor."
+  },
+  "parameters": 20493696,
+  "own_vocabulary": 8192,
+  "maximum_context": 2048,
+  "available_training_tokens": 4623252,
+  "corpus_tokens_per_parameter": 0.22559386066817816,
+  "training_token_type": "One pass over sampled encyclopedia train store, not total training exposure.",
+  "parameter_gradient_adam_bytes_estimate": 327899136,
+  "memory_estimate_limits": "Parameter/gradient/Adam states only, not activations, attention, temporary buffers or runtime overhead. Not a GPU memory guarantee.",
+  "cuda_available": false,
+  "gpu_device_count": 0,
+  "gpu_calibration_ready": false,
+  "blocking_reasons": [
+    "No local CUDA GPU is available; no CPU fallback for the larger profile."
+  ],
+  "curriculum_human_review_complete": false,
+  "full_training_readiness": "Not established: broader pretraining and independent curriculum review remain necessary.",
+  "neural_weights_updated": false,
+  "old_checkpoint_compatible": false,
+  "incompatibility_reason": "New vocabulary and architecture require new own-model pretraining, not loading the old checkpoint.",
+  "calibration": {
+    "completed": false,
+    "error": "GPU calibration requires a local CUDA GPU; no CPU fallback",
+    "weights_saved": false
+  }
+}

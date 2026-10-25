@@ -1,0 +1,13 @@
+{
+  "execution_environment": "Codex managed Linux executor, separate from owner Windows computer",
+  "platform": "Linux",
+  "torch_version": "2.14.1+cpu",
+  "torch_cuda_build": null,
+  "native_powershell_executed": false,
+  "reason": "Neither pwsh nor powershell is installed in this executor. The identical Python module invocation from the wrapper was executed directly.",
+  "command": "python -m learning.foundation_preflight --config configs/foundation-gtx1650.yaml --benchmark-steps 5 --benchmark-context 512 --precision auto --output reports/curriculum-v2/gtx1650-512-auto-calibration.json",
+  "exit_code": 2,
+  "calibration_completed": false,
+  "owner_gtx1650_accessed": false,
+  "report_sha256": "c121f6923c9ad86daca6f87f2165a747f379d83eb626bb323beb24dbbe9734ef"
+}
