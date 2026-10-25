@@ -62,9 +62,9 @@ def test_fast_bpe_is_fit_on_train_only_and_exports_losslessly(tmp_path):
     for split, text in content.items():
         record = {"id": split, "family": "fixture", "group_id": split, "text": text, "sha256": digest(text.encode())}
         path = corpus / f"{split}.jsonl"
-        path.write_text(json.dumps(record, ensure_ascii=False) + "\n", encoding="utf-8")
+        path.write_text(json.dumps(record, ensure_ascii=False) + "\n", encoding="utf-8", newline='\n')
         partitions[split] = {"sha256": sha_file(path)}
-    (corpus / "manifest.json").write_text(json.dumps({"partitions": partitions}))
+    (corpus / "manifest.json").write_text(json.dumps({"partitions": partitions}), encoding='utf-8', newline='\n')
     result = prepare_tokenizer(corpus, 512)
     from brain.bpe_tokenizer import ByteBPETokenizer
     tokenizer = ByteBPETokenizer.load(corpus / "tokenizer/elysia-bpe.json")
@@ -112,8 +112,8 @@ def test_source_recovery_pins_revision_and_refuses_dirty_cache(tmp_path):
     original.mkdir()
     subprocess.run(["git", "init", "--quiet"], cwd=original, check=True)
     (original / "files/pt-br").mkdir(parents=True)
-    (original / "files/pt-br/example.md").write_text("Texto português de teste.")
-    (original / "LICENSE.md").write_text("Public fixture license")
+    (original / "files/pt-br/example.md").write_text("Texto português de teste.", encoding='utf-8', newline='\n')
+    (original / "LICENSE.md").write_text("Public fixture license", encoding='utf-8', newline='\n')
     subprocess.run(["git", "add", "."], cwd=original, check=True)
     subprocess.run(["git", "-c", "user.name=Test", "-c", "user.email=test@example.invalid",
                     "commit", "--quiet", "-m", "fixture"], cwd=original, check=True)
@@ -123,7 +123,7 @@ def test_source_recovery_pins_revision_and_refuses_dirty_cache(tmp_path):
     assert (recovered / "files/pt-br/example.md").read_text(encoding='utf-8') == "Texto português de teste."
     assert (recovered / "LICENSE.md").exists()
     git_source(recovered, str(original), revision, "files/pt-br")
-    (recovered / "files/pt-br/example.md").write_text("Modificação que não pode ser sobrescrita.")
+    (recovered / "files/pt-br/example.md").write_text("Modificação que não pode ser sobrescrita.", encoding='utf-8', newline='\n')
     with pytest.raises(ValueError, match="will not overwrite"):
         git_source(recovered, str(original), revision, "files/pt-br")
 

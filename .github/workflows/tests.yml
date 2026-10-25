@@ -37,6 +37,7 @@ jobs:
             & .\scripts\calibrate-gtx1650.ps1 -Python $pythonPath -Steps 2 -Context 512
           } catch {
             $rejected = $true
+            Write-Host $_.Exception.Message
           }
           if (-not $rejected) { throw 'CPU-only runner must reject GPU calibration.' }
           $report = Get-Content -Raw reports/curriculum-v2/gtx1650-512-auto-calibration.json | ConvertFrom-Json
