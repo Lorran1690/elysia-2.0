@@ -246,3 +246,12 @@ A suíte local após esses ajustes passou novamente: 147 aprovados, 9 ignorados
 (16,15 s). O workflow passou a verificar Linux e Windows, incluindo uma execução
 nativa do script PowerShell que deve recusar a calibração no runner sem GPU.
 A verificação em CI não equivale a medir a GTX 1650 do proprietário.
+
+### Primeira execução nativa Windows e correções
+
+O CI Windows inicial encontrou seis falhas: quatro leituras UTF-8 tratadas como
+CP1252 e dois hashes de manifestos históricos alterados pelo checkout CRLF.
+Foram corrigidas as leituras explícitas nos módulos e testes envolvidos, sem
+reduzir as verificações, e os inputs históricos de `data/corpus-v0.5` passaram
+a preservar os bytes originais no Git. O CI Linux já estava aprovado. A nova
+execução Windows verificará as correções antes de declarar compatibilidade.

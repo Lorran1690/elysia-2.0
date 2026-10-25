@@ -96,12 +96,12 @@ def test_audit_rejects_modified_manifest_even_if_still_valid_json(tmp_path):
 
 def test_reviewed_dialogues_use_only_previous_training_trees_and_keep_gold_unconsumed():
     accepted = list(rows(DEST / "dialogues/reviewed-candidates.jsonl"))
-    old_train = json.loads((ROOT / "data/language-pilot/train.json").read_text())
-    heldout = json.loads((ROOT / "data/language-pilot/validation.json").read_text()) + json.loads((ROOT / "data/language-pilot/test.json").read_text())
+    old_train = json.loads((ROOT / "data/language-pilot/train.json").read_text(encoding='utf-8'))
+    heldout = json.loads((ROOT / "data/language-pilot/validation.json").read_text(encoding='utf-8')) + json.loads((ROOT / "data/language-pilot/test.json").read_text(encoding='utf-8'))
     assert len(accepted) == 6
     assert {r["id"] for r in accepted} <= {r["id"] for r in old_train}
     assert not {r["tree_id"] for r in accepted} & {r["tree_id"] for r in heldout}
-    evaluation = json.loads((ROOT / "evaluation/portuguese-v1.json").read_text())
+    evaluation = json.loads((ROOT / "evaluation/portuguese-v1.json").read_text(encoding='utf-8'))
     assert len(evaluation["cases"]) == 24 and evaluation["evaluation_count"] == 0
     assert evaluation["not_for_training"]
 
@@ -120,7 +120,7 @@ def test_source_recovery_pins_revision_and_refuses_dirty_cache(tmp_path):
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=original, text=True).strip()
     recovered = tmp_path / "recovered"
     git_source(recovered, str(original), revision, "files/pt-br")
-    assert (recovered / "files/pt-br/example.md").read_text() == "Texto português de teste."
+    assert (recovered / "files/pt-br/example.md").read_text(encoding='utf-8') == "Texto português de teste."
     assert (recovered / "LICENSE.md").exists()
     git_source(recovered, str(original), revision, "files/pt-br")
     (recovered / "files/pt-br/example.md").write_text("Modificação que não pode ser sobrescrita.")

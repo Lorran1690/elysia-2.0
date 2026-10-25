@@ -25,11 +25,11 @@ def test_new_dialogue_groups_and_literary_authors_are_disjoint():
     groups, tree_ids, authors = [], [], []
     legacy = set()
     for split in ["train", "validation", "test"]:
-        legacy.update(r["tree_id"] for r in json.loads((ROOT / f"data/language-pilot/{split}.json").read_text()))
-        records = json.loads((DEST / f"dialogues/{split}.json").read_text())
+        legacy.update(r["tree_id"] for r in json.loads((ROOT / f"data/language-pilot/{split}.json").read_text(encoding='utf-8')))
+        records = json.loads((DEST / f"dialogues/{split}.json").read_text(encoding='utf-8'))
         groups.append({r["group_id"] for r in records})
         tree_ids.append({r["tree_id"] for r in records})
-        books = [json.loads(s) for s in (DEST / f"literature/{split}.jsonl").read_text().splitlines()]
+        books = [json.loads(s) for s in (DEST / f"literature/{split}.jsonl").read_text(encoding='utf-8').splitlines()]
         authors.append({r["group_id"] for r in books})
         assert not tree_ids[-1] & legacy
         assert all(not r["synthetic"] and "user_id" not in r for r in records)
@@ -38,7 +38,7 @@ def test_new_dialogue_groups_and_literary_authors_are_disjoint():
 
 
 def test_resume_at_optimizer_step_boundary_is_exact(tmp_path):
-    protocol = copy.deepcopy(json.loads((DEST / "protocol.json").read_text()))
+    protocol = copy.deepcopy(json.loads((DEST / "protocol.json").read_text(encoding='utf-8')))
     protocol.update(pretrain_steps=3, sft_steps=2, pretrain_context=32, sft_context=32)
     protocol["model"].update(num_layers=1, embedding_dim=16, num_heads=2, feedforward_dim=32)
     uninterrupted, resumed = tmp_path / "continuous", tmp_path / "resumed"

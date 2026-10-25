@@ -27,7 +27,7 @@ def atomic_save(payload, path):
 
 
 def literature_store(split):
-    manifest = json.loads((DEST / "manifest.json").read_text())
+    manifest = json.loads((DEST / "manifest.json").read_text(encoding='utf-8'))
     info = manifest["literature_stores"][split]
     path = DEST / f"literature/tokens-{split}.bin"
     if sha_file(path) != info["sha256"] or path.stat().st_size != info["tokens"] * 4:
@@ -50,16 +50,16 @@ def prose_validation(model, store, windows=16):
 
 
 def load_dialogues(tokenizer):
-    manifest = json.loads((DEST / "manifest.json").read_text())
+    manifest = json.loads((DEST / "manifest.json").read_text(encoding='utf-8'))
     result = {}
     for split in ("train", "validation", "test"):
         path = DEST / f"dialogues/{split}.json"
         if sha_file(path) != manifest["dialogue_splits"][split]["sha256"]:
             raise ValueError("Dialogue partition changed")
-        result[split] = [encode_messages(tokenizer, r["messages"]) for r in json.loads(path.read_text())]
-    supplement = json.loads((DEST / "dialogues/legacy-synthetic-train.json").read_text())
+        result[split] = [encode_messages(tokenizer, r["messages"]) for r in json.loads(path.read_text(encoding='utf-8'))]
+    supplement = json.loads((DEST / "dialogues/legacy-synthetic-train.json").read_text(encoding='utf-8'))
     result["synthetic_train"] = [encode_messages(tokenizer, r["messages"]) for r in supplement]
-    old_val = json.loads((ROOT / "data/context-words/validation.json").read_text())["records"]
+    old_val = json.loads((ROOT / "data/context-words/validation.json").read_text(encoding='utf-8'))["records"]
     result["synthetic_validation"] = [encode_messages(tokenizer, r["messages"] + [{"role": "assistant", "content": r["answer"]}]) for r in old_val]
     return result
 
@@ -73,7 +73,7 @@ def train(output, *, resume=False, max_seconds=2700, pause_after=None, finalize=
         raise ValueError("Invalid CPU duration budget")
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
-    protocol = protocol_override or json.loads((DEST / "protocol.json").read_text())
+    protocol = protocol_override or json.loads((DEST / "protocol.json").read_text(encoding='utf-8'))
     torch.manual_seed(protocol["seed"])
     tokenizer = FastProjectTokenizer()
     model = ElysiaTransformer(ModelConfig(**protocol["model"]))
@@ -190,7 +190,7 @@ def train(output, *, resume=False, max_seconds=2700, pause_after=None, finalize=
             raise ValueError("Source changed during run")
         selected = torch.load(output / "sft-model.pt", weights_only=True, map_location="cpu")
         model.load_state_dict(selected["model_state"])
-        cases = json.loads((ROOT / "evaluation/portuguese-v1.json").read_text())["cases"]
+        cases = json.loads((ROOT / "evaluation/portuguese-v1.json").read_text(encoding='utf-8'))["cases"]
         generated, live = [], []
         for case in cases:
             try:
@@ -221,7 +221,7 @@ def train(output, *, resume=False, max_seconds=2700, pause_after=None, finalize=
                   "generation_cases": generated, "live_rollouts": live,
                   "checkpoint_sha256": sha_file(output / "sft-model.pt"), "resume_sha256": sha_file(output / "last.pt"),
                   "milestone_result": "requires semantic review; no automatic success inference"}
-        (output / "results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        (output / "results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline='\n')
         print(json.dumps({"completed": True, "static_cases": len(generated), "live_cases": len(live)}), flush=True)
     finally:
         for signum, handler in original_handlers.items():

@@ -93,7 +93,7 @@ def historical_keys():
  paths=list((ROOT/'data/language-pilot').glob('*.json'))+list((ROOT/'data/neural-dialogue-v2/dialogues').glob('*.json'))
  paths+=[ROOT/'evaluation/portuguese-v1.json']
  for p in paths:
-  value=json.loads(p.read_text())
+  value=json.loads(p.read_text(encoding='utf-8'))
   rows=value if isinstance(value,list) else value.get('cases',value.get('records',[]))
   if not isinstance(rows,list): continue
   for row in rows:
@@ -130,7 +130,7 @@ def prepare(cache,output):
    path.write_bytes(gzip.compress(raw,mtime=0))
    shards.append({'path':path.name,'split':split,'records':len(rows[start:start+500]),'bytes':path.stat().st_size,'sha256':file_hash(path)})
  manifest={'source':REPOSITORY,'revision':REVISION,'source_files':FILES,'source_rows':50000,'retained':len(records),'excluded':dict(excluded),'splits':summary,'shards':shards,'synthetic':True,'license':'Apache-2.0 as published; upstream prompts are not independently cleared','deduplication':'NFC casefold whitespace; exact conversations deduplicated; connected components of shared root or any >=80-character message kept in one split','limits':['No independent factual or language review; source labels portuguese.','Regex checks cannot guarantee absence of private data.','Near-duplicate paraphrases and upstream benchmark contamination may remain.','No weights trained or improved by corpus preparation.','All old evaluation remains historical; a new independent evaluation is needed.']}
- (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+ (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
  print(json.dumps({k:manifest[k] for k in ['source_rows','retained','excluded','splits']},ensure_ascii=False,indent=2))
 
 if __name__=='__main__':

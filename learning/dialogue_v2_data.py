@@ -39,7 +39,7 @@ class FastProjectTokenizer:
         folder = ROOT / "data/corpus-pt-v1/tokenizer"
         self.own = ByteBPETokenizer.load(folder / "elysia-bpe.json")
         self.fast = Tokenizer.from_file(str(folder / "fast-bpe.json"))
-        self.mapping = {int(k): v for k, v in json.loads((folder / "fast-id-to-elysia-id.json").read_text()).items()}
+        self.mapping = {int(k): v for k, v in json.loads((folder / "fast-id-to-elysia-id.json").read_text(encoding='utf-8')).items()}
         self.bos_id, self.eos_id = self.own.bos_id, self.own.eos_id
         self.vocab_size = self.own.vocab_size
 
@@ -130,25 +130,25 @@ def prepare(cache: Path, output: Path = DEST):
     output.mkdir(parents=True)
     (output / "dialogues").mkdir()
     for split, records in splits.items():
-        (output / f"dialogues/{split}.json").write_text(json.dumps(records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        (output / f"dialogues/{split}.json").write_text(json.dumps(records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline='\n')
     supplements = []
-    for record in json.loads((ROOT / "data/context-words/train.json").read_text())["records"]:
+    for record in json.loads((ROOT / "data/context-words/train.json").read_text(encoding='utf-8'))["records"]:
         supplements.append({"id": record["id"], "group_id": record["group_id"], "synthetic": True,
                             "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
                             "messages": record["messages"] + [{"role": "assistant", "content": record["answer"]}]})
-    (output / "dialogues/legacy-synthetic-train.json").write_text(json.dumps(supplements, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output / "dialogues/legacy-synthetic-train.json").write_text(json.dumps(supplements, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline='\n')
     shutil.copy2(ROOT / "data/language-pilot/LICENSE-APACHE-2.0.txt", output / "dialogues/LICENSE-APACHE-2.0.txt")
     shutil.copy2(cache / "oasst2/README.md", output / "dialogues/UPSTREAM-CARD.md")
     originals = output / "sources"
     originals.mkdir()
     literature = {s: [] for s in splits}
-    books_metadata = {r["id"]: r for r in json.loads((cache / "gutenberg-v2/sources.json").read_text())}
+    books_metadata = {r["id"]: r for r in json.loads((cache / "gutenberg-v2/sources.json").read_text(encoding='utf-8'))}
     for book_id, (split, death, expected) in BOOKS.items():
         raw = cache / f"gutenberg-v2/{book_id}.txt"
         page = cache / f"gutenberg-v2/{book_id}.html"
         if sha_file(raw) != expected:
             raise ValueError("Book source hash mismatch")
-        page_text = page.read_text()
+        page_text = page.read_text(encoding='utf-8')
         if 'Public domain in the USA.' not in page_text or str(death) not in page_text or death > 1955:
             raise ValueError("Book rights evidence missing")
         body = strip_book(raw.read_text(encoding="utf-8-sig"))
@@ -165,7 +165,7 @@ def prepare(cache: Path, output: Path = DEST):
     stores = {}
     for split, records in literature.items():
         path = output / f"literature/{split}.jsonl"
-        path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records), encoding="utf-8")
+        path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records), encoding="utf-8", newline='\n')
         count = 0
         with (output / f"literature/tokens-{split}.bin").open("wb") as handle:
             for record in records:
@@ -185,7 +185,7 @@ def prepare(cache: Path, output: Path = DEST):
                           "Historical fiction is not contemporary conversation or a source of factual answers.",
                           "The synthetic supplement is explicitly separate and predates the frozen open evaluation.",
                           "This is a bounded research dataset, not a broad-conversation readiness claim."]}
-    (output / "manifest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output / "manifest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline='\n')
     return report
 
 

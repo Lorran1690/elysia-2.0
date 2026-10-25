@@ -25,3 +25,6 @@ data/source-locks/** text eol=lf
 configs/foundation*.yaml text eol=lf
 reports/curriculum-v2/** text eol=lf
 scripts/*.ps1 text eol=lf
+
+# Historical audit inputs have frozen byte hashes; do not rewrite on checkout.
+data/corpus-v0.5/** -text
