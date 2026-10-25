@@ -20,13 +20,13 @@ def architecture_count(configuration):
 
 
 def inspect(config_path):
-    profile=yaml.safe_load(config_path.read_text())
-    corpus=ROOT/profile['corpus'];tokenizer=json.loads((corpus/'tokenizer/manifest.json').read_text())
+    profile=yaml.safe_load(config_path.read_text(encoding='utf-8'))
+    corpus=ROOT/profile['corpus'];tokenizer=json.loads((corpus/'tokenizer/manifest.json').read_text(encoding='utf-8'))
     if profile['model']['vocab_size']!=tokenizer['vocab_size']:raise ValueError('Model vocabulary differs from own tokenizer')
     # Enforce exactly the preassigned partition, without recomputing a split.
     stores={s:load_partition(s,corpus=corpus,for_training=s=='train') for s in ['train','validation','test']}
     curriculum_path=ROOT/profile['curriculum']/'manifest.json'
-    curriculum=json.loads(curriculum_path.read_text())
+    curriculum=json.loads(curriculum_path.read_text(encoding='utf-8'))
     if curriculum['tokenizer_sha256']!=tokenizer['elysia_tokenizer_sha256']:raise ValueError('Curriculum tokenizer mismatch')
     if profile['model']['block_size']<curriculum['maximum_context']:raise ValueError('Model cannot contain the complete curriculum context')
     if profile['calibration']['context']>profile['model']['block_size']:raise ValueError('Calibration context exceeds model')
@@ -82,5 +82,5 @@ if __name__=='__main__':
         try:report['calibration']=benchmark(profile,a.benchmark_steps,context=a.benchmark_context,precision=a.precision)
         except (RuntimeError,ValueError) as exc:
             report['calibration']={'completed':False,'error':str(exc),'weights_saved':False};failed=True
-    a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2))
+    a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n');print(json.dumps(report,ensure_ascii=False,indent=2))
     if failed:raise SystemExit(2)

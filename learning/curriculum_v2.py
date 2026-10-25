@@ -27,7 +27,7 @@ class OwnTokenizer:
     def __init__(self,folder):
         self.own=ByteBPETokenizer.load(folder/'elysia-bpe.json')
         self.fast=Tokenizer.from_file(str(folder/'fast-bpe.json'))
-        self.mapping={int(k):v for k,v in json.loads((folder/'fast-id-to-elysia-id.json').read_text()).items()}
+        self.mapping={int(k):v for k,v in json.loads((folder/'fast-id-to-elysia-id.json').read_text(encoding='utf-8')).items()}
         self.bos_id,self.eos_id=self.own.bos_id,self.own.eos_id
         self.vocab_size=self.own.vocab_size
 
@@ -120,9 +120,9 @@ def encode_target(tokenizer,messages,target):
 def prepare(output=DEST,tokenizer_folder=TOKENIZER):
     tokenizer_folder=tokenizer_folder.resolve()
     if output.exists():raise ValueError('Curriculum already exists; use a new directory')
-    tokenizer_manifest=json.loads((tokenizer_folder/'manifest.json').read_text())
+    tokenizer_manifest=json.loads((tokenizer_folder/'manifest.json').read_text(encoding='utf-8'))
     if file_hash(tokenizer_folder/'elysia-bpe.json')!=tokenizer_manifest['elysia_tokenizer_sha256']:raise ValueError('Tokenizer changed')
-    source_manifest=json.loads((SOURCE/'manifest.json').read_text())
+    source_manifest=json.loads((SOURCE/'manifest.json').read_text(encoding='utf-8'))
     tokenizer=OwnTokenizer(tokenizer_folder);candidates=[];rejected=Counter();coverage=Counter();stats=Counter()
     for shard in source_manifest['shards']:
         if shard['split']!='train':continue
@@ -163,9 +163,9 @@ def prepare(output=DEST,tokenizer_folder=TOKENIZER):
                     if len(ids)>2049 or not any(t!=-100 for t in labels):raise ValueError('Invalid complete target')
                     queue.append({'target':target,'messages':row['messages'][:2*target['assistant_pair_index']+2],
                                   'reviewer':None,'decision':'pending','factual_correctness':None,'context_correctness':None})
-    (output/'review-queue.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in queue))
+    (output/'review-queue.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in queue), encoding='utf-8', newline='\n')
     manifest={'version':2,'source_manifest_sha256':file_hash(SOURCE/'manifest.json'),'fit_partition':'train only; validation and test remain untouched in source corpus','tokenizer_manifest_sha256':file_hash(tokenizer_folder/'manifest.json'),'tokenizer_sha256':file_hash(tokenizer_folder/'elysia-bpe.json'),'tokenizer_directory':str(tokenizer_folder.relative_to(ROOT)),'vocab_size':tokenizer.vocab_size,'maximum_context':2048,'history_policy':'Entire conversation prefix from first user through target; no cropped earlier turns','selection':'At most two targets per original connected group, prefer deepest contextual then standalone then lexical deferral candidate','counts':dict(stats),'coverage_before_lexical_filters':dict(coverage),'rejected_targets':dict(rejected),'candidate_targets':len(candidates),'selected_targets':len(selected),'bucket_target_counts':dict(Counter(r['bucket'] for r in selected)),'sampling_probability_mass':mass,'prefix_family_adjustment':'inverse square root frequency inside each bucket, computed from selected training targets only','targets_sha256':file_hash(path),'review_queue_sha256':file_hash(output/'review-queue.jsonl'),'review_queue_rows':len(queue),'independent_human_approval':False,'neural_weights_updated':False,'limits':['Lexical deferral is a candidate label, not proof that uncertainty is unwarranted.','High verbatim repetition filter may reject legitimate repetitive writing.','Bucket proportions are a new experimental hypothesis, not validated conversation quality.','Synthetic answers remain factually unverified.','The new 8192-token vocabulary is incompatible with old 2048-token checkpoints; new pretraining is required.']}
-    (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+    (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
     print(json.dumps(manifest,ensure_ascii=False,indent=2))
 
 if __name__=='__main__':

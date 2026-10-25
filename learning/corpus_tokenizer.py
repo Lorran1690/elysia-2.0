@@ -82,7 +82,7 @@ def prepare(corpus: Path = DEST, vocab_size=2048):
     fast.save(str(target / "fast-bpe.json"))
     own, mapping = export_elysia(fast, vocab_size)
     own.save(target / "elysia-bpe.json")
-    (target / "fast-id-to-elysia-id.json").write_text(json.dumps(mapping, sort_keys=True), encoding="utf-8")
+    (target / "fast-id-to-elysia-id.json").write_text(json.dumps(mapping, sort_keys=True), encoding="utf-8", newline='\n')
     totals, samples = {}, 0
     for split in ("train", "validation", "test"):
         index_rows = []
@@ -110,7 +110,7 @@ def prepare(corpus: Path = DEST, vocab_size=2048):
                                    "length": len(ids), "family": record["family"], "text_sha256": record["sha256"]})
                 count += len(ids)
                 family[record["family"]] = family.get(record["family"], 0) + len(ids)
-        (target / f"index-{split}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in index_rows), encoding="utf-8")
+        (target / f"index-{split}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in index_rows), encoding="utf-8", newline='\n')
         totals[split] = {"tokens_including_bos_eos": count, "documents": len(index_rows), "by_family": family,
                          "store_sha256": sha_file(binary), "store_bytes": binary.stat().st_size,
                          "dtype": "uint32", "byteorder": "little"}
@@ -122,7 +122,7 @@ def prepare(corpus: Path = DEST, vocab_size=2048):
               "all_documents_round_trip_checked": True, "partitions": totals,
               "elysia_tokenizer_sha256": sha_file(target / "elysia-bpe.json"),
               "neural_weights_updated": False}
-    (target / "manifest.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    (target / "manifest.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n')
     return result
 
 

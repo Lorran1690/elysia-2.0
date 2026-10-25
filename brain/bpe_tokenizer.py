@@ -255,7 +255,7 @@ class ByteBPETokenizer:
     def save(self, path: str | Path) -> None:
         output = Path(path)
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        output.write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline='\n')
 
     @classmethod
     def load(cls, path: str | Path) -> "ByteBPETokenizer":

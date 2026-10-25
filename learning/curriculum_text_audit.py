@@ -20,7 +20,7 @@ def audit():
         grams=[tuple(words[i:i+4]) for i in range(max(0,len(words)-3))]
         if grams and max(Counter(grams).values())>=4:counts['repeated_fourgram_at_least_four']+=1
         if len(words)<60:counts['under_60_words']+=1
-    (ROOT/'reports/curriculum-v2/train-text-audit.json').write_text(json.dumps({'source_manifest_sha256':file_hash(p/'manifest.json'),'scope':'Training split only; no validation/test contents inspected for these statistics.','counts':dict(counts),'common_eight_word_prefixes':prefix.most_common(20),'limits':'Lexical diagnostics, not semantic labels of truth, refusal correctness or quality.'},ensure_ascii=False,indent=2)+'\n')
+    (ROOT/'reports/curriculum-v2/train-text-audit.json').write_text(json.dumps({'source_manifest_sha256':file_hash(p/'manifest.json'),'scope':'Training split only; no validation/test contents inspected for these statistics.','counts':dict(counts),'common_eight_word_prefixes':prefix.most_common(20),'limits':'Lexical diagnostics, not semantic labels of truth, refusal correctness or quality.'},ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
     print(json.dumps({'counts':dict(counts),'top_prefixes':prefix.most_common(6)},ensure_ascii=False))
 
 if __name__ == "__main__":

@@ -13,3 +13,6 @@ data/corpus-v0.5/processed/
 learning/checkpoints/elysia-seed-v0.4-machado-pilot.pt
 learning/checkpoints/elysia-seed-v0.4-machado-extended-best.pt
 learning/checkpoints/elysia-seed-v0.4-machado-extended-last.pt
+
+# Local raw-source cache; prepared public corpora are versioned separately.
+.cache/

@@ -13,7 +13,7 @@ from learning.aira_corpus import ROOT, file_hash, PII
 REVISION = 'b04c8d1ceb2f5cd4588862100d08de323dccfbaa'
 REPOSITORY = 'wikimedia/wikipedia'
 LOCK = ROOT/'data/source-locks/wikipedia-pt-20231101.json'
-DEFAULT_CACHE = Path('/workspace/elysia-source-cache/wikipedia-pt-20231101')
+DEFAULT_CACHE = ROOT/'.cache/sources/wikipedia-pt-20231101'
 DEST = ROOT/'data/foundation-pt-v1'
 LICENSE_URL = 'https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-SA-3.0.txt'
 LICENSE_SHA = '3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f'
@@ -26,7 +26,7 @@ def digest(text):
 
 def fetch(cache):
     cache.mkdir(parents=True, exist_ok=True)
-    items=json.loads(LOCK.read_text())
+    items=json.loads(LOCK.read_text(encoding='utf-8'))
     for info in items:
         p=cache/Path(info['path']).name
         if not p.exists():
@@ -54,7 +54,7 @@ def fetch(cache):
         license_file.write_bytes(urllib.request.urlopen(LICENSE_URL,timeout=30).read(100000))
     if file_hash(license_file)!=LICENSE_SHA: raise ValueError('License text changed')
     evidence={'license_text_mirror':LICENSE_URL,'sha256':LICENSE_SHA,'upstream_license_declaration':'Pinned wikimedia/wikipedia README.md','original_license_url':'https://creativecommons.org/licenses/by-sa/3.0/','wikimedia_terms_url':'https://dumps.wikimedia.org/legal.html','direct_notice_download':'Original CC text URL and Wikimedia legal URL returned HTTP 403 during acquisition; full CC text is archived from the pinned SPDX mirror.'}
-    (cache/'license-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
+    (cache/'license-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n', encoding='utf-8', newline='\n')
     # Pinned data card states the licenses. Full CC license is kept in repository.
     if b'Creative Commons Attribution-Share-Alike 3.0' not in card.read_bytes():
         raise ValueError('Source license declaration is missing')
@@ -72,7 +72,7 @@ def eligible(row):
 def prepare(cache,output):
     import pyarrow.parquet as pq
     if output.exists(): raise ValueError('Published corpus exists; choose a new directory')
-    items=json.loads(LOCK.read_text())
+    items=json.loads(LOCK.read_text(encoding='utf-8'))
     for info in items:
         p=cache/Path(info['path']).name
         if p.stat().st_size!=info['size'] or file_hash(p)!=info['lfs']['oid']: raise ValueError('Pinned parquet mismatch')
@@ -116,8 +116,8 @@ def prepare(cache,output):
             for row in selected:f.write(json.dumps(row,ensure_ascii=False)+'\n')
         if target.stat().st_size>=90_000_000:raise ValueError('Split exceeds conservative GitHub file budget; use shards')
         partitions[split]={'documents':len(selected),'characters':sum(len(r['text']) for r in selected),'bytes':target.stat().st_size,'sha256':file_hash(target)}
-    manifest={'source':REPOSITORY,'revision':REVISION,'source_lock_sha256':file_hash(LOCK),'source_files':items,'sample':'1% of SHA256(pt:article_id) buckets across all six shards, before eligibility filters','counts':dict(counts),'partitions':partitions,'grouping':'Exact normalized full text; no group crosses splits','license':'CC-BY-SA-3.0 per upstream card; attribution and history URL retained per article','source_notices':{str(p.relative_to(output)):file_hash(p) for p in sources.iterdir()},'neural_weights_updated':False,'limitations':['Snapshot from November 2023, not current facts.','No independent factual, topic balance, bias or human-authorship audit.','Lexical identifier filters are not complete privacy review.','Near duplicates and shared paragraphs may remain between articles.','Encyclopedic text is not conversational behavior or an instruction corpus.']}
-    (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+    manifest={'source':REPOSITORY,'revision':REVISION,'source_lock_sha256':file_hash(LOCK),'source_files':items,'sample':'1% of SHA256(pt:article_id) buckets across all six shards, before eligibility filters','counts':dict(counts),'partitions':partitions,'grouping':'Exact normalized full text; no group crosses splits','license':'CC-BY-SA-3.0 per upstream card; attribution and history URL retained per article','source_notices':{p.relative_to(output).as_posix():file_hash(p) for p in sources.iterdir()},'neural_weights_updated':False,'limitations':['Snapshot from November 2023, not current facts.','No independent factual, topic balance, bias or human-authorship audit.','Lexical identifier filters are not complete privacy review.','Near duplicates and shared paragraphs may remain between articles.','Encyclopedic text is not conversational behavior or an instruction corpus.']}
+    (output/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
     print(json.dumps({'counts':dict(counts),'partitions':partitions},ensure_ascii=False,indent=2))
 
 if __name__=='__main__':

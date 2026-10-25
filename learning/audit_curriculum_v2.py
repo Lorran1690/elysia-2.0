@@ -10,7 +10,7 @@ from learning.prepared_corpus import load_partition
 
 def audit():
     source=ROOT/'data/aira-pt-v1';destination=ROOT/'data/curriculum-v2';corpus=ROOT/'data/foundation-pt-v1'
-    manifest=json.loads((destination/'manifest.json').read_text());original=json.loads((source/'manifest.json').read_text())
+    manifest=json.loads((destination/'manifest.json').read_text(encoding='utf-8'));original=json.loads((source/'manifest.json').read_text(encoding='utf-8'))
     assert file_hash(source/'manifest.json')==manifest['source_manifest_sha256']
     train_groups={}
     for shard in original['shards']:
@@ -38,7 +38,7 @@ def audit():
     tokenizer=OwnTokenizer(corpus/'tokenizer');queue=destination/'review-queue.jsonl'
     assert file_hash(queue)==manifest['review_queue_sha256']
     reviewed=0
-    for line in queue.read_text().splitlines():
+    for line in queue.read_text(encoding='utf-8').splitlines():
         r=json.loads(line);assert r['decision']=='pending' and r['reviewer'] is None
         ids,labels=encode_target(tokenizer,r['messages'],r['target'])
         expected=''.join(('Usuário: ' if m['role']=='user' else 'Elysia: ')+' '.join(m['content'].split())+('\n' if m['role']=='user' else '') for m in r['messages'])
@@ -56,6 +56,6 @@ def audit():
             assert r['attribution'] and r['history_url'] and r['modifications']
             articles[split]+=1
     report={'selected_targets':count,'distinct_training_groups':len(groups),'maximum_targets_per_group':max(groups.values()),'bucket_counts':dict(buckets),'sampling_mass':dict(probabilities),'all_target_ids_belong_to_train_only':True,'complete_prefix_metadata_valid':True,'queue_rows_round_trip_and_target_mask_checked':reviewed,'queue_human_decisions':'all pending; none approved','article_partition_counts':dict(articles),'article_ids_unique':len(article_ids),'article_full_text_groups_crossing_splits':0,'article_attribution_and_license_fields_present':True,'all_language_partition_source_and_token_store_hashes_valid':True,'neural_weights_updated':False,'limits':'Structural/integrity audit; not independent human semantic or factual review. Near duplicates are not excluded by exact hash grouping.'}
-    p=ROOT/'reports/curriculum-v2/integrity-audit.json';p.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2))
+    p=ROOT/'reports/curriculum-v2/integrity-audit.json';p.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n');print(json.dumps(report,ensure_ascii=False,indent=2))
 
 if __name__=='__main__':audit()

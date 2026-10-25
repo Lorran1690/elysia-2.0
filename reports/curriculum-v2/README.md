@@ -236,3 +236,13 @@ Esses comandos devem ser executados no computador com a GTX, na branch desta
 atualização. Não foram executados remotamente no Windows do proprietário. O
 relatório de calibração permite escolher o tamanho de contexto e o orçamento de
 treino usando medidas reais, em vez de supor que os 4 GB bastem para todo perfil.
+
+Os novos leitores e escritores de texto usam UTF-8 explícito; os artefatos
+preparados usam LF também ao serem regenerados no Windows. O exportador BPE
+compartilhado foi ajustado para essa convenção sem alterar tokens ou pesos.
+O cache padrão da fonte agora fica em `.cache/sources` no próprio repositório,
+ignorado pelo Git, evitando presumir o diretório Linux `/workspace` no Windows.
+A suíte local após esses ajustes passou novamente: 147 aprovados, 9 ignorados
+(16,15 s). O workflow passou a verificar Linux e Windows, incluindo uma execução
+nativa do script PowerShell que deve recusar a calibração no runner sem GPU.
+A verificação em CI não equivale a medir a GTX 1650 do proprietário.

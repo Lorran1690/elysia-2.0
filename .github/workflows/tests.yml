@@ -6,7 +6,11 @@ on:
 
 jobs:
   cpu-tests:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,3 +27,26 @@ jobs:
           OMP_NUM_THREADS: "2"
           MKL_NUM_THREADS: "2"
         run: python -m pytest -q
+      - name: Verify Windows PowerShell script rejects unavailable GPU
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $pythonPath = (Get-Command python).Source
+          $rejected = $false
+          try {
+            & .\scripts\calibrate-gtx1650.ps1 -Python $pythonPath -Steps 2 -Context 512
+          } catch {
+            $rejected = $true
+          }
+          if (-not $rejected) { throw 'CPU-only runner must reject GPU calibration.' }
+          $report = Get-Content -Raw reports/curriculum-v2/gtx1650-512-auto-calibration.json | ConvertFrom-Json
+          if ($report.cuda_available -ne $false -or $report.calibration.completed -ne $false) {
+            throw 'Expected a structured report with CUDA unavailable and calibration incomplete.'
+          }
+          $global:LASTEXITCODE = 0
+      - name: Preserve Windows CPU calibration diagnostic
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-cpu-calibration-diagnostic
+          path: reports/curriculum-v2/gtx1650-512-auto-calibration.json
