@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "status": "frozen before any neural training on corpus-pt-v1",
+  "not_for_training": true,
+  "authorship": "Prompts and rubrics written by Codex for evaluation only; not a human dataset or training corpus.",
+  "evaluation_count": 0,
+  "scoring": {
+    "0": "Incorreto, incoerente, fora do assunto ou não atende ao critério.",
+    "1": "Parcialmente correto e pertinente, com falha material.",
+    "2": "Correto, pertinente, coerente e atende às restrições.",
+    "review": "Semantic review with reviewer identified. No automatic keyword success scoring.",
+    "critical_errors": "Report invented personal information or falsely claimed external access separately."
+  },
+  "cases": [
+    {
+      "id": "pt-v1-01",
+      "category": "greeting",
+      "title": "Saudação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Boa tarde! Quero organizar meu dia. Por onde começo?"
+        }
+      ],
+      "criterion": "Cumprimenta e oferece uma forma simples de priorizar tarefas, sem inventar compromissos."
+    },
+    {
+      "id": "pt-v1-02",
+      "category": "explanation",
+      "title": "Explicação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Como uma garrafa térmica ajuda a manter o café quente?"
+        }
+      ],
+      "criterion": "Relaciona isolamento à redução de troca de calor, em linguagem compreensível."
+    },
+    {
+      "id": "pt-v1-03",
+      "category": "explanation",
+      "title": "Explicação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explique a diferença entre um arquivo e uma pasta para quem nunca usou computador."
+        }
+      ],
+      "criterion": "Distingue conteúdo individual de recipiente organizador, com exemplo simples."
+    },
+    {
+      "id": "pt-v1-04",
+      "category": "instructions",
+      "title": "Instrução",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Dê quatro passos curtos para preparar a mochila na noite anterior à escola."
+        }
+      ],
+      "criterion": "Fornece exatamente quatro ações pertinentes e ordenadas."
+    },
+    {
+      "id": "pt-v1-05",
+      "category": "instructions",
+      "title": "Instrução",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Quero começar a ler todos os dias. Sugira um plano de três dias, com dez minutos por dia."
+        }
+      ],
+      "criterion": "Respeita três dias e dez minutos, com ações viáveis."
+    },
+    {
+      "id": "pt-v1-06",
+      "category": "clarification",
+      "title": "Esclarecimento",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Troque esse item pelo outro e deixe tudo melhor."
+        }
+      ],
+      "criterion": "Pede identificação dos itens e do objetivo, sem fingir que viu uma lista."
+    },
+    {
+      "id": "pt-v1-07",
+      "category": "uncertainty",
+      "title": "Incerteza",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Qual é a senha da minha rede de casa?"
+        }
+      ],
+      "criterion": "Admite não ter essa informação; não inventa senha nem afirma acesso."
+    },
+    {
+      "id": "pt-v1-08",
+      "category": "uncertainty",
+      "title": "Incerteza",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Você sabe se deixei a janela da cozinha aberta?"
+        }
+      ],
+      "criterion": "Diz não poder verificar sem informação ou ferramenta, sem inventar observação."
+    },
+    {
+      "id": "pt-v1-09",
+      "category": "summarization",
+      "title": "Resumo",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Resuma em uma frase: Marina foi ao mercado comprar frutas. A loja estava fechada. Ela decidiu voltar na manhã seguinte."
+        }
+      ],
+      "criterion": "Preserva tentativa, loja fechada e decisão de voltar, sem detalhes inventados."
+    },
+    {
+      "id": "pt-v1-10",
+      "category": "rewriting",
+      "title": "Reescrita",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Corrija a concordância sem mudar a ideia: As criança brincou no quintal."
+        }
+      ],
+      "criterion": "Produz As crianças brincaram no quintal, ou correção equivalente."
+    },
+    {
+      "id": "pt-v1-11",
+      "category": "comparison",
+      "title": "Comparação",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compare bicicleta e caminhada para um trajeto curto, citando um benefício de cada."
+        }
+      ],
+      "criterion": "Oferece benefícios pertinentes de ambos sem afirmações absolutas."
+    },
+    {
+      "id": "pt-v1-12",
+      "category": "reasoning",
+      "title": "Raciocínio",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Lara tinha sete lápis, deu dois a Bruno e ganhou três. Com quantos lápis Lara ficou?"
+        }
+      ],
+      "criterion": "Responde oito e mantém a operação coerente."
+    },
+    {
+      "id": "pt-v1-13",
+      "category": "extraction",
+      "title": "Extração",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Responda apenas com JSON contendo cidade e quantidade: Foram enviados seis cadernos para Natal."
+        }
+      ],
+      "criterion": "Objeto JSON válido com cidade Natal e quantidade numérica 6, sem texto externo."
+    },
+    {
+      "id": "pt-v1-14",
+      "category": "format",
+      "title": "Formato",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Em duas frases curtas, explique por que fazer pausas durante o estudo pode ajudar."
+        }
+      ],
+      "criterion": "Duas frases pertinentes, sem enumeração ou parágrafos extras."
+    },
+    {
+      "id": "pt-v1-15",
+      "category": "coding",
+      "title": "Código",
+      "messages": [
+        {
+          "role": "user",
+          "content": "O que retorna a expressão Python len([4, 8, 12])? Explique em uma frase."
+        }
+      ],
+      "criterion": "Retorna 3 porque há três elementos, sem confundir soma e tamanho."
+    },
+    {
+      "id": "pt-v1-16",
+      "category": "planning",
+      "title": "Planejamento",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho vinte minutos para arrumar a mesa e revisar uma página. Divida o tempo entre essas duas atividades."
+        }
+      ],
+      "criterion": "Propõe divisão explícita que some vinte minutos e inclua ambas atividades."
+    },
+    {
+      "id": "pt-v1-17",
+      "category": "context",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Minha reunião começa às 16 horas."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Quero chegar dez minutos antes. A que horas devo chegar?"
+        }
+      ],
+      "criterion": "Responde 15h50 com base no contexto."
+    },
+    {
+      "id": "pt-v1-18",
+      "category": "context",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho um gato chamado Nino e uma cadela chamada Mel."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Como se chama a cadela?"
+        }
+      ],
+      "criterion": "Responde Mel, sem confundir os animais."
+    },
+    {
+      "id": "pt-v1-19",
+      "category": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A entrega será na terça-feira."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Mudou para quinta-feira. Em qual dia será a entrega?"
+        }
+      ],
+      "criterion": "Usa quinta-feira, respeitando a correção."
+    },
+    {
+      "id": "pt-v1-20",
+      "category": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Preciso comprar cinco maçãs."
+        },
+        {
+          "role": "assistant",
+          "content": "Certo."
+        },
+        {
+          "role": "user",
+          "content": "Na verdade, serão duas maçãs a menos. Quantas compro?"
+        }
+      ],
+      "criterion": "Responde três maçãs."
+    },
+    {
+      "id": "pt-v1-21",
+      "category": "followup",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Quero um lanche sem leite."
+        },
+        {
+          "role": "assistant",
+          "content": "Podemos pensar em frutas e outros alimentos adequados."
+        },
+        {
+          "role": "user",
+          "content": "Dê duas sugestões e lembre da restrição."
+        }
+      ],
+      "criterion": "Sugere duas opções sem leite e não inclui queijo, iogurte ou manteiga comum."
+    },
+    {
+      "id": "pt-v1-22",
+      "category": "followup",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Estou aprendendo violão e só tenho quinze minutos por dia."
+        },
+        {
+          "role": "assistant",
+          "content": "Podemos montar uma rotina curta."
+        },
+        {
+          "role": "user",
+          "content": "Como distribuo esse tempo entre aquecimento e prática?"
+        }
+      ],
+      "criterion": "Divide quinze minutos entre ambas atividades e mantém o assunto violão."
+    },
+    {
+      "id": "pt-v1-23",
+      "category": "ambiguity",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tenho uma caixa azul e uma amarela."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Ela está muito pesada. O que você sugere?"
+        }
+      ],
+      "criterion": "Reconhece ambiguidade de qual caixa, podendo pedir esclarecimento e oferecer orientação geral."
+    },
+    {
+      "id": "pt-v1-24",
+      "category": "consistency",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Neste jogo, todo bloco vermelho vale dois pontos e todo bloco azul vale três."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi as regras."
+        },
+        {
+          "role": "user",
+          "content": "Tenho dois vermelhos e um azul. Qual é minha pontuação?"
+        }
+      ],
+      "criterion": "Calcula sete pontos usando as regras fornecidas, sem inventar regras novas."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+data/corpus-pt-v1/** text eol=lf
+data/corpus-pt-v1/tokenizer/*.bin binary
+data/language-pilot/*.json text eol=lf
+evaluation/*.json text eol=lf
+reports/corpus-pt-v1/** text eol=lf
+requirements-corpus.txt text eol=lf

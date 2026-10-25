@@ -1,0 +1,5 @@
+# Corpus preparation only. No pretrained model or tokenizer is downloaded.
+tokenizers==0.22.2
+polib==1.2.0
+markdown-it-py==4.0.0
+PyYAML==6.0.3
