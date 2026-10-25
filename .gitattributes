@@ -1,5 +1,7 @@
 data/corpus-pt-v1/** text eol=lf
 data/corpus-pt-v1/tokenizer/*.bin binary
+# Preserve the upstream license snapshot byte-for-byte, including its whitespace.
+data/corpus-pt-v1/licenses/PYTHON-LICENSE.html -whitespace
 data/language-pilot/*.json text eol=lf
 evaluation/*.json text eol=lf
 reports/corpus-pt-v1/** text eol=lf

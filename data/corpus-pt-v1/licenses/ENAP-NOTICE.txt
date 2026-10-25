@@ -1,0 +1,47 @@
+Source license declaration, extracted from original PDF page 4:
+© 2018 Ibict
+Esta obra é licenciada sob uma licença Creative Commons - Atribuição CC BY 4.0,
+sendo permitida a reprodução parcial ou total desde que mencionada a fonte.
+
+Editor Executivo
+Ramón Martins Sodoma da Fonseca
+Assistente(s) de Editoração
+Davilene Ramos Chaves
+Gislaine Russo de Moraes Brito
+Revisão de Conteúdo
+Milton Shintaku
+
+Revisão de Gramatical e Ortográfica
+Frederico Oliveira
+Normalização
+Priscila Rodrigues
+
+Diagramação e design gráfico
+Rafael Fernandez
+Catalogação na fonte
+
+Guia do usuário do Omeka / Milton Shintaku... et al. Brasília: Ibict, 2018.
+140 p.
+ISBN 978-85-7013-140-9
+Inclui referências bibliográficas.
+1. Software livre (Manual). 2. Gestão de coleção digital. 3. Objeto digital. 4.
+Indicadores Sociais. 5. Exposição virtual. I. Instituto Brasileiro de Informação
+em Ciência e Tecnologia. II. Escola Nacional de Administração Pública. III.
+Shintaku, Milton. IV. Gomes, Rafael Fernandez. V. Brito, Ronnie Fagundes de.
+VI. Rodrigues, Lucas C. VII. Pereira, Vinícius Carvalho. VIII. Schimidt, Keicielle.
+CDU 004.4:027.177(083.131)
+CDD 026.7
+Ingrid Torres Schiessl (CRB 1/3084))
+Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict)
+Setor de Autarquias Sul (SAUS) Quadra 05 Lote 06, Bloco H–5ºAndar.
+Cep:70.070-912 – Brasília, DF. Telefones:55 (61) 3217-6360/55 / 3217-6350
+www.ibict.br
+Rua Lauro Muller, 455 - 4ºAndar – Botafogo. Cep: 22.290 -160 – Rio de
+Janeiro, RJ. Telefone: 55 (21) 2275-0321 Fax: 55 (21) 2275-359
+
+Guia do usuário do:
+
+Omeka
+
+
+License: https://creativecommons.org/licenses/by/4.0/

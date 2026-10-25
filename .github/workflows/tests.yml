@@ -17,5 +17,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install PyYAML pytest psutil
+          python -m pip install -r requirements-corpus.txt
       - name: Run tests without GPU
+        env:
+          OMP_NUM_THREADS: "2"
+          MKL_NUM_THREADS: "2"
         run: python -m pytest -q

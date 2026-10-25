@@ -61,4 +61,8 @@ def prepare(output=DEST / "dialogues"):
 
 
 if __name__ == "__main__":
-    print(json.dumps(prepare(), ensure_ascii=False, indent=2))
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=DEST / "dialogues")
+    args = parser.parse_args()
+    print(json.dumps(prepare(args.output), ensure_ascii=False, indent=2))

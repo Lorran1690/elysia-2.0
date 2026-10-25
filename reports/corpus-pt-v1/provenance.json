@@ -1,0 +1,34 @@
+{
+  "python": "3.12.14",
+  "libraries": {
+    "polib": "1.2.0",
+    "tokenizers": "0.22.2",
+    "markdown-it-py": "4.0.0",
+    "PyYAML": "6.0.3"
+  },
+  "pdf_extractor": "pdftotext version 25.03.0",
+  "corpus_manifest_sha256": "3851764abf87b48ff0740860e4cea6606e1e6fead474a85a9a77433d9fb96986",
+  "tokenizer_manifest_sha256": "92393b5218e8a6cb851dc123b82ac5dc63470c062058a7bb27d31663628bd071",
+  "evaluation_sha256": "87977e9e07c3e2c9e1a5c4698f8c294210933b477aefa0aec0f1bdcf52f21b5c",
+  "license_files": {
+    "MDN-LICENSE.md": "57c0d7e200fadfdbadb04b9ab220297809ba7f2ac0adaa6707a07fba432b2ebe",
+    "PYTHON-REPOSITORY-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "ENAP-NOTICE.txt": "32ca7effeb50afa67a00f391029ecf6b0a74b1068973b093853df1429864e43e",
+    "PYTHON-LICENSE.html": "8a24ea1272a922d6c12a51c9d4285bf12a07b8c60b3c559f585bd2400c25d968"
+  },
+  "recipe_source_sha256": {
+    "portuguese_corpus.py": "b339cf2f24fb6ac9d2a59c6cfcce48be56ec25a7da0e1d20f53b05d508d0bda1",
+    "corpus_tokenizer.py": "31a3473b441349f80e5c1e9d288fd0a32b472ed810d2d381d6a6c6bb6a867216",
+    "fetch_corpus_sources.py": "880a66348978e1ce0fad0f6eb37cc620a0e99cbcd6af30c58b14483ff10c29ef",
+    "review_corpus_dialogues.py": "51a3ddd256ea3af6f3195cd6985280e2e7bb51e674e548e50c25f160654174f8",
+    "prepared_corpus.py": "d80c311933ad2d3a600fc25b68c4103129a4e1ff1b563e33059e051cf13668c2",
+    "audit_portuguese_corpus.py": "79ec586b2c37725a4b497dc89af290dafc64b55cb65fb218cc8bd425b52ee729"
+  },
+  "persisted_neural_checkpoints_unchanged": {
+    "artifacts/first-words/run-001/model.pt": "339d0e22c8e928bce0b4c7985aa6d154a2d47cf8bd41ad32e844ef0844ea0607",
+    "artifacts/context-words/run-002/model.pt": "08b7508ba2e3352af4e7353515ed9615f0db18636a2858d5d0af37d9de653108",
+    "artifacts/language-pilot/run-002/model.pt": "0635876cf725254f4600ff569548b924055e85a0a377bc6693f5365f89f3ab71"
+  },
+  "neural_training_performed": false,
+  "source_originals": "Pinned public Git revisions plus immutable PDF hash. Public source cache remains outside project; recovery script provided. Original PDF images and unfiltered multilingual account metadata are not redistributed."
+}

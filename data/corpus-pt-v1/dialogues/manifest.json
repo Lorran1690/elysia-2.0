@@ -1,0 +1,20 @@
+{
+  "source": "OpenAssistant/oasst1",
+  "revision": "fdf72ae0827c1cda404aff25b6603abec9e3399b",
+  "original_training_file_sha256": "1921dc8e216e281ed82df46c8ae28b90dd678536d23e84a54ad20f7177dc3c82",
+  "reviewer": "Codex semantic review, not independent human review",
+  "selection": "16 shortest complete examples from distinct historical training trees; length-biased sample",
+  "reviewed": 16,
+  "accepted_candidates": 6,
+  "pending_or_rejected": 10,
+  "candidate_file_sha256": "8efc8b6364ce07beb034539762757dcca8b2e93a9e1a20a4a17cabe7347a5845",
+  "previously_used_in_language_pilot": true,
+  "new_human_conversations_collected": false,
+  "eligible_as_broad_conversational_dataset": false,
+  "neural_training_performed": false,
+  "limits": [
+    "Small creative-task concentration; not a conversational curriculum.",
+    "No held-out historical dialogue was moved into training.",
+    "Accepted examples are candidates for future tuning, not evidence of the model's abilities."
+  ]
+}

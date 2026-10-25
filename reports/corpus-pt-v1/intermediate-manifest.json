@@ -1,0 +1,98 @@
+{
+  "status": "prepared research corpus; not a claim of conversational competence",
+  "seed": "elysia-corpus-pt-v1-2026-10-25",
+  "neural_weights_updated": false,
+  "open_evaluation_sha256": "87977e9e07c3e2c9e1a5c4698f8c294210933b477aefa0aec0f1bdcf52f21b5c",
+  "source_revisions": {
+    "mdn": "d2f749e082684aacee7be1de1c0586471be19844",
+    "python": "39154eb93cabd5b11f2d528b508897ed9552a156",
+    "enap_pdf_sha256": "33651a12f25521fbc4cffeaf373b872b842bb7db34736b5a8edbe47df9c76879"
+  },
+  "exclusions": {
+    "python_untranslated_fuzzy_or_obsolete_entry": 25398,
+    "paragraph_not_confidently_portuguese": 2612,
+    "duplicate_paragraph": 466,
+    "too_short": 290,
+    "python_historical_changelog_or_deprecation_file": 39,
+    "identifier_pattern_paragraph": 8,
+    "too_short_after_cleaning": 38,
+    "exact_document_duplicate": 1,
+    "low_portuguese_marker_ratio": 24
+  },
+  "input_documents": 2517,
+  "retained_documents": 2164,
+  "partitions": {
+    "train": {
+      "documents": 1737,
+      "groups": 694,
+      "bytes_utf8": 6569650,
+      "words": 1014504,
+      "sha256": "5bf16e31a36935c32afd137b5678c167ce7186768fd3eb01a6e6dcdac7a7833a",
+      "by_family": {
+        "mdn": {
+          "documents": 1399,
+          "bytes_utf8": 3363482
+        },
+        "python": {
+          "documents": 337,
+          "bytes_utf8": 3095854
+        },
+        "enap": {
+          "documents": 1,
+          "bytes_utf8": 110314
+        }
+      }
+    },
+    "validation": {
+      "documents": 234,
+      "groups": 89,
+      "bytes_utf8": 926808,
+      "words": 142943,
+      "sha256": "9b2e24b79f7e61673075e6df9be9a38204215112dd22e47b29b214d8b6269d67",
+      "by_family": {
+        "mdn": {
+          "documents": 212,
+          "bytes_utf8": 739195
+        },
+        "python": {
+          "documents": 22,
+          "bytes_utf8": 187613
+        },
+        "enap": {
+          "documents": 0,
+          "bytes_utf8": 0
+        }
+      }
+    },
+    "test": {
+      "documents": 193,
+      "groups": 77,
+      "bytes_utf8": 1046416,
+      "words": 160022,
+      "sha256": "20a0868ac49372f82f0834dd06a53665405fd3171bc82acd8d7f07f428033819",
+      "by_family": {
+        "mdn": {
+          "documents": 129,
+          "bytes_utf8": 281924
+        },
+        "python": {
+          "documents": 64,
+          "bytes_utf8": 764492
+        },
+        "enap": {
+          "documents": 0,
+          "bytes_utf8": 0
+        }
+      }
+    }
+  },
+  "limits": [
+    "Technical-domain concentration; not broad conversational data.",
+    "pt-BR source tags include mixed Portuguese variants; Brazilian usage is not independently certified.",
+    "Language-marker heuristics and PII regex are not a complete linguistic/privacy audit.",
+    "Near-duplicate detection is heuristic; semantic duplicates can remain.",
+    "Topic groups are disjoint; sources and authors are shared across partitions.",
+    "MDN derivative prose remains CC-BY-SA-2.5; other families retain their own licenses.",
+    "No neural training performed; no target token count inferred from byte or word counts."
+  ]
+}

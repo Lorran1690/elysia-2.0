@@ -62,6 +62,11 @@ def audit(corpus=DEST):
     train = token_manifest["partitions"]["train"]
     shares = {f: n / train["tokens_including_bos_eos"] for f, n in train["by_family"].items()}
     reviewed = json.loads((corpus / "dialogues/manifest.json").read_text())
+    require(sha_file(corpus / "dialogues/reviewed-candidates.jsonl") == reviewed["candidate_file_sha256"], "Reviewed dialogue hash mismatch")
+    accepted = list(rows(corpus / "dialogues/reviewed-candidates.jsonl"))
+    review_log = json.loads((corpus / "dialogues/review-log.json").read_text())
+    accepted_ids = {r["id"] for r in review_log if r["decision"] == "accepted_candidate"}
+    require(len(accepted) == reviewed["accepted_candidates"] and {r["id"] for r in accepted} == accepted_ids, "Dialogue review decisions mismatch")
     # These are research-quality gates, not an inferred authorization workflow.
     readiness = {"at_least_four_source_families": len(shares) >= 4,
                  "largest_source_family_at_most_25_percent": max(shares.values()) <= 0.25,
@@ -81,8 +86,13 @@ def audit(corpus=DEST):
 
 
 if __name__ == "__main__":
-    report = audit()
-    output = ROOT / "reports/corpus-pt-v1/audit.json"
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--corpus", type=Path, default=DEST)
+    parser.add_argument("--output", type=Path, default=ROOT / "reports/corpus-pt-v1/audit.json")
+    args = parser.parse_args()
+    report = audit(args.corpus)
+    output = args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))

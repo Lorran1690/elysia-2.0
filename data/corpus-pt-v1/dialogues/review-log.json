@@ -1,0 +1,114 @@
+[
+  {
+    "id": "20937d41-2f17-4938-a5e8-b86068fcdd33",
+    "tree_id": "166edeae-26cf-4134-b3c8-7cc45527c6d4",
+    "decision": "accepted_candidate",
+    "rationale": "Sugestão criativa pertinente; não reivindica acesso a ferramentas ou conhecimento privado.",
+    "messages_sha256": "90e327a30ed897097c748dd5c1337cd382375361a1fc34267d1b80938ab65f84"
+  },
+  {
+    "id": "67268a8a-22eb-4b9d-aafa-2f3f9f442b63",
+    "tree_id": "ec6e2d31-0540-447c-ac5c-ac851a8e6c6a",
+    "decision": "pending_capability_alignment",
+    "rationale": "Boa distinção entre assistir e receber transcrição, mas a capacidade de resumo da Elysia ainda não foi demonstrada.",
+    "messages_sha256": "70afdd22c27b66ad2c8446dccffe7c87241c8cacbbedf79953ab8923139f523f"
+  },
+  {
+    "id": "5cdf35f9-e61f-460e-b689-4d415bcfcdf3",
+    "tree_id": "e5063130-5776-4a02-9be5-7f8a2f1c9f8d",
+    "decision": "rejected_response_quality",
+    "rationale": "Oferece escrever tudo sem pedir o texto ou objetivo da revisão; resposta pouco adequada ao comportamento desejado.",
+    "messages_sha256": "5d499ee54819f3e5369754f8757c95d781cbaae8ec35832269411b2f235e7b6e"
+  },
+  {
+    "id": "7d85933c-6d37-4f14-8981-892ce9eb6135",
+    "tree_id": "5a18ab15-8572-4e7c-a0e8-4a63b1c7761a",
+    "decision": "accepted_candidate",
+    "rationale": "Sugere brincadeiras pertinentes e simples, sem alegações factuais específicas não verificadas.",
+    "messages_sha256": "1735c3ea486e81b4d60dc08bef1f16842a730678fa17ce414f13e3b78722652a"
+  },
+  {
+    "id": "a0ccaab6-fad0-4d01-871d-a7a209d5fe0c",
+    "tree_id": "733d782f-5f63-47b1-84c2-3da450b3ac6b",
+    "decision": "pending_fact_verification",
+    "rationale": "Receita de Minecraft depende de tipo de laje e versão; não aceitar como instrução factual revisada sem referência.",
+    "messages_sha256": "92a34353622e7b40d8ff8b516afd7c95657677cc7aa3764fe3c523989860658c"
+  },
+  {
+    "id": "359c0497-0d62-4a5a-82fc-6ba84278319a",
+    "tree_id": "3b39afc4-59ab-4836-97be-dcd22a4cc83c",
+    "decision": "accepted_candidate",
+    "rationale": "Lista criativa atende ao uso de sublinhados solicitado; sem prometer exclusividade ou disponibilidade dos nomes.",
+    "messages_sha256": "6629cfcaf5a3bbda0a4310d9d655a837b2d25574864b29e684ff6da8e7be5165"
+  },
+  {
+    "id": "9ceb7765-ccbc-4f5d-9e2c-db41ef1de6a7",
+    "tree_id": "1e552268-4354-44e0-b686-510ab058f58a",
+    "decision": "accepted_candidate",
+    "rationale": "Dez sugestões de nome pertinentes ao tema de aquários; não oferece orientação de manejo animal.",
+    "messages_sha256": "7b0f7a37bf5ba301c4ba4a5ab577158531324294f9dfb7fde039c13b10b5d399"
+  },
+  {
+    "id": "42c65119-dd67-4356-96f8-7195aacff256",
+    "tree_id": "31b6a0df-8898-48ef-af30-12f8090aee7a",
+    "decision": "pending_dated_fact_verification",
+    "rationale": "Resposta epistemicamente cautelosa, mas afirma estado científico; precisa de referência datada antes de uso factual.",
+    "messages_sha256": "f6787ccd3dbc8e44a0f62c935daf5859e61ceb95739e746ef31fb56d08f95447"
+  },
+  {
+    "id": "96719377-17d3-452e-a4b9-0cf358cf0eb5",
+    "tree_id": "a64b816d-213d-4cc1-92b9-956a6702aeeb",
+    "decision": "accepted_candidate",
+    "rationale": "Dez sugestões criativas pertinentes; reconhecer viés de listas e de entretenimento na seleção.",
+    "messages_sha256": "9ddfadac00a3284623f0dfd05e5011a055cadfee280ba1882eac3753cc2ce7b2"
+  },
+  {
+    "id": "c4fab12b-3e3a-4c2f-9667-276733a5f3a6",
+    "tree_id": "536ce155-3562-410c-879f-b3b95bb23cc4",
+    "decision": "pending_scientific_review",
+    "rationale": "Simplifica uso e desuso e hereditariedade; não distingue alteração somática de transmissão hereditária.",
+    "messages_sha256": "b61a80d94d8258a1b6ca9c6c30c76358f4d11901590750fd3fd10213359c54b2"
+  },
+  {
+    "id": "978154f4-9c29-4f52-9783-f0ad6a05eef0",
+    "tree_id": "119db6e7-ac02-47f1-9fd9-642ed429bf19",
+    "decision": "rejected_incomplete_explanation",
+    "rationale": "Não explica a distinção de uso entre por que e por quê, que é central à pergunta.",
+    "messages_sha256": "eee3ad81c448c25932352e53ba1a98b4b4e09fe47a7955aa59993776302da8f5"
+  },
+  {
+    "id": "ab5687ce-2be0-42c5-8805-55ac6e2ff7af",
+    "tree_id": "1fdfbb9b-d86e-49e8-b9c9-4b997c7e0b59",
+    "decision": "rejected_factual_error",
+    "rationale": "Afirma que cães geralmente têm menos dentes que humanos e introduz faixa e anatomia incorretas; excluir.",
+    "messages_sha256": "850db3aecbfe83e09add2b9ab6e1582d6d69f942106ecb978d53f1bb8092f630"
+  },
+  {
+    "id": "798cc2bf-2cec-4e7d-afc9-41ff55fcfed8",
+    "tree_id": "1edf96dd-871b-447a-b863-2a495ba9ffe5",
+    "decision": "pending_historical_verification",
+    "rationale": "Cronologia de conde/reinado é internamente confusa e exige referência histórica; não aceitar sem checagem.",
+    "messages_sha256": "a245f42bcb46a7cd4399e082949c5555cd751a3f074da22ec33d91ab6374455f"
+  },
+  {
+    "id": "d98918ed-1dbf-424f-b578-24fbc1c6e71c",
+    "tree_id": "daa13527-4869-41a7-8169-5ae8bc5e3294",
+    "decision": "rejected_unsupported_nutrition",
+    "rationale": "Dá calorias e proteína sem quantidades de ingredientes; não sustenta o limite de 200 calorias.",
+    "messages_sha256": "45b3c65b5536870ec441b82e9120a953616093ca2d7c21a3cf287fa9c45c5ac7"
+  },
+  {
+    "id": "cf0872ec-e587-4d5d-a163-2aa510ff1376",
+    "tree_id": "298efd83-0146-45c5-9c21-11cfe834addd",
+    "decision": "rejected_instruction_following",
+    "rationale": "Pergunta tudo bem e solicita apresentação no mesmo turno, apesar de pedido de uma pergunta por vez.",
+    "messages_sha256": "d11ed81f2917f2ac44ccbf80dabc406d5857316d1f761655c4a21678c0bfa776"
+  },
+  {
+    "id": "dd36e2c7-5c9c-45ee-89d0-08339fcc3591",
+    "tree_id": "2ead5356-c160-45c9-a565-88aeece76efb",
+    "decision": "accepted_candidate",
+    "rationale": "Lista de nomes ficcionais atende à solicitação; não representa diversidade conversacional suficiente.",
+    "messages_sha256": "a2879c06a30ef57df872a397b2ecfbb1de1dad1e580e300d2784e247ff3f2552"
+  }
+]

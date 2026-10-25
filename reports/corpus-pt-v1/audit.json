@@ -1,0 +1,35 @@
+{
+  "integrity_checks_passed": true,
+  "documents_verified": 2163,
+  "cross_partition_group_overlap": 0,
+  "cross_partition_exact_paragraph_overlap": 0,
+  "identifier_pattern_hits_remaining": 0,
+  "token_stores_verified": true,
+  "all_document_round_trips_verified_during_tokenization": true,
+  "neural_weights_updated": false,
+  "open_evaluation_consumed": false,
+  "total_bpe_tokens": 2277416,
+  "train_bpe_tokens": 1760474,
+  "train_source_token_shares": {
+    "python": 0.4628838596877886,
+    "mdn": 0.5190511191872189,
+    "enap": 0.018065021124992475
+  },
+  "broad_conversation_readiness_gates": {
+    "at_least_four_source_families": false,
+    "largest_source_family_at_most_25_percent": false,
+    "independent_human_dialogue_review": false,
+    "sufficient_diverse_conversation_curriculum": false
+  },
+  "ready_as_broad_conversation_corpus": false,
+  "domain_scope": "technical Portuguese prose; bounded research pretraining material",
+  "caveats": [
+    "Technical-domain concentration; not broad conversational data.",
+    "pt-BR source tags include mixed Portuguese variants; Brazilian usage is not independently certified.",
+    "Language-marker heuristics and PII regex are not a complete linguistic/privacy audit.",
+    "Near-duplicate detection is heuristic; semantic duplicates can remain.",
+    "Topic groups are disjoint; sources and authors are shared across partitions.",
+    "MDN derivative prose remains CC-BY-SA-2.5; other families retain their own licenses.",
+    "No neural training performed; no target token count inferred from byte or word counts."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "before_neural_training": true,
+  "findings": [
+    {
+      "id": "fbfa6b1569e32a97a0bf88a4",
+      "issue": "English prose survived file-level language heuristic; add per-paragraph language checks and exclude historical changelogs."
+    },
+    {
+      "id": "01c9ae626c367ddd294fcc7b",
+      "issue": "Removing API-reference macros and all inline terminology left incomplete sentences; retain labels and short terminology, reject code-dependent paragraphs."
+    },
+    {
+      "id": "2d09bf837e8c538962aec07a",
+      "issue": "pt-BR source folder contains European Portuguese usage; disclose mixed variants rather than certify pure pt-BR."
+    }
+  ]
+}

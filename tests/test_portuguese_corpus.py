@@ -1,5 +1,6 @@
 import json
 import shutil
+import subprocess
 
 import pytest
 
@@ -103,3 +104,45 @@ def test_reviewed_dialogues_use_only_previous_training_trees_and_keep_gold_uncon
     evaluation = json.loads((ROOT / "evaluation/portuguese-v1.json").read_text())
     assert len(evaluation["cases"]) == 24 and evaluation["evaluation_count"] == 0
     assert evaluation["not_for_training"]
+
+
+def test_source_recovery_pins_revision_and_refuses_dirty_cache(tmp_path):
+    from learning.fetch_corpus_sources import git_source
+    original = tmp_path / "original"
+    original.mkdir()
+    subprocess.run(["git", "init", "--quiet"], cwd=original, check=True)
+    (original / "files/pt-br").mkdir(parents=True)
+    (original / "files/pt-br/example.md").write_text("Texto português de teste.")
+    (original / "LICENSE.md").write_text("Public fixture license")
+    subprocess.run(["git", "add", "."], cwd=original, check=True)
+    subprocess.run(["git", "-c", "user.name=Test", "-c", "user.email=test@example.invalid",
+                    "commit", "--quiet", "-m", "fixture"], cwd=original, check=True)
+    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=original, text=True).strip()
+    recovered = tmp_path / "recovered"
+    git_source(recovered, str(original), revision, "files/pt-br")
+    assert (recovered / "files/pt-br/example.md").read_text() == "Texto português de teste."
+    assert (recovered / "LICENSE.md").exists()
+    git_source(recovered, str(original), revision, "files/pt-br")
+    (recovered / "files/pt-br/example.md").write_text("Modificação que não pode ser sobrescrita.")
+    with pytest.raises(ValueError, match="will not overwrite"):
+        git_source(recovered, str(original), revision, "files/pt-br")
+
+
+def test_prepared_store_loads_into_existing_batch_contract_without_resplitting():
+    import torch
+    from learning.dataset import make_batch
+    from learning.prepared_corpus import load_partition
+    store = load_partition("train", for_training=True)
+    x, y = make_batch(store, batch_size=2, block_size=32, device=torch.device("cpu"),
+                      generator=torch.Generator().manual_seed(13))
+    assert x.shape == y.shape == (2, 32)
+    assert int(x.min()) >= 0 and int(x.max()) < 2048
+    assert torch.equal(x[:, 1:], y[:, :-1])
+
+
+def test_prepared_store_refuses_heldout_partition_for_weight_updates():
+    from learning.prepared_corpus import load_partition
+    with pytest.raises(ValueError, match="Only train"):
+        load_partition("test", for_training=True)
+    with pytest.raises(ValueError, match="Unknown partition"):
+        load_partition("../test")

@@ -1,5 +1,14 @@
 # E.L.Y.S.I.A. 2.0
 
+## Corpus português v1 — preparado e auditado
+
+[Relatório, fontes e reprodução](reports/corpus-pt-v1/README.md): 2.163 documentos,
+2.277.416 tokens BPE (1.760.474 no treino), três fontes com licenças e atribuições,
+splits por grupos e 24 casos novos de avaliação ainda não consumidos. BPE treinado
+do zero só no treino e exportado para o formato próprio da Elysia. Pesos neurais
+anteriores preservados, sem novo treino nesta etapa. A base ainda é técnica e não
+constitui um currículo de conversação ampla. Branch: `recovery/portuguese-corpus-v1`.
+
 ## Piloto de linguagem com conversas licenciadas
 
 [Relatório e instruções](reports/language-pilot/README.md): Transformer próprio de
