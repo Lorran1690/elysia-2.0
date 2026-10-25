@@ -18,20 +18,24 @@
     "source_label_pii": 65,
     "not_positively_reviewed": 29,
     "source_label_lang_mismatch": 11,
+    "manual_topic_mismatch": 1,
     "identifier_or_link_pattern": 10,
     "source_label_hate_speech": 1,
     "excluded_scope_or_identity": 20,
     "incomplete_filtered_path": 284,
     "path_too_long": 2
   },
-  "accepted_messages_before_path_filter": 617,
-  "records": 112,
+  "accepted_messages_before_path_filter": 616,
+  "manual_exclusions": {
+    "6f9c020e-6f3c-4e1c-91ca-6598dae7d6d5": "Answers about billiards when the source question asks about poker; observed during source quality review."
+  },
+  "records": 111,
   "trees": 47,
   "splits": {
     "train": {
-      "records": 97,
+      "records": 96,
       "groups": 39,
-      "sha256": "8ba5e8ccc27160f51a8fe64a3369a78656ca1ac663c436262ad648e3e111d401"
+      "sha256": "1921dc8e216e281ed82df46c8ae28b90dd678536d23e84a54ad20f7177dc3c82"
     },
     "validation": {
       "records": 5,

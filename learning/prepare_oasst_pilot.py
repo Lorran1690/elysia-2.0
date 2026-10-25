@@ -20,6 +20,9 @@ DEST = ROOT / "data/language-pilot"
 SEED = 25102026
 BLOCKED = re.compile(r"https?://|[\w.+-]+@[\w.-]+\.[a-z]{2,}|\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b|\b\d{8,}\b", re.I)
 LABELS = ("pii", "spam", "lang_mismatch", "not_appropriate", "hate_speech", "sexual_content", "violence")
+MANUAL_EXCLUSIONS = {
+    "6f9c020e-6f3c-4e1c-91ca-6598dae7d6d5": "Answers about billiards when the source question asks about poker; observed during source quality review."
+}
 
 
 def sha(path: Path) -> str:
@@ -27,6 +30,8 @@ def sha(path: Path) -> str:
 
 
 def rejection(row: dict) -> str | None:
+    if row.get("message_id") in MANUAL_EXCLUSIONS:
+        return "manual_topic_mismatch"
     if row.get("lang") != "pt-BR":
         return "not_pt_br"
     if row.get("synthetic") is not False or row.get("model_name"):
@@ -148,6 +153,7 @@ def prepare(cache: Path, output: Path = DEST) -> dict:
               "original_sha256": SOURCE_HASH, "license_sha256": LICENSE_HASH,
               "language": "pt-BR according to source tags", "seed": SEED,
               "excluded": dict(excluded), "accepted_messages_before_path_filter": len(accepted),
+              "manual_exclusions": MANUAL_EXCLUSIONS,
               "records": len(records), "trees": len({r["tree_id"] for r in records}),
               "splits": {s: {"records": len(items), "groups": len({r["group_id"] for r in items}),
                               "sha256": sha(output / f"{s}.json")} for s, items in splits.items()},

@@ -38,35 +38,6 @@
     "group_id": "237ee23c-e94a-4f5a-aef3-2f00ffa436f3"
   },
   {
-    "id": "6f9c020e-6f3c-4e1c-91ca-6598dae7d6d5",
-    "tree_id": "237ee23c-e94a-4f5a-aef3-2f00ffa436f3",
-    "source_message_ids": [
-      "237ee23c-e94a-4f5a-aef3-2f00ffa436f3",
-      "8fb55d3a-69ca-4df1-9a3f-02be0ff23a2b",
-      "dfaf464e-bba9-42dc-9a3f-6f9eaff6b973",
-      "6f9c020e-6f3c-4e1c-91ca-6598dae7d6d5"
-    ],
-    "messages": [
-      {
-        "role": "user",
-        "content": "Quais são as características de um bom jogador de poker"
-      },
-      {
-        "role": "assistant",
-        "content": "Um bom jogador de poker deve ter uma combinação de habilidades técnicas, psicológicas e estratégicas para ter sucesso no jogo. Algumas das características mais importantes de um bom jogador de poker incluem:\n\n1. Paciência: Um bom jogador de poker é paciente e não se apressa em tomar decisões. Eles sabem esperar pelo momento certo para agir e não são facilmente influenciados pelas emoções.\n2. Estratégia: Um bom jogador de poker tem uma estratégia sólida e é capaz de adaptá-la às diferentes situações que surgem no jogo. Eles têm uma compreensão clara de quando apostar, aumentar ou desistir de uma mão.\n3. Habilidade de leitura: Um bom jogador de poker é capaz de ler e entender a linguagem corporal e as expressões faciais dos outros jogadores, o que pode ajudá-los a tomar decisões mais informadas.\n4. Disciplina: Um bom jogador de poker tem disciplina para seguir sua estratégia e evitar tomar decisões impulsivas ou irracionais.\n5. Gerenciamento de dinheiro: Um bom jogador de poker é bom em gerenciar seu dinheiro e não aposta mais do que pode perder. Eles também sabem quando é hora de parar de jogar e se retirar do jogo.\n6. Pensamento lógico: Um bom jogador de poker é capaz de pensar logicamente e analisar rapidamente as informações disponíveis. Eles são capazes de avaliar as probabilidades e tomar decisões com base em fatos, em vez de emoções.\n7. Resiliência: Um bom jogador de poker é capaz de lidar com a variação natural do jogo e não se abala por uma sequência ruim de mãos. Eles mantêm uma mente calma e focada, independentemente das circunstâncias.\n\nEm resumo, um bom jogador de poker deve ser paciente, estratégico, habilidoso em leitura, disciplinado, bom em gerenciamento de dinheiro, lógico e resiliente. Dominar essas habilidades é fundamental para ter sucesso no jogo de poker."
-      },
-      {
-        "role": "user",
-        "content": "E quais são as características de um bom jogador de sinuca?"
-      },
-      {
-        "role": "assistant",
-        "content": "Existem várias características que podem ser encontradas em um bom jogador de sinuca. Algumas das mais importantes incluem:\n\n1. Precisão: um bom jogador de sinuca deve ser capaz de acertar a bola com precisão, levando em conta a força, a trajetória e o ângulo necessários para que a bola atinja o objetivo desejado.\n\n1. Estratégia: o jogo de sinuca requer uma boa dose de estratégia, então um jogador habilidoso deve ser capaz de planejar seus movimentos com antecedência e antecipar os movimentos do adversário.\n\n1. Controle emocional: o jogo de sinuca pode ser desafiador e frustrante, especialmente quando as coisas não estão saindo como planejado. Um bom jogador deve ser capaz de manter a calma e lidar com essas situações de forma eficaz.\n\n1. Habilidade técnica: o jogo de sinuca requer uma série de habilidades técnicas, como saber aplicar efeito na bola, dominar a tacada e saber jogar com a força adequada. Um bom jogador deve ser capaz de dominar essas habilidades.\n\n1. Concentração: o jogo de sinuca exige um alto nível de concentração, tanto física quanto mentalmente. Um bom jogador deve ser capaz de manter o foco durante toda a partida e evitar distrações.\n\n1. Paciência: o jogo de sinuca pode ser lento e demorado, então um jogador habilidoso deve ser capaz de ter paciência e esperar a oportunidade certa para fazer a jogada correta.\n\n1. Criatividade: por fim, um bom jogador de sinuca deve ser capaz de ser criativo em suas jogadas e encontrar soluções inovadoras para situações difíceis. Isso pode fazer a diferença em uma partida acirrada.\n\nEm resumo, as características de um bom jogador de sinuca incluem precisão, estratégia, controle emocional, habilidade técnica, concentração, paciência e criatividade. Um bom jogador deve ser capaz de dominar essas habilidades para ter sucesso no jogo de sinuca."
-      }
-    ],
-    "group_id": "237ee23c-e94a-4f5a-aef3-2f00ffa436f3"
-  },
-  {
     "id": "f7ecd1ba-98cd-450c-a471-8289144c1d5d",
     "tree_id": "af200528-cf32-430a-8be7-083817276a53",
     "source_message_ids": [

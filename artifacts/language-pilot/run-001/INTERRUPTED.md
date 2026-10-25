@@ -1,0 +1,1 @@
+Execução interrompida durante treino, antes de qualquer avaliação do teste. Motivo: revisão da fonte identificou resposta sobre sinuca para pergunta sobre pôquer (ID na lista MANUAL_EXCLUSIONS). O corpus foi corrigido sem usar teste final, arquitetura ou parâmetros novos. Este checkpoint não é a entrega recomendada e sua retomada contra o corpus corrigido será recusada por hash.
