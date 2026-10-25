@@ -29,3 +29,29 @@ def test_answer_too_long_is_rejected_instead_of_disconnected_tail():
     messages = [{'role': 'user', 'content': 'Explique isso.'},
                 {'role': 'assistant', 'content': 'Uma resposta extensa. ' * 200}]
     assert answer_windows(tokenizer, messages, 64) == []
+
+
+def test_cached_pair_construction_matches_reference_full_transcripts():
+    tokenizer = FastProjectTokenizer()
+    messages = []
+    for i in range(5):
+        messages.extend([
+            {'role': 'user', 'content': f'Questão {i}: como isso funciona?\nPode explicar?'},
+            {'role': 'assistant', 'content': ('Explicação detalhada com acentuação. ' * (i+1))},
+        ])
+    for context in [32, 64, 128, 256, 512]:
+        reference = []
+        for end in [2, len(messages)]:
+            start = 0
+            while start < end-2:
+                ids, labels = encode_messages(tokenizer, messages[start:end])
+                if len(ids) <= context+1:
+                    break
+                start += 2
+            ids, labels = encode_messages(tokenizer, messages[start:end])
+            if len(ids) > context+1:
+                continue
+            prefix, _ = encode_messages(tokenizer, messages[start:end-1], for_reply=True)
+            labels[:len(prefix)] = [-100] * len(prefix)
+            reference.append((ids, labels))
+        assert answer_windows(tokenizer, messages, context) == reference

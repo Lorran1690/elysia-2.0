@@ -22,21 +22,28 @@ OUT=ROOT/'artifacts/aira-dialogue-v1/run-001'
 
 def answer_windows(tokenizer,messages,context=256):
     """Keep the final user question intact; never train disconnected answer tails."""
+    # Each pair starts on an even role boundary. Removing its BOS and joining
+    # pairs is exactly encode_messages for the full transcript, without encoding
+    # the same long histories repeatedly while finding a fitting suffix.
+    pairs=[]
+    for start in range(0,len(messages),2):
+        ids,labels=encode_messages(tokenizer,messages[start:start+2])
+        pairs.append((ids[1:],labels[1:]))
+    if not pairs: return []
     result=[]
-    for end in range(2,len(messages)+1,2):
-        # At most first and last assistant turns per source conversation.
-        if end not in {2,len(messages)}: continue
+    for end in sorted({1,len(pairs)}):
+        if not end: continue
         start=0
-        while start<end-2:
-            ids,labels=encode_messages(tokenizer,messages[start:end])
-            if len(ids)<=context+1: break
-            start+=2
-        ids,labels=encode_messages(tokenizer,messages[start:end])
-        if len(ids)>context+1: continue
-        prefix,_=encode_messages(tokenizer,messages[start:end-1],for_reply=True)
-        labels[:len(prefix)]=[-100]*len(prefix)
+        length=1+sum(len(pair[0]) for pair in pairs[:end])
+        while length>context+1 and start<end-1:
+            length-=len(pairs[start][0]);start+=1
+        if length>context+1: continue
+        ids=[tokenizer.bos_id]
+        for pair_ids,_ in pairs[start:end]: ids.extend(pair_ids)
+        labels=[-100]*(len(ids)-len(pairs[end-1][0]))+pairs[end-1][1]
         if any(t!=-100 for t in labels[1:]): result.append((ids,labels))
     return result
+
 
 
 def load_windows(tokenizer,context):

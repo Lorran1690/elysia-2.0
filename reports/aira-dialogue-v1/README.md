@@ -98,3 +98,15 @@ CI do commit de preparação: sucesso,
 https://github.com/Lorran1690/elysia-2.0/actions/runs/40186336468 .
 Recursos observados em `resources.json`: 3 CPUs lógicas, cerca de 9,7 GiB RAM,
 PyTorch CPU, nenhuma GPU CUDA.
+
+### Preparação das janelas
+
+Uma tentativa de carregamento foi interrompida antes de criar qualquer checkpoint
+ou executar passos de treino. O histórico era recodificado repetidamente durante
+a busca de uma janela que coubesse. A nova construção codifica cada par uma vez,
+remove apenas o BOS intermediário e concatena os mesmos tokens. Testes com cinco
+limites de contexto conferem igualdade exata dos IDs e máscaras com a construção
+de referência. Em uma amostra fixa dos primeiros 100 registros do fragmento
+train-0000, ambas produzem 19 janelas; o tempo observado caiu de 3,519 s para
+0,367 s. É uma medição de preparação, não ganho de capacidade neural nem benchmark
+de treinamento. O protocolo estatístico e os dados permaneceram iguais.
