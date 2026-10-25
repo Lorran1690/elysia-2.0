@@ -1,5 +1,14 @@
 # E.L.Y.S.I.A. 2.0
 
+## Piloto de linguagem com conversas licenciadas
+
+[Relatório e instruções](reports/language-pilot/README.md): Transformer próprio de
+2,17 milhões de parâmetros, BPE treinado só no treino, corpus pt-BR OASST1 filtrado,
+checkpoints de inferência e retomada. A nova avaliação aberta teve **0/8 critérios
+atendidos**; este piloto ainda não conversa de forma confiável. Os modelos e
+resultados dos ensaios anteriores permanecem preservados. Branch desta etapa:
+`recovery/neural-language-pilot`.
+
 ## Recuperação — primeiras palavras (24/10/2026)
 
 Segundo marco: [chat experimental com contexto](reports/context-words/README.md).

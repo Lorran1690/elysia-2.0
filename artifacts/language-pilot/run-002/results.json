@@ -1,0 +1,375 @@
+{
+  "status": "small licensed-language pilot, not a conversational assistant",
+  "settings": {
+    "steps": 1800,
+    "sft_steps": 400,
+    "batch_size": 4,
+    "training_context": 128,
+    "data_sha256": {
+      "train": "1921dc8e216e281ed82df46c8ae28b90dd678536d23e84a54ad20f7177dc3c82",
+      "validation": "018c18ded1ac7d1424e0ba98dbd3208f954bb15cd64039850434ace2ea2e9e7f",
+      "test": "2ce2ac82c504e05153172315bbf8a5d13ce836c8c617b5923cba08d34451e7a7"
+    },
+    "open_evaluation_sha256": "6d03513800783ff7e7d799f316195c72fe4489b93248f12fb54b18977702f8ea",
+    "tokenizer": {
+      "type": "byte_bpe",
+      "schema_version": 1,
+      "vocab_size": 1024,
+      "requested_vocab_size": 1024,
+      "fingerprint": "fa1d6a17eb16cc580031f866d2a149cdd5bb1f839022bfcfa7ba1142f8c51c05"
+    },
+    "model_config": {
+      "vocab_size": 1024,
+      "block_size": 256,
+      "num_layers": 4,
+      "embedding_dim": 192,
+      "num_heads": 4,
+      "feedforward_dim": 768,
+      "dropout": 0.0,
+      "positional_embedding": "rope",
+      "norm_type": "rmsnorm",
+      "feedforward_type": "swiglu",
+      "attention_backend": "sdpa",
+      "rope_theta": 10000.0
+    },
+    "seed": 25102027,
+    "learning_rate": 0.0005,
+    "weight_decay": 0.01
+  },
+  "parameters": 2173376,
+  "torch": "2.14.1+cpu",
+  "device": "cpu",
+  "threads": 2,
+  "steps_completed": 1800,
+  "best_step": 400,
+  "supervised_tokens_processed": 870091,
+  "baseline_validation": {
+    "all": {
+      "loss": 6.954536322620105,
+      "perplexity": 1047.8925412202223,
+      "targets": 1769
+    },
+    "assistant": {
+      "loss": 6.968600279944283,
+      "perplexity": 1062.7341786454153,
+      "targets": 1400
+    }
+  },
+  "history": [
+    {
+      "step": 1,
+      "phase": "language",
+      "batch_loss": 6.961659908294678,
+      "validation": {
+        "all": {
+          "loss": 6.953781047064143,
+          "perplexity": 1047.1013924038537,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 6.967950675146921,
+          "perplexity": 1062.0440456057818,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 200,
+      "phase": "language",
+      "batch_loss": 5.281978130340576,
+      "validation": {
+        "all": {
+          "loss": 5.5645860422122535,
+          "perplexity": 261.0171312683735,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.6611753792422155,
+          "perplexity": 287.4863495379543,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 400,
+      "phase": "language",
+      "batch_loss": 2.4292385578155518,
+      "validation": {
+        "all": {
+          "loss": 5.277676721425162,
+          "perplexity": 195.91418298278,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.376287519591195,
+          "perplexity": 216.2180781860598,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 600,
+      "phase": "language",
+      "batch_loss": 1.157584309577942,
+      "validation": {
+        "all": {
+          "loss": 5.381079479015905,
+          "perplexity": 217.25667290807337,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.498159456082753,
+          "perplexity": 244.24198022196083,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 800,
+      "phase": "language",
+      "batch_loss": 2.1358559131622314,
+      "validation": {
+        "all": {
+          "loss": 5.522896085168225,
+          "perplexity": 250.35904941285585,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.638772365621158,
+          "perplexity": 281.1173971732376,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 1000,
+      "phase": "language",
+      "batch_loss": 0.3765689432621002,
+      "validation": {
+        "all": {
+          "loss": 5.713115350818688,
+          "perplexity": 302.8129689762572,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.833192238722528,
+          "perplexity": 341.4469212669336,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 1200,
+      "phase": "language",
+      "batch_loss": 1.0037192106246948,
+      "validation": {
+        "all": {
+          "loss": 5.742397493262153,
+          "perplexity": 311.81108052075825,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.871062678609576,
+          "perplexity": 354.625633176609,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 1400,
+      "phase": "language",
+      "batch_loss": 0.8802237510681152,
+      "validation": {
+        "all": {
+          "loss": 5.784412696443755,
+          "perplexity": 325.1909981886275,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.912612887450627,
+          "perplexity": 369.6708028045131,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 1600,
+      "phase": "answer_only",
+      "batch_loss": 0.1500631868839264,
+      "validation": {
+        "all": {
+          "loss": 5.861447184351355,
+          "perplexity": 351.2320739582622,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 5.982518298881394,
+          "perplexity": 396.43746015298984,
+          "targets": 1400
+        }
+      }
+    },
+    {
+      "step": 1800,
+      "phase": "answer_only",
+      "batch_loss": 0.2883589267730713,
+      "validation": {
+        "all": {
+          "loss": 5.90633286157525,
+          "perplexity": 367.35653503424516,
+          "targets": 1769
+        },
+        "assistant": {
+          "loss": 6.030936392715999,
+          "perplexity": 416.10448422031027,
+          "targets": 1400
+        }
+      }
+    }
+  ],
+  "test": {
+    "all": {
+      "loss": 5.424581133821707,
+      "perplexity": 226.9162788518803,
+      "targets": 5007
+    },
+    "assistant": {
+      "loss": 5.56814076776468,
+      "perplexity": 261.94662660616416,
+      "targets": 4441
+    }
+  },
+  "test_evaluation_count": 1,
+  "generation_cases": [
+    {
+      "id": "greeting",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Olá, Elysia. Como você está?"
+        }
+      ],
+      "criterion": "Saudação compreensível e resposta pertinente, sem texto corrompido.",
+      "generated": "Aqui estão algumas sugestões de nomes mais al: 1. Mundo do seu canal no Youtube sobre o desenho desenho drama total: 1. Muras mais fal: 1. Muras mais al: 1. Muras Drama, Aqui estão algumas sugestões: 1. Muras Drama, Aqui estão algumas sugestões: 1. Muras Drama, Aqui estão algumas sugestões: 1. M",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "simple_explanation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Por que a chuva cai das nuvens?"
+        }
+      ],
+      "criterion": "Explicação coerente de condensação e gotas, sem afirmações inventadas.",
+      "generated": "Claro! Eu não posso assistir a realecida eu posso desenho dar algumas ideia necida eu posso respone?\nElysia: Claro! Eu não posso responecida eu posso responde 28. Falear ne. Falede 28. Falede nomes do v",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "instruction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Liste três maneiras de economizar água em casa."
+        }
+      ],
+      "criterion": "Três sugestões distintas, práticas e pertinentes.",
+      "generated": "Aqui estão algumas ideias de desenho séries são e ou séries são e ou séries são para começar, aqui estão algumas sugestões. The. The. Thado! Faqui estão algumas sugestões de nome quisce quando a o responde nome quando a o aqui estão algumas sugestões de nomes são uma séries ",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "clarification",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Pode melhorar isso para mim?"
+        }
+      ],
+      "criterion": "Pede o texto ou objeto a melhorar, sem inventar o conteúdo ausente.",
+      "generated": "Claro! Eu mais de armansimédia, tenho ansimédia, tenho ansica de 28 stick stick stick stick stick stick stick stick stick stick stick stick stick stick stick ",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "uncertainty",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Qual é o nome do meu cachorro?"
+        }
+      ],
+      "criterion": "Admite não saber ou solicita a informação, sem inventar um nome.",
+      "generated": "Claro, e desenhando um cachorro tem entre 4 dentes, Usuário: Aquando o animal ca de 28 dentes, enquanto um filho! dentes, enquanto um filho! dentes, enquanto um cachorro tem entre 4 dentes de leite de leite que são substituídos cães são substituídos pelos dentes per",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "memory",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu cachorro se chama Pipoca."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Como se chama meu cachorro?"
+        }
+      ],
+      "criterion": "Recupera Pipoca do histórico.",
+      "generated": "Claro! Os dentes que você ou a quando o anho anho anho anho Mbstitubansicães são importantes para mastitubansimansimansimansimansicães são importantes para mastitubstitubstitubstitubstitubansicãos dentes per",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ana."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Corrigindo: meu nome é Bia. Como eu me chamo?"
+        }
+      ],
+      "criterion": "Usa Bia, respeitando a correção mais recente.",
+      "generated": "Claro! Eu não possuem um personagens fal: 1. Munear de nomes são uma retenho desenho desenho drama ou um personagens fal: 1. Mube drama ou um personagens fal: 1. Muxão de ara pado! Esponde ara retenho drama ou um personagens fal: 1. Mu",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    },
+    {
+      "id": "comparison",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explique uma vantagem e uma limitação de estudar sozinho."
+        }
+      ],
+      "criterion": "Apresenta uma vantagem e uma limitação coerentes, em português compreensível.",
+      "generated": "Aqui estão algumas sugestões: Aqui estão algumas sugestões: Aqui estão algumas sugestões. Fa. Faqui estão algumas sugestões de nomes do Drama Par, Aqui estão algumas sugestões de nomes do Drama 3. Ilha do Drama 3. Ilha do Drama 4. Fa. Fa. Fa. Fa. Fa. Fa. Faça a Total 8. Adicione uma s: Aqui estão algumas ",
+      "automatic_pass": null,
+      "review_status": "requires semantic review; no keyword scoring"
+    }
+  ],
+  "weights_updated_in_current_session": true,
+  "checkpoint_sha256": "0635876cf725254f4600ff569548b924055e85a0a377bc6693f5365f89f3ab71",
+  "resume_sha256": "eb7274a0ed593d27b9c8c977b35d32709083f1d79f60f7b04f4628f471a44bdc",
+  "tokenizer_sha256": "4583d01eaa587dbae7c1bcd1a9d26aefbddc27ed3dbe2b8e53440880613fb568",
+  "elapsed_seconds_excluding_tokenizer": 109.9911755459998,
+  "peak_sampled_process_ram_bytes": 470593536,
+  "tokens_per_partition": {
+    "train": 49499,
+    "validation": 1774
+  }
+}

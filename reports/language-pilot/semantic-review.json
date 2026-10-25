@@ -1,0 +1,56 @@
+{
+  "reviewer": "Codex semantic review of the frozen generated outputs; not independent human evaluation.",
+  "test": "New open-evaluation probes, not historical 0/8 or prior synthetic tests.",
+  "passed": 0,
+  "total": 8,
+  "cases": [
+    {
+      "id": "greeting",
+      "pass": false,
+      "criterion": "Saudação compreensível e resposta pertinente, sem texto corrompido.",
+      "reason": "Responde com sugestões para nomes de canal e repetição, sem saudação pertinente."
+    },
+    {
+      "id": "simple_explanation",
+      "pass": false,
+      "criterion": "Explicação coerente de condensação e gotas, sem afirmações inventadas.",
+      "reason": "Texto corrompido e sem explicação da chuva."
+    },
+    {
+      "id": "instruction",
+      "pass": false,
+      "criterion": "Três sugestões distintas, práticas e pertinentes.",
+      "reason": "Fala de séries e desenhos; não fornece três maneiras de economizar água."
+    },
+    {
+      "id": "clarification",
+      "pass": false,
+      "criterion": "Pede o texto ou objeto a melhorar, sem inventar o conteúdo ausente.",
+      "reason": "Não solicita o conteúdo ausente e produz repetição sem sentido."
+    },
+    {
+      "id": "uncertainty",
+      "pass": false,
+      "criterion": "Admite não saber ou solicita a informação, sem inventar um nome.",
+      "reason": "Inventa informações sobre dentes de cachorro em vez de admitir que não sabe o nome."
+    },
+    {
+      "id": "memory",
+      "pass": false,
+      "criterion": "Recupera Pipoca do histórico.",
+      "reason": "Não recupera Pipoca e produz texto repetitivo sem sentido."
+    },
+    {
+      "id": "correction",
+      "pass": false,
+      "criterion": "Usa Bia, respeitando a correção mais recente.",
+      "reason": "Não usa Bia e responde com texto desconexo."
+    },
+    {
+      "id": "comparison",
+      "pass": false,
+      "criterion": "Apresenta uma vantagem e uma limitação coerentes, em português compreensível.",
+      "reason": "Não fornece vantagem e limitação; repete sugestões de nomes."
+    }
+  ]
+}
