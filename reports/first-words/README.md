@@ -1,5 +1,10 @@
 # Neural Core — primeiras palavras, 24/10/2026
 
+> Atualização de preservação: a permissão de escrita foi corrigida. O push da branch
+> `recovery/neural-first-words` foi concluído, incluindo código, dados dos ensaios,
+> resultados e checkpoints. Referências abaixo ao bloqueio 403 descrevem o estado
+> anterior ao envio. Nenhum merge foi realizado.
+
 Base recuperada: `codex/elysia-seed-v0.5`, commit `c05120076930994602147bb696882adf94c7cc1f`.
 Branch de recuperação: `recovery/neural-first-words`. Push autorizado pelo proprietário; sem merge.
 

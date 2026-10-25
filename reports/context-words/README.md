@@ -1,5 +1,10 @@
 # Contexto neural — 24/10/2026
 
+> Atualização de preservação: a permissão de escrita foi corrigida. O push da branch
+> `recovery/neural-first-words` foi concluído, incluindo código, dados dos ensaios,
+> resultados e checkpoints. Referências abaixo ao bloqueio 403 descrevem o estado
+> anterior ao envio. Nenhum merge foi realizado.
+
 ## Resultado comprovado e limites
 
 Segundo marco da reconstrução: geração de respostas usando informação de mensagens

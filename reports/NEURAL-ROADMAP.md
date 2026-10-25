@@ -1,5 +1,10 @@
 # Neural Core próprio: marcos de competência
 
+> Atualização de preservação: a permissão de escrita foi corrigida. O push da branch
+> `recovery/neural-first-words` foi concluído, incluindo código, dados dos ensaios,
+> resultados e checkpoints. Referências abaixo ao bloqueio 403 descrevem o estado
+> anterior ao envio. Nenhum merge foi realizado.
+
 Objetivo do proprietário: conversas complexas comparáveis ao ChatGPT. Isso é uma
 aspiração, não uma capacidade entregue ou uma promessa de equivalência. Os ensaios
 iniciais têm centenas de milhares de parâmetros e poucos exemplos sintéticos.

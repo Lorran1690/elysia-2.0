@@ -4,8 +4,8 @@
 
 Segundo marco: [chat experimental com contexto](reports/context-words/README.md).
 Recuperação de informações em combinações sintéticas não vistas: 12/16, inclusive
-com respostas intermediárias geradas. Ainda não é conversação geral. O envio ao
-GitHub permanece pendente por erro 403; checkpoints e código estão no backup local.
+com respostas intermediárias geradas. Ainda não é conversação geral. Código, resultados e checkpoints estão preservados no GitHub na branch
+`recovery/neural-first-words`; a permissão de escrita foi corrigida.
 
 Treino diagnóstico do Transformer próprio a partir de pesos aleatórios: 24/24
 exemplos ensinados e 4/8 variações próximas por correspondência exata. Ainda não
