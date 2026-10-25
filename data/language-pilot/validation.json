@@ -1,0 +1,97 @@
+[
+  {
+    "id": "c59fc05a-95f1-4e76-8b8e-00dda59454b9",
+    "tree_id": "0122988a-fe04-43b7-96ad-0f912223ed07",
+    "source_message_ids": [
+      "0122988a-fe04-43b7-96ad-0f912223ed07",
+      "c59fc05a-95f1-4e76-8b8e-00dda59454b9"
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Escreva uma história de terror"
+      },
+      {
+        "role": "assistant",
+        "content": "Havia uma pequena vila que ficava no meio de uma floresta sombria. Lá, as pessoas costumavam dizer que havia um espírito maligno que habitava a floresta e que só saía à noite para atormentar os moradores da vila.\n\nUm jovem chamado Samuel sempre desafiou essas histórias e achava que eram apenas lendas criadas para assustar as crianças. Ele decidiu explorar a floresta sozinho à noite, para provar que não havia nada de verdade nas histórias.\n\nMas logo que ele entrou na floresta, começou a sentir uma presença sinistra e ameaçadora. Ele ouvia passos atrás dele, mas quando se virava, não via nada. Samuel começou a correr, mas não conseguia encontrar o caminho de volta.\n\nDe repente, ele se viu cercado por sombras escuras e ouviu uma risada sinistra vindo de todas as direções. Samuel tentou correr, mas as sombras o perseguiram, cada vez mais perto.\n\nEle finalmente caiu, exausto, e a última coisa que viu foi uma sombra enorme se aproximando dele, com uma risada assustadora ecoando pela floresta.\n\nDesde então, ninguém mais ouviu falar de Samuel e as pessoas da vila não ousam mais entrar na floresta à noite. Dizem que a sombra maligna ainda habita lá, esperando por mais uma vítima."
+      }
+    ],
+    "group_id": "0122988a-fe04-43b7-96ad-0f912223ed07"
+  },
+  {
+    "id": "7f8f35cc-1ace-4769-b79d-a4accdc414e2",
+    "tree_id": "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff",
+    "source_message_ids": [
+      "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff",
+      "7f8f35cc-1ace-4769-b79d-a4accdc414e2"
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "tenho uma impressora 3D e quero imprimir uma action figure do Link, do jogo The Legend of Zelda. tenho imagens jpg dessa action figure, vc é capaz de me ajudar a convertê-las em um formato de arquivo que eu possa usar para imprimir uma cópia dela para mim?"
+      },
+      {
+        "role": "assistant",
+        "content": "É claro!\n\nVocê pode converter essas imagens para o formato STL (stereolithography), comumente utilizado em impressões 3D.\n\nA maneira mais prática de fazer isso é através de um software de modelagem 3D que permita a criação de modelos 3D a partir de imagens, como o Blender, Tinkercard ou Fusion 360.\n\nApós criar o modelo 3D é possível exportá-lo em formato STL e você poderá utilizá-lo em seu software de impressão 3D.\n\nPosso ajudá-lo com algo mais?"
+      }
+    ],
+    "group_id": "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff"
+  },
+  {
+    "id": "e5b352db-488f-49d8-a21a-f9af5dd02dee",
+    "tree_id": "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff",
+    "source_message_ids": [
+      "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff",
+      "e5b352db-488f-49d8-a21a-f9af5dd02dee"
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "tenho uma impressora 3D e quero imprimir uma action figure do Link, do jogo The Legend of Zelda. tenho imagens jpg dessa action figure, vc é capaz de me ajudar a convertê-las em um formato de arquivo que eu possa usar para imprimir uma cópia dela para mim?"
+      },
+      {
+        "role": "assistant",
+        "content": "Claro, eu posso ajudá-lo. Para imprimir uma action figure do Link em sua impressora 3D, você precisará converter as imagens JPG em um arquivo STL. O formato STL é o formato mais comum para modelos 3D para impressão e pode ser facilmente gerado usando softwares como o Blender ou o Tinkercad. Se você tiver dificuldades na conversão, por favor, não hesite em perguntar novamente. Estou aqui para ajudar!"
+      }
+    ],
+    "group_id": "901ec3e9-a2d5-4f75-a681-a9ffc2b4a3ff"
+  },
+  {
+    "id": "51ed523b-045a-4f65-8406-7f9f7cd2df1b",
+    "tree_id": "aedb48df-4b6e-46a7-9641-49ca5b8ed128",
+    "source_message_ids": [
+      "aedb48df-4b6e-46a7-9641-49ca5b8ed128",
+      "51ed523b-045a-4f65-8406-7f9f7cd2df1b"
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Qual um exemplo de comida mexicana simples de fazer em casa?"
+      },
+      {
+        "role": "assistant",
+        "content": "Uma comida mexicana simples de fazer em casa é o tacos de carne. Aqui está uma receita básica para você começar:\n\nIngredientes:\n\n    - 500g de carne moída (porco ou boi)\n    - 1 cebola picada\n    - 1 dente de alho picado\n    - 1 xícara de salsa picada\n    - 2 colheres de sopa de chili em pó\n    - 1 colher de sopa de cominho\n    - Sal e pimenta a gosto\n    - 8-10 tortillas de farinha\n    - Queijo ralado a gosto\n\nInstruções:\n\n    1. Em uma panela grande, refogue a cebola e o alho até ficarem macios.\n    2. Adicione a carne moída e cozinhe até que esteja completamente assada.\n    3. Adicione a salsa, o chili em pó, o cominho, sal e pimenta e mexa bem.\n    4. Deixe cozinhar por mais alguns minutos para que os sabores sejam incorporados.\n    5. Aquecer as tortillas de farinha em uma frigideira quente por cerca de 30 segundos de cada lado.\n    6. Coloque a carne moída no centro de cada tortilla, adicione o queijo ralado e enrole como um taco.\n    7. Sirva quente com molho picante, guacamole e outros acompanhamentos a gosto.\n\nBom apetite!"
+      }
+    ],
+    "group_id": "aedb48df-4b6e-46a7-9641-49ca5b8ed128"
+  },
+  {
+    "id": "96d80beb-b276-43f3-999f-96f1e3d219a0",
+    "tree_id": "d58cb4f4-9601-4754-930f-742ab5df0533",
+    "source_message_ids": [
+      "d58cb4f4-9601-4754-930f-742ab5df0533",
+      "96d80beb-b276-43f3-999f-96f1e3d219a0"
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "como resolver isto?\n\nhow to solve (async () => {\n^\nTypeError: (intermediate value) is not a function"
+      },
+      {
+        "role": "assistant",
+        "content": "Para ter uma resposta mais precisa seria necessário um pouco mais de contexto. Pela informação providenciada, diria que você está providenciando uma variável que não é uma função onde uma função é esperada. Não consigo sugerir mudanças no código, pois não tenho contexto suficiente do que está acontecendo. Pode me mostrar o trecho de código em que o erro ocorre e a mensagem completa do erro, por favor?"
+      }
+    ],
+    "group_id": "d58cb4f4-9601-4754-930f-742ab5df0533"
+  }
+]

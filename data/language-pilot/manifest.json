@@ -1,0 +1,54 @@
+{
+  "source": "OpenAssistant/oasst1",
+  "revision": "fdf72ae0827c1cda404aff25b6603abec9e3399b",
+  "url": "https://huggingface.co/datasets/OpenAssistant/oasst1/resolve/fdf72ae0827c1cda404aff25b6603abec9e3399b/2023-04-12_oasst_ready.messages.jsonl.gz",
+  "license": "Apache-2.0 (dataset publisher declaration and LICENSE verified)",
+  "attribution": "OpenAssistant contributors / LAION-AI, OASST1, 2023",
+  "original_sha256": "286a6e9a5a413b3272ae9c0b5a20d327983dea1c24342ae28cb244a6da65185c",
+  "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "language": "pt-BR according to source tags",
+  "seed": 25102026,
+  "excluded": {
+    "not_pt_br": 87635,
+    "source_label_not_appropriate": 21,
+    "length": 16,
+    "source_label_violence": 163,
+    "source_label_spam": 34,
+    "low_source_quality": 216,
+    "source_label_pii": 65,
+    "not_positively_reviewed": 29,
+    "source_label_lang_mismatch": 11,
+    "identifier_or_link_pattern": 10,
+    "source_label_hate_speech": 1,
+    "excluded_scope_or_identity": 20,
+    "incomplete_filtered_path": 284,
+    "path_too_long": 2
+  },
+  "accepted_messages_before_path_filter": 617,
+  "records": 112,
+  "trees": 47,
+  "splits": {
+    "train": {
+      "records": 97,
+      "groups": 39,
+      "sha256": "8ba5e8ccc27160f51a8fe64a3369a78656ca1ac663c436262ad648e3e111d401"
+    },
+    "validation": {
+      "records": 5,
+      "groups": 4,
+      "sha256": "018c18ded1ac7d1424e0ba98dbd3208f954bb15cd64039850434ace2ea2e9e7f"
+    },
+    "test": {
+      "records": 10,
+      "groups": 4,
+      "sha256": "2ce2ac82c504e05153172315bbf8a5d13ce836c8c617b5923cba08d34451e7a7"
+    }
+  },
+  "limitations": [
+    "Source flags are not proof of human authorship or factual correctness.",
+    "PII label and regex filtering are incomplete; not a complete manual privacy review.",
+    "No user IDs, timestamps or other account metadata retained in derivatives.",
+    "Repeated prefixes within one conversation tree remain within one split.",
+    "Near-duplicate checks cover initial prompts; semantic duplicates can remain."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "purpose": "Fixed qualitative probes, defined before neural training; not the historical 0/8 test. No automatic keyword success metric.",
+  "cases": [
+    {
+      "id": "greeting",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Olá, Elysia. Como você está?"
+        }
+      ],
+      "criterion": "Saudação compreensível e resposta pertinente, sem texto corrompido."
+    },
+    {
+      "id": "simple_explanation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Por que a chuva cai das nuvens?"
+        }
+      ],
+      "criterion": "Explicação coerente de condensação e gotas, sem afirmações inventadas."
+    },
+    {
+      "id": "instruction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Liste três maneiras de economizar água em casa."
+        }
+      ],
+      "criterion": "Três sugestões distintas, práticas e pertinentes."
+    },
+    {
+      "id": "clarification",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Pode melhorar isso para mim?"
+        }
+      ],
+      "criterion": "Pede o texto ou objeto a melhorar, sem inventar o conteúdo ausente."
+    },
+    {
+      "id": "uncertainty",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Qual é o nome do meu cachorro?"
+        }
+      ],
+      "criterion": "Admite não saber ou solicita a informação, sem inventar um nome."
+    },
+    {
+      "id": "memory",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu cachorro se chama Pipoca."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Como se chama meu cachorro?"
+        }
+      ],
+      "criterion": "Recupera Pipoca do histórico."
+    },
+    {
+      "id": "correction",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Meu nome é Ana."
+        },
+        {
+          "role": "assistant",
+          "content": "Entendi."
+        },
+        {
+          "role": "user",
+          "content": "Corrigindo: meu nome é Bia. Como eu me chamo?"
+        }
+      ],
+      "criterion": "Usa Bia, respeitando a correção mais recente."
+    },
+    {
+      "id": "comparison",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explique uma vantagem e uma limitação de estudar sozinho."
+        }
+      ],
+      "criterion": "Apresenta uma vantagem e uma limitação coerentes, em português compreensível."
+    }
+  ]
+}
