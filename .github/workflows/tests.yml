@@ -33,6 +33,8 @@ jobs:
         run: |
           $pythonPath = (Get-Command python).Source
           $rejected = $false
+          $reportPath = 'reports/curriculum-v2/gtx1650-512-auto-calibration.json'
+          if (Test-Path -LiteralPath $reportPath) { Remove-Item -LiteralPath $reportPath -Force }
           try {
             & .\scripts\calibrate-gtx1650.ps1 -Python $pythonPath -Steps 2 -Context 512
           } catch {
@@ -40,7 +42,7 @@ jobs:
             Write-Host $_.Exception.Message
           }
           if (-not $rejected) { throw 'CPU-only runner must reject GPU calibration.' }
-          $report = Get-Content -Raw reports/curriculum-v2/gtx1650-512-auto-calibration.json | ConvertFrom-Json
+          $report = Get-Content -Raw $reportPath | ConvertFrom-Json
           if ($report.cuda_available -ne $false -or $report.calibration.completed -ne $false) {
             throw 'Expected a structured report with CUDA unavailable and calibration incomplete.'
           }
