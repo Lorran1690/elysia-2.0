@@ -1,0 +1,4738 @@
+[
+  {
+    "id": "name-0-color-0-name",
+    "group_id": "name-0-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-0-color",
+    "group_id": "name-0-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-3-name",
+    "group_id": "name-0-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-3-color",
+    "group_id": "name-0-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-4-name",
+    "group_id": "name-0-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-4-color",
+    "group_id": "name-0-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-5-name",
+    "group_id": "name-0-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-5-color",
+    "group_id": "name-0-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-6-name",
+    "group_id": "name-0-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-6-color",
+    "group_id": "name-0-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-7-name",
+    "group_id": "name-0-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ana."
+      }
+    ]
+  },
+  {
+    "id": "name-0-color-7-color",
+    "group_id": "name-0-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-0-name",
+    "group_id": "name-1-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-0-color",
+    "group_id": "name-1-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-1-name",
+    "group_id": "name-1-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-1-color",
+    "group_id": "name-1-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-4-name",
+    "group_id": "name-1-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-4-color",
+    "group_id": "name-1-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-5-name",
+    "group_id": "name-1-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-5-color",
+    "group_id": "name-1-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-6-name",
+    "group_id": "name-1-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-6-color",
+    "group_id": "name-1-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-7-name",
+    "group_id": "name-1-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bia."
+      }
+    ]
+  },
+  {
+    "id": "name-1-color-7-color",
+    "group_id": "name-1-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-0-name",
+    "group_id": "name-2-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-0-color",
+    "group_id": "name-2-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-1-name",
+    "group_id": "name-2-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-1-color",
+    "group_id": "name-2-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-2-name",
+    "group_id": "name-2-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-2-color",
+    "group_id": "name-2-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-5-name",
+    "group_id": "name-2-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-5-color",
+    "group_id": "name-2-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-6-name",
+    "group_id": "name-2-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-6-color",
+    "group_id": "name-2-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-7-name",
+    "group_id": "name-2-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Caio."
+      }
+    ]
+  },
+  {
+    "id": "name-2-color-7-color",
+    "group_id": "name-2-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-0-name",
+    "group_id": "name-3-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-0-color",
+    "group_id": "name-3-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-1-name",
+    "group_id": "name-3-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-1-color",
+    "group_id": "name-3-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-2-name",
+    "group_id": "name-3-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-2-color",
+    "group_id": "name-3-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-3-name",
+    "group_id": "name-3-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-3-color",
+    "group_id": "name-3-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-6-name",
+    "group_id": "name-3-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-6-color",
+    "group_id": "name-3-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-7-name",
+    "group_id": "name-3-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Davi."
+      }
+    ]
+  },
+  {
+    "id": "name-3-color-7-color",
+    "group_id": "name-3-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-0-name",
+    "group_id": "name-4-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-0-color",
+    "group_id": "name-4-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-1-name",
+    "group_id": "name-4-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-1-color",
+    "group_id": "name-4-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-2-name",
+    "group_id": "name-4-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-2-color",
+    "group_id": "name-4-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-3-name",
+    "group_id": "name-4-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-3-color",
+    "group_id": "name-4-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-4-name",
+    "group_id": "name-4-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-4-color",
+    "group_id": "name-4-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-7-name",
+    "group_id": "name-4-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Eva."
+      }
+    ]
+  },
+  {
+    "id": "name-4-color-7-color",
+    "group_id": "name-4-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-0-name",
+    "group_id": "name-5-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-0-color",
+    "group_id": "name-5-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "azul."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-1-name",
+    "group_id": "name-5-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-1-color",
+    "group_id": "name-5-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-2-name",
+    "group_id": "name-5-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-2-color",
+    "group_id": "name-5-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-3-name",
+    "group_id": "name-5-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-3-color",
+    "group_id": "name-5-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-4-name",
+    "group_id": "name-5-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-4-color",
+    "group_id": "name-5-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-5-name",
+    "group_id": "name-5-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ivo."
+      }
+    ]
+  },
+  {
+    "id": "name-5-color-5-color",
+    "group_id": "name-5-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-1-name",
+    "group_id": "name-6-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-1-color",
+    "group_id": "name-6-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "verde."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-2-name",
+    "group_id": "name-6-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-2-color",
+    "group_id": "name-6-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-3-name",
+    "group_id": "name-6-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-3-color",
+    "group_id": "name-6-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-4-name",
+    "group_id": "name-6-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-4-color",
+    "group_id": "name-6-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-5-name",
+    "group_id": "name-6-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-5-color",
+    "group_id": "name-6-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-6-name",
+    "group_id": "name-6-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Lia."
+      }
+    ]
+  },
+  {
+    "id": "name-6-color-6-color",
+    "group_id": "name-6-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-2-name",
+    "group_id": "name-7-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-2-color",
+    "group_id": "name-7-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "rosa."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-3-name",
+    "group_id": "name-7-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-3-color",
+    "group_id": "name-7-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "roxo."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-4-name",
+    "group_id": "name-7-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-4-color",
+    "group_id": "name-7-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "cinza."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-5-name",
+    "group_id": "name-7-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-5-color",
+    "group_id": "name-7-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "preto."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-6-name",
+    "group_id": "name-7-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-6-color",
+    "group_id": "name-7-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "branco."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-7-name",
+    "group_id": "name-7-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é o meu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Rui."
+      }
+    ]
+  },
+  {
+    "id": "name-7-color-7-color",
+    "group_id": "name-7-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      },
+      {
+        "role": "user",
+        "content": "Qual é minha cor favorita?"
+      },
+      {
+        "role": "assistant",
+        "content": "amarelo."
+      }
+    ]
+  },
+  {
+    "id": "train-00",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Oi."
+      },
+      {
+        "role": "assistant",
+        "content": "Oi!"
+      }
+    ]
+  },
+  {
+    "id": "train-01",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Olá."
+      },
+      {
+        "role": "assistant",
+        "content": "Olá!"
+      }
+    ]
+  },
+  {
+    "id": "train-02",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Bom dia."
+      },
+      {
+        "role": "assistant",
+        "content": "Bom dia!"
+      }
+    ]
+  },
+  {
+    "id": "train-03",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Boa tarde."
+      },
+      {
+        "role": "assistant",
+        "content": "Boa tarde!"
+      }
+    ]
+  },
+  {
+    "id": "train-04",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Boa noite."
+      },
+      {
+        "role": "assistant",
+        "content": "Boa noite!"
+      }
+    ]
+  },
+  {
+    "id": "train-05",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Qual é o seu nome?"
+      },
+      {
+        "role": "assistant",
+        "content": "Meu nome é Elysia."
+      }
+    ]
+  },
+  {
+    "id": "train-06",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Como você se chama?"
+      },
+      {
+        "role": "assistant",
+        "content": "Meu nome é Elysia."
+      }
+    ]
+  },
+  {
+    "id": "train-07",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Quem é você?"
+      },
+      {
+        "role": "assistant",
+        "content": "Sou a Elysia, uma IA em treinamento."
+      }
+    ]
+  },
+  {
+    "id": "train-08",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Você está aprendendo?"
+      },
+      {
+        "role": "assistant",
+        "content": "Sim, estou aprendendo minhas primeiras palavras."
+      }
+    ]
+  },
+  {
+    "id": "train-09",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Tudo bem?"
+      },
+      {
+        "role": "assistant",
+        "content": "Tudo bem! E você?"
+      }
+    ]
+  },
+  {
+    "id": "train-10",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Como você está?"
+      },
+      {
+        "role": "assistant",
+        "content": "Estou pronta para aprender."
+      }
+    ]
+  },
+  {
+    "id": "train-11",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Obrigado."
+      },
+      {
+        "role": "assistant",
+        "content": "De nada!"
+      }
+    ]
+  },
+  {
+    "id": "train-12",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Obrigada."
+      },
+      {
+        "role": "assistant",
+        "content": "De nada!"
+      }
+    ]
+  },
+  {
+    "id": "train-13",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Até logo."
+      },
+      {
+        "role": "assistant",
+        "content": "Até logo!"
+      }
+    ]
+  },
+  {
+    "id": "train-14",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Tchau."
+      },
+      {
+        "role": "assistant",
+        "content": "Tchau!"
+      }
+    ]
+  },
+  {
+    "id": "train-15",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "O que você sabe fazer?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ainda sei muito pouco. Estou em treinamento."
+      }
+    ]
+  },
+  {
+    "id": "train-16",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Você sabe tudo?"
+      },
+      {
+        "role": "assistant",
+        "content": "Não. Ainda tenho muito a aprender."
+      }
+    ]
+  },
+  {
+    "id": "train-17",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Você é humana?"
+      },
+      {
+        "role": "assistant",
+        "content": "Não. Sou uma inteligência artificial."
+      }
+    ]
+  },
+  {
+    "id": "train-18",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Você consegue falar?"
+      },
+      {
+        "role": "assistant",
+        "content": "Por enquanto, respondo por texto."
+      }
+    ]
+  },
+  {
+    "id": "train-19",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Vamos aprender?"
+      },
+      {
+        "role": "assistant",
+        "content": "Vamos aprender juntos!"
+      }
+    ]
+  },
+  {
+    "id": "train-20",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Diga uma palavra."
+      },
+      {
+        "role": "assistant",
+        "content": "Olá!"
+      }
+    ]
+  },
+  {
+    "id": "train-21",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Diga seu nome."
+      },
+      {
+        "role": "assistant",
+        "content": "Elysia."
+      }
+    ]
+  },
+  {
+    "id": "train-22",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Quanto é um mais um?"
+      },
+      {
+        "role": "assistant",
+        "content": "Um mais um é dois."
+      }
+    ]
+  },
+  {
+    "id": "train-23",
+    "group_id": "first-words-seen",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Quanto é dois mais dois?"
+      },
+      {
+        "role": "assistant",
+        "content": "Dois mais dois é quatro."
+      }
+    ]
+  },
+  {
+    "id": "acquire-000",
+    "group_id": "training-acquisition-name-0-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-001",
+    "group_id": "training-acquisition-name-0-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-002",
+    "group_id": "training-acquisition-name-0-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-003",
+    "group_id": "training-acquisition-name-0-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-004",
+    "group_id": "training-acquisition-name-0-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-005",
+    "group_id": "training-acquisition-name-0-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-006",
+    "group_id": "training-acquisition-name-0-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ana."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-007",
+    "group_id": "training-acquisition-name-1-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-008",
+    "group_id": "training-acquisition-name-1-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-009",
+    "group_id": "training-acquisition-name-1-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-010",
+    "group_id": "training-acquisition-name-1-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-011",
+    "group_id": "training-acquisition-name-1-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-012",
+    "group_id": "training-acquisition-name-1-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-013",
+    "group_id": "training-acquisition-name-1-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Bia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-014",
+    "group_id": "training-acquisition-name-2-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-015",
+    "group_id": "training-acquisition-name-2-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-016",
+    "group_id": "training-acquisition-name-2-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-017",
+    "group_id": "training-acquisition-name-2-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-018",
+    "group_id": "training-acquisition-name-2-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-019",
+    "group_id": "training-acquisition-name-2-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-020",
+    "group_id": "training-acquisition-name-2-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Caio."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-021",
+    "group_id": "training-acquisition-name-3-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-022",
+    "group_id": "training-acquisition-name-3-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-023",
+    "group_id": "training-acquisition-name-3-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-024",
+    "group_id": "training-acquisition-name-3-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-025",
+    "group_id": "training-acquisition-name-3-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-026",
+    "group_id": "training-acquisition-name-3-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-027",
+    "group_id": "training-acquisition-name-3-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Davi."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-028",
+    "group_id": "training-acquisition-name-4-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-029",
+    "group_id": "training-acquisition-name-4-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-030",
+    "group_id": "training-acquisition-name-4-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-031",
+    "group_id": "training-acquisition-name-4-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-032",
+    "group_id": "training-acquisition-name-4-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-033",
+    "group_id": "training-acquisition-name-4-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-034",
+    "group_id": "training-acquisition-name-4-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Eva."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-035",
+    "group_id": "training-acquisition-name-5-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-036",
+    "group_id": "training-acquisition-name-5-color-0",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é azul."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-037",
+    "group_id": "training-acquisition-name-5-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-038",
+    "group_id": "training-acquisition-name-5-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-039",
+    "group_id": "training-acquisition-name-5-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-040",
+    "group_id": "training-acquisition-name-5-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-041",
+    "group_id": "training-acquisition-name-5-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Ivo."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-042",
+    "group_id": "training-acquisition-name-6-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-043",
+    "group_id": "training-acquisition-name-6-color-1",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é verde."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-044",
+    "group_id": "training-acquisition-name-6-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-045",
+    "group_id": "training-acquisition-name-6-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-046",
+    "group_id": "training-acquisition-name-6-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-047",
+    "group_id": "training-acquisition-name-6-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-048",
+    "group_id": "training-acquisition-name-6-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Lia."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-049",
+    "group_id": "training-acquisition-name-7-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      }
+    ]
+  },
+  {
+    "id": "acquire-050",
+    "group_id": "training-acquisition-name-7-color-2",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é rosa."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-051",
+    "group_id": "training-acquisition-name-7-color-3",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é roxo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-052",
+    "group_id": "training-acquisition-name-7-color-4",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é cinza."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-053",
+    "group_id": "training-acquisition-name-7-color-5",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é preto."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-054",
+    "group_id": "training-acquisition-name-7-color-6",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é branco."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  },
+  {
+    "id": "acquire-055",
+    "group_id": "training-acquisition-name-7-color-7",
+    "synthetic": true,
+    "source": "preexisting diagnostic curriculum, before the 24-case evaluation",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Meu nome é Rui."
+      },
+      {
+        "role": "assistant",
+        "content": "Entendi."
+      },
+      {
+        "role": "user",
+        "content": "Minha cor favorita é amarelo."
+      },
+      {
+        "role": "assistant",
+        "content": "Certo."
+      }
+    ]
+  }
+]

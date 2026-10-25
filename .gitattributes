@@ -6,3 +6,8 @@ data/language-pilot/*.json text eol=lf
 evaluation/*.json text eol=lf
 reports/corpus-pt-v1/** text eol=lf
 requirements-corpus.txt text eol=lf
+data/neural-dialogue-v2/** text eol=lf
+data/neural-dialogue-v2/sources/** -text -whitespace
+data/neural-dialogue-v2/dialogues/UPSTREAM-CARD.md -whitespace
+data/neural-dialogue-v2/literature/*.bin binary
+reports/neural-dialogue-v2/** text eol=lf

@@ -1,0 +1,132 @@
+{
+  "oasst2_revision": "179dd21fc55192153d94adb0e0ce8f69e222bf75",
+  "oasst2_sha256": "a9f240c4c77aa1378364f70d37e753c07ba284e247b019d700e1947a0e5da751",
+  "old_portuguese_trees_excluded": 165,
+  "exclusions": {
+    "historical_tree_excluded": 1203,
+    "source_label_not_appropriate": 39,
+    "source_label_violence": 179,
+    "not_positively_reviewed": 79,
+    "low_source_quality": 156,
+    "source_label_pii": 8,
+    "excluded_scope_or_identity": 88,
+    "identifier_or_link_pattern": 17,
+    "external_identity_or_impersonation": 23,
+    "source_label_sexual_content": 1,
+    "length": 9,
+    "source_label_spam": 25,
+    "source_label_lang_mismatch": 5,
+    "incomplete_filtered_path": 333
+  },
+  "dialogue_splits": {
+    "train": {
+      "paths": 149,
+      "trees": 42,
+      "sha256": "3f8e5c80e0e847d0d474d8fe91852288ca4d3a0abd0656180f84136e7fdfcac3"
+    },
+    "validation": {
+      "paths": 14,
+      "trees": 5,
+      "sha256": "6bb11fc5fe9beb70d7ce159f385c2296ef83248f37f3bf9392429472f86404fb"
+    },
+    "test": {
+      "paths": 18,
+      "trees": 5,
+      "sha256": "1ddaa199a8984569c93b66cf0406c7181c1e744c47c9191b8e1329b63cfc10ec"
+    }
+  },
+  "synthetic_supplement_records": 176,
+  "literature_stores": {
+    "train": {
+      "tokens": 539845,
+      "sha256": "6bdc005dffe6e6d8c15899c7e118f8ff138ecb603269914b24fcfc01414639bf",
+      "authors": 3
+    },
+    "validation": {
+      "tokens": 76410,
+      "sha256": "47b6e58a15c0e586453bccd07a2b33cb1a6389812b13171ac5b9a06b37440892",
+      "authors": 1
+    },
+    "test": {
+      "tokens": 160049,
+      "sha256": "72632ab80dc4cf8e347a9c1010043b340cf648d4252609ed92de9a0c03b48a93",
+      "authors": 1
+    }
+  },
+  "books": {
+    "67535": {
+      "id": 67535,
+      "url": "https://www.gutenberg.org/cache/epub/67535/pg67535.txt",
+      "bytes": 434928,
+      "sha256": "7898e07218e1431f00d6e6aa1d5ebe364bb6d770afaab865868a11df6da07350",
+      "page_sha256": "d9af2289007ec33d3a395521febeacd59e3c08662e1616cb33cb61e5b60cf8a9",
+      "rights": "Public domain in the USA.",
+      "authors": [
+        "Barreto, Lima, 1881-1922"
+      ],
+      "header": "The Project Gutenberg eBook of Triste Fim de Polycarpo Quaresma\r\n    \r\nThis eBook is for the use of anyone anywhere in the United States and\r\nmost other parts of the world at no cost and with almost no restrictions\r\nwhatsoever. You may copy it, give "
+    },
+    "69187": {
+      "id": 69187,
+      "url": "https://www.gutenberg.org/cache/epub/69187/pg69187.txt",
+      "bytes": 511843,
+      "sha256": "f17560b8cc8b260e61251090e62c6ed7794d1e1e57c5a573910bcbf726e169e5",
+      "page_sha256": "37949d151c30a3b24926af84ead9c797aec300d0a601e2656e80b23315c710f7",
+      "rights": "Public domain in the USA.",
+      "authors": [
+        "Azevedo, Aluísio, 1857-1913"
+      ],
+      "header": "The Project Gutenberg eBook of O Cortiço\r\n    \r\nThis eBook is for the use of anyone anywhere in the United States and\r\nmost other parts of the world at no cost and with almost no restrictions\r\nwhatsoever. You may copy it, give it away or re-use it un"
+    },
+    "69229": {
+      "id": 69229,
+      "url": "https://www.gutenberg.org/cache/epub/69229/pg69229.txt",
+      "bytes": 471414,
+      "sha256": "61378dca26a39184a8b2d68b4378bc4fd878f5e577bdc2a8526eaa99614a271c",
+      "page_sha256": "b596cf76b0b99c07940a9fe52c36577e8e8a29c6ce79795fb107f0253d960985",
+      "rights": "Public domain in the USA.",
+      "authors": [
+        "Almeida, Júlia Lopes de, 1862-1934"
+      ],
+      "header": "The Project Gutenberg eBook of A fallencia\r\n    \r\nThis eBook is for the use of anyone anywhere in the United States and\r\nmost other parts of the world at no cost and with almost no restrictions\r\nwhatsoever. You may copy it, give it away or re-use it "
+    },
+    "68541": {
+      "id": 68541,
+      "url": "https://www.gutenberg.org/cache/epub/68541/pg68541.txt",
+      "bytes": 425029,
+      "sha256": "6823430573966358842c539f23d951dbc55c26eba9c484a6f6713c8dadf5efe1",
+      "page_sha256": "d22ec6ce924aab7890422f1b7ef40a9299785b044d57a714dd9ba8a19ab60a14",
+      "rights": "Public domain in the USA.",
+      "authors": [
+        "Pompéia, Raul, 1863-1895"
+      ],
+      "header": "The Project Gutenberg eBook of O Atheneu (chronica de saudades)\r\n    \r\nThis eBook is for the use of anyone anywhere in the United States and\r\nmost other parts of the world at no cost and with almost no restrictions\r\nwhatsoever. You may copy it, give "
+    },
+    "67740": {
+      "id": 67740,
+      "url": "https://www.gutenberg.org/cache/epub/67740/pg67740.txt",
+      "bytes": 208019,
+      "sha256": "e19bbd57aa2fff7715832b52e1c28562d8bdc4a908515609a6f638799d916bac",
+      "page_sha256": "f9ecb21dc5fafd4ed2c0bf270f6e7d3742b2683391036c46f3274ed20850e587",
+      "rights": "Public domain in the USA.",
+      "authors": [
+        "Alencar, José Martiniano de, 1829-1877"
+      ],
+      "header": "The Project Gutenberg eBook of Iracema\r\n    \r\nThis eBook is for the use of anyone anywhere in the United States and\r\nmost other parts of the world at no cost and with almost no restrictions\r\nwhatsoever. You may copy it, give it away or re-use it unde"
+    }
+  },
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 2048,
+    "requested_vocab_size": 2048,
+    "fingerprint": "fe188d04c371a8eb628341cae601055d85b84254103c1bca3dbcbda8b28a0124"
+  },
+  "evaluation_sha256": "87977e9e07c3e2c9e1a5c4698f8c294210933b477aefa0aec0f1bdcf52f21b5c",
+  "caveats": [
+    "OASST flags and moderation votes are not independent factual verification.",
+    "Historical fiction is not contemporary conversation or a source of factual answers.",
+    "The synthetic supplement is explicitly separate and predates the frozen open evaluation.",
+    "This is a bounded research dataset, not a broad-conversation readiness claim."
+  ]
+}

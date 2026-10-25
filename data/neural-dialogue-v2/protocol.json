@@ -1,0 +1,49 @@
+{
+  "purpose": "Bounded research on first useful conversations, not equivalence to ChatGPT.",
+  "seed": 26102026,
+  "pretrain_steps": 8000,
+  "sft_steps": 2000,
+  "pretrain_context": 256,
+  "sft_context": 256,
+  "batch_size": 4,
+  "mixture_pretrain": {
+    "technical_corpus_v1": 0.7,
+    "historical_literature": 0.3
+  },
+  "mixture_sft": {
+    "fresh_oasst2": 0.8,
+    "preexisting_synthetic_diagnostic": 0.2
+  },
+  "model": {
+    "vocab_size": 2048,
+    "block_size": 512,
+    "num_layers": 4,
+    "embedding_dim": 192,
+    "num_heads": 4,
+    "feedforward_dim": 768,
+    "dropout": 0.1,
+    "positional_embedding": "rope",
+    "norm_type": "rmsnorm",
+    "feedforward_type": "swiglu",
+    "attention_backend": "sdpa"
+  },
+  "selection": "Validation only: weighted prose loss for pretraining; weighted assistant-token loss for tuning.",
+  "evaluation": "Frozen 24-case portuguese-v1 specification, once after final model selection; include live rollouts for multi-turn cases.",
+  "milestone_criterion": {
+    "fully_correct_static_cases_minimum": 12,
+    "fully_correct_live_multiturn_cases_minimum": 4,
+    "critical_personal_information_or_tool_access_fabrications_maximum": 0,
+    "review": "Semantic review with identified reviewer; no keyword passing. Passing is only a small milestone, not general intelligence."
+  },
+  "resources": {
+    "device": "cpu",
+    "threads": 2,
+    "no_paid_services": true,
+    "resume_required": true
+  },
+  "data_limitations": [
+    "Source moderation labels are not a full independent factual review.",
+    "Historical fiction is not present-day knowledge or behavioral supervision.",
+    "Synthetic supplement is separate, limited, and predates this evaluation."
+  ]
+}
