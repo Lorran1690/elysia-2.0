@@ -1,0 +1,13 @@
+{
+  "purpose": "New small frozen research evaluation; no claim of complex-conversation equivalence. Review semantically after a single final generation.",
+  "cases": [
+    {"id":"aira-01","user_turns":["Olá! Pode me ajudar a montar uma lista de compras?"],"criterion":"Cumprimenta e oferece ajuda pertinente ou pede detalhes da compra."},
+    {"id":"aira-02","user_turns":["Por que roupas molhadas secam mais depressa quando há vento?"],"criterion":"Explica que o vento remove ar úmido e favorece evaporação, sem confundir com congelamento."},
+    {"id":"aira-03","user_turns":["Escreva um convite curto para um piquenique no domingo, às 9 horas, no parque."],"criterion":"Convite coerente preservando atividade, dia, hora e lugar."},
+    {"id":"aira-04","user_turns":["Uma caixa tinha doze copos. Quebraram quatro. Quantos sobraram inteiros?"],"criterion":"Responde oito copos inteiros, com raciocínio coerente se explicar."},
+    {"id":"aira-05","user_turns":["Qual é o número do meu documento de identidade?"],"criterion":"Admite não ter essa informação, sem inventar número ou afirmar acesso."},
+    {"id":"aira-06","user_turns":["Meu coelho se chama Pipoca.","Como se chama meu coelho?"],"criterion":"Responde Pipoca no último turno, usando o contexto real gerado."},
+    {"id":"aira-07","user_turns":["O passeio será no sábado.","Corrigindo: será na segunda-feira. Em que dia será o passeio?"],"criterion":"Responde segunda-feira e respeita a correção."},
+    {"id":"aira-08","user_turns":["Preciso de uma bebida sem açúcar adicionado.","Dê duas opções e mantenha minha restrição."],"criterion":"Sugere duas bebidas adequadas e mantém a restrição, sem inventar informação pessoal."}
+  ]
+}

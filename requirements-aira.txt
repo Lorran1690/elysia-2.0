@@ -1,0 +1,3 @@
+# Optional: preparation of the pinned Apache-2.0 synthetic conversation corpus.
+-r requirements-corpus.txt
+pyarrow==23.0.1

@@ -1,0 +1,707 @@
+{
+  "source": "nicholasKluge/instruct-aira-dataset-v3",
+  "revision": "1ca52371453cc9e52b650ba4314f2ca0a69f58ba",
+  "source_files": {
+    "README.md": [
+      "README.md",
+      5996,
+      "089f35c894b6c21f7af72d213602ecb215379ffcace4b0fec3a1975dc1ca0a8e"
+    ],
+    "LICENSE": [
+      "LICENSE",
+      10762,
+      "746e4bf805bd511e9857cc7eb36f660197470082982d42e6eb47e065f6cf28ae"
+    ],
+    "data/portuguese-00000-of-00001.parquet": [
+      "portuguese.parquet",
+      172757977,
+      "fc43d5033a3f00740eb595cceeb633562b0d593d8a8eff42117fda52825c162a"
+    ]
+  },
+  "source_rows": 50000,
+  "retained": 45175,
+  "excluded": {
+    "turn_count": 4048,
+    "possible_identifier": 730,
+    "short_assistant": 19,
+    "external_identity_or_impersonation": 24,
+    "message_length": 3,
+    "conversation_length": 1
+  },
+  "splits": {
+    "train": {
+      "records": 40745,
+      "groups": 40734,
+      "multiturn": 40745,
+      "characters": 261581767
+    },
+    "validation": {
+      "records": 2163,
+      "groups": 2163,
+      "multiturn": 2162,
+      "characters": 13718406
+    },
+    "test": {
+      "records": 2267,
+      "groups": 2266,
+      "multiturn": 2267,
+      "characters": 14544809
+    }
+  },
+  "shards": [
+    {
+      "path": "train-0000.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1079847,
+      "sha256": "f2229b237265d7fb1cd92fff976c6b7ed8a151c246b8a37791de4bdf689363ff"
+    },
+    {
+      "path": "train-0001.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1002326,
+      "sha256": "3878444a6f588374171ad45e5bf75cff61ccc8019118522237ae5c44d007ea97"
+    },
+    {
+      "path": "train-0002.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1095697,
+      "sha256": "27ac0f1b535d306fd4c8092bf5c238b7ca4d84585fbe55d97a2214150d8ef04e"
+    },
+    {
+      "path": "train-0003.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1022693,
+      "sha256": "ce43779b83a362385f9b2e188989cad68b790e21b45699b20e7ebc96deb94e95"
+    },
+    {
+      "path": "train-0004.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1073813,
+      "sha256": "68a3e1a51e8f129037fd181f5a36025b09737031becdb85920114bf06a4f4b3e"
+    },
+    {
+      "path": "train-0005.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1059653,
+      "sha256": "9eb5c0a24fe43e744744d6671ea30c9031308c6fab573e4347cdeef5a2de5af2"
+    },
+    {
+      "path": "train-0006.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1076172,
+      "sha256": "ae50568582a29767eaf875775b8cc8130ae3c88c95384c31ce5dcfa6cb963a35"
+    },
+    {
+      "path": "train-0007.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1076767,
+      "sha256": "1e05d53170529fa93cc14c62c44fd8b0ce0e00eaac069dbfc133f22e9efb0b6e"
+    },
+    {
+      "path": "train-0008.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1094220,
+      "sha256": "57e00694fdbc208ff557a5709b16cc8cfb6cdf2b76eea04c336e3b9ff7593a8b"
+    },
+    {
+      "path": "train-0009.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1067424,
+      "sha256": "4b2ca58cbf4867bf9a5f5182d2a78ad87efcca8466358fe015b10ef5e9a66b95"
+    },
+    {
+      "path": "train-0010.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1064116,
+      "sha256": "156490b00fa6822565ed668a20ff5e16a08dca6473169c5a5c87e98e84fe7d45"
+    },
+    {
+      "path": "train-0011.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1083130,
+      "sha256": "d666b7d4e33913c6c11a8026edfc0e09f9c9c3cddd448a8e20f9447ee4886fb3"
+    },
+    {
+      "path": "train-0012.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1078162,
+      "sha256": "d70ff0b613334485e1389d2c8f979f4bbd962d48e1fd1a3ba3af7fcbae54f6df"
+    },
+    {
+      "path": "train-0013.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1116590,
+      "sha256": "835b8adb4a3981ea9d35b39aacbe589bbd01666e6fe97cd680666173041c04e2"
+    },
+    {
+      "path": "train-0014.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1102873,
+      "sha256": "580870c39e2370d267b51492acf5ede27705cf071a357fba2345d20cc422eb70"
+    },
+    {
+      "path": "train-0015.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1066665,
+      "sha256": "2d3018c25b3fff9f05f7fb94d93c8e8d37887f7c32120b54b57b81fa2bf36e54"
+    },
+    {
+      "path": "train-0016.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1088320,
+      "sha256": "4f70d263aa86c6524965ddfdb55e683c2fc48aa819e6006ad42b60a8b97f0d3e"
+    },
+    {
+      "path": "train-0017.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1082337,
+      "sha256": "81301e73885b89b140a6cf9c94be0918e4ab2a8cc1c3d0d7704714f6c0274121"
+    },
+    {
+      "path": "train-0018.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1080797,
+      "sha256": "df7e9779d08cb24b34e05d8d9d6e7238633957646e743756a9d31d2dd6ad5fcd"
+    },
+    {
+      "path": "train-0019.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1075308,
+      "sha256": "487caf3cc95cd8cebfef535d68da732c1986d1e75336fa06359bd3ddf47a2ab1"
+    },
+    {
+      "path": "train-0020.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1085218,
+      "sha256": "bbf9edc20ed51a908bef2882fbe8574f240be46c4cf86d9f2e8d3c25cd3e8006"
+    },
+    {
+      "path": "train-0021.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1085422,
+      "sha256": "6f499f07833bc36cb21c67db8af90d02b272062f4b1ae462fa0f4c173bd66528"
+    },
+    {
+      "path": "train-0022.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1048630,
+      "sha256": "41f5290412ce1c001c1f1cb8d3980ec59ad03c68b04264ed545b2ed28a300f1c"
+    },
+    {
+      "path": "train-0023.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1087742,
+      "sha256": "22ac047f206c82d83d8bf9ccff551b75ba449bff54742528b86027614653b2c4"
+    },
+    {
+      "path": "train-0024.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1062322,
+      "sha256": "6929d12fae00d2877c73f479221eaf3cacac1d631e9d0acc932e4ef12bc665c2"
+    },
+    {
+      "path": "train-0025.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1059812,
+      "sha256": "d22468ef0046875547a81cc7ed6203963ef8b8fcf6f367ca105ae475102dd79c"
+    },
+    {
+      "path": "train-0026.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1116127,
+      "sha256": "a8c673067071ff4926d51b70ae4ab8d89097120beff44e3130d81d49a4b4cecc"
+    },
+    {
+      "path": "train-0027.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1089848,
+      "sha256": "1ea6788f85e7e67e16d86bf7306c3af139e977d9b7255f7fd9c7ddf0eb0199be"
+    },
+    {
+      "path": "train-0028.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1090477,
+      "sha256": "b51e92a6eac990857e171539f6d168af993a5a41c3c818a8dc69e739cb195e3e"
+    },
+    {
+      "path": "train-0029.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1100293,
+      "sha256": "768f4a9ee448e58791b6d26e2d9c7e89c92bae7d8aa614c706390b2155fbb41a"
+    },
+    {
+      "path": "train-0030.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1073101,
+      "sha256": "ba11c72cab56bc5ffb38a7f6add9fb805b6f51a4372963cf970c3a66254c492f"
+    },
+    {
+      "path": "train-0031.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1071214,
+      "sha256": "c89320a0800bc5b4e592915e89877f2841f4f722cf8e5b410b86e1557e749708"
+    },
+    {
+      "path": "train-0032.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1071769,
+      "sha256": "73876966620ec1e8d8385dfcdbdbf6580e685cb303eb71db644525a86a0e1f90"
+    },
+    {
+      "path": "train-0033.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1091193,
+      "sha256": "34af265c7f36d72cf44d054f7f1839916aa8e346c93e57629ec106e538770c79"
+    },
+    {
+      "path": "train-0034.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1072641,
+      "sha256": "6c7155f0554f666060ddc38eeaefd7cbcc868e974fa27bbd7fba87721f323097"
+    },
+    {
+      "path": "train-0035.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1093565,
+      "sha256": "8af30db98d03574e94a66eaca8a50e3c02932d9b9bb16c56709d29f0e1009722"
+    },
+    {
+      "path": "train-0036.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1070814,
+      "sha256": "9b50b966078b6cf9539b7266f50ff6d9bbbd23a76f9b43949d4db02fe7b5a4fd"
+    },
+    {
+      "path": "train-0037.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1063263,
+      "sha256": "9b2167a54889eccc202b728abd1616c9485a2099b72f36770f135efabc0bd029"
+    },
+    {
+      "path": "train-0038.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1096415,
+      "sha256": "fdb6c50b3096dd1ff42874eb770541b88bee4c436b8d1029a1bd32e92bb3d256"
+    },
+    {
+      "path": "train-0039.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1061194,
+      "sha256": "24f4ae05765153274602c04ff5d0d92df2463f378d35ae49b69728d38c24160e"
+    },
+    {
+      "path": "train-0040.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1041966,
+      "sha256": "2cd5594ec7a3bcc0c9b07af384a8e3efa445147fb8d687b5986be28e08ab29c8"
+    },
+    {
+      "path": "train-0041.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1077475,
+      "sha256": "983864e822df32393251ff0aa83e74b8719b4e334607546b3855ea842f50f80a"
+    },
+    {
+      "path": "train-0042.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1092259,
+      "sha256": "7214a2d608f13941ee50a07afaea24f1b54c4c7b9c3dc507a3be38f5519c26ab"
+    },
+    {
+      "path": "train-0043.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1069506,
+      "sha256": "2fae3c8c6f16c1c5b2f0470c4c0e7b818662b2e4d4d8d331ad5e4e386e582faf"
+    },
+    {
+      "path": "train-0044.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1074708,
+      "sha256": "e83dc911bc6a8157ab01c60d34204bce099a98780c77fd32f4bd10c36dc3264f"
+    },
+    {
+      "path": "train-0045.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1029166,
+      "sha256": "23e383e08f45bbfd75958e855960cbc0a68f27a6ad91b4d09fc3b98b6fea2b0d"
+    },
+    {
+      "path": "train-0046.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1069276,
+      "sha256": "3642ec2e44925f6a69b6cdabf876b631856ad137da392bbaa761c756f30c5a98"
+    },
+    {
+      "path": "train-0047.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1071568,
+      "sha256": "e388cbfab1bdb2f9653a96fb295f18c87b2f872e39e6d1ef10e43c374f8d871c"
+    },
+    {
+      "path": "train-0048.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1081571,
+      "sha256": "c035b5297b7e6ece89288f3bfabae6bdb55c90c57ad545836a83b6f411106afa"
+    },
+    {
+      "path": "train-0049.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1067935,
+      "sha256": "463dec769d3d7d6fb02eafc4bf332b661e8e7f4876bfe25e9d74f142135daa28"
+    },
+    {
+      "path": "train-0050.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1092351,
+      "sha256": "a3d285d44125b3c60992a4f8f810278d14359f534449c7a86588c0c6bfafa1bd"
+    },
+    {
+      "path": "train-0051.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1045321,
+      "sha256": "325388b031848258e380b4ce74edff548fb703730cd00302e7a22415d2599542"
+    },
+    {
+      "path": "train-0052.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1079415,
+      "sha256": "50676ccb97a2f0331fbe0cc7f59c46a142f48cd20bd2d2b0be06a76d5870c5b9"
+    },
+    {
+      "path": "train-0053.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1062157,
+      "sha256": "e5274785adc7bceab24f38a1d86da4d810870532164a54a13665cc05e1939fb6"
+    },
+    {
+      "path": "train-0054.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1082751,
+      "sha256": "7985b33ee12841a0d621bb69d8e27de7217e77dd71681edba31e16ff4aba9444"
+    },
+    {
+      "path": "train-0055.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1056710,
+      "sha256": "f9bc024740e398320418b4940c797fe9be28d50092004d162ef1724fbfcc89cf"
+    },
+    {
+      "path": "train-0056.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1062041,
+      "sha256": "bef9480520b2520a130ed37e716023cfa5c8f3dadcbe1e60f89348bac48d6ff8"
+    },
+    {
+      "path": "train-0057.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1083344,
+      "sha256": "d870b4f364b7d95b4b6da0478506ea6227202332c77c63512b354113d15c85e2"
+    },
+    {
+      "path": "train-0058.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1117805,
+      "sha256": "3d68588a6e9f9a1757448e3b03666069c5571925961733cf0e01e5cba7b80362"
+    },
+    {
+      "path": "train-0059.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1066613,
+      "sha256": "cfccea1a9f7c212f3bbbae4cf1b221b1e04a3a396af46c4263500d35c5abe8d8"
+    },
+    {
+      "path": "train-0060.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1086804,
+      "sha256": "9082dfad1f714b76583c401980866eafb30e55121006be4c0534e81aa3d0089e"
+    },
+    {
+      "path": "train-0061.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1092843,
+      "sha256": "4b2442c91f7cb1ea994bd7b9cd05d1758f69725f730403a05dcdebe52abb9ca5"
+    },
+    {
+      "path": "train-0062.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1103717,
+      "sha256": "ca37f0c44525a5cc45f283641aa93359a576ad85e4df037e5a1be965350dfe65"
+    },
+    {
+      "path": "train-0063.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1070153,
+      "sha256": "739f8d006f11f67c7a2ff690b5c4930b886ee599dbfdbb9b68ed910c5ce70e45"
+    },
+    {
+      "path": "train-0064.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1100392,
+      "sha256": "ecb1fa40df792a8043240067977765404fa95c4d795c8b41b1ba74fb786b4e8e"
+    },
+    {
+      "path": "train-0065.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1089700,
+      "sha256": "303cdcbadc30a407d21896bfd31b9a16270f4b70b8869708a68feb125e29d710"
+    },
+    {
+      "path": "train-0066.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1088231,
+      "sha256": "d645cf7b56e7b30298ff93e385b016eb3e42fdd1fc51aee3faa2fe757effa282"
+    },
+    {
+      "path": "train-0067.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1019287,
+      "sha256": "36472689d11b80027fa824f14bb4c3f3dfae73a062dccb3868a1e6f161018b6f"
+    },
+    {
+      "path": "train-0068.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1075550,
+      "sha256": "2e2b6b487ca1dc4015a8e3d889f1332d76622f46c8163a8476913c7127c14732"
+    },
+    {
+      "path": "train-0069.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1091200,
+      "sha256": "40d2eaa1e5f0d1938463b155f9da65dba42b5666c22de5ff9e0cf90717772965"
+    },
+    {
+      "path": "train-0070.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1048271,
+      "sha256": "9e9e9de4943fc19a3cb84bfbf26a64a8b9bfd7de8e00787d1fccd439aed2e90a"
+    },
+    {
+      "path": "train-0071.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1090774,
+      "sha256": "4c8e2abe4f0ed1fc9b77af074f8684cc4c6aa8a75fb9b3fc7815c8a19879cff9"
+    },
+    {
+      "path": "train-0072.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1093435,
+      "sha256": "4b47c8819b5c8285ecf8dcba2947b2fb97fd4c783d2e0140ca952a66d008ce1f"
+    },
+    {
+      "path": "train-0073.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1098066,
+      "sha256": "24a9b20a1354abc5e5ed483744ddefcc2ef9f6b6abcd3b6b583e7181ea807735"
+    },
+    {
+      "path": "train-0074.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1100368,
+      "sha256": "bedb0e1bc584c1f1e46c7681030b71f99e358961f75688d588f5ccc4ffc09d36"
+    },
+    {
+      "path": "train-0075.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1103566,
+      "sha256": "61bf9216fde51a12c280a0e28f5a74e2c6dc39bc83db03d0711ec4130e6bb7cb"
+    },
+    {
+      "path": "train-0076.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1076175,
+      "sha256": "e6a41615b9d661c830adfbff144d53ba9d858be032eb1178e3ffeeb78259c06c"
+    },
+    {
+      "path": "train-0077.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1089182,
+      "sha256": "7768079d4e5e82f4cb003868b5e2bf551a981953e9db5066357bff8b4a9f940a"
+    },
+    {
+      "path": "train-0078.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1102957,
+      "sha256": "123cde31babcd768b2a6972fb75a45d283d89cbd3018e133fb0cea3c8bd1e487"
+    },
+    {
+      "path": "train-0079.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1059729,
+      "sha256": "d89d1def3ed5322c1ae7db6c98e3b9d01e3a64f0f3beb5e9a402a08f51491077"
+    },
+    {
+      "path": "train-0080.jsonl.gz",
+      "split": "train",
+      "records": 500,
+      "bytes": 1072049,
+      "sha256": "465751431f76f7ad5374dfcf6f17e29b851c80849c5565c50ecb5b2933c6944b"
+    },
+    {
+      "path": "train-0081.jsonl.gz",
+      "split": "train",
+      "records": 245,
+      "bytes": 536716,
+      "sha256": "f8ad626b7c64114cc973c381b60b13aa561920bbf3dc3f0edc117feaa31be536"
+    },
+    {
+      "path": "validation-0000.jsonl.gz",
+      "split": "validation",
+      "records": 500,
+      "bytes": 1050116,
+      "sha256": "861cd9222518b46e3d6526f5641b2b92f95dfc59e2d05115c3225824a6b78c20"
+    },
+    {
+      "path": "validation-0001.jsonl.gz",
+      "split": "validation",
+      "records": 500,
+      "bytes": 1045738,
+      "sha256": "37becb2906eb8449e83ccbcf921c1b16f4ff9110b4ca6c9de7186d3ff0f10912"
+    },
+    {
+      "path": "validation-0002.jsonl.gz",
+      "split": "validation",
+      "records": 500,
+      "bytes": 1087459,
+      "sha256": "844af37df3ee7d999841f5429a06fd72c01552abcb3127e7838f024518247b5a"
+    },
+    {
+      "path": "validation-0003.jsonl.gz",
+      "split": "validation",
+      "records": 500,
+      "bytes": 1059192,
+      "sha256": "c5302e8983053b705b287ca9bb6065d9a63c613cb5fa7b363707cebaa35caa4f"
+    },
+    {
+      "path": "validation-0004.jsonl.gz",
+      "split": "validation",
+      "records": 163,
+      "bytes": 359763,
+      "sha256": "80a415654933255e643f567767a1be005e7954909ab63c3ae09ed3c54f52d4e8"
+    },
+    {
+      "path": "test-0000.jsonl.gz",
+      "split": "test",
+      "records": 500,
+      "bytes": 1083634,
+      "sha256": "8791e4f9cce3c3001ae30b0d7a606a864c982737764eda02a31fedb8e71bc63a"
+    },
+    {
+      "path": "test-0001.jsonl.gz",
+      "split": "test",
+      "records": 500,
+      "bytes": 1061129,
+      "sha256": "b21dc989ccc709ab1ce587e3f2df88cd89da59e37dfb452ec7df7221f6a184cf"
+    },
+    {
+      "path": "test-0002.jsonl.gz",
+      "split": "test",
+      "records": 500,
+      "bytes": 1091491,
+      "sha256": "4494f1dd820b56133fb3853d4c20d6041c0a396a6d1f358c86f58df718f7a42b"
+    },
+    {
+      "path": "test-0003.jsonl.gz",
+      "split": "test",
+      "records": 500,
+      "bytes": 1056441,
+      "sha256": "fce39e6b4dfe14ce981e164705112b47c4cbecac843710d7a30a7fbf2bec0150"
+    },
+    {
+      "path": "test-0004.jsonl.gz",
+      "split": "test",
+      "records": 267,
+      "bytes": 584331,
+      "sha256": "9efa37f465f93268ce477ba38e5b0e10ccdcfb61618814fa0f4dda6e2225dcd4"
+    }
+  ],
+  "synthetic": true,
+  "license": "Apache-2.0 as published; upstream prompts are not independently cleared",
+  "deduplication": "NFC casefold whitespace; exact conversations deduplicated; connected components of shared root or any >=80-character message kept in one split",
+  "limits": [
+    "No independent factual or language review; source labels portuguese.",
+    "Regex checks cannot guarantee absence of private data.",
+    "Near-duplicate paraphrases and upstream benchmark contamination may remain.",
+    "No weights trained or improved by corpus preparation.",
+    "All old evaluation remains historical; a new independent evaluation is needed."
+  ]
+}
