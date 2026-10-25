@@ -1,0 +1,7 @@
+{
+  "stage": "sft",
+  "step": 500,
+  "validation_loss": 3.6519711774346697,
+  "sha256": "ff7cd2573c0d2323d249ff4ee64749f912bcd8a056ab078fb55c63e23a80a903",
+  "scope": "Intermediate training backup; conversational evaluation has not been performed."
+}
