@@ -1,0 +1,21 @@
+{
+  "tested_source_commit": "c588715f23b8f1a5fe5180855f06f84c30ca7e48",
+  "workflow_run_id": 40230246482,
+  "url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40230246482",
+  "linux_job": {
+    "id": 121280220047,
+    "conclusion": "success"
+  },
+  "windows_job": {
+    "id": 121280219849,
+    "conclusion": "success",
+    "tests_passed": 147,
+    "tests_skipped": 9,
+    "test_seconds": 16.73,
+    "native_windows_powershell_cpu_rejection_step": "success",
+    "diagnostic_artifact_upload": "success"
+  },
+  "gpu_calibration_on_gtx1650_verified": false,
+  "new_neural_weights_trained": false,
+  "limits": "Native Windows CPU and script error path verified in GitHub Actions. No access to the owner GPU, and no conversational improvement demonstrated by this stage."
+}

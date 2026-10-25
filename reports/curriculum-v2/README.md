@@ -107,7 +107,8 @@ e overhead. Somente uma calibração na própria GTX pode confirmar memória e v
 O script `scripts/calibrate-gtx1650.ps1` prepara essa medição em Windows e permite
 comparar FP16 e FP32; GPUs GTX sem tensor cores podem não ganhar velocidade com
 FP16. O resultado real prevalece sobre qualquer expectativa. O script PowerShell
-não foi executado neste executor Linux, onde `pwsh` não está instalado.
+foi executado nativamente no CI Windows para verificar a recusa sem CUDA. Não
+foi executado na GTX do proprietário; este executor local continua sendo Linux.
 
 O preflight confere as partições previamente atribuídas, hashes, vocabulário,
 contexto e disponibilidade CUDA. O programa de calibração opcional faz de 2 a
@@ -198,8 +199,8 @@ Suíte completa após as alterações: **147 testes aprovados e 9 ignorados**
 amostragem, limite por grupo, filtros de artigos, contagem em dispositivo meta
 e rejeição de calibrações inválidas antes de alocar um modelo na GPU. O caminho
 real sem CUDA também foi executado e produziu relatório de falha com código 2.
-`git diff --check` passou. A execução PowerShell e a calibração real da GTX 1650
-continuam não verificadas neste ambiente Linux somente CPU.
+`git diff --check` passou. A execução PowerShell foi posteriormente verificada no CI Windows somente CPU;
+a calibração real da GTX 1650 continua pendente.
 
 O documento do proprietário foi consultado para identificar o hardware; só o
 recorte técnico e o hash do documento foram registrados. O arquivo pessoal
@@ -255,3 +256,17 @@ Foram corrigidas as leituras explícitas nos módulos e testes envolvidos, sem
 reduzir as verificações, e os inputs históricos de `data/corpus-v0.5` passaram
 a preservar os bytes originais no Git. O CI Linux já estava aprovado. A nova
 execução Windows verificará as correções antes de declarar compatibilidade.
+
+## Verificação nativa concluída
+
+Após corrigir também um fixture que era gravado na codificação padrão CP1252,
+a implementação foi aprovada no CI em **Linux e Windows**. No Windows, foram
+147 testes aprovados e 9 ignorados (16,73 s). O script foi executado pelo
+Windows PowerShell nativo (`powershell.exe`), produziu o diagnóstico esperado
+sem CUDA e esse diagnóstico foi arquivado como artefato do workflow.
+
+Código testado: `c588715f23b8f1a5fe5180855f06f84c30ca7e48`. Evidências em
+`ci-verification.json` e no [workflow aprovado](https://github.com/Lorran1690/elysia-2.0/actions/runs/40230246482).
+Essa validação cobre software, integridade e caminho de erro. A medição real
+da GTX 1650 e o próximo pré-treino continuam pendentes; nenhum resultado desta
+etapa autoriza afirmar que o modelo já tenha aprendido a conversar melhor.
