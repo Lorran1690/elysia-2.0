@@ -233,3 +233,7 @@ button:disabled { cursor: not-allowed; opacity: 0.4; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
 }
+
+.backup-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.backup-controls .pill-btn { font-size: 11px; cursor: pointer; }
+.backup-controls input { display: block; max-width: 160px; font-size: 10px; margin-top: 5px; }

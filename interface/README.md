@@ -15,10 +15,12 @@ Abra **http://127.0.0.1:8765** no navegador. Não abra o HTML diretamente.
 Encerre com Ctrl+C. A inferência usa CPU, portanto esta interface pode ser testada
 mesmo enquanto o driver CUDA estiver sendo diagnosticado. Não executa treinamento.
 
-O chat envia o histórico da sessão para o processo local. O servidor não grava
-conversas e não tem memória persistente. Recarregar ou clicar em **Nova conversa**
-limpa o histórico. O contexto do piloto é curto: quando cheio, uma mensagem pede
-para limpar. Falhas de geração não são substituídas por respostas simuladas.
+O chat envia o histórico ao processo local. A conversa atual é salva no navegador
+após cada resposta. Use **Exportar backup** para guardá-la fora do computador e
+**Restaurar backup** para recuperá-la. Nova conversa limpa o histórico atual.
+O contexto do piloto é curto e falhas de geração não são simuladas.
+
+Para abrir como aplicativo Windows, consulte [DESKTOP.md](DESKTOP.md).
 
 O orbe/avatar acompanha o processamento e a apresentação do texto. Não há áudio,
 captura de microfone, execução de ferramentas, biblioteca ou geração de mídia;

@@ -1,0 +1,65 @@
+name: Windows desktop app
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/windows-desktop-app]
+    paths:
+      - 'interface/**'
+      - 'brain/**'
+      - 'scripts/desktop-entry.py'
+      - 'requirements-desktop-build.txt'
+      - '.github/workflows/desktop.yml'
+      - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
+      - 'data/corpus-pt-v1/tokenizer/elysia-bpe.json'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build dependencies
+        run: |
+          python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-desktop-build.txt
+      - name: Build Elysia executable
+        run: >-
+          python -m PyInstaller --noconfirm --clean --onedir --windowed --name Elysia
+          --paths .
+          --add-data "interface/web;interface/web"
+          --add-data "artifacts/aira-dialogue-v1/run-001/sft-model.pt;artifacts/aira-dialogue-v1/run-001"
+          --add-data "data/corpus-pt-v1/tokenizer/elysia-bpe.json;data/corpus-pt-v1/tokenizer"
+          scripts/desktop-entry.py
+      - name: Test the real Windows executable
+        shell: pwsh
+        run: |
+          $process = Start-Process -FilePath '.\dist\Elysia\Elysia.exe' -ArgumentList '--smoke-test', 'desktop-smoke.json' -PassThru
+          if (-not $process.WaitForExit(180000)) { $process.Kill(); throw 'Executable smoke test timed out.' }
+          if ($process.ExitCode -ne 0) { throw "Executable exited with $($process.ExitCode)." }
+          $report = Get-Content -Raw desktop-smoke.json | ConvertFrom-Json
+          if (-not $report.passed -or -not $report.frozen) { throw 'Bundled model verification failed.' }
+      - name: Package executable and instructions
+        shell: pwsh
+        run: |
+          Copy-Item interface/DESKTOP.md dist/Elysia/LEIA-ME.md
+          Copy-Item desktop-smoke.json dist/Elysia/verification.json
+          Compress-Archive -Path dist/Elysia -DestinationPath Elysia-Windows-x64.zip
+          (Get-FileHash Elysia-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Windows-x64.sha256 -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Elysia-Windows-x64
+          path: |
+            Elysia-Windows-x64.zip
+            Elysia-Windows-x64.sha256
+            desktop-smoke.json
+          retention-days: 90
+      - name: Preserve application in GitHub Releases
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "desktop-$($env:GITHUB_SHA.Substring(0,12))"
+          gh release create $tag Elysia-Windows-x64.zip Elysia-Windows-x64.sha256 --target $env:GITHUB_SHA --prerelease --title "Elysia Windows · $tag" --notes-file interface/RELEASE-NOTES.md

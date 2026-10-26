@@ -64,7 +64,7 @@ const PanelHead = ({ title, kicker, onClose }) => (
 const DemoTag = ({ children = 'Demonstração' }) => <span className="demo-tag">{children}</span>;
 
 /* ---------- Conversa por texto ---------- */
-const ChatPanel = ({ messages, onSend, busy, error, onReset, onClose }) => {
+const ChatPanel = ({ messages, onSend, busy, error, onReset, onExport, onImport, onClose }) => {
   const [text, setText] = useStateP('');
   const listRef = useRefP(null);
   const inputRef = useRefP(null);
@@ -80,8 +80,15 @@ const ChatPanel = ({ messages, onSend, busy, error, onReset, onClose }) => {
   return (
     <>
       <PanelHead title="Conversa" kicker="Neural Core próprio · experimental" onClose={onClose} />
-      <p className="note-block">Modelo local em desenvolvimento. Pode produzir respostas incorretas ou repetitivas. Histórico apenas nesta sessão; contexto curto.</p>
+      <p className="note-block">Modelo local em desenvolvimento. Pode produzir respostas incorretas ou repetitivas. Histórico salvo neste navegador; contexto curto. Exporte um backup para guardar fora do computador.</p>
       <button className="pill-btn ghost" disabled={busy} onClick={onReset}>Nova conversa</button>
+      <div className="backup-controls">
+        <button className="pill-btn ghost" disabled={busy} onClick={onExport}>Exportar backup</button>
+        <label className="pill-btn ghost">Restaurar backup
+          <input type="file" accept=".json,application/json" disabled={busy} aria-label="Restaurar backup"
+            onChange={(e) => { onImport(e.target.files?.[0]); e.target.value = ''; }} />
+        </label>
+      </div>
       {error && <p className="note-block" role="alert">{error}</p>}
       <div className="chat-list" ref={listRef} aria-live="polite">
         {messages.length === 0 && (

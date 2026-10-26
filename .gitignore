@@ -16,3 +16,9 @@ learning/checkpoints/elysia-seed-v0.4-machado-extended-last.pt
 
 # Local raw-source cache; prepared public corpora are versioned separately.
 .cache/
+
+# Desktop build products and private conversation exports.
+build/
+dist/
+*.spec
+elysia-conversa-*.json

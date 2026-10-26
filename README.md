@@ -137,3 +137,9 @@ Execute `python -m interface.server` e abra http://127.0.0.1:8765 para conversar
 com o modelo próprio experimental, pela interface do avatar fornecida pelo
 proprietário. Veja [instruções, dependências e limites](interface/README.md).
 A integração não altera pesos nem comprova capacidade de conversação complexa.
+
+## Aplicativo Windows e backups
+
+O [aplicativo da Elysia](interface/DESKTOP.md) inclui núcleo, pesos e interface.
+Abra `Elysia.cmd` com a `.venv` instalada ou baixe o pacote Windows nas Releases
+quando a compilação concluir. Conversas têm exportação e restauração de backup.

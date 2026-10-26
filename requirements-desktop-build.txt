@@ -1,0 +1,4 @@
+# Install a Windows CPU PyTorch wheel separately; avoid the CUDA training index.
+PyInstaller==6.16.0
+PyYAML==6.0.3
+psutil==7.2.2
