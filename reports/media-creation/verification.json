@@ -1,0 +1,38 @@
+{
+  "tested_source_commit": "cf8fe9b6a3da",
+  "build": {
+    "run": 40357088478,
+    "job": 121692347849,
+    "conclusion": "success"
+  },
+  "tests": {
+    "run": 40357088539,
+    "python_passed_per_os": 188,
+    "python_skipped_per_os": 9,
+    "javascript_passed_per_os": 3,
+    "windows": "success",
+    "linux": "success"
+  },
+  "release": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-cf8fe9b6a3da",
+  "download": "https://github.com/Lorran1690/elysia-2.0/releases/download/desktop-cf8fe9b6a3da/Elysia-Windows-x64.zip",
+  "zip_bytes": 155527938,
+  "zip_sha256": "f2430cb3489bf44e9f0c65a8264f5858093e803cafc521426f3684d5dc6c995d",
+  "source_sample_video_external_decoder": {
+    "codec": "vp8",
+    "width": 640,
+    "height": 360
+  },
+  "storage": {
+    "connected_chat_drive_test_uploads": 3,
+    "uploaded_png_wav_webm_metadata_verified": true,
+    "shared_publicly": false,
+    "desktop_upload_api_implemented": false,
+    "desktop_drive_folder_bridge_tested_with_mock": true,
+    "actual_desktop_drive_sync_verified": false,
+    "owner_folder_url_and_ids_kept_out_of_git": true
+  },
+  "capabilities": "Offline composition, musical synthesis, short silent animation, code templates and editor; not generative AI models.",
+  "linguistic_checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "linguistic_weights_changed": false,
+  "voice_core_paused": true
+}

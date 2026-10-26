@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "packaged_executable": true,
+  "png_640x360_verified": true,
+  "wav_pcm_22050_mono_verified": true,
+  "webm_decodes_in_browser": true,
+  "video_cancellation": true,
+  "editable_project_roundtrip": true,
+  "folder_write_and_collision_and_permission_mocked": true,
+  "google_drive_cloud_sync_tested": false,
+  "code_export_and_syntax_check": true,
+  "html_preview_script_and_refresh_blocked": true,
+  "external_requests": [],
+  "javascript_errors": [],
+  "media_ai_model_used": false
+}

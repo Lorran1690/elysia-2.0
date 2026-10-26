@@ -2,6 +2,8 @@
 
 ## Criação de mídia e código
 
+[Aplicativo Windows com criação de mídia e editor](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-cf8fe9b6a3da).
+
 Composição e exportação PNG, síntese musical WAV, animações WebM curtas, editor de
 código e gravação em pasta escolhida do Google Drive para computador. Veja
 [capacidades, armazenamento e limites](interface/MEDIA.md). Não há modelo de IA
