@@ -1,0 +1,45 @@
+{
+  "scope": [
+    "Knowledge Vault",
+    "explicit local tools",
+    "local media preview"
+  ],
+  "source_browser": {
+    "javascript_errors": [],
+    "create_and_search_accent_insensitive": true,
+    "reload_persistence": true,
+    "private_json_export_restore": true,
+    "calculator": true,
+    "local_png_preview": true
+  },
+  "backend_checks": [
+    "reopen persistence",
+    "FTS updates and deletion",
+    "verified idempotent backup restoration",
+    "conflict rollback across all imported records",
+    "cross-origin rejection",
+    "calculator code execution rejection",
+    "duplicate JSON keys rejection",
+    "declared Unicode input limits"
+  ],
+  "full_linux_suite_before_unicode_edge_case": {
+    "passed": 182,
+    "skipped": 9
+  },
+  "latest_targeted_suite": {
+    "passed": 31
+  },
+  "native_build_pending": true,
+  "data_policy": {
+    "personal_data_uploaded": false,
+    "fixture_content_only": true,
+    "sqlite_database_outside_project": true
+  },
+  "limits": [
+    "Library is not connected to neural answers",
+    "Tools are user-invoked, not autonomous",
+    "Media preview is temporary and codec-dependent",
+    "Voice Core remains paused",
+    "No neural weights changed"
+  ]
+}
