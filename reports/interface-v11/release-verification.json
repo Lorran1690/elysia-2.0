@@ -1,0 +1,23 @@
+{
+  "app_source_commit": "5ac451d79a8ac96a1bb8beb294f310023c9d37bf",
+  "release_url": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-5ac451d79a8a",
+  "windows_workflow": 40421600211,
+  "windows_job": 121917125154,
+  "windows_conclusion": "success",
+  "tests_workflow": 40421600227,
+  "tests_conclusion": "success on Windows and Linux",
+  "local_python_tests": {
+    "passed": 199,
+    "skipped": 9
+  },
+  "media_node_tests": "passed",
+  "asset": {
+    "name": "Elysia-Windows-x64.zip",
+    "bytes": 160631935,
+    "sha256": "38d6b74baa1053cbe1dab1c8cb531ee6be6a6ea7729172d2aa61ab21a308aada"
+  },
+  "neural_checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "neural_weights_changed": false,
+  "external_generative_models_bundled": false,
+  "realistic_neural_video_goal_completed": false
+}
