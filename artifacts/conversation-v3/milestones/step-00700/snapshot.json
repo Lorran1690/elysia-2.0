@@ -1,0 +1,7 @@
+{
+  "step": 700,
+  "best_step": 700,
+  "purpose": "Resumable intermediate backup, not deployed",
+  "last_sha256": "1b1fce70cede66bb7543d5ce3707f9a14878ae093fc5402a37728e1cdd59b4a7",
+  "selected_sha256": "1d67c5e6c38808512acbeaa35183ac145420141e8add86c69b8e34511b4c6b30"
+}
