@@ -1,0 +1,17 @@
+{
+  "app_source_commit": "93c50fe066edc0b22474eee225b16eb2e9ac7ef0",
+  "windows_workflow_run": 40411770291,
+  "windows_workflow_passed": true,
+  "tests_workflow_run": 40411770212,
+  "python_tests_windows_linux_passed": true,
+  "python_test_count": 199,
+  "python_skipped": 9,
+  "zip_bytes": 155862802,
+  "zip_sha256": "7d8efdb3366084411c3d6fb3c3bffc7a2f6fe708df8682bf64f8b4e0754d7b89",
+  "release_url": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-93c50fe066ed",
+  "processing_policy": "local computer, loopback endpoint only",
+  "remote_gpu_authorized": false,
+  "real_image_model_test": "Linux CPU, separate ComfyUI runtime",
+  "native_adapter_test_engine": "simulated",
+  "real_video_goal_completed": false
+}

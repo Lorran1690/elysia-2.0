@@ -9,7 +9,7 @@ inspecionou a imagem: interior com aparência fotográfica, janelas, mobiliário
 vegetação e vista externa. Isso não é revisão independente nem comprova qualidade
 universal ou cenas complexas arbitrárias. Não houve geração real de vídeo.
 
-Mesmos parâmetros e seed retornaram o arquivo existente em aproximadamente
+Mesmos parâmetros e seed identificaram o resultado existente em aproximadamente
 0,005 s, sem nova difusão. Isso mede reaproveitamento, não aceleração da geração.
 
 Origem imutável dos pesos, licença, tamanho e hashes em real-image-verification.json.
@@ -40,3 +40,11 @@ disponíveis, sem promessa de memória, velocidade ou qualidade. Não gera um
 minuto contínuo nem áudio. A GTX 1650/4 GB do proprietário não foi medida.
 O objetivo de vídeo complexo e realista permanece pendente de validação local.
 Neural Core e Voice Core inalterados.
+
+## Pacote Windows
+
+EXE real validado no workflow 40411770291, incluindo novo painel e perfis locais.
+O motor desse teste foi SIMULADO; windows-browser.json distingue isso do teste
+real de difusão em CPU. Testes Linux e Windows passaram em 40411770212.
+Aplicativo publicado em desktop-93c50fe066ed; tamanho e SHA256 em
+release-verification.json. As metas de vídeo neural realista permanecem abertas.
