@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import struct
 import subprocess
+import sys
 import tempfile
 import time
 import urllib.request
@@ -145,6 +146,7 @@ try:
             (args.output/'media-browser.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
             print(json.dumps(report))
         finally:browser.close()
+    subprocess.run([sys.executable,str(Path(__file__).with_name('test-continuous-browser.py')),'--url',url,'--output',str(args.output)],check=True)
 finally:
     if process:
         process.terminate()

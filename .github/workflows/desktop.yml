@@ -11,6 +11,7 @@ on:
       - 'scripts/desktop-*.py'
       - 'scripts/test-desktop-browser.py'
       - 'scripts/test-media-browser.py'
+      - 'scripts/test-continuous-browser.py'
       - 'requirements-desktop-build.txt'
       - '.github/workflows/desktop.yml'
       - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
@@ -63,6 +64,7 @@ jobs:
           Copy-Item desktop-browser.json dist/Elysia/browser-verification.json
           Copy-Item desktop-browser.png dist/Elysia/browser-verification.png
           Copy-Item media-browser.json dist/Elysia/media-verification.json
+          Copy-Item browser.json dist/Elysia/cinema-verification.json
           Compress-Archive -Path dist/Elysia -DestinationPath Elysia-Windows-x64.zip
           (Get-FileHash Elysia-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Windows-x64.sha256 -Encoding ascii
       - uses: actions/upload-artifact@v4
@@ -75,6 +77,7 @@ jobs:
             desktop-browser.json
             desktop-browser.png
             media-browser.json
+            browser.json
             media-browser.png
             media-sample.png
             media-sample.wav

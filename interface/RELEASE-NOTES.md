@@ -1,3 +1,17 @@
+# Cinema 3D com trilha instrumental
+
+No Media Studio, abra **Vídeo → Cinema 3D · cena contínua com trilha**.
+Uma câmera percorre um ambiente geométrico com avatar, núcleo e módulos em
+movimento durante 60 segundos, sem slides ou imagens estáticas de entrada.
+Reproduza com música ou gere WebM com áudio estéreo em 1280×720.
+
+Mantenha a aba visível durante a exportação. A captura do navegador é em tempo
+real, com fluidez dependente do computador. O renderizador MP4 quadro a quadro
+está no código-fonte e requer ferramentas de produção separadas. Não é geração
+por IA de vídeo nem filmagem fotorrealista. Voice Core continua pausado.
+
+---
+
 Aplicativo experimental da Elysia para Windows x64.
 
 Baixe Elysia-Windows-x64.zip, extraia toda a pasta e abra Elysia.exe.

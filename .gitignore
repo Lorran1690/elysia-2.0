@@ -36,3 +36,7 @@ elysia-codigo-*
 elysia-20??-*.png
 elysia-20??-*.wav
 elysia-20??-*.webm
+
+# Private cinema exports; source and reproducibility reports remain versioned.
+Elysia-filme-3D-*.mp4
+Elysia-filme-3D-*.webm

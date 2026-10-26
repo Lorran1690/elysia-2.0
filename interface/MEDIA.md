@@ -93,3 +93,37 @@ python scripts/render-presentation.py --output Elysia-apresentacao.mp4 --height 
 
 A renderização usa o mesmo roteiro e o mesmo desenho Canvas do aplicativo.
 Não há geração de cenas por modelo de IA, música ou fala neste vídeo.
+
+## Cinema 3D contínuo com trilha
+
+O painel Vídeo agora oferece **Cinema 3D · cena contínua com trilha**. Abre um
+ambiente 3D com avatar geométrico, núcleo em rotação, partículas em trânsito e
+estações dos módulos. Uma câmera percorre o ambiente em um plano contínuo de
+60 segundos: sem fotos, sequência de slides, cortes ou entrada de imagens/vídeos.
+Os letreiros fazem parte do ambiente 3D. É animação procedural, não filmagem
+fotorrealista ou geração por um modelo de vídeo por IA.
+
+A página permite reproduzir com trilha instrumental sintetizada, gerar WebM
+com áudio estéreo e baixar. Não usa câmera, microfone, gravações ou Voice Core.
+A aba precisa ficar visível; a gravação é interrompida ao ocultá-la. Sua
+fluidez depende do computador, pois a captura no navegador é em tempo real.
+Os controles de título dos estilos antigos não editam esse ambiente.
+
+Para produção em **MP4 H.264/AAC, 1280×720, 30 fps e 60 segundos**, o script
+abaixo renderiza cada instante da cena 3D e monta o vídeo com uma trilha original
+sintetizada de 80 BPM, estéreo a 48 kHz. Não usa imagens estáticas como cenas:
+JPEG é apenas o transporte interno dos quadros renderizados ao codificador.
+É possível terminar a renderização mais lentamente que a reprodução sem perder
+quadros. Os scripts precisam de NumPy, Playwright/Chromium e ffmpeg/ffprobe
+instalados; a produção MP4 não está embutida no executável Windows.
+
+```sh
+python scripts/render-continuous.py --output /caminho/privado/Elysia-filme-3D-60s-720p.mp4
+python scripts/verify-continuous.py /caminho/privado/Elysia-filme-3D-60s-720p.mp4 --report /caminho/privado/verificacao.json
+```
+
+A verificação exige 1.800 quadros decodificados, duração de um minuto, áudio
+estéreo audível sem pico saturado, e ausência de intervalos congelados ou pretos
+de meio segundo. A continuidade da câmera e a ausência de imagens de entrada
+são também verificáveis no código. O destino privado das mídias é o Drive;
+as credenciais e os identificadores da pasta não fazem parte do projeto.
