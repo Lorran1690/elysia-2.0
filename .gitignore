@@ -40,3 +40,6 @@ elysia-20??-*.webm
 # Private cinema exports; source and reproducibility reports remain versioned.
 Elysia-filme-3D-*.mp4
 Elysia-filme-3D-*.webm
+
+# Private software-analysis projects.
+elysia-workbench-*.json

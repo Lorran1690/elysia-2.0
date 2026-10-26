@@ -176,3 +176,10 @@ Foi concluído um novo ajuste de 1.000 passos com históricos completos e amostr
 balanceada. Melhorou a loss em dados sintéticos, mas **não melhorou a conversa**:
 candidato e modelo do app acertaram 0/16 casos novos; a repetição lexical aumentou.
 Os pesos do aplicativo foram preservados. [Resultados, pesos e próximo passo](reports/conversation-v3/README.md).
+
+## Bancada e evolução
+
+O aplicativo inclui [bancada de análise e catálogo de habilidades](interface/WORKBENCH.md),
+com referência arquitetural ao Eleven e estados verificáveis. O
+[memorando funcional](docs/MEMORANDO-FUNCIONAL-2026-10-26.md) registra a visão
+de longo prazo; não representa uma lista de capacidades já concluídas.

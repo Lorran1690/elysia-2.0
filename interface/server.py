@@ -10,6 +10,8 @@ from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
 from memory.vault import Vault
 from actions.local_tools import run_tool
+from actions.workbench import inspect_file, analyze_python, compare_sources
+from actions.capabilities import catalog
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / 'interface/web'
@@ -87,6 +89,8 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == '/api/health':
             return self.json_response(200, {'ready': True, 'model': 'Elysia · Aira pilot · experimental',
                                             'device': 'cpu', 'voice': False, 'modules': {'vault': self.vault is not None, 'tools': True}})
+        if self.path == '/api/capabilities':
+            return self.json_response(200, catalog())
         route = urlsplit(self.path)
         if route.path in ('/api/vault', '/api/vault/backup'):
             try:
@@ -113,16 +117,28 @@ class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed():
             return self.json_response(403, {'error': 'Origem não permitida.'})
-        if self.path not in ('/api/chat','/api/tools','/api/vault/save','/api/vault/delete','/api/vault/restore'):
+        if self.path not in ('/api/chat','/api/tools','/api/vault/save','/api/vault/delete','/api/vault/restore','/api/workbench/inspect','/api/workbench/source','/api/workbench/diff'):
             return self.json_response(404, {'error': 'Não encontrado.'})
         try:
             if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
                 raise ValueError('Use JSON.')
             size = int(self.headers.get('Content-Length', '0'))
             limit = MAX_VAULT_BODY if self.path == '/api/vault/restore' else (256 * 1024 if self.path in ('/api/tools','/api/vault/save') else MAX_BODY)
+            if self.path == '/api/workbench/inspect':
+                limit = 6 * 1024 * 1024
+            elif self.path.startswith('/api/workbench/'):
+                limit = 512 * 1024
             if not 0 < size <= limit:
                 raise ValueError('Entrada grande demais para esta operação.')
             payload = json.loads(self.rfile.read(size))
+            if self.path.startswith('/api/workbench/'):
+                if not isinstance(payload,dict):
+                    raise ValueError('Solicitação inválida.')
+                if self.path.endswith('/inspect'):
+                    return self.json_response(200, inspect_file(payload))
+                if self.path.endswith('/source'):
+                    return self.json_response(200, analyze_python(payload.get('text')))
+                return self.json_response(200, compare_sources(payload.get('before'),payload.get('after')))
             if self.path == '/api/tools':
                 return self.json_response(200, run_tool(payload))
             if self.path.startswith('/api/vault/'):

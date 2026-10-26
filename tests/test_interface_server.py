@@ -89,3 +89,17 @@ def test_tools_accept_declared_character_limit_with_escaped_unicode(web):
     status,body=web('/api/tools',{'tool':'sha256','text':text})
     assert status==200
     assert json.loads(body)['result']==hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+
+def test_workbench_routes_are_local_bounded_and_read_only(web):
+    import base64
+    status,body=web('/api/workbench/inspect',{'name':'fixture.bin','base64':base64.b64encode(b'public synthetic test data').decode()})
+    assert status==200 and json.loads(body)['executed'] is False
+    assert web('/api/workbench/inspect',{'name':'bad','base64':'not base64'})[0]==400
+    assert web('/api/workbench/source',{'text':'def demo():\n return len([])\n'})[0]==200
+    status,body=web('/api/workbench/diff',{'before':'x=1','after':'x=2'})
+    assert status==200 and json.loads(body)['applied'] is False
+    assert web('/api/workbench/source',{'text':'x=1'},origin='https://example.org')[0]==403
+    status,body=web('/api/capabilities')
+    assert status==200 and json.loads(body)['voice_core_paused'] is True
+    assert web('/api/capabilities',origin='https://example.org')[0]==403

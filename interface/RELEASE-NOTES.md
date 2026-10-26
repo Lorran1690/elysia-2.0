@@ -1,3 +1,17 @@
+# Bancada de análise e habilidades
+
+Novos painéis no EXE: **Bancada de análise** e **Habilidades e evolução**.
+Inspeção estática de arquivos (até 4 MB), estrutura/grafo Python, comparação de
+versões, aceitar/desfazer no editor, projetos exportáveis e notas no Vault.
+Catálogo com estados e limites das 21 áreas do memorando.
+
+Fluxo inspirado na referência Eleven, com implementação própria. Não inclui
+Ghidra/Rizin, decompilação ou agentes externos. Não executa os arquivos enviados
+e não altera arquivos em disco. Exporte o projeto antes de fechar o painel.
+Neural Core experimental; Voice Core continua pausado.
+
+---
+
 # Cinema 3D com trilha instrumental
 
 No Media Studio, abra **Vídeo → Cinema 3D · cena contínua com trilha**.

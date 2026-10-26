@@ -193,6 +193,8 @@ const App = () => {
     library: <VaultPanel onClose={() => setOpen(null)} />,
     code: <CodeStudioPanel onClose={() => setOpen(null)} />,
     media: <MediaStudioPanel onClose={() => setOpen(null)} />,
+    workbench: <WorkbenchPanel onClose={() => setOpen(null)} />,
+    capabilities: <CapabilitiesPanel onClose={() => setOpen(null)} onNavigate={setOpen} />,
     settings: <SettingsPanel prefs={prefs} setPrefs={setPrefs} state={state} setDemoState={setDemoState}
       manual={manual} setManual={setManual} level={level} setLevel={setLevel}
       onReplayIntro={() => { setOpen(null); setIntro(true); }}

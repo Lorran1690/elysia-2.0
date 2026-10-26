@@ -274,3 +274,17 @@ button:disabled { cursor: not-allowed; opacity: 0.4; }
 
 .studio-auto { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; line-height: 1.6; margin: 14px 0; }
 .studio-auto input { margin-top: 4px; }
+
+/* Read-only software analysis and capability inventory. */
+.workbench-label{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.workbench-label textarea{width:100%;box-sizing:border-box;background:#0c101c;color:#e8e4ff;border:1px solid #ffffff25;border-radius:10px;padding:12px;font:13px ui-monospace,monospace}
+.workbench-nodes{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.workbench-node{border:1px solid #a78bfa55;background:#a78bfa12;border-radius:10px;color:inherit;text-align:left;padding:10px;cursor:pointer}
+.workbench-node small,.workbench-edges small{display:block;color:#afa6c4;font-size:11px}
+.workbench-pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:340px;overflow:auto;background:#070b14;border:1px solid #ffffff18;border-radius:10px;padding:12px;font:12px ui-monospace,monospace}
+.workbench-hash{overflow-wrap:anywhere;font-size:12px}.workbench-edges{padding-left:20px;max-height:300px;overflow:auto}
+.capability-list article{border:1px solid #ffffff20;border-radius:14px;margin:14px 0;padding:16px}
+.capability-list h3{margin:0 0 8px}.capability-status{display:inline-block;font-size:12px;padding:4px 9px;border-radius:20px;background:#a78bfa25;color:#d7c4ff}
+.capability-status[data-status=planejada],.capability-status[data-status=pausada]{background:#ffffff0c;color:#aaa3b8}
+.source-graph{border:1px solid #ffffff18;border-radius:12px;padding:8px;margin:12px 0;max-height:460px;overflow:auto}
+.source-graph svg{width:100%;min-width:300px}.source-graph [role=button]{cursor:pointer}

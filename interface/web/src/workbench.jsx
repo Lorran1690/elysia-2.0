@@ -1,0 +1,72 @@
+// Original Elysia implementation, informed by Eleven's first-look/review workflow.
+const {useState:useStateW,useEffect:useEffectW,useRef:useRefW}=React;
+const WORKBENCH_EMPTY={format:'elysia-workbench-v1',source:'',proposal:'',notes:'',fileReport:null};
+const validateWorkbench=data=>{
+  if(data?.format!=='elysia-workbench-v1')throw new Error('Projeto de análise inválido.');
+  for(const key of ['source','proposal','notes'])if(typeof data[key]!=='string'||data[key].length>20000||data[key].includes('\u0000'))throw new Error('Texto inválido no projeto.');
+  if(data.fileReport!==null&&(typeof data.fileReport!=='object'||Array.isArray(data.fileReport)||typeof data.fileReport.sha256!=='string'||!/^[0-9a-f]{64}$/.test(data.fileReport.sha256)))throw new Error('Relatório de arquivo inválido.');
+  const r=data.fileReport;
+  if(r!==null){
+    for(const [key,max] of [['name',240],['format',60],['limitations',1000]])if(typeof r[key]!=='string'||r[key].length>max)throw new Error('Texto inválido no relatório.');
+    if(!Number.isFinite(r.size)||r.size<1||r.size>4*1024*1024||!Number.isFinite(r.entropy_bits_per_byte)||r.entropy_bits_per_byte<0||r.entropy_bits_per_byte>8||!r.details||typeof r.details!=='object'||Array.isArray(r.details))throw new Error('Metadados inválidos.');
+    for(const key of ['warnings','strings'])if(!Array.isArray(r[key])||r[key].length>100||r[key].some(v=>typeof v!=='string'||v.length>1000))throw new Error('Lista inválida no relatório.');
+  }
+  return {format:data.format,source:data.source,proposal:data.proposal,notes:data.notes,fileReport:r};
+};
+const SourceGraph=({data,onSelect})=>{
+  const left=[{name:'<module>',line:1,end_line:1},...data.definitions].slice(0,18);
+  const targets=[...new Set(data.calls.map(c=>c.target))].slice(0,12),height=Math.max(left.length,targets.length)*42+36;
+  return <div className="source-graph"><svg viewBox={'0 0 600 '+height} role="img" aria-label="Grafo de chamadas sintáticas Python">
+    {data.calls.slice(0,100).map((call,i)=>{const from=left.findIndex(n=>n.name===call.from),to=targets.indexOf(call.target);return from>=0&&to>=0?<g key={i}><title>{call.from+' → '+call.target+' · linha '+call.line}</title><path d={'M 245 '+(from*42+30)+' C 300 '+(from*42+30)+', 300 '+(to*42+30)+', 350 '+(to*42+30)} fill="none" stroke="#a78bfa" opacity=".35"/></g>:null;})}
+    {left.map((item,i)=><g key={item.name} role="button" tabIndex={0} aria-label={'Selecionar '+item.name} onClick={()=>onSelect(item)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')onSelect(item);}}><rect x="4" y={i*42+12} width="241" height="32" rx="7" fill="#211c38" stroke="#a78bfa66"/><text x="14" y={i*42+33} fill="#eee7ff" fontSize="12">{item.name.slice(0,30)}</text></g>)}
+    {targets.map((name,i)=><g key={name}><title>{name+' · nome de chamada, sem resolução de execução'}</title><rect x="350" y={i*42+12} width="245" height="32" rx="7" fill="#112638" stroke="#67d8ff55"/><text x="360" y={i*42+33} fill="#c7edff" fontSize="12">{name.slice(0,30)}</text></g>)}
+  </svg><p className="muted">Visualização limitada a 18 contêineres e 12 nomes de chamada. Selecione um contêiner para localizar suas linhas no editor.</p></div>;
+};
+const WorkbenchPanel=({onClose})=>{
+  const [project,setProject]=useStateW({...WORKBENCH_EMPTY}),[view,setView]=useStateW('Código Python');
+  const [analysis,setAnalysis]=useStateW(null),[diff,setDiff]=useStateW(null),[busy,setBusy]=useStateW(false),[error,setError]=useStateW(''),[notice,setNotice]=useStateW('');
+  const [undo,setUndo]=useStateW([]),[events,setEvents]=useStateW([]),[selected,setSelected]=useStateW(null);
+  const editor=useRefW(null),version=useRefW(0),live=useRefW(true);
+  useEffectW(()=>{live.current=true;return()=>{live.current=false;version.current++;};},[]);
+  const record=text=>setEvents(items=>[new Date().toLocaleTimeString()+' · '+text,...items].slice(0,30));
+  const set=(key,value)=>{version.current++;setProject(p=>({...p,[key]:value}));if(key==='source'){setAnalysis(null);setSelected(null);}if(key==='source'||key==='proposal')setDiff(null);};
+  const action=async work=>{setBusy(true);setError('');setNotice('');try{await work();}catch(e){if(live.current)setError(e.message);}finally{if(live.current)setBusy(false);}};
+  const inspect=file=>action(async()=>{
+    if(!file)return;if(file.size>4*1024*1024||!file.size)throw new Error('Escolha um arquivo de 1 byte até 4 MB.');
+    const data=new Uint8Array(await file.arrayBuffer());let binary='';for(let i=0;i<data.length;i+=8192)binary+=String.fromCharCode(...data.subarray(i,i+8192));
+    const result=await moduleRequest('/api/workbench/inspect',{name:file.name,base64:btoa(binary)});
+    if(!live.current)return;setProject(p=>({...p,fileReport:result}));record('Arquivo inspecionado sem execução: '+file.name);setNotice('Bytes analisados somente em memória. O arquivo original não foi alterado.');
+  });
+  const analyze=()=>action(async()=>{const rev=version.current;const result=await moduleRequest('/api/workbench/source',{text:project.source});if(live.current&&version.current===rev){setAnalysis(result);record('Estrutura Python extraída sem executar o código.');}});
+  const compare=()=>action(async()=>{const rev=version.current;const result=await moduleRequest('/api/workbench/diff',{before:project.source,after:project.proposal});if(live.current&&rev===version.current){setDiff(result);record('Diferenças preparadas para revisão.');}});
+  const apply=()=>{if(!diff?.changed)return;setUndo(items=>[project.source,...items].slice(0,5));set('source',project.proposal);record('Proposta aceita no editor; arquivo em disco preservado.');setNotice('Texto substituído somente no editor. Você pode desfazer.');};
+  const revert=()=>{if(!undo.length)return;set('source',undo[0]);setUndo(items=>items.slice(1));record('Última aceitação desfeita no editor.');};
+  const restore=file=>action(async()=>{if(!file)return;if(file.size>1024*1024)throw new Error('Projeto maior que 1 MB.');const data=validateWorkbench(JSON.parse(await file.text()));if(!live.current)return;setProject(data);setAnalysis(null);setDiff(null);setUndo([]);setSelected(null);version.current++;record('Projeto restaurado, sem executar seu conteúdo.');setNotice('Projeto restaurado. Relatórios importados são dados do projeto, não análises verificadas nesta sessão.');});
+  const saveNote=()=>action(async()=>{if(!project.notes.trim())throw new Error('Escreva uma anotação antes de salvar.');await moduleRequest('/api/vault/save',{kind:'note',title:'Bancada · '+(project.fileReport?.name||'Análise de código').slice(0,130),content:project.notes,url:''});if(live.current){record('Anotação salva no Vault privado.');setNotice('Anotação preservada na biblioteca local. Exporte a biblioteca para backup privado.');}});
+  const selectNode=item=>{setSelected(item);const lines=project.source.split('\n');const start=lines.slice(0,item.line-1).reduce((n,l)=>n+l.length+1,0),end=lines.slice(0,item.end_line).join('\n').length;editor.current?.focus();editor.current?.setSelectionRange(start,end);};
+  const report=project.fileReport;
+  return <><PanelHead title="Bancada de análise" kicker="Code Core · referência Eleven" onClose={onClose}/><div className="module-scroll">
+    <p className="note-block">Inspecione arquivos e revise código sem executá-los. O Neural Core não aprendeu estas operações: são ferramentas locais. Salve o projeto antes de fechar este painel.</p>
+    <div className="module-actions"><button className="pill-btn" disabled={busy} onClick={()=>saveModuleFile(project,'elysia-workbench-'+stamp()+'.json')}>Exportar projeto de análise</button><label className="module-file">Restaurar projeto<input aria-label="Restaurar projeto de análise" type="file" accept=".json" disabled={busy} onChange={e=>{restore(e.target.files?.[0]);e.target.value='';}}/></label></div>
+    <div className="seg" role="tablist" aria-label="Bancada">{['Código Python','Arquivo','Revisão','Anotações'].map(name=><button key={name} role="tab" aria-selected={view===name} disabled={busy} onClick={()=>setView(name)}>{name}</button>)}</div>
+    {error&&<p role="alert" className="note-block">{error}</p>}{notice&&<p role="status" className="module-notice">{notice}</p>}
+    {view==='Código Python'&&<><label className="workbench-label">Código para análise<textarea ref={editor} aria-label="Código Python para análise" className="code-editor" maxLength={20000} disabled={busy} value={project.source} onChange={e=>set('source',e.target.value)} spellCheck={false}/></label><button className="pill-btn" disabled={busy||!project.source.trim()} onClick={analyze}>Extrair estrutura Python</button>
+      {analysis&&<section><h3>Estrutura e relações extraídas</h3><p className="muted">{analysis.limitations}</p>{analysis.truncated&&<p className="note-block">Resultado limitado para manter a interface responsiva.</p>}
+        <SourceGraph data={analysis} onSelect={selectNode}/><div className="workbench-nodes">{analysis.definitions.map((item,i)=><button key={i} className="workbench-node" onClick={()=>selectNode(item)}>{item.kind} · {item.name}<small>linhas {item.line}–{item.end_line}</small></button>)}</div>
+        {selected&&<p className="module-notice">Selecionado no editor: {selected.name}</p>}
+        <h4>Importações</h4><ul>{analysis.imports.map((item,i)=><li key={i}><code>{item.module}{item.name?' → '+item.name:''}</code> · linha {item.line}</li>)}</ul>
+        <h4>Chamadas por nome · sintaxe</h4><ul className="workbench-edges">{analysis.calls.map((item,i)=><li key={i}><code>{item.from} → {item.target}</code><small>linha {item.line}</small></li>)}</ul>
+      </section>}</>}
+    {view==='Arquivo'&&<><label className="module-file">Arquivo para primeira inspeção<input aria-label="Arquivo para inspeção estática" type="file" disabled={busy} onChange={e=>{inspect(e.target.files?.[0]);e.target.value='';}}/></label><p className="muted">Até 4 MB. PE/EXE/DLL, ELF, ZIP/APK ou metadados de outros formatos. Nenhum arquivo é executado, descompactado ou enviado a serviços externos.</p>
+      {report&&<section><h3>{report.name} · {report.format}</h3><p>{report.size} bytes · entropia {report.entropy_bits_per_byte} bits/byte</p><p className="workbench-hash">SHA256: {report.sha256}</p><pre aria-label="Metadados do arquivo" className="workbench-pre">{JSON.stringify(report.details,null,2)}</pre><p className="muted">{report.limitations}</p>{Array.isArray(report.warnings)&&report.warnings.map((warning,i)=><p className="note-block" key={i}>{String(warning)}</p>)}<details><summary>Strings ASCII extraídas (até 100)</summary><pre className="workbench-pre">{Array.isArray(report.strings)?report.strings.map(String).join('\n'):''}</pre></details></section>}</>}
+    {view==='Revisão'&&<><p className="muted">Cole uma proposta, compare e aceite apenas no editor. Nenhum arquivo do computador é sobrescrito.</p><label className="workbench-label">Proposta<textarea aria-label="Proposta de código" className="code-editor" disabled={busy} maxLength={20000} value={project.proposal} onChange={e=>set('proposal',e.target.value)} spellCheck={false}/></label><div className="module-actions"><button className="pill-btn" disabled={busy} onClick={compare}>Comparar versões</button><button className="pill-btn" disabled={busy||!diff?.changed} onClick={apply}>Aceitar proposta no editor</button><button className="pill-btn ghost" disabled={busy||!undo.length} onClick={revert}>Desfazer aceitação</button></div>{diff&&<pre className="workbench-pre" aria-label="Diferenças de código">{diff.diff||'As versões são idênticas.'}</pre>}</>}
+    {view==='Anotações'&&<><label className="workbench-label">Anotações da análise<textarea aria-label="Anotações da análise" rows={8} disabled={busy} maxLength={20000} value={project.notes} onChange={e=>set('notes',e.target.value)}/></label><button className="pill-btn" disabled={busy} onClick={saveNote}>Salvar anotação no Vault</button><p className="muted">O projeto exportado inclui seus textos e relatório. Guarde-o em armazenamento privado; ele não vai para o GitHub nem para treinamento.</p></>}
+    <details><summary>Atividade desta sessão</summary><ul>{events.map((event,i)=><li key={i}>{event}</li>)}</ul><p className="muted">O registro de sessão é temporário. Exporte o projeto e salve anotações antes de fechar.</p></details>
+  </div></>;
+};
+const CapabilitiesPanel=({onClose,onNavigate})=>{
+  const [data,setData]=useStateW(null),[query,setQuery]=useStateW(''),[status,setStatus]=useStateW(''),[error,setError]=useStateW('');
+  useEffectW(()=>{let active=true;moduleRequest('/api/capabilities').then(d=>{if(active)setData(d);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[]);
+  const items=(data?.capabilities||[]).filter(item=>(!status||item.status===status)&&(item.name+' '+item.description+' '+item.limitations).toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+  return <><PanelHead title="Habilidades e evolução" kicker="Memorando funcional · estados reais" onClose={onClose}/><div className="module-scroll"><p className="note-block">Ferramentas disponíveis e metas futuras aparecem separadas. A presença de uma ferramenta não comprova competência do modelo neural. Voice Core pausado.</p>{error&&<p role="alert">{error}</p>}<div className="module-form"><label>Buscar habilidade<input aria-label="Buscar habilidade" value={query} onChange={e=>setQuery(e.target.value)} maxLength={160}/></label><label>Estado<select aria-label="Estado da habilidade" value={status} onChange={e=>setStatus(e.target.value)}><option value="">Todos</option>{['implementada','parcial','experimental','planejada','pausada'].map(s=><option key={s}>{s}</option>)}</select></label></div><button className="pill-btn" disabled={!data} onClick={()=>saveModuleFile(data,'elysia-capabilities.json')}>Exportar catálogo de habilidades</button><div className="capability-list">{items.map(item=><article key={item.id}><h3>{item.name}</h3><span className="capability-status" data-status={item.status}>{item.status}</span><p>{item.description}</p><p className="muted">{item.limitations}</p>{item.panel&&item.panel!=='capabilities'&&<button className="pill-btn ghost" onClick={()=>onNavigate(item.panel)}>Abrir módulo</button>}<details><summary>Requisitos e origem</summary><p>{item.requirements} · {item.offline?'Funciona localmente no escopo descrito.':'Capacidade ainda indisponível.'}</p><p>{item.permissions}</p><p>{item.license}</p><p className="workbench-hash">{item.origin}</p></details></article>)}</div></div></>;
+};

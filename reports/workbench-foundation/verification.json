@@ -1,0 +1,16 @@
+{
+  "source_checks_passed": true,
+  "python_tests_passed": 194,
+  "python_tests_skipped": 9,
+  "node_media_tests_passed": true,
+  "upstream_reference": "https://github.com/Zfinix/eleven",
+  "upstream_commit": "e3950adab7381a8f4a8dc11ff8a9b20b47e48c73",
+  "upstream_version": "0.1.13",
+  "upstream_license": "Apache-2.0",
+  "upstream_code_copied": false,
+  "external_agents_connected": false,
+  "own_neural_weights_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "voice_core_paused": true,
+  "all_memorandum_goals_completed": false,
+  "windows_packaging_status": "CI required before release"
+}

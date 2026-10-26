@@ -10,6 +10,8 @@ const Icon = ({ name }) => {
     code: <><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M13.2 6l-2.4 12" {...p} /></>,
     media: <><rect x="3.5" y="5" width="17" height="14" rx="2.5" {...p} /><path d="m3.5 15.5 4.5-4 4 3.5 2.5-2 6 4.5" {...p} /><circle cx="15.5" cy="9.5" r="1.4" {...p} /></>,
     settings: <><path d="M4 7h9M17 7h3M4 17h3M11 17h9" {...p} /><circle cx="15" cy="7" r="2.2" {...p} /><circle cx="9" cy="17" r="2.2" {...p} /></>,
+    workbench: <><rect x="4" y="4" width="16" height="16" rx="2" {...p}/><path d="M7 8h10M7 12h5M7 16h7" {...p}/></>,
+    capabilities: <><circle cx="12" cy="5" r="2" {...p}/><circle cx="6" cy="18" r="2" {...p}/><circle cx="18" cy="18" r="2" {...p}/><path d="m11 7-4 9m6-9 4 9M8 18h8" {...p}/></>,
     close: <path d="M6 6l12 12M18 6 6 18" {...p} />,
     send: <path d="M5 12h13M13 6.5 18.5 12 13 17.5" {...p} />,
     attach: <path d="m19 11.5-7 7a4.5 4.5 0 0 1-6.4-6.4l7.6-7.6a3 3 0 0 1 4.2 4.2l-7.4 7.4a1.5 1.5 0 0 1-2.1-2.1l6.6-6.6" {...p} />,
@@ -24,6 +26,8 @@ const MODULES = [
   { id: 'library', label: 'Biblioteca · Knowledge Vault' },
   { id: 'code', label: 'Código e ferramentas' },
   { id: 'media', label: 'Media Studio' },
+  { id: 'workbench', label: 'Bancada de análise' },
+  { id: 'capabilities', label: 'Habilidades e evolução' },
   { id: 'settings', label: 'Aparência e configurações' },
 ];
 
