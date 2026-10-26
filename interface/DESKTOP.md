@@ -1,10 +1,30 @@
 # Aplicativo Elysia para Windows
 
-## Abrir o aplicativo
+## Instalar no computador
 
-Baixe a [versão Windows desejada em Releases](https://github.com/Lorran1690/elysia-2.0/releases), arquivo `Elysia-Windows-x64.zip`. Extraia **a pasta inteira** e abra `Elysia.exe`. Não mova apenas o EXE:
-a pasta `_internal` contém o núcleo, os pesos, a interface e o Python incluídos.
-O Microsoft Visual C++ v14 x64 redistribuível deve estar instalado.
+Na [versão Windows desejada em Releases](https://github.com/Lorran1690/elysia-2.0/releases),
+baixe **`Elysia-Setup-x64.exe`**, abra o arquivo e siga **Avançar → Instalar**.
+O instalador em português instala a Elysia para o usuário atual, por padrão em
+`%LOCALAPPDATA%\Programs\Elysia`, cria uma entrada no menu Iniciar e oferece
+atalho opcional na área de trabalho. Não precisa extrair ZIP nem instalar Python.
+
+Para atualizar, feche a Elysia e execute o instalador da versão nova. O instalador
+reutiliza a pasta da instalação anterior. A interface v11 e todos os módulos do
+pacote portátil também estão no instalador. Modelos externos e ComfyUI continuam
+sendo instalados separadamente para geração por IA.
+
+Para remover, use **Configurações do Windows → Aplicativos → Elysia → Desinstalar**.
+A biblioteca e as mídias privadas em `%LOCALAPPDATA%\Elysia` são preservadas durante
+atualização e desinstalação; histórico e preferências continuam no navegador. Isso
+não substitui backup externo. O instalador não configura sincronização no Drive.
+
+Requer Windows 10/11 x64 e Microsoft Visual C++ v14 x64 redistribuível. O instalador
+não tem assinatura digital e não exige administrador. Não instala drivers nem CUDA.
+
+## Alternativa portátil
+
+Baixe `Elysia-Windows-x64.zip`, extraia **a pasta inteira** e abra `Elysia.exe`.
+Não mova apenas o EXE: `_internal` contém os recursos necessários.
 
 O lançador abre a interface no modo aplicativo do Microsoft Edge quando encontrado;
 caso contrário, usa o navegador padrão. Mantenha o lançador aberto e use **Encerrar
@@ -20,7 +40,7 @@ Se estiver usando o código clonado com `.venv` já instalada, dê dois cliques 
 Código, pesos do modelo, tokenizer, datasets preparados e documentação são
 versionados no GitHub. Cada pacote gerado pelo workflow `Windows desktop app`
 é testado com o checkpoint real e preservado em uma **GitHub Release**, com
-SHA-256 para verificar o ZIP. O artefato temporário do Actions dura 90 dias;
+SHA-256 para verificar o ZIP e o instalador. O artefato temporário do Actions dura 90 dias;
 a Release guarda a cópia distribuível além desse prazo.
 
 A conversa atual é salva no armazenamento do navegador após cada resposta
@@ -58,3 +78,10 @@ automática. Conversas e biblioteca têm backups separados.
 
 As ferramentas de criação PNG, WAV, WebM, editor e destino no Drive são descritas
 em [MEDIA.md](MEDIA.md), incluído no pacote.
+
+O instalador é compilado com Inno Setup 6, usando `interface/installer/elysia.iss`.
+O workflow instala o pacote em uma pasta com espaços e acentos, inicia o EXE
+instalado com o modelo real, reinstala e desinstala, verificando o atalho, registro
+por usuário e preservação de arquivos privados. O relatório acompanha a Release.
+Referências: [instalação sem elevação](https://jrsoftware.org/ishelp/topic_setup_privilegesrequired.htm)
+e [diretório de atualização](https://jrsoftware.org/ishelp/topic_setup_defaultdirname.htm).

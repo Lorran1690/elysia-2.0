@@ -1,3 +1,14 @@
+## Instalador Windows
+
+Baixe `Elysia-Setup-x64.exe` para instalar a Elysia diretamente, sem extrair ZIP.
+Inclui a interface v11 e todos os módulos existentes. Instala por usuário, oferece
+atalho na área de trabalho e cria a entrada no menu Iniciar e na lista de aplicativos.
+Atualização e desinstalação preservam os dados privados fora da pasta do programa.
+Feche a Elysia antes de atualizar. O pacote portátil continua disponível.
+
+O instalador não inclui ComfyUI nem modelos externos. Requer Windows 10/11 x64 e
+o Microsoft Visual C++ v14 x64 redistribuível; não possui assinatura digital.
+
 ## Interface v11 integrada ao aplicativo
 
 Avatar do pacote fornecido pelo proprietário: busto e corpo preservados, respiração,

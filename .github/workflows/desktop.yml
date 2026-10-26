@@ -15,6 +15,7 @@ on:
       - 'scripts/test-workbench-browser.py'
       - 'scripts/test-generation-browser.py'
       - 'scripts/test-avatar-browser.py'
+      - 'scripts/test-installer-windows.py'
       - 'requirements-desktop-build.txt'
       - '.github/workflows/desktop.yml'
       - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
@@ -79,12 +80,25 @@ jobs:
           Copy-Item avatar-browser.json dist/Elysia/avatar-verification.json
           Compress-Archive -Path dist/Elysia -DestinationPath Elysia-Windows-x64.zip
           (Get-FileHash Elysia-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Windows-x64.sha256 -Encoding ascii
+      - name: Build the per-user Windows installer
+        shell: pwsh
+        run: |
+          $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $compiler)) { throw 'Inno Setup 6 compiler is missing from the Windows runner.' }
+          & $compiler "/DAppSourceDir=$env:GITHUB_WORKSPACE\dist\Elysia" "/DAppOutputDir=$env:GITHUB_WORKSPACE" "/DAppVersion=2.0.$env:GITHUB_RUN_NUMBER" interface/installer/elysia.iss
+          if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed.' }
+          (Get-FileHash Elysia-Setup-x64.exe -Algorithm SHA256).Hash | Out-File Elysia-Setup-x64.sha256 -Encoding ascii
+      - name: Verify real install, upgrade, launch and uninstall
+        run: python scripts/test-installer-windows.py Elysia-Setup-x64.exe
       - uses: actions/upload-artifact@v4
         with:
           name: Elysia-Windows-x64
           path: |
             Elysia-Windows-x64.zip
             Elysia-Windows-x64.sha256
+            Elysia-Setup-x64.exe
+            Elysia-Setup-x64.sha256
+            installer-verification.json
             desktop-smoke.json
             desktop-browser.json
             desktop-browser.png
@@ -106,4 +120,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           $tag = "desktop-$($env:GITHUB_SHA.Substring(0,12))"
-          gh release create $tag Elysia-Windows-x64.zip Elysia-Windows-x64.sha256 --target $env:GITHUB_SHA --prerelease --title "Elysia Windows · $tag" --notes-file interface/RELEASE-NOTES.md
+          gh release create $tag Elysia-Windows-x64.zip Elysia-Windows-x64.sha256 Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 installer-verification.json --target $env:GITHUB_SHA --prerelease --title "Elysia Windows · $tag" --notes-file interface/RELEASE-NOTES.md
