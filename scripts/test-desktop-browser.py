@@ -62,10 +62,12 @@ try:
             page.get_by_label('Restaurar biblioteca', exact=True).set_input_files(backup)
             page.locator('.vault-list li').wait_for()
             page.get_by_role('button', name='Código e ferramentas', exact=True).click()
+            page.get_by_role('tab', name='Ferramentas', exact=True).click()
             page.get_by_label('Entrada da ferramenta', exact=True).fill('6*3')
             page.get_by_role('button', name='Executar ferramenta', exact=True).click()
             assert page.get_by_label('Resultado da ferramenta', exact=True).inner_text() == '18'
             page.get_by_role('button', name='Media Studio', exact=True).click()
+            page.get_by_role('tab', name='Abrir arquivo', exact=True).click()
             page.get_by_label('Abrir mídia local', exact=True).set_input_files('interface/web/assets/avatar-ref.png')
             page.wait_for_function("document.querySelector('.media-preview img')?.naturalWidth > 0")
             assert not errors, errors

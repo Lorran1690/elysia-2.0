@@ -55,3 +55,6 @@ aplicativo. Ao trocar de versão, preserve esse diretório. Exporte a biblioteca
 pela interface para guardá-la em backup privado fora do computador. Reinstalar
 ou formatar sem esse backup pode perder os registros; não há sincronização remota
 automática. Conversas e biblioteca têm backups separados.
+
+As ferramentas de criação PNG, WAV, WebM, editor e destino no Drive são descritas
+em [MEDIA.md](MEDIA.md), incluído no pacote.

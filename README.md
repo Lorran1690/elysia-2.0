@@ -1,5 +1,12 @@
 # E.L.Y.S.I.A. 2.0
 
+## Criação de mídia e código
+
+Composição e exportação PNG, síntese musical WAV, animações WebM curtas, editor de
+código e gravação em pasta escolhida do Google Drive para computador. Veja
+[capacidades, armazenamento e limites](interface/MEDIA.md). Não há modelo de IA
+generativa de imagem/vídeo/voz integrado nesta etapa.
+
 ## Módulos locais
 
 [Baixar aplicativo Windows com os novos módulos](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-93786c19a134).

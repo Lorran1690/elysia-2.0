@@ -5,6 +5,7 @@ import json
 import math
 import operator
 import re
+from actions.code_tools import validate_python, scaffold
 
 OPS = {ast.Add:operator.add,ast.Sub:operator.sub,ast.Mult:operator.mul,
        ast.Div:operator.truediv,ast.FloorDiv:operator.floordiv,ast.Mod:operator.mod,ast.Pow:operator.pow}
@@ -45,6 +46,10 @@ def run_tool(payload):
     if not isinstance(payload,dict) or not isinstance(payload.get('text'),str) or len(payload['text'])>20000:
         raise ValueError('Entrada inválida ou longa demais.')
     text=payload['text'];tool=payload.get('tool')
+    if tool=='python_validate':
+        return validate_python(text)
+    if tool=='code_scaffold':
+        return scaffold(payload.get('language'),text)
     if tool=='calculator':
         return {'result':str(calculate(text.strip()))}
     if tool=='sha256':

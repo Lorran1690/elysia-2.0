@@ -27,6 +27,8 @@ jobs:
           OMP_NUM_THREADS: "2"
           MKL_NUM_THREADS: "2"
         run: python -m pytest -q
+      - name: Verify media engine without network or browser
+        run: node --test tests/test_media_engine.cjs
       - name: Verify Windows PowerShell script rejects unavailable GPU
         if: runner.os == 'Windows'
         shell: powershell

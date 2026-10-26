@@ -29,3 +29,10 @@ elysia-conversa-*.json
 *.sqlite3-wal
 *.sqlite3-shm
 elysia-vault-backup-*.json
+
+# Private creative projects and downloaded user content.
+elysia-studio-*.json
+elysia-codigo-*
+elysia-20??-*.png
+elysia-20??-*.wav
+elysia-20??-*.webm

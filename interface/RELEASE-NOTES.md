@@ -18,3 +18,10 @@ Novos módulos: Knowledge Vault com notas/documentos/fontes, busca e backup priv
 ferramentas locais de cálculo, JSON, texto e SHA-256; visualização de imagens,
 áudio e vídeo locais. Nenhum documento pessoal é enviado ao GitHub ou usado no
 treino. A biblioteca permanece independente do chat. Os pesos do núcleo não mudaram.
+
+Criação local: exportação PNG de composições, WAV de tons e melodias, e WebM de
+animações curtas sem áudio. Projeto editável com restauração e editor de código
+com estruturas iniciais, download e validação de sintaxe. Integração por pasta
+sincronizada do Google Drive para computador, com seleção e permissão do usuário.
+Não há modelos de IA generativa de mídia ou upload direto por API no EXE.
+Veja MEDIA.md para capacidades e limites.

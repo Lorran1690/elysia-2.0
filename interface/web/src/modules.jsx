@@ -110,14 +110,14 @@ const VaultPanel = ({onClose}) => {
   </>;
 };
 
-const WorkspacePanel = ({onClose}) => {
+const WorkspacePanel = ({onClose,embedded=false}) => {
   const [tool,setTool] = useStateM('calculator'); const [text,setText] = useStateM('');
   const [result,setResult] = useStateM('');const [error,setError] = useStateM('');const [busy,setBusy] = useStateM(false);
   const run = async e => {e.preventDefault();setBusy(true);setError('');setResult('');
     try { const data=await moduleRequest('/api/tools',{tool,text});setResult(typeof data.result==='string'?data.result:JSON.stringify(data.result,null,2)); }
     catch(err){setError(err.message);} finally{setBusy(false);}
   };
-  return <><PanelHead title="Código e ferramentas" kicker="Ferramentas locais" onClose={onClose}/>
+  return <>{!embedded && <PanelHead title="Código e ferramentas" kicker="Ferramentas locais" onClose={onClose}/>}
     <div className="module-scroll"><p className="note-block">Resultados calculados diretamente por ferramentas locais. O texto não é executado como código nem enviado a serviços externos.</p>
       <form className="module-form" onSubmit={run}><label>Ferramenta<select aria-label="Ferramenta" value={tool} onChange={e=>{setTool(e.target.value);setResult('');setError('');}} disabled={busy}>
         <option value="calculator">Calculadora</option><option value="json_validate">Validar JSON</option>
@@ -131,7 +131,7 @@ const WorkspacePanel = ({onClose}) => {
     </div></>;
 };
 
-const LocalMediaPanel = ({onClose}) => {
+const LocalMediaPanel = ({onClose,embedded=false}) => {
   const [tab,setTab] = useStateM('Imagem');const [media,setMedia] = useStateM(null);const [error,setError] = useStateM('');
   useEffectM(()=>()=>{if(media?.url)URL.revokeObjectURL(media.url);},[media]);
   const select = file => {
@@ -140,7 +140,7 @@ const LocalMediaPanel = ({onClose}) => {
     if (!allowed[tab].includes(file.type) || file.size>100*1024*1024) {setError('Formato não compatível ou arquivo maior que 100 MB.');return;}
     setMedia({url:URL.createObjectURL(file),name:file.name,size:file.size,type:tab});
   };
-  return <><PanelHead title="Media Studio" kicker="Visualização local" onClose={onClose}/>
+  return <>{!embedded && <PanelHead title="Media Studio" kicker="Visualização local" onClose={onClose}/>}
     <div className="module-scroll"><p className="note-block">Abra imagens, áudios e vídeos do seu computador. A visualização é temporária: o arquivo não é enviado ao núcleo, salvo na biblioteca ou publicado no GitHub.</p>
       <div className="seg" role="tablist" aria-label="Tipo de mídia">{['Imagem','Áudio','Vídeo'].map(t=><button key={t} role="tab" aria-selected={tab===t} onClick={()=>{setTab(t);setMedia(null);setError('');}}>{t}</button>)}</div>
       <label className="module-file">Escolher {tab.toLowerCase()}<input key={tab} aria-label="Abrir mídia local" type="file" accept={tab==='Imagem'?'.png,.jpg,.jpeg,.webp,.gif':tab==='Áudio'?'.mp3,.wav,.ogg,.m4a':'.mp4,.webm'} onChange={e=>select(e.target.files?.[0])}/></label>

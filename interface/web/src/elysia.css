@@ -260,3 +260,17 @@ button:disabled { cursor: not-allowed; opacity: 0.4; }
 .media-preview { margin: 16px 0; }
 .media-preview img, .media-preview video, .media-preview audio { max-width: 100%; max-height: 320px; }
 .media-preview figcaption { margin: 10px 0; font-size: 12px; overflow-wrap: anywhere; color: var(--muted); }
+
+.studio-canvas { display: block; width: 100%; height: auto; border: 1px solid #39323f; border-radius: 12px; margin: 12px 0; }
+.studio-tabs { flex: none; margin-bottom: 12px; }
+.studio-colors { display: flex; gap: 22px; }
+.studio-colors input { padding: 3px; width: 80px; height: 38px; }
+.studio-output { margin: 18px 0; }
+.studio-output img, .studio-output audio, .studio-output video { max-width: 100%; max-height: 280px; }
+.studio-drive { border-top: 1px solid #39323f; margin-top: 24px; padding-top: 16px; }
+.studio-drive .pill-btn { margin: 6px 0; }
+.code-editor { font: 12px/1.6 monospace !important; tab-size: 2; min-height: 260px !important; }
+.code-preview { width: 100%; min-height: 280px; background: white; border: 1px solid #39323f; border-radius: 8px; }
+
+.studio-auto { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; line-height: 1.6; margin: 14px 0; }
+.studio-auto input { margin-top: 4px; }

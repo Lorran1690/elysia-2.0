@@ -2,7 +2,7 @@ name: Windows desktop app
 on:
   workflow_dispatch:
   push:
-    branches: [feature/windows-desktop-app, fix/windows-black-screen, feature/local-modules]
+    branches: [feature/windows-desktop-app, fix/windows-black-screen, feature/local-modules, feature/media-creation]
     paths:
       - 'interface/**'
       - 'brain/**'
@@ -10,6 +10,7 @@ on:
       - 'memory/**'
       - 'scripts/desktop-*.py'
       - 'scripts/test-desktop-browser.py'
+      - 'scripts/test-media-browser.py'
       - 'requirements-desktop-build.txt'
       - '.github/workflows/desktop.yml'
       - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
@@ -51,14 +52,17 @@ jobs:
           python -m pip install playwright==1.56.0
           python -m playwright install chromium
           python scripts/test-desktop-browser.py dist/Elysia/Elysia.exe
+          python scripts/test-media-browser.py dist/Elysia/Elysia.exe
       - name: Package executable and instructions
         shell: pwsh
         run: |
           Copy-Item interface/DESKTOP.md dist/Elysia/LEIA-ME.md
           Copy-Item interface/MODULES.md dist/Elysia/MODULES.md
+          Copy-Item interface/MEDIA.md dist/Elysia/MEDIA.md
           Copy-Item desktop-smoke.json dist/Elysia/verification.json
           Copy-Item desktop-browser.json dist/Elysia/browser-verification.json
           Copy-Item desktop-browser.png dist/Elysia/browser-verification.png
+          Copy-Item media-browser.json dist/Elysia/media-verification.json
           Compress-Archive -Path dist/Elysia -DestinationPath Elysia-Windows-x64.zip
           (Get-FileHash Elysia-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Windows-x64.sha256 -Encoding ascii
       - uses: actions/upload-artifact@v4
@@ -70,6 +74,11 @@ jobs:
             desktop-smoke.json
             desktop-browser.json
             desktop-browser.png
+            media-browser.json
+            media-browser.png
+            media-sample.png
+            media-sample.wav
+            media-sample.webm
           retention-days: 90
       - name: Preserve application in GitHub Releases
         shell: pwsh

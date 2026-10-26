@@ -191,8 +191,8 @@ const App = () => {
     chat: <ChatPanel messages={messages} onSend={sendMessage} busy={busy || !ready} error={error} onReset={resetChat} onExport={exportChat} onImport={importChat} onClose={() => setOpen(null)} />,
     voice: <><PanelHead title="Voz" kicker="Pausada" onClose={() => setOpen(null)} /><p className="note-block">O Voice Core permanece pausado. Converse por texto; o avatar acompanha as respostas sem capturar microfone nem reproduzir áudio.</p></>,
     library: <VaultPanel onClose={() => setOpen(null)} />,
-    code: <WorkspacePanel onClose={() => setOpen(null)} />,
-    media: <LocalMediaPanel onClose={() => setOpen(null)} />,
+    code: <CodeStudioPanel onClose={() => setOpen(null)} />,
+    media: <MediaStudioPanel onClose={() => setOpen(null)} />,
     settings: <SettingsPanel prefs={prefs} setPrefs={setPrefs} state={state} setDemoState={setDemoState}
       manual={manual} setManual={setManual} level={level} setLevel={setLevel}
       onReplayIntro={() => { setOpen(null); setIntro(true); }}

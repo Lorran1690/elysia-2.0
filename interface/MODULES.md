@@ -32,7 +32,7 @@ aprendido pelo modelo. Conversas e biblioteca têm backups separados.
 
 ## Código e ferramentas
 
-Quatro ferramentas determinísticas, executadas somente pelo botão do usuário:
+Ferramentas determinísticas, executadas somente pelo botão do usuário:
 calculadora aritmética limitada, validação de JSON, estatísticas de texto e SHA-256
 do texto UTF-8. A calculadora aceita apenas operações numéricas permitidas por um
 leitor de AST, com limites de tamanho e expoente. Não executa Python, imports,
@@ -48,5 +48,6 @@ Visualização temporária no navegador de PNG/JPEG/WebP/GIF, MP3/WAV/OGG/M4A e
 MP4/WebM, até 100 MB. A compatibilidade de codecs depende do navegador. O arquivo
 não é enviado ao servidor, salvo na biblioteca, usado no treino ou publicado.
 Fechar o painel/arquivo libera a referência temporária; o arquivo original permanece
-no local escolhido pelo usuário. O módulo não gera, edita ou reconhece mídia.
+no local escolhido pelo usuário. A aba Abrir arquivo não gera nem reconhece mídia. As novas abas de criação
+e o editor de código estão documentados em [MEDIA.md](MEDIA.md).
 O microfone não é ativado. Voice Core continua pausado.
