@@ -113,9 +113,9 @@ const CodeStudioPanel = ({onClose}) => {
   let safeHTML='<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; img-src data:; form-action \'none\'; base-uri \'none\'">'+code;
   if(preview && language==='html') {
     const document=new DOMParser().parseFromString(code,'text/html');
-    document.querySelectorAll('script,meta,base,link,iframe,frame,object,embed,form').forEach(node=>node.remove());
+    document.querySelectorAll('script,meta,base,link,iframe,frame,object,embed,form,svg,portal,fencedframe').forEach(node=>node.remove());
     document.querySelectorAll('*').forEach(node=>Array.from(node.attributes).forEach(attribute=>{
-      if(/^on/i.test(attribute.name)||['href','target','action','formaction','srcdoc'].includes(attribute.name)||(attribute.name==='src'&&!attribute.value.startsWith('data:image/')))node.removeAttribute(attribute.name);
+      if(/^on/i.test(attribute.name)||['href','target','action','formaction','srcdoc'].includes(attribute.name)||/href$/i.test(attribute.name)||(attribute.name==='src'&&!attribute.value.startsWith('data:image/')))node.removeAttribute(attribute.name);
     }));
     safeHTML=safeHTML.slice(0,safeHTML.length-code.length)+document.documentElement.outerHTML;
   }
