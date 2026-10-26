@@ -1,6 +1,9 @@
 """Desktop launcher and Windows executable entry point."""
 from __future__ import annotations
 import argparse
+import base64
+import hashlib
+import re
 import json
 import os
 from pathlib import Path
@@ -39,7 +42,12 @@ def smoke_test(output):
     url = f'http://127.0.0.1:{server.server_port}'
     try:
         health = json.load(urllib.request.urlopen(url + '/api/health', timeout=10))
-        for asset in ('/', '/src/app.jsx', '/assets/avatar-ref.png', '/vendor/babel.min.js'):
+        html = (ROOT / 'interface/web/index.html').read_text(encoding='utf-8')
+        for path, expected in re.findall(r'<script src="([^"]+)" integrity="sha384-([^"]+)"', html):
+            content = (ROOT / 'interface/web' / path).read_bytes()
+            if base64.b64encode(hashlib.sha384(content).digest()).decode() != expected:
+                raise RuntimeError(f'Integridade da biblioteca inválida: {path}')
+        for asset in ('/',  '/src/app.jsx', '/assets/avatar-ref.png', '/vendor/babel.min.js'):
             with urllib.request.urlopen(url + asset, timeout=10) as response:
                 if response.status != 200 or not response.read():
                     raise RuntimeError(f'Asset ausente: {asset}')
@@ -60,7 +68,16 @@ def smoke_test(output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--smoke-test', type=Path)
+    parser.add_argument('--serve-test', action='store_true', help=argparse.SUPPRESS)
     args = parser.parse_args()
+    if args.serve_test:
+        server = start_server()
+        try:
+            threading.Event().wait()
+        finally:
+            server.shutdown()
+            server.server_close()
+        return
     if args.smoke_test:
         try:
             smoke_test(args.smoke_test)

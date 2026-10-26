@@ -28,3 +28,8 @@ scripts/*.ps1 text eol=lf
 
 # Historical audit inputs have frozen byte hashes; do not rewrite on checkout.
 data/corpus-v0.5/** -text
+
+# Browser SRI depends on exact bytes, even under Windows core.autocrlf=true.
+interface/web/vendor/** -text
+interface/web/index.html text eol=lf
+interface/web/src/** text eol=lf

@@ -2,11 +2,12 @@ name: Windows desktop app
 on:
   workflow_dispatch:
   push:
-    branches: [feature/windows-desktop-app]
+    branches: [feature/windows-desktop-app, fix/windows-black-screen]
     paths:
       - 'interface/**'
       - 'brain/**'
       - 'scripts/desktop-*.py'
+      - 'scripts/test-desktop-browser.py'
       - 'requirements-desktop-build.txt'
       - '.github/workflows/desktop.yml'
       - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
@@ -43,11 +44,18 @@ jobs:
           if ($process.ExitCode -ne 0) { throw "Executable exited with $($process.ExitCode)." }
           $report = Get-Content -Raw desktop-smoke.json | ConvertFrom-Json
           if (-not $report.passed -or -not $report.frozen) { throw 'Bundled model verification failed.' }
+      - name: Render the packaged app in a Windows browser
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install chromium
+          python scripts/test-desktop-browser.py dist/Elysia/Elysia.exe
       - name: Package executable and instructions
         shell: pwsh
         run: |
           Copy-Item interface/DESKTOP.md dist/Elysia/LEIA-ME.md
           Copy-Item desktop-smoke.json dist/Elysia/verification.json
+          Copy-Item desktop-browser.json dist/Elysia/browser-verification.json
+          Copy-Item desktop-browser.png dist/Elysia/browser-verification.png
           Compress-Archive -Path dist/Elysia -DestinationPath Elysia-Windows-x64.zip
           (Get-FileHash Elysia-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Windows-x64.sha256 -Encoding ascii
       - uses: actions/upload-artifact@v4
@@ -57,6 +65,8 @@ jobs:
             Elysia-Windows-x64.zip
             Elysia-Windows-x64.sha256
             desktop-smoke.json
+            desktop-browser.json
+            desktop-browser.png
           retention-days: 90
       - name: Preserve application in GitHub Releases
         shell: pwsh
