@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "geometric_3d_camera_motion": true,
+  "continuous_adjacent_camera_step": true,
+  "audio_video_stream_tracks": true,
+  "cancel_releases_tracks": true,
+  "no_input_image_requests": true,
+  "external_requests": [],
+  "javascript_errors": [],
+  "full_browser_realtime_export_tested": true
+}

@@ -2,11 +2,14 @@
 import argparse
 import json
 import os
+import subprocess
+import re
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--url',required=True)
+parser.add_argument('--full-export',action='store_true')
 parser.add_argument('--output',type=Path,required=True)
 args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as pw:
@@ -37,7 +40,21 @@ with sync_playwright() as pw:
         page.get_by_role('button',name='Interromper',exact=True).click()
         page.wait_for_function("window.recordingTracks.every(t=>t.readyState==='ended')",timeout=10000)
         assert page.locator('#download').is_hidden()
+        if args.full_export:
+            page.get_by_role('button',name='Gerar vídeo 3D com áudio',exact=True).click()
+            page.locator('#download').wait_for(state='visible',timeout=120000)
+            with page.expect_download() as download:page.locator('#download').click()
+            target=args.output/'browser-film.webm';download.value.save_as(target)
+            probe=json.loads(subprocess.run(['ffprobe','-v','error','-show_streams','-of','json',str(target)],capture_output=True,text=True,check=True).stdout)
+            video=next(s for s in probe['streams'] if s['codec_type']=='video')
+            audio=next(s for s in probe['streams'] if s['codec_type']=='audio')
+            assert (video['width'],video['height'])==(1280,720)
+            assert int(audio['channels'])==2
+            packets=json.loads(subprocess.run(['ffprobe','-v','error','-show_entries','packet=pts_time','-of','json',str(target)],capture_output=True,text=True,check=True).stdout)
+            assert max(float(p['pts_time']) for p in packets['packets'])>59
+            levels=subprocess.run(['ffmpeg','-hide_banner','-i',str(target),'-vn','-af','volumedetect','-f','null','-'],capture_output=True,text=True,check=True).stderr
+            assert float(re.findall(r'mean_volume: ([-\d.]+) dB',levels)[-1])>-40
         assert not errors and not external and not images, (errors,external,images)
-        report={'passed':True,'geometric_3d_camera_motion':True,'continuous_adjacent_camera_step':True,'audio_video_stream_tracks':True,'cancel_releases_tracks':True,'no_input_image_requests':True,'external_requests':external,'javascript_errors':errors,'full_browser_realtime_export_tested':False}
+        report={'passed':True,'geometric_3d_camera_motion':True,'continuous_adjacent_camera_step':True,'audio_video_stream_tracks':True,'cancel_releases_tracks':True,'no_input_image_requests':True,'external_requests':external,'javascript_errors':errors,'full_browser_realtime_export_tested':args.full_export}
         (args.output/'browser.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
     finally:browser.close()

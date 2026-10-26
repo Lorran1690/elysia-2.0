@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "app_source_commit": "71f0bcd28a0c8869bbdd1bda109591f3bf54fa6f",
+  "workflow_run": 40373085538,
+  "packaged_executable_checked": true,
+  "geometric_3d_camera_motion": true,
+  "audio_video_stream_tracks": true,
+  "cancel_releases_tracks": true,
+  "no_input_image_requests": true,
+  "external_requests": [],
+  "javascript_errors": [],
+  "full_browser_realtime_export_tested": false,
+  "python_tests_windows_and_linux_passed": true,
+  "tests_workflow_run": 40373085576
+}

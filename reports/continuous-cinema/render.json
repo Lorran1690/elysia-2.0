@@ -1,0 +1,62 @@
+{
+  "renderer": "Three.js 0.160.1 geometric 3D",
+  "single_continuous_take": true,
+  "input_images": 0,
+  "input_videos": 0,
+  "seconds": 60,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "frames": 1800,
+  "music": {
+    "sample_rate": 48000,
+    "channels": 2,
+    "seconds": 60,
+    "peak": 0.78,
+    "original_synthetic_instrumental": true
+  },
+  "camera_states": [
+    {
+      "camera": [
+        1.1634144591899855e-15,
+        7,
+        19
+      ],
+      "time": 0,
+      "drawCalls": 159,
+      "triangles": 65186
+    },
+    {
+      "camera": [
+        -18.25,
+        8.138781543226703,
+        2.2349804084439196e-15
+      ],
+      "time": 15,
+      "drawCalls": 159,
+      "triangles": 65186
+    },
+    {
+      "camera": [
+        -3.214697847761802e-15,
+        7.718166572924748,
+        -17.5
+      ],
+      "time": 30,
+      "drawCalls": 155,
+      "triangles": 65138
+    },
+    {
+      "camera": [
+        18.25,
+        6.314126417509188,
+        -4.469960816887839e-15
+      ],
+      "time": 45,
+      "drawCalls": 157,
+      "triangles": 65162
+    }
+  ],
+  "javascript_errors": [],
+  "external_requests": []
+}

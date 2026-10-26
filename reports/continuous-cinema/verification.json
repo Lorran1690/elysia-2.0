@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1",
+        "duration": "60.000000",
+        "nb_read_frames": "1800",
+        "side_data_list": [
+          {}
+        ]
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "r_frame_rate": "0/0",
+        "duration": "60.000000",
+        "nb_read_frames": "2813"
+      }
+    ],
+    "format": {
+      "duration": "60.000000",
+      "size": "42063356"
+    }
+  },
+  "frozen_intervals_at_least_half_second": 0,
+  "black_intervals_at_least_half_second": 0,
+  "audio_mean_dbfs": -14.4,
+  "audio_peak_dbfs": -2.2,
+  "sha256": "669fcfeb0275d6475e6ad9a2299f257ab292502c2dfc7c71536cbcf255f93a54",
+  "limitation": "Encoded motion and audio verified; source audit establishes geometric 3D without image inputs. No independent human audiovisual review."
+}
