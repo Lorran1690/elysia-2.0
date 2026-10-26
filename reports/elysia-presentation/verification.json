@@ -1,0 +1,18 @@
+{
+  "format": "mp4",
+  "codec": "h264",
+  "width": 1280,
+  "height": 720,
+  "duration_seconds": 60,
+  "fps": 30,
+  "decoded_frames": 1800,
+  "size_bytes": 4792935,
+  "sha256": "811088dff787349189ee771a1e8e4901f93c4b46acf2344ea7001487e817d1f6",
+  "audio": false,
+  "scenes": 6,
+  "generation": "deterministic Canvas composition, frame by frame",
+  "ffprobe_verified": true,
+  "human_review": false,
+  "visual_review": "Codex inspected six-scene storyboard",
+  "browser_test_passed": true
+}

@@ -8,7 +8,7 @@
   22.050 Hz. Ondas senoidal, triangular e quadrada; volume limitado e envelope
   para suavizar os ataques. Máximo de 30 segundos. Não há fala ou clonagem de voz.
 - **Vídeo:** animação da composição em WebM com preferência por VP9 e fallback VP8/WebM suportado pelo
-  navegador; 24, 30 ou 60 quadros/s solicitados, por 2 a 30 segundos, até Full HD
+  navegador; 24, 30 ou 60 quadros/s solicitados, por 2 a 60 segundos, até Full HD
   horizontal ou vertical. Taxa de bits proporcional à resolução e fluidez, de
   2,5 a 24 Mbit/s (Full HD/60 solicita aproximadamente 19,9 Mbit/s).
   A exportação é em tempo real: o navegador pode entregar menos quadros em
@@ -73,3 +73,23 @@ e [MediaRecorder.isTypeSupported](https://developer.mozilla.org/en-US/docs/Web/A
 A verificação de codec não garante recursos suficientes para gravar: o aplicativo
 mostra erro se a codificação falhar. Os recursos de criação não requerem câmera,
 microfone, serviço pago ou uma conexão com a internet.
+
+## Apresentação da Elysia
+
+No painel Vídeo, o botão **Apresentação da Elysia · 1 minuto · 720p** carrega
+um roteiro de seis cenas, com textos sobre os módulos, progresso, transições
+e animação de identidade visual. O roteiro identifica o núcleo neural como pesquisa.
+O título/subtítulo e a imagem de fundo dos outros estilos não alteram esse roteiro.
+No aplicativo, a exportação continua WebM em tempo real e sem áudio.
+
+Para renderizar cada um dos 1.800 quadros sem depender da velocidade de captura
+em tempo real, o projeto inclui `scripts/render-presentation.py`. Esse caminho
+requer Python com Playwright/Chromium e ffmpeg instalados; não está embutido no EXE.
+Ele produz MP4 H.264, 30 fps constantes, 60 segundos, 720p ou 1080p, sem áudio:
+
+```sh
+python scripts/render-presentation.py --output Elysia-apresentacao.mp4 --height 720
+```
+
+A renderização usa o mesmo roteiro e o mesmo desenho Canvas do aplicativo.
+Não há geração de cenas por modelo de IA, música ou fala neste vídeo.

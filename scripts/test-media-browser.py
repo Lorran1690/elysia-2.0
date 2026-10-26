@@ -67,6 +67,10 @@ try:
                 assert audio.getnchannels()==1 and audio.getsampwidth()==2 and audio.getframerate()==22050
                 assert audio.getnframes()==66150
             page.get_by_role('tab',name='Vídeo',exact=True).click()
+            page.get_by_role('button',name='Apresentação da Elysia · 1 minuto · 720p',exact=True).click()
+            assert page.get_by_label('Duração do vídeo',exact=True).input_value()=='60'
+            assert page.get_by_label('Resolução da mídia',exact=True).input_value()=='1280x720'
+            assert page.get_by_label('Composição',exact=True).input_value()=='presentation'
             page.get_by_label('Duração do vídeo',exact=True).fill('2')
             page.get_by_role('button',name='Gerar vídeo WebM',exact=True).click()
             page.locator('.studio-output video').wait_for(timeout=30000)

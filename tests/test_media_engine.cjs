@@ -23,3 +23,11 @@ test('video quality budgets and older projects remain supported',()=>{
  for(const fps of [0,120,'60'])assert.throws(()=>engine.validate({...project(),fps}));
  assert.ok(engine.videoBitrate({...project(),width:1920,height:1080})>engine.videoBitrate(project()));
 });
+
+test('one-minute presentation has six distinct scenes and bounded duration',()=>{
+ const p=engine.validate({...project(),layout:'presentation',width:1280,height:720,duration:60});
+ assert.equal(p.duration,60);
+ assert.equal(new Set(Array.from({length:6},(_,i)=>engine.presentationScene((i+.5)/6)[0])).size,6);
+ assert.equal(engine.presentationScene(1)[0],engine.SCENES[5][0]);
+ assert.throws(()=>engine.validate({...p,duration:61}));
+});
