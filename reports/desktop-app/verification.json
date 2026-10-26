@@ -1,0 +1,18 @@
+{
+  "stage": "source and browser checks; Windows executable build tracked separately",
+  "weights_changed": false,
+  "linux_tests": {"passed": 150, "skipped": 9},
+  "source_launcher_smoke": "source-smoke.json",
+  "browser": {
+    "engine": "Playwright Chromium 151 headless",
+    "page_errors": [],
+    "actual_checkpoint_used": true,
+    "reload_restores_conversation": true,
+    "export_downloads_json": true,
+    "import_restores_conversation": true,
+    "invalid_import_preserves_existing_history": true
+  },
+  "remote_backup_scope": "Project source, committed weights and prepared data; desktop package released only after Windows executable smoke test",
+  "personal_conversations_uploaded": false,
+  "conversational_quality_improvement_claimed": false
+}

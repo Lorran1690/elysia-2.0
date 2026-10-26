@@ -6,7 +6,7 @@ on:
     paths:
       - 'interface/**'
       - 'brain/**'
-      - 'scripts/desktop-entry.py'
+      - 'scripts/desktop-*.py'
       - 'requirements-desktop-build.txt'
       - '.github/workflows/desktop.yml'
       - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
@@ -33,6 +33,8 @@ jobs:
           --add-data "artifacts/aira-dialogue-v1/run-001/sft-model.pt;artifacts/aira-dialogue-v1/run-001"
           --add-data "data/corpus-pt-v1/tokenizer/elysia-bpe.json;data/corpus-pt-v1/tokenizer"
           scripts/desktop-entry.py
+      - name: Include runtime licenses
+        run: python scripts/desktop-licenses.py dist/Elysia/licenses
       - name: Test the real Windows executable
         shell: pwsh
         run: |
