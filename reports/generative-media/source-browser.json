@@ -4,6 +4,7 @@
   "engine_simulated": true,
   "realistic_quality_evaluated": false,
   "connection_model_selection_generation_download": true,
+  "local_low_memory_video_profile": true,
   "metadata_export_seed": true,
   "same_seed_reuses_result": true,
   "targeted_cancellation": true,

@@ -76,6 +76,11 @@ try:
             with page.expect_response(lambda response:response.url.endswith('/api/generation/status')):page.get_by_role('button',name='Imagens e vídeos por IA',exact=True).click()
             page.get_by_label('Porta do motor de mídia').fill(str(motor.server_port));page.get_by_role('button',name='Diagnosticar motor e modelos',exact=True).click()
             page.get_by_role('status').filter(has_text='Motor conectado').wait_for()
+            page.get_by_role('tab',name='Vídeo por IA',exact=True).click()
+            assert page.get_by_label('Resolução por IA').input_value()=='384x256'
+            assert page.get_by_label('Quadros do vídeo por IA').input_value()=='17'
+            assert 'dolly shot' in page.get_by_label('Descrição da cena por IA').input_value()
+            page.get_by_role('tab',name='Imagem por IA',exact=True).click()
             page.get_by_label('Checkpoint de imagem').select_option('fixture.safetensors')
             page.get_by_role('button',name='Gerar com modelo de IA',exact=True).click()
             page.get_by_role('button',name='Abrir resultado',exact=True).wait_for(timeout=30000)
@@ -96,7 +101,7 @@ try:
             assert state['cancelled'] and all('/api/jobs/' in path for path in state['cancelled'])
             assert state['graphs'][0]['5']['inputs']['seed']==1650
             assert not errors and not external,(errors,external)
-            report={'passed':True,'packaged_executable':bool(process),'engine_simulated':True,'realistic_quality_evaluated':False,'connection_model_selection_generation_download':True,'metadata_export_seed':True,'same_seed_reuses_result':True,'targeted_cancellation':True,'javascript_errors':errors,'external_requests':external}
+            report={'passed':True,'packaged_executable':bool(process),'engine_simulated':True,'realistic_quality_evaluated':False,'connection_model_selection_generation_download':True,'local_low_memory_video_profile':True,'metadata_export_seed':True,'same_seed_reuses_result':True,'targeted_cancellation':True,'javascript_errors':errors,'external_requests':external}
             (args.output/'generation-browser.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report))
         finally:browser.close()
 finally:
