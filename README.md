@@ -2,6 +2,8 @@
 
 ## Módulos locais
 
+[Baixar aplicativo Windows com os novos módulos](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-93786c19a134).
+
 Biblioteca privada com notas, documentos e fontes, busca textual e backup;
 ferramentas de cálculo, validação de JSON, estatísticas e SHA-256; visualização
 local de imagens, áudio e vídeo. Veja [funcionamento e limites](interface/MODULES.md).

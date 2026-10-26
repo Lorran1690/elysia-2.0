@@ -29,7 +29,7 @@
   "latest_targeted_suite": {
     "passed": 31
   },
-  "native_build_pending": true,
+  "native_build_pending": false,
   "data_policy": {
     "personal_data_uploaded": false,
     "fixture_content_only": true,
@@ -41,5 +41,25 @@
     "Media preview is temporary and codec-dependent",
     "Voice Core remains paused",
     "No neural weights changed"
-  ]
+  ],
+  "native_tests": {
+    "windows_passed": 183,
+    "linux_passed": 183,
+    "skipped": 9,
+    "run": 40307296505
+  },
+  "windows_build": {
+    "tested_commit": "93786c19a134",
+    "run": 40307296441,
+    "job": 121519444124,
+    "conclusion": "success",
+    "browser_report": "windows-browser.json"
+  },
+  "release": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-93786c19a134",
+  "download": "https://github.com/Lorran1690/elysia-2.0/releases/download/desktop-93786c19a134/Elysia-Windows-x64.zip",
+  "zip_bytes": 155522197,
+  "zip_sha256": "bded3ddf47316b7f00db14022c7e617696f827dde16b9b77263c1106793aad8c",
+  "downloaded_package_verified": true,
+  "package_contains_no_private_sqlite_database": true,
+  "app_checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06"
 }
