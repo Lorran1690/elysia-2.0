@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "required_full_correct": 12,
+  "required_contextual_correct": 5,
+  "candidate_fully_correct": 0,
+  "candidate_contextual_correct": 0,
+  "baseline_fully_correct": 0,
+  "semantic_improvement_demonstrated": false,
+  "observed_critical_access_or_execution_fabrications": 0,
+  "app_weights_changed": false,
+  "decision": "Do not deploy candidate. It fails all 16 frozen semantic cases and increases lexical repetition in this diagnostic.",
+  "limits": "Codex review, not independent human review; diagnostic is consumed and must not be reused as an unseen benchmark."
+}

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "artifacts/conversation-v3/milestones/selected-00200.pt": "0748f7d4cf2645dc32299aa71b39d22b4ac26455392fcfc9eb2022c64cc0c9e6",
+    "artifacts/conversation-v3/run-001/last.pt": "8e06039a7a3c74b10c3d9105da03ec864b7f4391278cd0787b98b0348775d32d",
+    "artifacts/conversation-v3/run-001/sft-model.pt": "82096bb401678ae443e85cfa0a46c9e0bbead1050ca7b9f260f41e905de21355",
+    "artifacts/conversation-v3/milestones/step-00700/last.pt": "1b1fce70cede66bb7543d5ce3707f9a14878ae093fc5402a37728e1cdd59b4a7",
+    "artifacts/conversation-v3/milestones/step-00700/sft-model.pt": "1d67c5e6c38808512acbeaa35183ac145420141e8add86c69b8e34511b4c6b30",
+    "data/conversation-v3/test.jsonl.gz": "12a254ec65029d87bde9dfcbde94adfa48c5fb2625ac8ea8ad6bb4585a9a2241",
+    "data/conversation-v3/SOURCE-README.md": "089f35c894b6c21f7af72d213602ecb215379ffcace4b0fec3a1975dc1ca0a8e",
+    "data/conversation-v3/manifest.json": "e62a482fb7dc67bd2711ac73c6b4b737770038cee77ad9c5c0419f2beb29bd1b",
+    "data/conversation-v3/train.jsonl.gz": "20c17600b804f82d1112c88e8451184b22fae8d24ff25bc45a1e4dafb8367787",
+    "data/conversation-v3/validation.jsonl.gz": "e940886fbbbd1a19f9433085f10ce43d9943f4e84f7f1a5ebb5c8deb2dfa514f",
+    "data/conversation-v3/SOURCE-LICENSE": "746e4bf805bd511e9857cc7eb36f660197470082982d42e6eb47e065f6cf28ae",
+    "evaluation/conversation-v3.json": "24bf510fb2bafa3dbe0b17f554284654c81c1139f8a88c50a2af52dc165de738"
+  },
+  "app_checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "app_weights_changed": false
+}

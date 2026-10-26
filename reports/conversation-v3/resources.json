@@ -1,0 +1,13 @@
+{
+  "runtime": "Linux CPU, no CUDA GPU",
+  "torch": "2.14.1+cpu",
+  "steps": 1000,
+  "selected_step": 1000,
+  "training_seconds": 945.515612430001,
+  "assistant_target_tokens": 722125,
+  "new_parameters": false,
+  "parameters": 2567616,
+  "context_limit": 512,
+  "new_private_conversations_used": false,
+  "preparation_and_evaluation_seconds_not_included": true
+}

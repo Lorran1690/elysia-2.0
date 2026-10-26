@@ -1,0 +1,48 @@
+{
+  "identical_held_out_targets": true,
+  "no_checkpoint_selection_from_test": true,
+  "results": {
+    "deployed": {
+      "checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+      "validation": {
+        "loss": 3.7316289443343478,
+        "perplexity": 41.74705643808695,
+        "targets": 28873
+      },
+      "test": {
+        "loss": 3.6649276748123625,
+        "perplexity": 39.05331152287051,
+        "targets": 30569
+      },
+      "diagnostic": {
+        "cases": 16,
+        "generated_answers": 23,
+        "errors": 0,
+        "generic_deferral_candidate_answers": 9,
+        "strongly_repetitive_answers": 5
+      },
+      "semantic_quality": "Requires separate identified review; lexical counts and loss are not semantic correctness."
+    },
+    "candidate": {
+      "checkpoint_sha256": "82096bb401678ae443e85cfa0a46c9e0bbead1050ca7b9f260f41e905de21355",
+      "validation": {
+        "loss": 3.5847942972069275,
+        "perplexity": 36.04594220519891,
+        "targets": 28873
+      },
+      "test": {
+        "loss": 3.4963733279134526,
+        "perplexity": 32.99557059004446,
+        "targets": 30569
+      },
+      "diagnostic": {
+        "cases": 16,
+        "generated_answers": 23,
+        "errors": 0,
+        "generic_deferral_candidate_answers": 16,
+        "strongly_repetitive_answers": 10
+      },
+      "semantic_quality": "Requires separate identified review; lexical counts and loss are not semantic correctness."
+    }
+  }
+}

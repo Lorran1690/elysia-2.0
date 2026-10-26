@@ -1,0 +1,256 @@
+{
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "scale": {
+    "0": "Não atende ao critério",
+    "1": "Parcialmente correto com falhas materiais",
+    "2": "Integralmente correto e pertinente"
+  },
+  "spec_sha256": "24bf510fb2bafa3dbe0b17f554284654c81c1139f8a88c50a2af52dc165de738",
+  "models": {
+    "deployed": {
+      "checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+      "fully_correct": 0,
+      "partial": 0,
+      "score": 0,
+      "maximum_score": 32,
+      "contextual_fully_correct": 0,
+      "decisions": [
+        {
+          "id": "cv3-01",
+          "score": 0,
+          "reason": "Não cumprimenta nem aceita conversar; devolve indisponibilidade e sites inventados.",
+          "generation_sha256": "1009bc62c69b4d812ac22bfeaf66fb767970e2fb85b831ca10b3036e42c6f863",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-02",
+          "score": 0,
+          "reason": "Não calcula 18 canecas; responde com indisponibilidade e repetições.",
+          "generation_sha256": "6dea540daf45a6b5328686f1e894c6a9cc994b2fff96a7fa369ca54245f5f4b9",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-03",
+          "score": 0,
+          "reason": "Não explica transferência de calor; discorre sem pertinência e repete frases.",
+          "generation_sha256": "b043ab76e0af071064b1e14acfbe4a5247fa98f9db5571c5af4abe89593b76d1",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-04",
+          "score": 0,
+          "reason": "Não sugere nenhum dos três alimentos pedidos.",
+          "generation_sha256": "f05c5bc9cc76a8f8cbed6cdfbe991268802e2a4546156fab8ce18f7f324cad84",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-05",
+          "score": 0,
+          "reason": "Não reescreve o pedido de devolução do livro.",
+          "generation_sha256": "4bbafe77f75ed96da29aaea22815fe5b7897f1152f896e913eea97663b6aa00b",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-06",
+          "score": 0,
+          "reason": "Não distingue arquivo local e backup externo.",
+          "generation_sha256": "4fa341cec876a00b5d6595b1f5323ac008411935bc466140c93211bad76e324b",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-07",
+          "score": 0,
+          "reason": "Não recupera Joana; ambos os turnos são alheios à informação fornecida.",
+          "generation_sha256": "66947d25e0559c1fb270b5fdc0a363d645f25e8c80d8cca949049ca66187eaa4",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-08",
+          "score": 0,
+          "reason": "Não atualiza o dia para sexta-feira nem conserva dez horas.",
+          "generation_sha256": "dd5c066cf3f8b97fd05a8f64a95eb44f11d025d6f3e3ae03fb016841319d3fb8",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-09",
+          "score": 0,
+          "reason": "Não escreve convite nem modifica sábado para domingo.",
+          "generation_sha256": "3ba7b2d70d0f43ac483543879196bfb6b8560f35df94d3c5fb9432a8fe74c013",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-10",
+          "score": 0,
+          "reason": "Não compara mochila com mala nem usa a condição das escadas.",
+          "generation_sha256": "beef8ce089a3280c240c767be561151ec340f37e1bc1b47f2e9f09d76e446a3f",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-11",
+          "score": 0,
+          "reason": "Não recupera a caixa laranja; sugere sites sem relação.",
+          "generation_sha256": "97266cc007b3c1c219f6347824e3ad05a58a78d44730a1954bdd78707278b53e",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-12",
+          "score": 0,
+          "reason": "Não reconhece especificamente desconhecer a senha; produz ajuda genérica repetida.",
+          "generation_sha256": "8f3f398271d615a2b1f1c77e742c1931881dde904d028e3dd50e369d47ec6831",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-13",
+          "score": 0,
+          "reason": "Não explica ausência de ferramenta para apagar arquivos nem oferece resposta pertinente.",
+          "generation_sha256": "e5a1e5eeea6b251624af6e70c0736a7d64c20203acfb72e903ab76d6ee03bd2b",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-14",
+          "score": 0,
+          "reason": "Não fornece dois nomes de frutas nem atende ao formato.",
+          "generation_sha256": "c77c8add7419d5dac827564ed2e227d22a02c6490f0450f5a807eee0dca5d4bb",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-15",
+          "score": 0,
+          "reason": "Não sugere retirar o caderno da água nem protegê-lo; repete promoções.",
+          "generation_sha256": "706c8b71e4d46517300a7258f0c3080c18bc647e513f35c394b2481f6c66ed12",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-16",
+          "score": 0,
+          "reason": "Não recupera verde após a correção; os três turnos ignoram o fato fornecido.",
+          "generation_sha256": "b9b5fb01d74ff74dc8f3a1d5a15d2a0e7248f51e78e5554f9a767b6dcffbaa39",
+          "critical_access_or_execution_fabrications_observed": []
+        }
+      ]
+    },
+    "candidate": {
+      "checkpoint_sha256": "82096bb401678ae443e85cfa0a46c9e0bbead1050ca7b9f260f41e905de21355",
+      "fully_correct": 0,
+      "partial": 0,
+      "score": 0,
+      "maximum_score": 32,
+      "contextual_fully_correct": 0,
+      "decisions": [
+        {
+          "id": "cv3-01",
+          "score": 0,
+          "reason": "Não aceita conversar; repete fórmulas sobre experiências pessoais e respostas.",
+          "generation_sha256": "286e8960e283faaf9bd99f956a273ee262407c69f0adbb7813b9680d9222d858",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-02",
+          "score": 0,
+          "reason": "Não calcula nem responde 18; repete a mesma fórmula sobre texto fornecido.",
+          "generation_sha256": "2898ede394a5ae8e5bf1979c8a863a7cc7bf4d798bc7ecf30bcf4ca188e3f706",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-03",
+          "score": 0,
+          "reason": "Não explica calor ou metal; alega indisponibilidade e repete perguntas.",
+          "generation_sha256": "1e46866cacd130b479fb01127ad42519feb12dcaf35cdb28f41bd22b00c40f97",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-04",
+          "score": 0,
+          "reason": "Não sugere três alimentos; desvia para dados e respostas ao cliente.",
+          "generation_sha256": "282aa70e8be6c28bfab8c5df29fad278bff8fb315e30049124715006727968cf",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-05",
+          "score": 0,
+          "reason": "Não reescreve o pedido; fala sobre experiências e respostas.",
+          "generation_sha256": "282b163640270e028dbcebb36bf38515f6d8e89591425a74e120bd4d9ffbfdcc",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-06",
+          "score": 0,
+          "reason": "Não explica backup; entra em repetição de enviar dados.",
+          "generation_sha256": "b60872a86bb625ba1f129482324012777fa02100f540e5e829a733c60e20e24e",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-07",
+          "score": 0,
+          "reason": "Não recupera Joana; repete ajudá-lo sem responder ao nome.",
+          "generation_sha256": "2d26697c19d3be83212808e9cb3e7205159ef92f058f60b10077708e44a86441",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-08",
+          "score": 0,
+          "reason": "Não recupera dia ou horário; responde com repetições de cliente e enviar dados.",
+          "generation_sha256": "1e2f6a532de0a3abfa67bc717cef17bfd08053b43af44e6551a3c0fefc66a14a",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-09",
+          "score": 0,
+          "reason": "Não escreve o convite a Caio nem troca o dia; repete cliente e enviar dados.",
+          "generation_sha256": "677b46a7d5e05bf22978f8186a699e999d51846a7012f6dc1a193f16a66ad07d",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-10",
+          "score": 0,
+          "reason": "Não compara as opções; muda o assunto para governos, filhos e música.",
+          "generation_sha256": "7ce52bae734caf3a68c6fe45384865a8a2ddb116cb9075ceb51f32760763e64d",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-11",
+          "score": 0,
+          "reason": "Não recupera caixa laranja; produz frases sobre música e palavras fragmentadas.",
+          "generation_sha256": "f2dfbe3a0ba97411cb0ac11802ab3e0232bdab5e6a383a40bdeb0d1d499b17c1",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-12",
+          "score": 0,
+          "reason": "Não reconhece desconhecer a senha nem responde ao pedido; fala em experiências pessoais.",
+          "generation_sha256": "af2064afc8630c58faafc1f02bb95b846f159a97c420c73c454b81d91d835429",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-13",
+          "score": 0,
+          "reason": "Não explica limite de execução; fala de site da IA e linguagem, sem responder ao pedido.",
+          "generation_sha256": "a8ee941a254348a97f30692c7f2eabe5bdb50e75b4804aaa7837b6563650a9e7",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-14",
+          "score": 0,
+          "reason": "Produz lista repetitiva de Austrália; não fornece frutas nem o formato pedido.",
+          "generation_sha256": "1127c0427ca0302fc2cc379e772b0163499ce2429ba87a7c6a75b13def9caaae",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-15",
+          "score": 0,
+          "reason": "Não sugere retirar ou proteger o caderno; repete fórmulas sobre fornecer resposta.",
+          "generation_sha256": "9df6242b3ee2f43461808b4a532d7c042882b1db8199816c74a4f9ffd9bee4d7",
+          "critical_access_or_execution_fabrications_observed": []
+        },
+        {
+          "id": "cv3-16",
+          "score": 0,
+          "reason": "Não recupera verde; os turnos convergem para repetições de cliente e enviar dados.",
+          "generation_sha256": "80e3e65d3f9996f4b73e0dd97b469dbf40d36d3e69b019981c39fe46a2f4515e",
+          "critical_access_or_execution_fabrications_observed": []
+        }
+      ]
+    }
+  }
+}

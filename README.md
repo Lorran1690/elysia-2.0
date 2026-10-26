@@ -150,3 +150,10 @@ Baixe a [versão corrigida do aplicativo](https://github.com/Lorran1690/elysia-2
 Os arquivos JavaScript agora mantêm seus bytes no checkout Windows. O pacote
 foi testado com renderização da interface e resposta do núcleo real em um navegador
 Windows. [Registro da verificação](reports/desktop-black-screen/verification.json).
+
+## Pesquisa de conversação v3
+
+Foi concluído um novo ajuste de 1.000 passos com históricos completos e amostragem
+balanceada. Melhorou a loss em dados sintéticos, mas **não melhorou a conversa**:
+candidato e modelo do app acertaram 0/16 casos novos; a repetição lexical aumentou.
+Os pesos do aplicativo foram preservados. [Resultados, pesos e próximo passo](reports/conversation-v3/README.md).
