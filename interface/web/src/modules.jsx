@@ -62,7 +62,9 @@ const VaultPanel = ({onClose}) => {
   const importText = (file) => action(async () => {
     if (!file) return;
     if (!/\.(txt|md)$/i.test(file.name) || file.size>80000) throw new Error('Escolha um TXT ou Markdown de até 80 KB.');
-    const text = await file.text();
+    let text;
+    try { text = new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer()); }
+    catch { throw new Error('Salve o arquivo como UTF-8 antes de importar.'); }
     if (!text.trim() || text.length>20000 || text.includes('\u0000')) throw new Error('Texto vazio, inválido ou maior que 20.000 caracteres.');
     setDraft({kind:'document',title:file.name.slice(0,160),content:text,url:''});
     setNotice('Arquivo lido. Revise e clique em Salvar registro para importá-lo.');

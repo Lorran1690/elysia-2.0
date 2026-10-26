@@ -4,7 +4,7 @@
 
 Crie notas, documentos e fontes com título, conteúdo e URL opcional. A biblioteca
 usa SQLite e busca textual FTS5, incluindo busca de palavras sem acento. Importe
-TXT ou Markdown para o formulário, revise e clique em Salvar registro. URLs são
+TXT ou Markdown em UTF-8 para o formulário, revise e clique em Salvar registro. URLs são
 apenas metadados: o aplicativo não baixa páginas nem acompanha links sozinho.
 
 Os limites desta versão são 500 registros e 20.000 caracteres por conteúdo.

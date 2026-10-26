@@ -81,3 +81,11 @@ def test_local_module_endpoints_and_private_backup(web):
     status,body=web('/api/tools',{'tool':'calculator','text':'6*3'})
     assert status==200 and json.loads(body)['result']=='18'
     assert web('/api/tools',{'tool':'calculator','text':'__import__("os")'})[0]==400
+
+
+def test_tools_accept_declared_character_limit_with_escaped_unicode(web):
+    import hashlib
+    text='😀'*20000
+    status,body=web('/api/tools',{'tool':'sha256','text':text})
+    assert status==200
+    assert json.loads(body)['result']==hashlib.sha256(text.encode('utf-8')).hexdigest()

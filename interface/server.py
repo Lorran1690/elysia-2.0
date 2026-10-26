@@ -119,9 +119,9 @@ class Handler(SimpleHTTPRequestHandler):
             if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
                 raise ValueError('Use JSON.')
             size = int(self.headers.get('Content-Length', '0'))
-            limit = MAX_VAULT_BODY if self.path.startswith('/api/vault/') else MAX_BODY
+            limit = MAX_VAULT_BODY if self.path == '/api/vault/restore' else (256 * 1024 if self.path in ('/api/tools','/api/vault/save') else MAX_BODY)
             if not 0 < size <= limit:
-                raise ValueError('Conversa longa demais; inicie uma nova conversa.')
+                raise ValueError('Entrada grande demais para esta operação.')
             payload = json.loads(self.rfile.read(size))
             if self.path == '/api/tools':
                 return self.json_response(200, run_tool(payload))
