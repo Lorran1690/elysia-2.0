@@ -44,3 +44,48 @@ def test_deferral_mass_is_limited_without_discarding_legitimate_uncertainty():
     rows=[{'bucket':b,'prefix_family':str(i)} for i,b in enumerate(
         ['contextual','standalone','generic_deferral_candidate','generic_deferral_candidate'])]
     assert probabilities(rows)=={'contextual':.6,'standalone':.3,'generic_deferral_candidate':.1}
+
+
+def test_interrupted_training_resumes_to_identical_weights_and_rng(tmp_path, monkeypatch):
+    import signal
+    import pytest
+    import learning.conversation_v3 as trainer
+    from brain.model import ElysiaTransformer, ModelConfig
+    tokenizer = FastProjectTokenizer()
+    torch.manual_seed(7)
+    model = ElysiaTransformer(ModelConfig(vocab_size=tokenizer.vocab_size, block_size=512,
+        num_layers=1, embedding_dim=16, num_heads=2, feedforward_dim=32, dropout=.1))
+    base = tmp_path / 'initial.pt'
+    torch.save({'model_config':model.config_dict(), 'model_state':model.state_dict(),
+                'tokenizer':tokenizer.metadata()}, base)
+    monkeypatch.setattr(trainer, 'BASE', base)
+    monkeypatch.setattr(trainer, 'DEPLOYED', base)
+    rows = [{'ids':[1,10,11,12,2], 'labels':[-100,-100,11,12,2], 'sampling_probability':.5},
+            {'ids':[1,14,15,2], 'labels':[-100,-100,15,2], 'sampling_probability':.5}]
+    monkeypatch.setattr(trainer, 'load_data', lambda: ({s:rows for s in ['train','validation','test']}, {'partitions':{}}))
+    reference = tmp_path / 'reference'
+    monkeypatch.setattr(trainer, 'OUT', reference)
+    trainer.train(steps=2, max_seconds=60)
+    resumed = tmp_path / 'resumed'
+    monkeypatch.setattr(trainer, 'OUT', resumed)
+    original_batch = trainer.batch
+    def interrupted_batch(*args, **kwargs):
+        result = original_batch(*args, **kwargs)
+        signal.raise_signal(signal.SIGTERM)
+        return result
+    monkeypatch.setattr(trainer, 'batch', interrupted_batch)
+    trainer.train(steps=2, max_seconds=60)
+    partial = torch.load(resumed/'last.pt', weights_only=True)
+    assert partial['progress']['step'] == 1
+    assert not (resumed/'results.json').exists()
+    monkeypatch.setattr(trainer, 'batch', original_batch)
+    trainer.train(steps=2, max_seconds=60, resume=True)
+    expected = torch.load(reference/'last.pt', weights_only=True)
+    actual = torch.load(resumed/'last.pt', weights_only=True)
+    assert actual['progress']['step'] == expected['progress']['step'] == 2
+    for name in expected['model_state']:
+        assert torch.equal(actual['model_state'][name], expected['model_state'][name])
+    assert torch.equal(actual['batch_rng'], expected['batch_rng'])
+    assert torch.equal(actual['torch_rng'], expected['torch_rng'])
+    with pytest.raises(ValueError, match='Finalized'):
+        trainer.train(steps=2, max_seconds=60, resume=True)
