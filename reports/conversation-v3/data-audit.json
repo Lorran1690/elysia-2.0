@@ -1,0 +1,18 @@
+{
+  "targets_checked": {
+    "train": 13673,
+    "validation": 128,
+    "test": 128
+  },
+  "group_splits_disjoint": true,
+  "source_partition_membership_checked": true,
+  "frozen_questions_absent_from_all_user_turns": true,
+  "tokens_and_supervised_label_counts_verified": true,
+  "canonical_full_prefix_encoding_and_mask_samples": 60,
+  "train_sampling_mass": {
+    "contextual": 0.6,
+    "standalone": 0.3,
+    "generic_deferral_candidate": 0.1
+  },
+  "human_quality_review": false
+}
