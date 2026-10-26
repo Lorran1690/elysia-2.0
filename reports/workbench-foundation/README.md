@@ -12,3 +12,8 @@ Não conclui as metas de longo prazo do memorando. Os pesos neurais não mudaram
 Fluxo do navegador fonte aprovado, sem erros JavaScript ou requisições externas.
 O workflow desktop exige repetir a bancada no EXE real e preserva o relatório
 workbench-browser.json antes da publicação. O catálogo não é um teste neural.
+
+Windows: workflow 40406553349 concluído com sucesso, incluindo bancada no EXE
+real. Resultado em windows-browser.json. Testes CPU no Linux e Windows também
+aprovados no workflow 40406553234. Pacote publicado em desktop-cf5aad7efece;
+tamanho e SHA256 registrados em verification.json a partir dos metadados da release.

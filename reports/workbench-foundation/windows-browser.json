@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "packaged_executable": true,
+  "python_structure_and_source_navigation": true,
+  "review_accept_and_undo_in_editor": true,
+  "pe_inspection_preserves_original": true,
+  "project_export_restore_and_bad_shape_rejection": true,
+  "vault_note_save_and_search": true,
+  "capability_inventory_and_export": true,
+  "selected_file_execution": false,
+  "external_requests": [],
+  "javascript_errors": []
+}

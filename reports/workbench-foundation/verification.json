@@ -12,5 +12,12 @@
   "own_neural_weights_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
   "voice_core_paused": true,
   "all_memorandum_goals_completed": false,
-  "windows_packaging_status": "CI required before release"
+  "windows_packaging_status": "passed",
+  "app_source_commit": "cf5aad7efece271427e432898c1c7d1f72d2f0a6",
+  "windows_workflow_run": 40406553349,
+  "tests_workflow_run": 40406553234,
+  "python_tests_windows_and_linux_passed": true,
+  "release_url": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-cf5aad7efece",
+  "zip_bytes": 155832302,
+  "zip_sha256": "efaabb7ccb9aab33a77693a8d277bb3a8000687aafa518fc3c918ae37410c38b"
 }
