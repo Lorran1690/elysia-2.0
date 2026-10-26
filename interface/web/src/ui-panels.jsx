@@ -134,50 +134,6 @@ const VoicePanel = ({ state, onListen, onRespond, onStop, onClose }) => (
   </>
 );
 
-/* ---------- Módulos não conectados ---------- */
-const LibraryPanel = ({ onClose }) => (
-  <>
-    <PanelHead title="Knowledge Vault" kicker="Biblioteca" onClose={onClose} />
-    <div className="search-field" aria-disabled="true"><Icon name="search" /><input placeholder="Buscar na biblioteca" disabled aria-label="Buscar (não conectado)" /></div>
-    <div className="seg" role="tablist" aria-label="Coleções">
-      {['Documentos', 'Notas', 'Fontes'].map((t, i) => <button key={t} role="tab" aria-selected={i === 0}>{t}</button>)}
-    </div>
-    <div className="empty-state">
-      <span className="status-chip">Não conectado</span>
-      <p>O Knowledge Vault ainda não está ligado a esta interface. Nenhum documento é listado, indexado ou enviado.</p>
-    </div>
-  </>
-);
-
-const CodePanel = ({ onClose }) => (
-  <>
-    <PanelHead title="Código e ferramentas" kicker="Workspace" onClose={onClose} />
-    <ul className="tool-list">
-      {[['Editor de código', 'Execução local'], ['Terminal', 'Comandos do sistema'], ['Automações', 'Rotinas agendadas'], ['Integrações', 'APIs e serviços']].map(([t, d]) => (
-        <li key={t}><div><strong>{t}</strong><span>{d}</span></div><span className="status-chip">Não conectado</span></li>
-      ))}
-    </ul>
-    <p className="note-block">Estrutura de navegação apenas. Nenhuma ferramenta executa código nesta versão.</p>
-  </>
-);
-
-const MediaPanel = ({ onClose }) => {
-  const [tab, setTab] = useStateP('Imagem');
-  return (
-    <>
-      <PanelHead title="Media Studio" kicker="Criação" onClose={onClose} />
-      <div className="seg" role="tablist" aria-label="Tipo de mídia">
-        {['Imagem', 'Áudio', 'Vídeo'].map((t) => <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)}>{t}</button>)}
-      </div>
-      <div className="media-drop" aria-disabled="true">
-        <span>{tab}</span>
-        <p>Geração e edição de {tab.toLowerCase()} não conectadas.</p>
-      </div>
-      <p className="note-block">Nenhum arquivo é gerado, carregado ou enviado a serviços externos.</p>
-    </>
-  );
-};
-
 /* ---------- Aparência e configurações ---------- */
 const HEX_RE = /^#[0-9a-f]{6}$/i;
 
@@ -300,4 +256,4 @@ const IntroSlot = ({ onDone, children }) => {
   );
 };
 
-Object.assign(window, { Icon, MODULES, STATE_LABELS, Rail, ChatPanel, VoicePanel, LibraryPanel, CodePanel, MediaPanel, SettingsPanel, IntroSlot, DemoTag });
+Object.assign(window, { Icon, MODULES, STATE_LABELS, Rail, ChatPanel, VoicePanel, SettingsPanel, IntroSlot, DemoTag });

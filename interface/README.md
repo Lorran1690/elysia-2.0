@@ -23,8 +23,8 @@ O contexto do piloto é curto e falhas de geração não são simuladas.
 Para abrir como aplicativo Windows, consulte [DESKTOP.md](DESKTOP.md).
 
 O orbe/avatar acompanha o processamento e a apresentação do texto. Não há áudio,
-captura de microfone, execução de ferramentas, biblioteca ou geração de mídia;
-esses módulos continuam explicitamente inativos. Ajustes visuais continuam disponíveis.
+captura de microfone ou geração de mídia. A biblioteca privada, ferramentas
+locais e visualização de mídia estão descritas em [MODULES.md](MODULES.md). Ajustes visuais continuam disponíveis.
 
 React 18.3.1, ReactDOM 18.3.1 e Babel 7.29.0 estão incluídos localmente em
 `web/vendor`, com suas licenças MIT e integridade SHA-384 verificada contra o HTML

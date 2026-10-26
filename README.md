@@ -1,5 +1,13 @@
 # E.L.Y.S.I.A. 2.0
 
+## Módulos locais
+
+Biblioteca privada com notas, documentos e fontes, busca textual e backup;
+ferramentas de cálculo, validação de JSON, estatísticas e SHA-256; visualização
+local de imagens, áudio e vídeo. Veja [funcionamento e limites](interface/MODULES.md).
+O código é preservado no GitHub. Registros pessoais ficam fora do repositório e
+precisam de backup privado externo. O Voice Core permanece pausado.
+
 ## Fundação e currículo novos — preparados, sem novo treino neural
 
 [Relatório e calibração para a GTX 1650](reports/curriculum-v2/README.md):
@@ -56,7 +64,7 @@ Primeira etapa experimental: uma rede neural pequena, inicializada aleatoriament
 ## Limites desta etapa
 
 - Não usa Ollama, APIs de IA, pesos ou tokenizadores pré-treinados.
-- Não oferece interface gráfica, holograma, voz ou controle do computador.
+- Oferece interface local com avatar; voz, holograma físico e controle do computador permanecem indisponíveis.
 - Os primeiros corpora sintéticos eram diagnósticos. As fontes ampliadas têm procedência e limites próprios; sua inclusão não prova que o modelo aprendeu a conversar.
 - Redução de loss em overfitting controlado demonstra o funcionamento do treinamento, não inteligência geral.
 

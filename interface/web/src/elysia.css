@@ -237,3 +237,26 @@ button:disabled { cursor: not-allowed; opacity: 0.4; }
 .backup-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
 .backup-controls .pill-btn { font-size: 11px; cursor: pointer; }
 .backup-controls input { display: block; max-width: 160px; font-size: 10px; margin-top: 5px; }
+
+/* Local modules preserve the avatar layout and scroll within the side panel. */
+.module-scroll { overflow-y: auto; min-height: 0; flex: 1; padding-bottom: 20px; }
+.module-form { display: grid; gap: 12px; margin: 20px 0; }
+.module-form label { display: grid; gap: 6px; font-size: 12px; color: var(--muted); }
+.module-form input, .module-form textarea, .module-form select, .module-search input {
+  width: 100%; box-sizing: border-box; background: #17131f; color: var(--ink); border: 1px solid #39323f; border-radius: 8px; padding: 10px; font: inherit;
+}
+.module-form textarea { resize: vertical; min-height: 100px; }
+.module-search, .module-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+.module-search input { flex: 1; min-width: 100px; }
+.module-file { display: grid; gap: 8px; font-size: 12px; padding: 10px 0; color: var(--muted); }
+.module-file input { max-width: 100%; font-size: 11px; }
+.module-notice { font-size: 12px; line-height: 1.5; color: #b7d4c2; }
+.vault-list { list-style: none; margin: 12px 0; padding: 0; }
+.vault-list li { border: 1px solid #302a38; border-radius: 10px; padding: 12px; margin: 10px 0; overflow-wrap: anywhere; }
+.vault-list small { display: block; color: var(--muted); margin: 4px 0; }
+.vault-list p, .vault-list a { white-space: pre-wrap; font-size: 12px; line-height: 1.5; }
+.vault-list button { font-size: 11px; padding: 6px 8px; border: 1px solid #39323f; border-radius: 6px; }
+.module-result { white-space: pre-wrap; overflow-wrap: anywhere; border: 1px solid #39323f; border-radius: 8px; padding: 12px; font-size: 12px; }
+.media-preview { margin: 16px 0; }
+.media-preview img, .media-preview video, .media-preview audio { max-width: 100%; max-height: 320px; }
+.media-preview figcaption { margin: 10px 0; font-size: 12px; overflow-wrap: anywhere; color: var(--muted); }

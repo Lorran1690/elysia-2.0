@@ -2,7 +2,7 @@
 
 ## Abrir o aplicativo
 
-Baixe a [primeira versão Windows verificada](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-fdf0c2f67a89), arquivo `Elysia-Windows-x64.zip`. Extraia **a pasta inteira** e abra `Elysia.exe`. Não mova apenas o EXE:
+Baixe a [versão Windows desejada em Releases](https://github.com/Lorran1690/elysia-2.0/releases), arquivo `Elysia-Windows-x64.zip`. Extraia **a pasta inteira** e abra `Elysia.exe`. Não mova apenas o EXE:
 a pasta `_internal` contém o núcleo, os pesos, a interface e o Python incluídos.
 O Microsoft Visual C++ v14 x64 redistribuível deve estar instalado.
 
@@ -46,3 +46,12 @@ e seu tokenizer; dados pessoais e caches de treinamento não entram no pacote.
 O teste `Elysia.exe --smoke-test desktop-smoke.json` verifica o executável congelado,
 seus recursos locais e uma resposta do modelo real. Isso não mede inteligência.
 O teste automatizado não abre a janela gráfica do usuário.
+
+## Biblioteca, ferramentas e mídia
+
+Os novos módulos são descritos em [MODULES.md](MODULES.md), incluído no pacote.
+A biblioteca fica em `%LOCALAPPDATA%\Elysia\vault.sqlite3`, fora da pasta do
+aplicativo. Ao trocar de versão, preserve esse diretório. Exporte a biblioteca
+pela interface para guardá-la em backup privado fora do computador. Reinstalar
+ou formatar sem esse backup pode perder os registros; não há sincronização remota
+automática. Conversas e biblioteca têm backups separados.

@@ -22,3 +22,10 @@ build/
 dist/
 *.spec
 elysia-conversa-*.json
+
+# Private Knowledge Vault database and exported backups never belong in Git.
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+elysia-vault-backup-*.json

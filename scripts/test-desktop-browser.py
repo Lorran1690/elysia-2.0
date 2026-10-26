@@ -1,5 +1,7 @@
 """Render the actual packaged executable, instead of only checking its HTTP API."""
 import json
+import os
+import tempfile
 from pathlib import Path
 import subprocess
 import sys
@@ -8,7 +10,9 @@ import urllib.request
 
 from playwright.sync_api import sync_playwright
 
-process = subprocess.Popen([str(Path(sys.argv[1]).resolve()), '--serve-test'])
+private = tempfile.TemporaryDirectory(prefix='elysia-modules-test-')
+process = subprocess.Popen([str(Path(sys.argv[1]).resolve()), '--serve-test'],
+    env={**os.environ, 'ELYSIA_DATA_DIR':private.name})
 try:
     deadline = time.monotonic() + 90
     while True:
@@ -37,12 +41,43 @@ try:
             assert page.locator('.msg-elysia p').inner_text().strip()
             assert page.locator('#startup').count() == 0
             assert not errors, errors
+            page.get_by_role('button', name='Biblioteca · Knowledge Vault', exact=True).click()
+            page.get_by_label('Título do registro', exact=True).fill('Nota de teste')
+            page.get_by_label('Conteúdo do registro', exact=True).fill('Café e informações de teste.')
+            page.get_by_role('button', name='Salvar registro', exact=True).click()
+            page.locator('.vault-list li').wait_for()
+            page.get_by_label('Buscar na biblioteca', exact=True).fill('cafe')
+            page.get_by_role('button', name='Buscar', exact=True).click()
+            assert page.locator('.vault-list li').inner_text().startswith('Nota de teste')
+            with page.expect_download() as download:
+                page.get_by_role('button', name='Exportar biblioteca', exact=True).click()
+            backup = Path(private.name)/'export.json'
+            download.value.save_as(backup)
+            page.reload(wait_until='domcontentloaded')
+            page.get_by_role('button', name='Biblioteca · Knowledge Vault', exact=True).click()
+            page.locator('.vault-list li').wait_for()
+            page.once('dialog', lambda dialog: dialog.accept())
+            page.get_by_role('button', name='Excluir', exact=True).click()
+            page.wait_for_function("document.querySelectorAll('.vault-list li').length === 0")
+            page.get_by_label('Restaurar biblioteca', exact=True).set_input_files(backup)
+            page.locator('.vault-list li').wait_for()
+            page.get_by_role('button', name='Código e ferramentas', exact=True).click()
+            page.get_by_label('Entrada da ferramenta', exact=True).fill('6*3')
+            page.get_by_role('button', name='Executar ferramenta', exact=True).click()
+            assert page.get_by_label('Resultado da ferramenta', exact=True).inner_text() == '18'
+            page.get_by_role('button', name='Media Studio', exact=True).click()
+            page.get_by_label('Abrir mídia local', exact=True).set_input_files('interface/web/assets/avatar-ref.png')
+            page.wait_for_function("document.querySelector('.media-preview img')?.naturalWidth > 0")
+            assert not errors, errors
+            page.get_by_role('button', name='Biblioteca · Knowledge Vault', exact=True).click()
+            page.locator('.vault-list li').wait_for()
             page.screenshot(path='desktop-browser.png')
             Path('desktop-browser.json').write_text(json.dumps({
                 'passed': True, 'packaged_executable': True, 'browser': 'Chromium',
                 'first_launch_intro': True, 'visible_chat': True,
                 'actual_checkpoint_response_visible': True, 'javascript_errors': errors,
-                'quality_claim': False}, indent=2) + '\n', encoding='utf-8')
+                'vault_save_search_reload': True, 'private_backup_roundtrip': True,
+                'calculator': True, 'local_image_preview': True, 'quality_claim': False}, indent=2) + '\n', encoding='utf-8')
         finally:
             browser.close()
 finally:
@@ -52,3 +87,4 @@ finally:
     except subprocess.TimeoutExpired:
         process.kill()
         process.wait()
+    private.cleanup()

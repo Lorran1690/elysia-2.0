@@ -7,10 +7,14 @@ import threading
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import urlsplit, parse_qs
+from memory.vault import Vault
+from actions.local_tools import run_tool
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / 'interface/web'
 MAX_BODY = 32768
+MAX_VAULT_BODY = 64 * 1024 * 1024
 
 
 def validate_messages(payload):
@@ -53,8 +57,9 @@ class NeuralCore:
 
 
 class Handler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, core, **kwargs):
+    def __init__(self, *args, core, vault=None, **kwargs):
         self.core = core
+        self.vault = vault
         super().__init__(*args, directory=str(WEB), **kwargs)
 
     def log_message(self, format, *args):
@@ -81,7 +86,22 @@ class Handler(SimpleHTTPRequestHandler):
             return self.json_response(403, {'error': 'Origem não permitida.'})
         if self.path == '/api/health':
             return self.json_response(200, {'ready': True, 'model': 'Elysia · Aira pilot · experimental',
-                                            'device': 'cpu', 'voice': False})
+                                            'device': 'cpu', 'voice': False, 'modules': {'vault': self.vault is not None, 'tools': True}})
+        route = urlsplit(self.path)
+        if route.path in ('/api/vault', '/api/vault/backup'):
+            try:
+                if self.vault is None:
+                    raise ValueError('Biblioteca não disponível.')
+                if len(self.path) > 4096:
+                    raise ValueError('Busca longa demais.')
+                if route.path.endswith('/backup'):
+                    return self.json_response(200, self.vault.backup())
+                params = parse_qs(route.query)
+                return self.json_response(200, {'items':self.vault.list(params.get('q',[''])[0],params.get('kind',[''])[0])})
+            except ValueError as exc:
+                return self.json_response(400, {'error':str(exc)})
+            except Exception:
+                return self.json_response(500, {'error':'Não foi possível ler a biblioteca local.'})
         # Serve only packaged UI assets, never repository files or directory listings.
         if self.path != '/' and not self.path.startswith(('/src/', '/assets/', '/vendor/')):
             return self.json_response(404, {'error': 'Não encontrado.'})
@@ -93,15 +113,28 @@ class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed():
             return self.json_response(403, {'error': 'Origem não permitida.'})
-        if self.path != '/api/chat':
+        if self.path not in ('/api/chat','/api/tools','/api/vault/save','/api/vault/delete','/api/vault/restore'):
             return self.json_response(404, {'error': 'Não encontrado.'})
         try:
             if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
                 raise ValueError('Use JSON.')
             size = int(self.headers.get('Content-Length', '0'))
-            if not 0 < size <= MAX_BODY:
+            limit = MAX_VAULT_BODY if self.path.startswith('/api/vault/') else MAX_BODY
+            if not 0 < size <= limit:
                 raise ValueError('Conversa longa demais; inicie uma nova conversa.')
-            messages = validate_messages(json.loads(self.rfile.read(size)))
+            payload = json.loads(self.rfile.read(size))
+            if self.path == '/api/tools':
+                return self.json_response(200, run_tool(payload))
+            if self.path.startswith('/api/vault/'):
+                if self.vault is None or not isinstance(payload,dict):
+                    raise ValueError('Biblioteca indisponível ou solicitação inválida.')
+                if self.path.endswith('/save'):
+                    return self.json_response(200, {'item':self.vault.save(payload)})
+                if self.path.endswith('/delete'):
+                    self.vault.delete(payload.get('id'))
+                    return self.json_response(200, {'deleted':True})
+                return self.json_response(200, {'imported':self.vault.restore(payload)})
+            messages = validate_messages(payload)
             text = self.core.respond(messages)
             return self.json_response(200, {'reply': text})
         except (ValueError, UnicodeDecodeError) as exc:
@@ -109,7 +142,7 @@ class Handler(SimpleHTTPRequestHandler):
         except BlockingIOError as exc:
             return self.json_response(409, {'error': str(exc)})
         except Exception:
-            return self.json_response(500, {'error': 'Falha no núcleo. Tente novamente ou reinicie o servidor.'})
+            return self.json_response(500, {'error': 'Não foi possível concluir a operação local. Tente novamente ou reinicie o aplicativo.'})
 
 
 def main():
@@ -119,7 +152,7 @@ def main():
                         default=ROOT / 'artifacts/aira-dialogue-v1/run-001/sft-model.pt')
     args = parser.parse_args()
     core = NeuralCore(args.checkpoint)
-    server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(Handler, core=core))
+    server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(Handler, core=core, vault=Vault()))
     print(f'Elysia experimental: http://127.0.0.1:{server.server_port} — Ctrl+C encerra.', flush=True)
     try:
         server.serve_forever()

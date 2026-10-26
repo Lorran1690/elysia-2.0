@@ -2,10 +2,12 @@ name: Windows desktop app
 on:
   workflow_dispatch:
   push:
-    branches: [feature/windows-desktop-app, fix/windows-black-screen]
+    branches: [feature/windows-desktop-app, fix/windows-black-screen, feature/local-modules]
     paths:
       - 'interface/**'
       - 'brain/**'
+      - 'actions/**'
+      - 'memory/**'
       - 'scripts/desktop-*.py'
       - 'scripts/test-desktop-browser.py'
       - 'requirements-desktop-build.txt'
@@ -53,6 +55,7 @@ jobs:
         shell: pwsh
         run: |
           Copy-Item interface/DESKTOP.md dist/Elysia/LEIA-ME.md
+          Copy-Item interface/MODULES.md dist/Elysia/MODULES.md
           Copy-Item desktop-smoke.json dist/Elysia/verification.json
           Copy-Item desktop-browser.json dist/Elysia/browser-verification.json
           Copy-Item desktop-browser.png dist/Elysia/browser-verification.png

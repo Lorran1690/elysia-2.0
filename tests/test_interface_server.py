@@ -8,16 +8,17 @@ from http.server import ThreadingHTTPServer
 import pytest
 
 from interface.server import Handler, validate_messages
+from memory.vault import Vault
 
 
 @pytest.fixture
-def web():
+def web(tmp_path):
     class Core:
         def respond(self, messages):
             if messages[-1]['content'] == 'full':
                 raise ValueError('Contexto cheio; inicie uma nova conversa.')
             return 'Olá, ' + messages[-1]['content']
-    server = ThreadingHTTPServer(('127.0.0.1', 0), partial(Handler, core=Core()))
+    server = ThreadingHTTPServer(('127.0.0.1', 0), partial(Handler, core=Core(), vault=Vault(tmp_path/"vault.sqlite3")))
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     def request(path, payload=None, origin=None, method=None):
@@ -61,3 +62,22 @@ def test_history_must_alternate_and_end_in_user():
                      [{'role': 'user', 'content': 'oi'}, {'role': 'user', 'content': 'oi'}]]:
         with pytest.raises(ValueError):
             validate_messages({'messages': messages})
+
+
+def test_local_module_endpoints_and_private_backup(web):
+    status,body=web('/api/vault/save',{'kind':'note','title':'Teste','content':'Café privado'})
+    assert status==200
+    identifier=json.loads(body)['item']['id']
+    status,body=web('/api/vault?q=cafe')
+    assert status==200 and json.loads(body)['items'][0]['id']==identifier
+    status,backup=web('/api/vault/backup')
+    assert status==200 and json.loads(backup)['format']=='elysia-vault-v1'
+    assert web('/api/vault/restore',json.loads(backup))[0]==200
+    assert web('/api/vault/save',{'title':'x','content':'y'},origin='https://example.com')[0]==403
+    assert web('/vault.sqlite3')[0]==404
+    assert web('/api/vault/delete',{'id':identifier})[0]==200
+    assert json.loads(web('/api/vault')[1])['items']==[]
+    assert web('/api/vault/restore',json.loads(backup))[0]==200
+    status,body=web('/api/tools',{'tool':'calculator','text':'6*3'})
+    assert status==200 and json.loads(body)['result']=='18'
+    assert web('/api/tools',{'tool':'calculator','text':'__import__("os")'})[0]==400

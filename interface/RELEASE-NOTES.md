@@ -13,3 +13,8 @@ Código, pesos e materiais preparados estão preservados no Git. Conversas não
 são enviadas automaticamente ao GitHub. Use Exportar backup e guarde o arquivo
 em armazenamento privado fora do computador; Restaurar backup recupera a conversa.
 Veja LEIA-ME.md no pacote para detalhes.
+
+Novos módulos: Knowledge Vault com notas/documentos/fontes, busca e backup privado;
+ferramentas locais de cálculo, JSON, texto e SHA-256; visualização de imagens,
+áudio e vídeo locais. Nenhum documento pessoal é enviado ao GitHub ou usado no
+treino. A biblioteca permanece independente do chat. Os pesos do núcleo não mudaram.

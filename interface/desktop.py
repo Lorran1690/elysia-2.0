@@ -15,11 +15,12 @@ import webbrowser
 from functools import partial
 from http.server import ThreadingHTTPServer
 from interface.server import Handler, NeuralCore, ROOT
+from memory.vault import Vault
 
 
 def start_server(port=8765):
     core = NeuralCore(ROOT / 'artifacts/aira-dialogue-v1/run-001/sft-model.pt')
-    server = ThreadingHTTPServer(('127.0.0.1', port), partial(Handler, core=core))
+    server = ThreadingHTTPServer(('127.0.0.1', port), partial(Handler, core=core, vault=Vault()))
     threading.Thread(target=server.serve_forever, daemon=True).start()
     return server
 
