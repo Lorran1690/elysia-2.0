@@ -1,0 +1,61 @@
+{
+  "source_manifest_sha256": "210e5963ba806e3b5faef72bdd73501b69edfbfd399137967b4e9d0827e243e2",
+  "source": "Aira v3, existing immutable grouped partitions; explicitly synthetic",
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 2048,
+    "requested_vocab_size": 2048,
+    "fingerprint": "fe188d04c371a8eb628341cae601055d85b84254103c1bca3dbcbda8b28a0124"
+  },
+  "maximum_full_prefix_tokens": 513,
+  "history_cropped": false,
+  "human_reviewed": false,
+  "train_sampling_mass": {
+    "standalone": 0.3,
+    "generic_deferral_candidate": 0.1,
+    "contextual": 0.6
+  },
+  "selection": "At most two targets per group; 60% contextual, 30% standalone, 10% lexical deferral candidates; inverse sqrt prefix-family frequency.",
+  "validation_test_selection": "First 128 eligible targets sorted by content-hashed record ID and pair index; no resampling weights.",
+  "rejected": {
+    "complete_history_exceeds_context": 145683
+  },
+  "evaluation_overlap_excluded": {},
+  "spec_sha256": "24bf510fb2bafa3dbe0b17f554284654c81c1139f8a88c50a2af52dc165de738",
+  "partitions": {
+    "train": {
+      "targets": 13673,
+      "groups": 11558,
+      "buckets": {
+        "standalone": 7479,
+        "generic_deferral_candidate": 4763,
+        "contextual": 1431
+      },
+      "sha256": "20c17600b804f82d1112c88e8451184b22fae8d24ff25bc45a1e4dafb8367787",
+      "assistant_tokens": 3178350
+    },
+    "validation": {
+      "targets": 128,
+      "groups": 104,
+      "buckets": {
+        "standalone": 74,
+        "generic_deferral_candidate": 40,
+        "contextual": 14
+      },
+      "sha256": "e940886fbbbd1a19f9433085f10ce43d9943f4e84f7f1a5ebb5c8deb2dfa514f",
+      "assistant_tokens": 28873
+    },
+    "test": {
+      "targets": 128,
+      "groups": 109,
+      "buckets": {
+        "standalone": 73,
+        "contextual": 14,
+        "generic_deferral_candidate": 41
+      },
+      "sha256": "12a254ec65029d87bde9dfcbde94adfa48c5fb2625ac8ea8ad6bb4585a9a2241",
+      "assistant_tokens": 30569
+    }
+  }
+}
