@@ -2,7 +2,8 @@
 const { useState, useEffect: useEffectA, useRef: useRefA, useCallback: useCallbackA } = React;
 
 const PREFS_KEY = 'elysia.appearance.v1';
-const DEFAULT_PREFS = { palette: 'original', custom: { from: '#8b5cf6', to: '#d946ef' }, size: 212, speed: 1, morph: true };
+const DEFAULT_PREFS = { palette: 'original', custom: { from: '#8b5cf6', to: '#d946ef' }, size: 212, speed: 1, morph: true, avatar: 'bust', orbCount: 720, holoCount: 12000, holoScale: 0.86, greet: true };
+const num = (v, a, b, d) => (Number.isFinite(v) ? Math.min(b, Math.max(a, v)) : d);
 const HEX = /^#[0-9a-f]{6}$/i;
 
 const loadPrefs = () => {
@@ -12,9 +13,14 @@ const loadPrefs = () => {
     return {
       palette: raw.palette === 'custom' || PALETTES[raw.palette] ? raw.palette : 'original',
       custom: { from: HEX.test(raw.custom?.from) ? raw.custom.from : '#8b5cf6', to: HEX.test(raw.custom?.to) ? raw.custom.to : '#d946ef' },
-      size: Number.isFinite(raw.size) ? Math.min(320, Math.max(120, raw.size)) : 212,
-      speed: Number.isFinite(raw.speed) ? Math.min(2, Math.max(0, raw.speed)) : 1,
+      size: num(raw.size, 120, 640, 212),
+      speed: num(raw.speed, 0, 2, 1),
       morph: raw.morph !== false,
+      avatar: raw.avatar === 'body' ? 'body' : 'bust',
+      orbCount: num(raw.orbCount, 360, 6000, 720),
+      holoCount: num(raw.holoCount, 3000, 30000, 12000),
+      holoScale: num(raw.holoScale, 0.45, 1, 0.86),
+      greet: raw.greet !== false,
     };
   } catch { return DEFAULT_PREFS; }
 };
@@ -56,6 +62,10 @@ const App = () => {
   const [level, setLevel] = useState(0.45);
   const [formProgress, setFormProgress] = useState(0);
   const [caption, setCaption] = useState('');
+  const [greeting, setGreeting] = useState(false);
+  const [pinHuman, setPinHuman] = useState(false);
+  const [waveKey, setWaveKey] = useState(0);
+  const greeted = useRefA(false);
   const levelRef = useRefA(-1);
   const timers = useRefA([]);
   const stageRef = useRefA(null);
@@ -136,6 +146,7 @@ const App = () => {
 
   const sendMessage = async (text) => {
     if (pending.current || !ready) return;
+    setGreeting(false);
     pending.current = true;
     setBusy(true); setError(''); setState('thinking'); setCaption('');
     const candidate = [...conversation.current, { role: 'user', content: text }];
@@ -180,10 +191,24 @@ const App = () => {
       setCaption(''); setError(''); persistChat(history); setState(ready ? 'idle' : 'error');
     } catch (err) { setError('Não foi possível importar: ' + err.message); }
   };
+  const endGreeting = useCallbackA(() => setGreeting(false), []);
+  const greet = () => { if (!busy && !pending.current) { setGreeting(true); setWaveKey((k) => k + 1); } };
+  useEffectA(() => {
+    if (intro || !ready || greeted.current) return;
+    greeted.current = true;
+    if (prefs.greet) greet();
+  }, [intro, ready]);
+  useEffectA(() => {
+    if (!greeting) return;
+    // Fallback also ends the greeting with reduced motion or an unavailable image.
+    const timer = setTimeout(endGreeting, 9000);
+    return () => clearTimeout(timer);
+  }, [greeting, waveKey, endGreeting]);
+  const fitToScreen = () => setPrefs((o) => ({ ...o, size: Math.round(Math.min(640, Math.max(120, Math.min(stage.w, stage.h) * .34)) / 4) * 4, holoScale: .9 }));
   const setDemoState = (s) => { if (!busy && !pending.current) { setCaption(''); setState(s); } };
 
   const colors = prefs.palette === 'custom' ? prefs.custom : PALETTES[prefs.palette];
-  const form = prefs.morph && state === 'speaking' ? 1 : 0;
+  const form = pinHuman || greeting || (prefs.morph && state === 'speaking') ? 1 : 0;
   const human = formProgress > 0.5;
   const statusText = STATE_LABELS[state];
 
@@ -199,6 +224,7 @@ const App = () => {
     settings: <SettingsPanel prefs={prefs} setPrefs={setPrefs} state={state} setDemoState={setDemoState}
       manual={manual} setManual={setManual} level={level} setLevel={setLevel}
       onReplayIntro={() => { setOpen(null); setIntro(true); }}
+      onWave={greet} pinHuman={pinHuman} setPinHuman={setPinHuman} onFit={fitToScreen}
       onClose={() => setOpen(null)} />,
   }[open];
 
@@ -222,6 +248,8 @@ const App = () => {
             levelRef={levelRef}
             form={form}
             onForm={setFormProgress}
+            avatar={prefs.avatar} orbCount={prefs.orbCount} holoCount={prefs.holoCount}
+            holoScale={prefs.holoScale} waveKey={waveKey} onWaveEnd={endGreeting}
             width={stage.w}
             height={Math.max(prefs.size, stage.h)}
             label={'Elysia: ' + statusText + (human ? ' · forma humanoide' : ' · orbe')}

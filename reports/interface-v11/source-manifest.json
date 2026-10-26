@@ -1,0 +1,42 @@
+{
+  "source": "owner-supplied elysia-v11-corpo-preservado.zip",
+  "archive_sha256": "5031a101b3216317c7dcf3a73ee189f71767c3c2125e4f4341787c19a68d889e",
+  "files": {
+    "src/avatar-rig.js": {
+      "bytes": 20261,
+      "sha256": "2e0766449ec5fbb423b47ab8ecf177f1162b7286881d35f9d0b9b731eb8a4b5a",
+      "integration": "exact bytes"
+    },
+    "src/elysia-presence.jsx": {
+      "bytes": 21584,
+      "sha256": "6be52a95e042793d2257d56bb3a6bb40fc70eefaa76d93a65e3cb423b318b370",
+      "integration": "merged with existing implementation"
+    },
+    "src/app.jsx": {
+      "bytes": 9418,
+      "sha256": "c57fb4e4a1791e512b9b12be8141b9a9360ccae1554b48e000e2ed8844c1c034",
+      "integration": "merged with existing implementation"
+    },
+    "src/ui-panels.jsx": {
+      "bytes": 17019,
+      "sha256": "1dc08cd963fb2d6c1dfd0e0eed0df63f331850bd909f95d6cd750a217e452318",
+      "integration": "merged with existing implementation"
+    },
+    "src/elysia.css": {
+      "bytes": 18307,
+      "sha256": "a9f5aa134eac30b409c825773b1a4df42ca8c359d1fd22b084f29f364a7d72f3",
+      "integration": "merged with existing implementation"
+    },
+    "assets/avatar-body.png": {
+      "bytes": 1394293,
+      "sha256": "10e46486de5937091498d4dc14e7834e2bf51b0a0a2182c8f94d7529eec31b43",
+      "integration": "exact bytes"
+    },
+    "assets/avatar-bust-violet.png": {
+      "bytes": 3283743,
+      "sha256": "2f762fafec316e5531da9f3cf527b832fda9feac4422e1b8fadd93abff493d3e",
+      "integration": "exact bytes"
+    }
+  },
+  "private_reference_material_published": false
+}

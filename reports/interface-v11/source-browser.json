@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "packaged_executable": false,
+  "source_core_simulated": true,
+  "avatar_sources": {
+    "bust": {
+      "width": 1024,
+      "height": 1536
+    },
+    "body": {
+      "width": 683,
+      "height": 1024
+    }
+  },
+  "old_preferences_migrated": true,
+  "body_and_bust_switch": true,
+  "wave_and_pin_controls": true,
+  "module_navigation_preserved": true,
+  "chat_connected": true,
+  "neural_quality_evaluated": false,
+  "javascript_errors": [],
+  "external_requests": []
+}

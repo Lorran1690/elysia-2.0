@@ -160,7 +160,8 @@ const HexField = ({ label, value, onChange }) => {
   );
 };
 
-const SettingsPanel = ({ prefs, setPrefs, state, setDemoState, manual, setManual, level, setLevel, onReplayIntro, onClose }) => {
+const fmtK = (n) => (n >= 1000 ? (n / 1000).toFixed(n % 1000 ? 1 : 0).replace('.', ',') + ' mil' : String(n));
+const SettingsPanel = ({ prefs, setPrefs, state, setDemoState, manual, setManual, level, setLevel, onReplayIntro, onWave, pinHuman, setPinHuman, onFit, onClose }) => {
   const set = (k, v) => setPrefs((old) => ({ ...old, [k]: v }));
   const colors = prefs.palette === 'custom' ? prefs.custom : PALETTES[prefs.palette];
   return (
@@ -192,20 +193,57 @@ const SettingsPanel = ({ prefs, setPrefs, state, setDemoState, manual, setManual
       </section>
 
       <section className="set-group">
-        <h3>Presença</h3>
-        <label className="range">
-          <span>Tamanho do orbe <output>{prefs.size}px</output></span>
-          <input type="range" min="120" max="320" step="4" value={prefs.size} onChange={(e) => set('size', +e.target.value)} />
-        </label>
-        <label className="range">
-          <span>Velocidade <output>{prefs.speed.toFixed(1)}×</output></span>
-          <input type="range" min="0" max="2" step="0.1" value={prefs.speed} onChange={(e) => set('speed', +e.target.value)} />
-        </label>
+        <h3>Holograma</h3>
+        <div className="seg seg-tight" role="radiogroup" aria-label="Forma humanoide">
+          {[['bust', 'Busto'], ['body', 'Cintura para cima']].map(([k, l]) => (
+            <button key={k} role="radio" aria-checked={prefs.avatar === k} aria-selected={prefs.avatar === k} onClick={() => set('avatar', k)}>{l}</button>
+          ))}
+        </div>
         <label className="check">
           <input type="checkbox" checked={prefs.morph} onChange={(e) => set('morph', e.target.checked)} />
           <span>Assumir forma humanoide ao falar</span>
         </label>
-        <button className="link-btn" onClick={() => setPrefs((o) => ({ ...o, palette: 'original', size: 212, speed: 1 }))}>Restaurar referência (violeta/magenta · 212px · 1×)</button>
+        <label className="check">
+          <input type="checkbox" checked={pinHuman} onChange={(e) => setPinHuman(e.target.checked)} />
+          <span>Manter forma humanoide (pré-visualização)</span>
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={prefs.greet} onChange={(e) => set('greet', e.target.checked)} />
+          <span>Acenar ao abrir</span>
+        </label>
+        <button className="pill-btn ghost" style={{ marginTop: 8 }} onClick={onWave}>Acenar agora</button>
+        <p className="note-block" style={{ marginTop: 10 }}>No holograma, a cabeça acompanha o cursor; sem o mouse, ela observa o ambiente sozinha.</p>
+      </section>
+
+      <section className="set-group">
+        <h3>Tamanho</h3>
+        <label className="range">
+          <span>Orbe <output>{prefs.size}px</output></span>
+          <input type="range" min="120" max="640" step="4" value={prefs.size} onChange={(e) => set('size', +e.target.value)} />
+        </label>
+        <label className="range">
+          <span>Holograma <output>{Math.round(prefs.holoScale * 100)}% da altura</output></span>
+          <input type="range" min="0.45" max="1" step="0.01" value={prefs.holoScale} onChange={(e) => set('holoScale', +e.target.value)} />
+        </label>
+        <button className="link-btn" onClick={onFit}>Ajustar à tela</button>
+      </section>
+
+      <section className="set-group">
+        <h3>Partículas</h3>
+        <label className="range">
+          <span>Orbe <output>{fmtK(prefs.orbCount)}</output></span>
+          <input type="range" min="360" max="6000" step="60" value={prefs.orbCount} onChange={(e) => set('orbCount', +e.target.value)} />
+        </label>
+        <label className="range">
+          <span>Holograma <output>{fmtK(prefs.holoCount)}</output></span>
+          <input type="range" min="3000" max="30000" step="500" value={prefs.holoCount} onChange={(e) => set('holoCount', +e.target.value)} />
+        </label>
+        <label className="range">
+          <span>Velocidade do orbe <output>{prefs.speed.toFixed(1)}×</output></span>
+          <input type="range" min="0" max="2" step="0.1" value={prefs.speed} onChange={(e) => set('speed', +e.target.value)} />
+        </label>
+        <p className="note-block" style={{ marginTop: 4 }}>720 partículas é a referência aprovada do orbe. Valores altos exigem mais do processador.</p>
+        <button className="link-btn" onClick={() => setPrefs((o) => ({ ...o, palette: 'original', size: 212, speed: 1, orbCount: 720 }))}>Restaurar referência do orbe (violeta/magenta · 212px · 720 · 1×)</button>
       </section>
 
       <section className="set-group">
@@ -231,7 +269,7 @@ const SettingsPanel = ({ prefs, setPrefs, state, setDemoState, manual, setManual
         <h3>Abertura</h3>
         <button className="pill-btn ghost" onClick={onReplayIntro}>Rever abertura provisória</button>
       </section>
-      <p className="note-block">Apenas preferências de aparência são salvas neste navegador. Áudio, credenciais e conversas não são armazenados.</p>
+      <p className="note-block">Preferências e histórico de conversa ficam neste navegador. Exporte backups privados pelo painel de conversa; os arquivos do Vault e da geração por IA ficam na pasta privada da Elysia.</p>
     </>
   );
 };

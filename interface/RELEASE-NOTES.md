@@ -1,3 +1,18 @@
+## Interface v11 integrada ao aplicativo
+
+Avatar do pacote fornecido pelo proprietário: busto e corpo preservados, respiração,
+movimento de cabeça e cabelo, aceno e controles de partículas, tamanho e enquadramento.
+As preferências antigas são migradas. O aceno é visual; o Voice Core continua pausado.
+
+Mantidos o Neural Core próprio experimental, conversa com backup, Knowledge Vault,
+editor e ferramentas de código, bancada de análise, catálogo de habilidades,
+Media Studio, cinema 3D com trilha e geração local por ComfyUI. A interface usa
+bibliotecas locais e não depende de CDN. O ComfyUI e seus modelos continuam sendo
+instalados separadamente; vídeos neurais realistas ainda não foram validados.
+
+Extraia a pasta inteira do ZIP e abra Elysia.exe dentro dela, preservando `_internal`.
+Os dados privados existentes não são substituídos pela atualização.
+
 # Caminho de geração por modelos de mídia
 
 Novo painel **Imagens e vídeos por IA** no EXE: diagnóstico de ComfyUI local,
