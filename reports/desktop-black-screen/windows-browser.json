@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "packaged_executable": true,
+  "browser": "Chromium",
+  "first_launch_intro": true,
+  "visible_chat": true,
+  "actual_checkpoint_response_visible": true,
+  "javascript_errors": [],
+  "quality_claim": false
+}

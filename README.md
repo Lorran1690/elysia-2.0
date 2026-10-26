@@ -143,3 +143,10 @@ A integração não altera pesos nem comprova capacidade de conversação comple
 O [aplicativo da Elysia](interface/DESKTOP.md) inclui núcleo, pesos e interface.
 Abra `Elysia.cmd` com a `.venv` instalada ou baixe o pacote Windows nas Releases
 quando a compilação concluir. Conversas têm exportação e restauração de backup.
+
+### Correção da tela preta no Windows
+
+Baixe a [versão corrigida do aplicativo](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-a7014f9815f1).
+Os arquivos JavaScript agora mantêm seus bytes no checkout Windows. O pacote
+foi testado com renderização da interface e resposta do núcleo real em um navegador
+Windows. [Registro da verificação](reports/desktop-black-screen/verification.json).

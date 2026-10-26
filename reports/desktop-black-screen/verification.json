@@ -1,0 +1,34 @@
+{
+  "root_cause": "Windows core.autocrlf changed vendor JS bytes; browser SRI blocked all three libraries, leaving an empty root.",
+  "old_release": "desktop-fdf0c2f67a89",
+  "old_package_crlf_counts": {
+    "react": 3343,
+    "react_dom": 29924,
+    "babel": 4
+  },
+  "old_package_blank_reproduced": true,
+  "fixed_source_render_verified": true,
+  "failed_library_recovery_message_verified": true,
+  "windows_style_checkout_integrity_passed": true,
+  "linux_suite": {
+    "passed": 151,
+    "skipped": 9
+  },
+  "tested_source_commit": "a7014f9815f1",
+  "windows_executable_build": {
+    "run": 40253133636,
+    "job": 121349162574,
+    "conclusion": "success",
+    "browser_rendering": "success"
+  },
+  "native_cross_platform_tests": {
+    "run": 40253133626,
+    "windows": "success",
+    "linux": "success"
+  },
+  "release": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-a7014f9815f1",
+  "zip_sha256": "6df416395cb860949682bffc87772308d43e646a89f428c20eed7009911cd283",
+  "downloaded_package_integrity_verified": true,
+  "owner_pc_tested": false,
+  "weights_changed": false
+}
