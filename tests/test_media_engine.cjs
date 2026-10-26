@@ -13,3 +13,13 @@ test('WAV output has correct PCM headers, length and bounded samples',async()=>{
  assert.equal(blob.type,'audio/wav');assert.equal(blob.size,44+22050*2);assert.equal(new TextDecoder().decode(buffer.slice(0,4)),'RIFF');assert.equal(view.getUint32(24,true),22050);
  let peak=0;for(let i=44;i<buffer.byteLength;i+=2)peak=Math.max(peak,Math.abs(view.getInt16(i,true)));assert.ok(peak>1000&&peak<=6554);assert.equal(view.getInt16(44,true),0);
 });
+
+test('video quality budgets and older projects remain supported',()=>{
+ for(const [width,height] of [[1920,1080],[1080,1920]]){
+  const p=engine.validate({...project(),width,height,fps:60,duration:30});
+  assert.equal(engine.videoBitrate(p),19906560);
+ }
+ const old=project();delete old.fps;assert.equal(engine.validate(old).fps,30);
+ for(const fps of [0,120,'60'])assert.throws(()=>engine.validate({...project(),fps}));
+ assert.ok(engine.videoBitrate({...project(),width:1920,height:1080})>engine.videoBitrate(project()));
+});

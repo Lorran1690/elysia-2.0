@@ -75,6 +75,15 @@ try:
             download.value.save_as(args.output/'media-sample.webm')
             video=(args.output/'media-sample.webm').read_bytes()
             assert video[:4]==b'\x1aE\xdf\xa3' and len(video)>1000
+            # Verify the high quality path through the actual UI and decoder.
+            page.get_by_label('Resolução da mídia',exact=True).select_option('1920x1080')
+            page.get_by_label('Quadros por segundo',exact=True).select_option('60')
+            page.get_by_role('button',name='Gerar vídeo WebM',exact=True).click()
+            page.get_by_role('button',name='Cancelar exportação',exact=True).wait_for(state='hidden',timeout=30000)
+            page.wait_for_function("document.querySelector('.studio-output video')?.videoWidth === 1920",timeout=30000)
+            assert page.locator('.studio-output video').evaluate('(v)=>v.videoHeight')==1080
+            with page.expect_download() as download:page.get_by_role('button',name='Baixar arquivo gerado',exact=True).click()
+            download.value.save_as(args.output/'media-fullhd.webm')
             page.get_by_role('button',name='Gerar vídeo WebM',exact=True).click()
             page.get_by_role('button',name='Cancelar exportação',exact=True).click()
             page.get_by_role('alert').filter(has_text='cancelada').wait_for()

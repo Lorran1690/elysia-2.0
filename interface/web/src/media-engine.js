@@ -1,8 +1,8 @@
 /* Offline composition engine. No remote model, microphone or screen capture. */
 (function (root) {
   'use strict';
-  const SIZES = [[640,360],[1280,720],[720,720]];
-  const DEFAULT = {format:'elysia-studio-v1',title:'E.L.Y.S.I.A.',subtitle:'Uma ideia ganha forma',background:'#100d20',accent:'#a78bfa',layout:'orbit',width:640,height:360,duration:3,image:null,
+  const SIZES = [[640,360],[1280,720],[1920,1080],[1080,1920],[720,720]];
+  const DEFAULT = {format:'elysia-studio-v1',title:'E.L.Y.S.I.A.',subtitle:'Uma ideia ganha forma',background:'#100d20',accent:'#a78bfa',layout:'orbit',width:640,height:360,duration:3,fps:30,image:null,
     audio:{mode:'melody',notes:'C4 E4 G4 C5 G4 E4',frequency:440,duration:3,tempo:120,wave:'sine'}};
   const fail = message => { throw new Error(message); };
   const number = (n,min,max) => typeof n==='number' && Number.isFinite(n) && n>=min && n<=max;
@@ -25,13 +25,15 @@
     }
     for(const key of ['background','accent']){if(!/^#[0-9a-f]{6}$/i.test(value[key]))fail('Cor inválida.');p[key]=value[key];}
     if(!SIZES.some(([w,h])=>w===value.width&&h===value.height))fail('Resolução inválida.');
-    if(!['orbit','waves','poster'].includes(value.layout)||!number(value.duration,2,12))fail('Composição ou duração inválida.');
+    if(!['orbit','waves','poster'].includes(value.layout)||!number(value.duration,2,30))fail('Composição ou duração inválida.');
     if(value.image!==null && (typeof value.image!=='string'||value.image.length>2800000||!/^data:image\/(jpeg|png|webp);base64,[a-z0-9+/=]+$/i.test(value.image)))fail('Imagem incorporada inválida ou grande demais.');
+    const fps=value.fps===undefined?30:value.fps;
+    if(![24,30,60].includes(fps))fail('Escolha 24, 30 ou 60 quadros/s.');
     const a=value.audio;
     if(!a||!['tone','melody'].includes(a.mode)||!['sine','triangle','square'].includes(a.wave)||!number(a.frequency,40,2000)||!number(a.duration,1,30)||!number(a.tempo,60,180))fail('Configuração de áudio inválida.');
     notes(a.notes);
     if(a.mode==='melody' && notes(a.notes).length*60/a.tempo>30)fail('A sequência deve durar até 30 segundos.');
-    return {...p,format:DEFAULT.format,width:value.width,height:value.height,layout:value.layout,duration:value.duration,image:value.image,
+    return {...p,format:DEFAULT.format,width:value.width,height:value.height,layout:value.layout,duration:value.duration,fps,image:value.image,
       audio:{mode:a.mode,notes:a.notes,frequency:a.frequency,duration:a.duration,tempo:a.tempo,wave:a.wave}};
   }
   function waveAudio(audio) {
@@ -57,13 +59,14 @@
     if(line)lines.push(line);return lines;
   }
   function draw(canvas,project,t=0,image=null) {
-    const p=validate(project);canvas.width=p.width;canvas.height=p.height;const ctx=canvas.getContext('2d');if(!ctx)fail('Canvas não disponível.');
+    const p=validate(project);if(canvas.width!==p.width)canvas.width=p.width;if(canvas.height!==p.height)canvas.height=p.height;const ctx=canvas.getContext('2d');if(!ctx)fail('Canvas não disponível.');
+    ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
     const w=p.width,h=p.height;ctx.fillStyle=p.background;ctx.fillRect(0,0,w,h);
     if(image){const scale=Math.max(w/image.width,h/image.height)*(1+.03*Math.sin(t*Math.PI));const iw=image.width*scale,ih=image.height*scale;ctx.drawImage(image,(w-iw)/2,(h-ih)/2,iw,ih);ctx.fillStyle='#00000099';ctx.fillRect(0,0,w,h);}
     const glow=ctx.createRadialGradient(w*.5,h*.43,2,w*.5,h*.5,w*.6);glow.addColorStop(0,p.accent+'66');glow.addColorStop(1,p.accent+'00');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-    ctx.strokeStyle=p.accent;ctx.fillStyle=p.accent;
-    if(p.layout==='orbit')for(let i=0;i<90;i++){const angle=i*2.399963+t*Math.PI*2;const radius=Math.sqrt(i/90)*h*.25;ctx.globalAlpha=.25+(i%5)*.13;ctx.beginPath();ctx.arc(w*.5+Math.cos(angle)*radius,h*.35+Math.sin(angle)*radius*.7,1+i%3,0,Math.PI*2);ctx.fill();}
-    if(p.layout==='waves')for(let row=0;row<8;row++){ctx.globalAlpha=.16+row*.06;ctx.beginPath();for(let x=0;x<=w;x+=4){const y=h*.25+row*9+Math.sin(x/w*8+t*Math.PI*2+row*.4)*h*.08;if(!x)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();}
+    ctx.strokeStyle=p.accent;ctx.fillStyle=p.accent;ctx.lineWidth=Math.max(1,h/360);
+    if(p.layout==='orbit')for(let i=0;i<90;i++){const angle=i*2.399963+t*Math.PI*2;const radius=Math.sqrt(i/90)*h*.25;ctx.globalAlpha=.25+(i%5)*.13;ctx.beginPath();ctx.arc(w*.5+Math.cos(angle)*radius,h*.35+Math.sin(angle)*radius*.7,(1+i%3)*h/360,0,Math.PI*2);ctx.fill();}
+    if(p.layout==='waves')for(let row=0;row<8;row++){ctx.globalAlpha=.16+row*.06;ctx.beginPath();for(let x=0;x<=w;x+=4){const y=h*.25+row*h*.025+Math.sin(x/w*8+t*Math.PI*2+row*.4)*h*.08;if(!x)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();}
     if(p.layout==='poster'){ctx.globalAlpha=.5;ctx.fillRect(w*.1,h*.18,w*.08,h*.025);ctx.strokeRect(w*.08,h*.12,w*.84,h*.76);}
     ctx.globalAlpha=1;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#ffffff';
     const titleSize=Math.round(h*.095);ctx.font='600 '+titleSize+'px system-ui, sans-serif';
@@ -75,30 +78,36 @@
   }
   const imageFrom = data => new Promise((resolve,reject)=>{if(!data)return resolve(null);const image=new Image();image.onload=()=>{if(image.width*image.height>16777216)return reject(new Error('Imagem incorporada grande demais.'));resolve(image);};image.onerror=()=>reject(new Error('Não foi possível decodificar a imagem.'));image.src=data;});
   const png = canvas => new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Não foi possível exportar PNG.')),'image/png'));
+  function videoBitrate(project) {const p=validate(project);return Math.round(Math.max(2500000,Math.min(24000000,p.width*p.height*p.fps*.16)));}
   function record(canvas,project,image,signal,onProgress) {
     const p=validate(project);
     if(typeof MediaRecorder==='undefined'||!canvas.captureStream)return Promise.reject(new Error('Este navegador não oferece exportação de vídeo. Use Edge ou Chrome atualizado.'));
-    const mime=['video/webm;codecs=vp8','video/webm;codecs=vp9','video/webm'].find(type=>MediaRecorder.isTypeSupported(type));
+    const mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(type=>MediaRecorder.isTypeSupported(type));
     if(!mime)return Promise.reject(new Error('O navegador não oferece gravação WebM.'));
     return new Promise((resolve,reject)=>{
       let stream,recorder,frame,watchdog,settled=false;const chunks=[];let reason=null;
-      const cleanup=()=>{clearInterval(frame);clearTimeout(watchdog);if(stream)stream.getTracks().forEach(track=>track.stop());signal?.removeEventListener('abort',abort);document.removeEventListener('visibilitychange',visibility);};
+      const cleanup=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);if(stream)stream.getTracks().forEach(track=>track.stop());signal?.removeEventListener('abort',abort);document.removeEventListener('visibilitychange',visibility);};
       const finish=(error,blob)=>{if(settled)return;settled=true;cleanup();error?reject(error):resolve(blob);};
       const abort=()=>{reason=new Error('Exportação cancelada.');if(recorder?.state==='recording')recorder.stop();else finish(reason);};
       const visibility=()=>{if(document.hidden)abort();};
       try {
         if(signal?.aborted)return finish(new Error('Exportação cancelada.'));
-        draw(canvas,p,0,image);stream=canvas.captureStream(24);recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:2500000});
+        draw(canvas,p,0,image);stream=canvas.captureStream(p.fps);recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:videoBitrate(p)});
         recorder.ondataavailable=event=>{if(event.data.size)chunks.push(event.data);};
         recorder.onerror=()=>finish(new Error('Falha ao codificar vídeo. Tente uma resolução menor.'));
         recorder.onstop=()=>{const blob=new Blob(chunks,{type:'video/webm'});if(reason)return finish(reason);if(!blob.size)return finish(new Error('O navegador gerou um vídeo vazio.'));finish(null,blob);};
         signal?.addEventListener('abort',abort,{once:true});document.addEventListener('visibilitychange',visibility);
         const start=performance.now();recorder.start(200);
-        frame=setInterval(()=>{const elapsed=(performance.now()-start)/1000;try{draw(canvas,p,Math.min(elapsed/p.duration,1),image);onProgress?.(Math.min(1,elapsed/p.duration));if(elapsed>=p.duration&&recorder.state==='recording'){clearInterval(frame);recorder.stop();}}catch(error){reason=error;recorder.stop();}},1000/24);
+        let lastFrame=-Infinity;
+        const tick=now=>{if(settled||recorder.state!=='recording')return;const elapsed=(now-start)/1000;
+          try{if(now-lastFrame>=1000/p.fps-1){draw(canvas,p,Math.min(elapsed/p.duration,1),image);lastFrame=now;onProgress?.(Math.min(1,elapsed/p.duration));}
+            if(elapsed>=p.duration)recorder.stop();else frame=requestAnimationFrame(tick);
+          }catch(error){reason=error;recorder.stop();}};
+        frame=requestAnimationFrame(tick);
         watchdog=setTimeout(()=>{reason=new Error('Tempo limite ao exportar vídeo.');if(recorder.state==='recording')recorder.stop();else finish(reason);},(p.duration+5)*1000);
       } catch(error){finish(error);}
     });
   }
-  root.ElysiaMedia={DEFAULT,SIZES,validate,notes,waveAudio,draw,imageFrom,png,record};
+  root.ElysiaMedia={DEFAULT,SIZES,validate,notes,waveAudio,draw,imageFrom,png,videoBitrate,record};
   if(typeof module!=='undefined')module.exports=root.ElysiaMedia;
 })(typeof window==='undefined'?globalThis:window);

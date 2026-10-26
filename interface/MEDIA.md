@@ -3,12 +3,17 @@
 ## Capacidades implementadas
 
 - **Imagem:** composição em Canvas com título, subtítulo, cores, três estilos e
-  imagem de fundo opcional. Exportação PNG em 640×360, 1280×720 ou 720×720.
+  imagem de fundo opcional. Exportação PNG em 640×360, 1280×720, 1920×1080, 1080×1920 ou 720×720.
 - **Áudio:** síntese de tons e sequências de notas em WAV PCM de 16 bits, mono,
   22.050 Hz. Ondas senoidal, triangular e quadrada; volume limitado e envelope
   para suavizar os ataques. Máximo de 30 segundos. Não há fala ou clonagem de voz.
-- **Vídeo:** animação da composição em WebM/VP8 ou codec WebM suportado pelo
-  navegador, a 24 quadros/s, por 2 a 12 segundos, até 720p. Vídeo sem trilha sonora.
+- **Vídeo:** animação da composição em WebM com preferência por VP9 e fallback VP8/WebM suportado pelo
+  navegador; 24, 30 ou 60 quadros/s solicitados, por 2 a 30 segundos, até Full HD
+  horizontal ou vertical. Taxa de bits proporcional à resolução e fluidez, de
+  2,5 a 24 Mbit/s (Full HD/60 solicita aproximadamente 19,9 Mbit/s).
+  A exportação é em tempo real: o navegador pode entregar menos quadros em
+  computadores ocupados. Recomenda-se começar em 720p/30. A gravação usa o
+  relógio de animação do navegador, sem reinicializar o Canvas a cada quadro. Vídeo sem trilha sonora.
   A janela deve permanecer visível durante a gravação; é possível cancelar.
 - **Projeto editável:** exportação e restauração de JSON com os controles e uma
   cópia reduzida da imagem de fundo. A imagem original não é alterada. Escolha
