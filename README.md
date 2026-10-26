@@ -130,3 +130,10 @@ O relatório e o resultado completo ficam em `reports/seed-v0.3.md` e `reports/s
 ## Estrutura
 
 `brain/` contém o tokenizador e o Transformer; `learning/` contém dados, treino e avaliação; `tests/` contém os testes automatizados; `data/raw/` contém somente o corpus de demonstração local.
+
+## Interface do avatar conectada
+
+Execute `python -m interface.server` e abra http://127.0.0.1:8765 para conversar
+com o modelo próprio experimental, pela interface do avatar fornecida pelo
+proprietário. Veja [instruções, dependências e limites](interface/README.md).
+A integração não altera pesos nem comprova capacidade de conversação complexa.

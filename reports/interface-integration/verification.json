@@ -1,0 +1,36 @@
+{
+  "integration": "avatar + own neural core",
+  "checkpoint": "artifacts/aira-dialogue-v1/run-001/sft-model.pt",
+  "checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "weights_changed": false,
+  "runtime": "Linux CPU; user Windows GPU not accessed",
+  "suite": {
+    "passed": 150,
+    "skipped": 9
+  },
+  "browser": {
+    "engine": "Playwright Chromium 151 headless",
+    "viewport": [
+      1280,
+      800
+    ],
+    "page_errors": [],
+    "checks": [
+      "load local UI and libraries",
+      "health ready",
+      "send Olá to actual checkpoint",
+      "display actual generated response",
+      "reset conversation"
+    ],
+    "screenshot": "chat-local.png"
+  },
+  "quality": "Actual response repetitive and irrelevant. This is integration validation, not conversational success.",
+  "vendor_sha256": {
+    "interface/web/vendor/babel-standalone-LICENSE.txt": "117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76",
+    "interface/web/vendor/react.development.js": "28348fef6cb0ed8b2ceeb22deaf824428fd13875d84c73d38f77dd216fc24e7f",
+    "interface/web/vendor/react-dom-LICENSE.txt": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85",
+    "interface/web/vendor/react-LICENSE.txt": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85",
+    "interface/web/vendor/react-dom.development.js": "f9044a5e9c39db8bb1a204dff924e526ec0a621e695bb69de1035811be8709e4",
+    "interface/web/vendor/babel.min.js": "2623a9e22809915ce789b4461154e277ddce520d5a4320c14d44332a5d0dcea0"
+  }
+}
