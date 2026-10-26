@@ -2,8 +2,7 @@
 
 ## Abrir o aplicativo
 
-Na página de Releases do repositório, baixe `Elysia-Windows-x64.zip` da versão
-desejada. Extraia **a pasta inteira** e abra `Elysia.exe`. Não mova apenas o EXE:
+Baixe a [primeira versão Windows verificada](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-fdf0c2f67a89), arquivo `Elysia-Windows-x64.zip`. Extraia **a pasta inteira** e abra `Elysia.exe`. Não mova apenas o EXE:
 a pasta `_internal` contém o núcleo, os pesos, a interface e o Python incluídos.
 O Microsoft Visual C++ v14 x64 redistribuível deve estar instalado.
 
