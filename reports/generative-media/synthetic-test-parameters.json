@@ -1,0 +1,15 @@
+{
+  "params": {
+    "kind": "image",
+    "prompt": "A professional architectural photograph of a futuristic research laboratory, glass walls, detailed computer workstations, oak furniture, indoor plants, violet accent lighting, subtle reflections, large windows overlooking mountains, natural daylight, realistic materials, sharp details, wide angle lens",
+    "negative": "cartoon, illustration, painting, plastic, oversaturated, blurry, distorted, text, watermark",
+    "style": "photo",
+    "steps": 20,
+    "seed": 1650,
+    "width": 512,
+    "height": 512,
+    "cfg": 7,
+    "checkpoint": "v1-5-pruned-emaonly-fp16.safetensors"
+  },
+  "effective_prompt": "A professional architectural photograph of a futuristic research laboratory, glass walls, detailed computer workstations, oak furniture, indoor plants, violet accent lighting, subtle reflections, large windows overlooking mountains, natural daylight, realistic materials, sharp details, wide angle lens, photorealistic, natural lighting, physically plausible materials, fine texture, realistic perspective, balanced exposure"
+}

@@ -43,3 +43,7 @@ Elysia-filme-3D-*.webm
 
 # Private software-analysis projects.
 elysia-workbench-*.json
+
+# Private generative media jobs, prompts and downloaded outputs.
+elysia-ai-*.json
+media-ai/

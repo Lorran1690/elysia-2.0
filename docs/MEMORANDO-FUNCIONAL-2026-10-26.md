@@ -1,7 +1,8 @@
 > Documento de referência fornecido pelo proprietário. É planejamento de longo prazo,
 > não uma lista de funcionalidades já entregues. O catálogo no aplicativo e as notas
-> da versão indicam o estado verificado. Em particular, a integração Stable Diffusion
-> citada no texto não foi encontrada neste checkout e permanece planejada.
+> da versão indicam o estado verificado. A integração Stable Diffusion citada no
+> documento não existia no checkout recebido; agora há um adaptador ComfyUI com
+> teste real de imagem em CPU. Veja interface/GENERATIVE-MEDIA.md para os limites.
 
 # MEMORANDO TÉCNICO E FUNCIONAL
 ## E.L.Y.S.I.A. 2.0 — Catálogo Geral de Habilidades e Capacidades

@@ -70,7 +70,7 @@ def test_python_provenance_no_execution_and_diff(tmp_path):
 
 def test_catalog_never_claims_planned_cores_are_available():
     items={item['id']:item for item in catalog()['capabilities']}
-    assert items['image']['status']=='planejada'
+    assert items['image']['status']=='parcial'
     assert items['voice']['status']=='pausada'
     assert items['neural']['status']=='experimental'
     assert 'não' in items['workbench']['limitations'].lower() or 'Sem Ghidra' in items['workbench']['limitations']

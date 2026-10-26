@@ -1,3 +1,17 @@
+# Caminho de geração por modelos de mídia
+
+Novo painel **Imagens e vídeos por IA** no EXE: diagnóstico de ComfyUI local,
+modelos instalados, descrição de cena, seed, parâmetros, histórico privado,
+reutilização de resultados e cancelamento por trabalho. Imagens SD 1.5/SDXL e
+fluxo experimental de texto para vídeo Wan 2.1.
+
+**ComfyUI, pesos e GPU não estão incluídos no EXE.** Inicie um motor compatível
+e leia GENERATIVE-MEDIA.md. Vídeo neural real ainda não validado; clipes curtos
+sem áudio nesse fluxo. Isso não é uma entrega de vídeos realistas de um minuto.
+Neural Core e Voice Core não foram alterados.
+
+---
+
 # Bancada de análise e habilidades
 
 Novos painéis no EXE: **Bancada de análise** e **Habilidades e evolução**.

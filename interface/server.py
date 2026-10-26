@@ -12,6 +12,7 @@ from memory.vault import Vault
 from actions.local_tools import run_tool
 from actions.workbench import inspect_file, analyze_python, compare_sources
 from actions.capabilities import catalog
+from actions.media_generation import service as generation_service
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / 'interface/web'
@@ -92,6 +93,26 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == '/api/capabilities':
             return self.json_response(200, catalog())
         route = urlsplit(self.path)
+        if route.path == '/api/generation/status':
+            return self.json_response(200, generation_service(self.server).list())
+        if route.path.startswith('/api/generation/file/'):
+            try:
+                pieces=route.path.split('/')
+                if len(pieces)!=6:
+                    raise ValueError('Arquivo não encontrado.')
+                path,metadata=generation_service(self.server).file(pieces[4],int(pieces[5]))
+                self.send_response(200)
+                self.send_header('Content-Type',metadata['mime'])
+                self.send_header('Content-Length',str(path.stat().st_size))
+                self.send_header('Cache-Control','no-store')
+                self.send_header('X-Content-Type-Options','nosniff')
+                self.end_headers()
+                with path.open('rb') as content:
+                    while block:=content.read(1024*1024):
+                        self.wfile.write(block)
+                return
+            except (ValueError,OSError):
+                return self.json_response(404,{'error':'Arquivo não encontrado.'})
         if route.path in ('/api/vault', '/api/vault/backup'):
             try:
                 if self.vault is None:
@@ -117,7 +138,7 @@ class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed():
             return self.json_response(403, {'error': 'Origem não permitida.'})
-        if self.path not in ('/api/chat','/api/tools','/api/vault/save','/api/vault/delete','/api/vault/restore','/api/workbench/inspect','/api/workbench/source','/api/workbench/diff'):
+        if self.path not in ('/api/chat','/api/tools','/api/vault/save','/api/vault/delete','/api/vault/restore','/api/workbench/inspect','/api/workbench/source','/api/workbench/diff','/api/generation/probe','/api/generation/start','/api/generation/cancel','/api/generation/resume'):
             return self.json_response(404, {'error': 'Não encontrado.'})
         try:
             if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
@@ -131,6 +152,17 @@ class Handler(SimpleHTTPRequestHandler):
             if not 0 < size <= limit:
                 raise ValueError('Entrada grande demais para esta operação.')
             payload = json.loads(self.rfile.read(size))
+            if self.path.startswith('/api/generation/'):
+                if not isinstance(payload,dict):
+                    raise ValueError('Solicitação inválida.')
+                engine=generation_service(self.server)
+                if self.path.endswith('/probe'):
+                    return self.json_response(200,engine.probe(payload.get('port')))
+                if self.path.endswith('/start'):
+                    return self.json_response(200,engine.submit(payload))
+                if self.path.endswith('/resume'):
+                    return self.json_response(200,{'job':engine.resume(payload.get('id'))})
+                return self.json_response(200,{'job':engine.cancel(payload.get('id'))})
             if self.path.startswith('/api/workbench/'):
                 if not isinstance(payload,dict):
                     raise ValueError('Solicitação inválida.')

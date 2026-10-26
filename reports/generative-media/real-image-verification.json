@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "real_image_model_used": true,
+  "real_video_model_used": false,
+  "synthetic_media": true,
+  "image_dimensions": [
+    512,
+    512
+  ],
+  "image_sha256": "754d5181a12cfafe9b5ed302fd311777bba7ada38e7e49d1d355780b2aa2898b",
+  "generation_elapsed_seconds": 415.11,
+  "same_parameters_reused": true,
+  "reuse_request_seconds": 0.0047,
+  "model_source": {
+    "repo": "Comfy-Org/stable-diffusion-1.5",
+    "revision": "9cfd069101959ca3828bf9c04a4419870832b74f",
+    "file": "v1-5-pruned-emaonly-fp16.safetensors",
+    "bytes": 2132696762,
+    "sha256": "e9476a13728cd75d8279f6ec8bad753a66a1957ca375a1464dc63b37db6e3916",
+    "license": "creativeml-openrail-m"
+  },
+  "engine_revision": "2fb8cabd40be44d1e3b0d6f4f9100aa29aa9f881",
+  "engine_version": "0.42.0",
+  "engine_license": "GPL-3.0",
+  "engine_redistributed": false,
+  "device": "CPU",
+  "ram_limit_gib": 8,
+  "neural_language_weights_changed": false,
+  "voice_core_paused": true,
+  "visual_review": "Codex: coherent photographic interior with windows, chairs, vegetation and mountain view; not an independent human quality review."
+}

@@ -288,3 +288,4 @@ button:disabled { cursor: not-allowed; opacity: 0.4; }
 .capability-status[data-status=planejada],.capability-status[data-status=pausada]{background:#ffffff0c;color:#aaa3b8}
 .source-graph{border:1px solid #ffffff18;border-radius:12px;padding:8px;margin:12px 0;max-height:460px;overflow:auto}
 .source-graph svg{width:100%;min-width:300px}.source-graph [role=button]{cursor:pointer}
+.ai-jobs article{border:1px solid #ffffff20;border-radius:12px;padding:12px;margin:12px 0}.ai-jobs p{font-size:13px;line-height:1.5}.ai-jobs small{color:#aaa0c0}

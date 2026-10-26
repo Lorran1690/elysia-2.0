@@ -192,6 +192,7 @@ const App = () => {
     voice: <><PanelHead title="Voz" kicker="Pausada" onClose={() => setOpen(null)} /><p className="note-block">O Voice Core permanece pausado. Converse por texto; o avatar acompanha as respostas sem capturar microfone nem reproduzir áudio.</p></>,
     library: <VaultPanel onClose={() => setOpen(null)} />,
     code: <CodeStudioPanel onClose={() => setOpen(null)} />,
+    generation: <GenerationPanel onClose={() => setOpen(null)} />,
     media: <MediaStudioPanel onClose={() => setOpen(null)} />,
     workbench: <WorkbenchPanel onClose={() => setOpen(null)} />,
     capabilities: <CapabilitiesPanel onClose={() => setOpen(null)} onNavigate={setOpen} />,

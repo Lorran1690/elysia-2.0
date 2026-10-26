@@ -51,7 +51,8 @@ precisam de avaliação específica. Adicionar uma referência não instala a fe
 
 O memorando original está preservado em docs/MEMORANDO-FUNCIONAL-2026-10-26.md,
 com um aviso de planejamento. Alegações do documento não substituem as evidências
-do aplicativo; Stable Diffusion não está presente neste checkout. A interface e
+do aplicativo; o novo adaptador de difusão requer um motor separado, descrito
+em GENERATIVE-MEDIA.md. A interface e
 os testes distinguem planejamento, implementação parcial e recurso disponível.
 
 ## Verificação

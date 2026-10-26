@@ -76,7 +76,7 @@ const MediaStudioPanel = ({onClose}) => {
   return <><PanelHead title="Media Studio" kicker="Criação e exportação local" onClose={onClose}/>
     <div className="seg studio-tabs" role="tablist" aria-label="Área de mídia">{['Imagem','Áudio','Vídeo','Abrir arquivo'].map(v=><button key={v} role="tab" aria-selected={view===v} disabled={busy} onClick={()=>{setView(v);setError('');}}>{v}</button>)}</div>
     {view==='Abrir arquivo'?<LocalMediaPanel embedded onClose={onClose}/>:<div className="module-scroll">
-      <p className="note-block">Composição local, sem modelo de IA de mídia: crie artes, sons e animações a partir dos controles. Os arquivos só saem do computador ao serem enviados ou sincronizados por você.</p>
+      <p className="note-block">Para gerar cenas com modelos de IA, abra “Imagens e vídeos por IA” na barra lateral. Este painel oferece composição local, sem modelo de IA de mídia: crie artes, sons e animações a partir dos controles. Os arquivos só saem do computador ao serem enviados ou sincronizados por você.</p>
       {visual&&<><canvas className="studio-canvas" ref={canvas} aria-label="Prévia da composição"/>
         <div className="module-form"><label>Título<input aria-label="Título da composição" maxLength={120} disabled={busy} value={project.title} onChange={e=>set('title',e.target.value)}/></label>
         <label>Subtítulo<textarea aria-label="Subtítulo da composição" maxLength={240} rows={2} disabled={busy} value={project.subtitle} onChange={e=>set('subtitle',e.target.value)}/></label>

@@ -183,3 +183,9 @@ O aplicativo inclui [bancada de análise e catálogo de habilidades](interface/W
 com referência arquitetural ao Eleven e estados verificáveis. O
 [memorando funcional](docs/MEMORANDO-FUNCIONAL-2026-10-26.md) registra a visão
 de longo prazo; não representa uma lista de capacidades já concluídas.
+
+## Geração por modelos de mídia
+
+O EXE inclui um [adaptador de modelos de imagem e vídeo](interface/GENERATIVE-MEDIA.md)
+para ComfyUI local. Motor, pesos e GPU precisam ser configurados separadamente.
+As composições Canvas e o Cinema 3D continuam disponíveis e são recursos distintos.

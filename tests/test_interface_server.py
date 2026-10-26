@@ -9,6 +9,7 @@ import pytest
 
 from interface.server import Handler, validate_messages
 from memory.vault import Vault
+from actions.media_generation import MediaService
 
 
 @pytest.fixture
@@ -19,6 +20,7 @@ def web(tmp_path):
                 raise ValueError('Contexto cheio; inicie uma nova conversa.')
             return 'Olá, ' + messages[-1]['content']
     server = ThreadingHTTPServer(('127.0.0.1', 0), partial(Handler, core=Core(), vault=Vault(tmp_path/"vault.sqlite3")))
+    server.media_ai=MediaService(tmp_path/"media-ai")
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     def request(path, payload=None, origin=None, method=None):
@@ -103,3 +105,12 @@ def test_workbench_routes_are_local_bounded_and_read_only(web):
     status,body=web('/api/capabilities')
     assert status==200 and json.loads(body)['voice_core_paused'] is True
     assert web('/api/capabilities',origin='https://example.org')[0]==403
+
+
+def test_generation_routes_require_local_origin_and_valid_configuration(web):
+    assert web('/api/generation/status')[0]==200
+    assert web('/api/generation/probe',{'port':False})[0]==400
+    assert web('/api/generation/start',{'kind':'arbitrary'})[0]==400
+    assert web('/api/generation/status',origin='https://example.org')[0]==403
+    assert web('/api/generation/cancel',{'id':'missing'})[0]==400
+    assert web('/api/generation/file/not-a-job/0')[0]==404
