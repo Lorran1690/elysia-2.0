@@ -33,3 +33,9 @@ data/corpus-v0.5/** -text
 interface/web/vendor/** -text
 interface/web/index.html text eol=lf
 interface/web/src/** text eol=lf
+
+# Conversation-v3 preparation and its source notices are immutable audit inputs.
+data/conversation-v3/*.json text eol=lf
+data/conversation-v3/*.gz binary
+data/conversation-v3/SOURCE-* -text -whitespace
+reports/conversation-v3/** text eol=lf
