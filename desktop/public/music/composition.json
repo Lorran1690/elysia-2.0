@@ -1,0 +1,115 @@
+{
+  "original_synthetic_instrumentals": true,
+  "license": "CC0-1.0",
+  "no_external_samples": true,
+  "tracks": {
+    "aurora": {
+      "duration_seconds": 48,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -13.13,
+      "rms_dbfs": -24.0,
+      "sha256": "2ce418c69f97bbe72e39445da41437ad438571f779d57e47a247073bf6bddcb2",
+      "bytes": 769196,
+      "chords": [
+        [
+          50,
+          57,
+          62,
+          66
+        ],
+        [
+          47,
+          54,
+          59,
+          62
+        ],
+        [
+          43,
+          50,
+          55,
+          59
+        ],
+        [
+          45,
+          52,
+          57,
+          61
+        ]
+      ],
+      "bpm": 80
+    },
+    "orbita": {
+      "duration_seconds": 48,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -13.31,
+      "rms_dbfs": -24.0,
+      "sha256": "7228359c291cf2251cbb3a9ae216a696df8c5ad85953d64a68c71fd876c33092",
+      "bytes": 769196,
+      "chords": [
+        [
+          45,
+          52,
+          57,
+          60
+        ],
+        [
+          41,
+          48,
+          53,
+          57
+        ],
+        [
+          48,
+          55,
+          60,
+          64
+        ],
+        [
+          43,
+          50,
+          55,
+          59
+        ]
+      ],
+      "bpm": 80
+    },
+    "foco": {
+      "duration_seconds": 48,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -13.55,
+      "rms_dbfs": -24.0,
+      "sha256": "fc88ebfe97020af3b8446e37621fc9684f01b063953dc6c0a0d08c03c7795461",
+      "bytes": 769196,
+      "chords": [
+        [
+          48,
+          55,
+          60,
+          64
+        ],
+        [
+          45,
+          52,
+          57,
+          60
+        ],
+        [
+          41,
+          48,
+          53,
+          57
+        ],
+        [
+          43,
+          50,
+          55,
+          59
+        ]
+      ],
+      "bpm": 80
+    }
+  }
+}

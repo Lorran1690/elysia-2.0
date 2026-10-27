@@ -1,0 +1,92 @@
+name: Native Elysia Windows desktop
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/media-creation]
+    paths:
+      - 'desktop/**'
+      - 'interface/**'
+      - 'actions/**'
+      - 'memory/**'
+      - 'brain/**'
+      - 'scripts/test-installer-windows.py'
+      - '.github/workflows/native-desktop.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      CARGO_BUILD_JOBS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Verify native frontend
+        working-directory: desktop
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+          npm run build
+      - name: Verify Rust and build Tauri 2
+        working-directory: desktop
+        run: |
+          rustup default stable
+          cargo test --release --locked --manifest-path src-tauri/Cargo.toml
+          npm run tauri -- build --no-bundle
+      - name: Prepare Python core
+        run: |
+          python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-desktop-build.txt
+          python -m pip install playwright==1.56.0
+          python -m PyInstaller --noconfirm --clean --onedir --windowed --name Elysia --paths . --add-data "interface/web;interface/web" --add-data "artifacts/aira-dialogue-v1/run-001/sft-model.pt;artifacts/aira-dialogue-v1/run-001" --add-data "data/corpus-pt-v1/tokenizer/elysia-bpe.json;data/corpus-pt-v1/tokenizer" scripts/desktop-entry.py
+          python scripts/desktop-licenses.py dist/Elysia/licenses
+      - name: Assemble native app
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist/Elysia-native/core | Out-Null
+          Copy-Item dist/Elysia/* dist/Elysia-native/core -Recurse
+          Copy-Item desktop/src-tauri/target/release/elysia-desktop.exe dist/Elysia-native/Elysia.exe
+          Copy-Item desktop/README.md dist/Elysia-native/LEIA-ME.md
+          Copy-Item desktop/THIRD-PARTY-NOTICES.md dist/Elysia-native/THIRD-PARTY-NOTICES.md
+          python desktop/scripts/package-licenses.py dist/Elysia-native/THIRD-PARTY-LICENSES
+          Copy-Item interface/MODULES.md dist/Elysia-native/MODULES.md
+          Copy-Item interface/GENERATIVE-MEDIA.md dist/Elysia-native/GENERATIVE-MEDIA.md
+      - name: Build native installer
+        shell: pwsh
+        run: |
+          $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          & $compiler "/DAppSourceDir=$env:GITHUB_WORKSPACE\dist\Elysia-native" "/DAppOutputDir=$env:GITHUB_WORKSPACE" "/DAppVersion=2.1.$env:GITHUB_RUN_NUMBER" "/DAppIconFile=$env:GITHUB_WORKSPACE\desktop\src-tauri\icons\icon.ico" interface/installer/elysia.iss
+          if ($LASTEXITCODE -ne 0) { throw 'Native installer compilation failed.' }
+      - name: Verify real installed native WebView2 app and private data
+        run: python scripts/test-installer-windows.py Elysia-Setup-x64.exe --native
+      - name: Package and hash verified files
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist/Elysia-native -DestinationPath Elysia-Native-Windows-x64.zip
+          (Get-FileHash Elysia-Setup-x64.exe -Algorithm SHA256).Hash | Out-File Elysia-Setup-x64.sha256 -Encoding ascii
+          (Get-FileHash Elysia-Native-Windows-x64.zip -Algorithm SHA256).Hash | Out-File Elysia-Native-Windows-x64.sha256 -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Elysia-native-Windows
+          path: |
+            Elysia-Setup-x64.exe
+            Elysia-Setup-x64.sha256
+            Elysia-Native-Windows-x64.zip
+            Elysia-Native-Windows-x64.sha256
+            installer-verification.json
+          retention-days: 90
+      - name: Publish verified native app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = "native-$($env:GITHUB_SHA.Substring(0,12))"
+          gh release create $tag Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 Elysia-Native-Windows-x64.zip Elysia-Native-Windows-x64.sha256 installer-verification.json --target $env:GITHUB_SHA --prerelease --title "Elysia Desktop nativa · $tag" --notes-file desktop/RELEASE-NOTES.md

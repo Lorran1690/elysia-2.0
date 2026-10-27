@@ -1,25 +1,6 @@
-name: Windows desktop app
+name: Legacy Windows desktop app
 on:
   workflow_dispatch:
-  push:
-    branches: [feature/windows-desktop-app, fix/windows-black-screen, feature/local-modules, feature/media-creation]
-    paths:
-      - 'interface/**'
-      - 'brain/**'
-      - 'actions/**'
-      - 'memory/**'
-      - 'scripts/desktop-*.py'
-      - 'scripts/test-desktop-browser.py'
-      - 'scripts/test-media-browser.py'
-      - 'scripts/test-continuous-browser.py'
-      - 'scripts/test-workbench-browser.py'
-      - 'scripts/test-generation-browser.py'
-      - 'scripts/test-avatar-browser.py'
-      - 'scripts/test-installer-windows.py'
-      - 'requirements-desktop-build.txt'
-      - '.github/workflows/desktop.yml'
-      - 'artifacts/aira-dialogue-v1/run-001/sft-model.pt'
-      - 'data/corpus-pt-v1/tokenizer/elysia-bpe.json'
 permissions:
   contents: write
 jobs:

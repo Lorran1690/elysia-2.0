@@ -14,6 +14,7 @@ import winreg
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('installer', type=Path)
+parser.add_argument('--native', action='store_true')
 parser.add_argument('--output', type=Path, default=Path('installer-verification.json'))
 args = parser.parse_args()
 if sys.platform != 'win32': raise SystemExit('Windows is required for a real installer test.')
@@ -49,12 +50,15 @@ with tempfile.TemporaryDirectory(prefix='elysia-installer-') as tmp:
         command = [installer, '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-', '/DIR='+str(destination)]
         installed = True
         run([*command, '/LOG='+str(root/'install.log')])
-        assert executable.is_file() and (destination/'_internal/interface/web/src/avatar-rig.js').is_file()
-        assert (destination/'_internal/interface/web/assets/avatar-body.png').is_file()
+        core_dir = destination/'core' if args.native else destination
+        assert executable.is_file() and (core_dir/'_internal/interface/web/src/avatar-rig.js').is_file()
+        assert (core_dir/'_internal/interface/web/assets/avatar-body.png').is_file()
         assert (shortcuts/'Elysia.lnk').is_file()
         reg = registration(); assert Path(reg['InstallLocation']) == destination
         report_file = root/'installed-smoke.json'
-        run([executable, '--smoke-test', report_file], env=env)
+        run([core_dir/'Elysia.exe', '--smoke-test', report_file], env=env)
+        if args.native:
+            run([sys.executable, 'desktop/scripts/test-ui.py', '--native', executable, '--output', root/'native-ui'], timeout=300)
         smoke = json.loads(report_file.read_text(encoding='utf-8'))
         assert smoke['passed'] and smoke['frozen']
         # Reinstall into the same directory, retaining owner files and registration.

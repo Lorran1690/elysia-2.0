@@ -1,0 +1,1 @@
+Elysia original synthetic instrumental music. CC0 1.0 Universal. No external samples or voice recordings. Reproduce with desktop/scripts/compose-music.py.

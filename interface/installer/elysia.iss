@@ -10,6 +10,9 @@
 #endif
 
 [Setup]
+#ifdef AppIconFile
+SetupIconFile={#AppIconFile}
+#endif
 AppId={{620794CC-B5EE-48C0-998D-045C155A2F87}
 AppName=Elysia
 AppVersion={#AppVersion}

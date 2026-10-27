@@ -43,7 +43,7 @@ const DriveDestination = ({file}) => {
   </section>;
 };
 
-const MediaStudioPanel = ({onClose}) => {
+const MediaStudioPanel = ({onClose,studioOnly=false}) => {
   const engine=window.ElysiaMedia;
   const [view,setView]=useStateC('Imagem'),[project,setProject]=useStateC(()=>JSON.parse(JSON.stringify(engine.DEFAULT)));
   const [output,setOutput]=useStateC(null),[error,setError]=useStateC(''),[busy,setBusy]=useStateC(false),[progress,setProgress]=useStateC(0);
@@ -74,9 +74,9 @@ const MediaStudioPanel = ({onClose}) => {
   const restore=async file=>{if(!file)return;try{if(file.size>3*1024*1024)throw new Error('Projeto grande demais.');const p=engine.validate(JSON.parse(await file.text()));setProject(p);setOutput(null);setError('');}catch(err){setError(err.message);}};
   const visual=view==='Imagem'||view==='Vídeo';
   return <><PanelHead title="Media Studio" kicker="Criação e exportação local" onClose={onClose}/>
-    <div className="seg studio-tabs" role="tablist" aria-label="Área de mídia">{['Imagem','Áudio','Vídeo','Abrir arquivo'].map(v=><button key={v} role="tab" aria-selected={view===v} disabled={busy} onClick={()=>{setView(v);setError('');}}>{v}</button>)}</div>
+    <div className="seg studio-tabs" role="tablist" aria-label="Área de mídia">{(studioOnly?['Imagem','Áudio','Vídeo']:['Imagem','Áudio','Vídeo','Abrir arquivo']).map(v=><button key={v} role="tab" aria-selected={view===v} disabled={busy} onClick={()=>{setView(v);setError('');}}>{v}</button>)}</div>
     {view==='Abrir arquivo'?<LocalMediaPanel embedded onClose={onClose}/>:<div className="module-scroll">
-      <p className="note-block">Para gerar cenas com modelos de IA, abra “Imagens e vídeos por IA” na barra lateral. Este painel oferece composição local, sem modelo de IA de mídia: crie artes, sons e animações a partir dos controles. Os arquivos só saem do computador ao serem enviados ou sincronizados por você.</p>
+      <p className="note-block">Para gerar cenas com modelos de IA, use a área de geração por IA. Este painel oferece composição local, sem modelo de IA de mídia: crie artes, sons e animações a partir dos controles. Os arquivos só saem do computador ao serem enviados ou sincronizados por você.</p>
       {visual&&<><canvas className="studio-canvas" ref={canvas} aria-label="Prévia da composição"/>
         <div className="module-form"><label>Título<input aria-label="Título da composição" maxLength={120} disabled={busy} value={project.title} onChange={e=>set('title',e.target.value)}/></label>
         <label>Subtítulo<textarea aria-label="Subtítulo da composição" maxLength={240} rows={2} disabled={busy} value={project.subtitle} onChange={e=>set('subtitle',e.target.value)}/></label>
@@ -102,7 +102,7 @@ const MediaStudioPanel = ({onClose}) => {
   </>;
 };
 
-const CodeStudioPanel = ({onClose}) => {
+const CodeStudioPanel = ({onClose,editorOnly=false}) => {
   const [view,setView]=useStateC('Editor'),[language,setLanguage]=useStateC('python'),[title,setTitle]=useStateC('Meu projeto'),[code,setCode]=useStateC(''),[message,setMessage]=useStateC(''),[busy,setBusy]=useStateC(false);
   const [preview,setPreview]=useStateC(false);
   useEffectC(()=>{try{const saved=JSON.parse(localStorage.getItem('elysia.code.draft.v1')||'null');if(saved&&['python','javascript','html','css','json'].includes(saved.language)&&typeof saved.code==='string'&&saved.code.length<=20000){setLanguage(saved.language);setCode(saved.code);}}catch{}},[]);
@@ -119,7 +119,7 @@ const CodeStudioPanel = ({onClose}) => {
     }));
     safeHTML=safeHTML.slice(0,safeHTML.length-code.length)+document.documentElement.outerHTML;
   }
-  return <><PanelHead title="Código e ferramentas" kicker="Editor local" onClose={onClose}/><div className="seg" role="tablist" aria-label="Área de código">{['Editor','Ferramentas'].map(v=><button role="tab" key={v} aria-selected={view===v} onClick={()=>setView(v)}>{v}</button>)}</div>
+  return <><PanelHead title="Código e ferramentas" kicker="Editor local" onClose={onClose}/>{!editorOnly&&<div className="seg" role="tablist" aria-label="Área de código">{['Editor','Ferramentas'].map(v=><button role="tab" key={v} aria-selected={view===v} onClick={()=>setView(v)}>{v}</button>)}</div>}
     {view==='Ferramentas'?<WorkspacePanel embedded onClose={onClose}/>:<div className="module-scroll"><p className="note-block">Edite, valide e baixe arquivos. Os modelos iniciais são estruturas prontas, sem geração por IA e sem execução de programas.</p>
       <div className="module-form"><label>Linguagem<select aria-label="Linguagem do código" value={language} disabled={busy} onChange={e=>{const next=e.target.value;setLanguage(next);setPreview(false);setMessage('');try{localStorage.setItem('elysia.code.draft.v1',JSON.stringify({language:next,code}));}catch{setMessage('Baixe o arquivo para preservar seu código.');}}}>{Object.keys(ext).map(v=><option key={v}>{v}</option>)}</select></label>
       <label>Nome do projeto<input aria-label="Nome do projeto de código" value={title} maxLength={80} disabled={busy} onChange={e=>setTitle(e.target.value)}/></label>

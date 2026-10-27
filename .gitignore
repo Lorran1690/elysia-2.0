@@ -47,3 +47,12 @@ elysia-workbench-*.json
 # Private generative media jobs, prompts and downloaded outputs.
 elysia-ai-*.json
 media-ai/
+
+# Native desktop build products and private UI exports.
+desktop/node_modules/
+desktop/dist/
+desktop/src-tauri/target/
+desktop/public/assets/
+desktop/public/src/
+desktop/public/vendor/
+elysia-interface-backup-*.json
