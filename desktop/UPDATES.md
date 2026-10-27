@@ -43,9 +43,10 @@ O workflow publica o manifesto somente após os testes do pacote instalado, junt
 ao instalador e seus relatórios. Testes Rust verificam URLs, identidade, hashes,
 truncamento, corrupção, repetição e downgrade. A reinstalação real do pacote no
 Windows verifica a preservação dos dados privados. O teste da interface consulta
-o atualizador real. Separadamente, uma fixture de IPC exercita os estados visuais
-de disponibilidade, download e instalação, sem baixar ou executar arquivos. Essa
-fixture não existe no transporte de produção. A atualização futura completa de
+o atualizador e sua interface reais no Windows. Separadamente, uma fixture de IPC
+no Chromium Linux exercita os estados visuais de disponibilidade, progresso,
+download e instalação, sem baixar ou executar arquivos. Essa fixture não existe
+no transporte de produção e não substitui a ponte imutável do Tauri. A atualização futura completa de
 uma versão para outra permanece distinta dessas verificações.
 
 Referências utilizadas: [Tauri 2.12.5 AppHandle](https://docs.rs/tauri/2.12.5/tauri/struct.AppHandle.html),

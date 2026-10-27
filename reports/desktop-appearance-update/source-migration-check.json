@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "actual_tauri_webview2": false,
+  "legacy_preferences_migrated": true,
+  "new_private_preferences_win_over_legacy": true,
+  "center_controls_visible_at_850x600_and_125_percent_text": true,
+  "center_blocks_background_shortcut": true
+}

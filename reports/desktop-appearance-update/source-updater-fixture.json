@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actual_tauri_webview2": false,
+  "all_native_commands_simulated": true,
+  "github_network_download_and_installer_executed": false,
+  "manual_check_only": true,
+  "available_download_progress_verified_and_install_states": true,
+  "private_store_flushed_before_install": true,
+  "javascript_errors": []
+}

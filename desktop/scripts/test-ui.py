@@ -143,8 +143,9 @@ try:
   assert page.get_by_label('Cor inicial (hexadecimal)',exact=True).input_value()=='#123abc'
   assert not page.get_by_role('checkbox',name='Acenar ao abrir',exact=False).is_checked()
   if a.native:
-   # Query real Rust state and its install guard. Release availability/download
-   # UI uses an explicit IPC fixture; it never downloads or launches an installer.
+   # Query real Rust state, its install guard, and the real update interface.
+   # Tauri deliberately makes its native invoke bridge immutable. Future-release
+   # UI fixtures run separately in a browser, never inside this native window.
    real_info=page.evaluate("window.__TAURI_INTERNALS__.invoke('updater_info')")
    assert real_info['supported'] and real_info['installed'] and real_info['current_version']=='2.2.0'
    assert real_info['current_build']>0 and len(real_info['current_source'])==40
@@ -152,22 +153,12 @@ try:
    assert guard
    actual_check=page.evaluate("window.__TAURI_INTERNALS__.invoke('check_update')")
    assert actual_check['supported'] and actual_check['status'] in ('up-to-date','available')
-   page.evaluate("""()=>{const original=window.__TAURI_INTERNALS__.invoke;window.__elysiaOriginalInvoke=original;window.__elysiaUpdateCalls=[];
-    window.__TAURI_INTERNALS__.invoke=async(cmd,args,opts)=>{if(['check_update','download_update','install_update'].includes(cmd)){window.__elysiaUpdateCalls.push(cmd);
-     if(cmd==='check_update')return {supported:true,installed:true,current_version:'2.2.0',current_build:1,current_source:'0'.repeat(40),status:'available',candidate:{version:'2.2.1',build:999999,source_sha:'a'.repeat(40),tag:'native-'+ 'a'.repeat(12),bytes:150000000,sha256:'b'.repeat(64),release_url:'https://github.com/Lorran1690/elysia-2.0/releases/tag/native-'+ 'a'.repeat(12)}};
-     if(cmd==='download_update')return {verified:true,version:'2.2.1',build:999999,bytes:150000000,sha256:'b'.repeat(64)};
-     throw Error('Fixture: instalação impedida para manter o teste aberto.');
-    }return original(cmd,args,opts)};}""")
    page.get_by_role('button',name='Atualizar Elysia',exact=True).click()
-   page.get_by_role('button',name='Baixar atualização',exact=True).wait_for()
-   assert page.evaluate('window.__elysiaUpdateCalls')==['check_update']
-   page.get_by_role('button',name='Baixar atualização',exact=True).click()
-   page.get_by_role('button',name='Fechar Elysia e instalar',exact=True).wait_for()
+   page.get_by_role('button',name='Verificar atualizações',exact=True).wait_for()
+   wait_js(page,"!document.querySelector('.update-card button').disabled",timeout=60000)
+   assert page.get_by_role('region',name='Atualizações da Elysia',exact=True).get_by_text('Versão 2.2.0',exact=False).is_visible()
+   assert not page.locator('.update-card [role=alert]').count()
    page.screenshot(path=str(a.output/'settings-update.png'))
-   page.get_by_role('button',name='Fechar Elysia e instalar',exact=True).click()
-   page.get_by_role('alert').filter(has_text='Fixture: instalação impedida').wait_for()
-   assert page.evaluate('window.__elysiaUpdateCalls')==['check_update','download_update','install_update']
-   page.evaluate('window.__TAURI_INTERNALS__.invoke=window.__elysiaOriginalInvoke')
   page.get_by_role('button',name='Som e música',exact=True).click()
   page.get_by_role('button',name='Reproduzir música',exact=True).click()
   wait_js(page,"document.querySelector('audio[data-owner=elysia-background]').currentTime > .2",timeout=20000)
@@ -257,7 +248,7 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'appearance_controls_persisted':True,'centered_single_renderer_and_escape':True,'original_avatar_and_orb_assets_preserved':True,'updater_native_install_guard_checked':bool(a.native),'updater_real_github_check':bool(a.native),'updater_ui_simulated_release_download_install':bool(a.native),'updater_real_network_download_evaluated':False,'interface_text_scaling':True,'welcome_heading_initially_in_viewport':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'appearance_controls_persisted':True,'centered_single_renderer_and_escape':True,'original_avatar_and_orb_assets_preserved':True,'updater_native_install_guard_checked':bool(a.native),'updater_real_github_check':bool(a.native),'updater_ui_simulated_release_download_install':False,'updater_real_network_download_evaluated':False,'interface_text_scaling':True,'welcome_heading_initially_in_viewport':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:
