@@ -1,0 +1,14 @@
+{
+  "format": "elysia-native-update-v1",
+  "repository": "Lorran1690/elysia-2.0",
+  "version": "2.2.0",
+  "build": 10,
+  "source_sha": "9781d75fd4abd9c99d2c9dde29f173822e995a33",
+  "tag": "native-9781d75fd4ab",
+  "installer": {
+    "name": "Elysia-Setup-x64.exe",
+    "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/Elysia-Setup-x64.exe",
+    "bytes": 151563728,
+    "sha256": "4b715f21d0c9bc7304edaa0dbf2fa44da7aae9b0ad343ea719b3a51c037703a0"
+  }
+}

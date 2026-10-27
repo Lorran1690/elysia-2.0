@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "source_commit": "9781d75fd4abd9c99d2c9dde29f173822e995a33",
+  "version": "2.2.0",
+  "build": 10,
+  "release": "https://github.com/Lorran1690/elysia-2.0/releases/tag/native-9781d75fd4ab",
+  "native_workflow": {
+    "url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40533155914",
+    "conclusion": "success"
+  },
+  "windows_linux_tests": {
+    "url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40533156025",
+    "conclusion": "success"
+  },
+  "rust_unit_tests_passed": 6,
+  "verified_public_downloads": [
+    {
+      "name": "Elysia-Setup-x64.exe",
+      "bytes": 151563728,
+      "sha256": "4b715f21d0c9bc7304edaa0dbf2fa44da7aae9b0ad343ea719b3a51c037703a0",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/Elysia-Setup-x64.exe"
+    },
+    {
+      "name": "elysia-update.json",
+      "bytes": 503,
+      "sha256": "c21c62dabc900cf3b4333925361738cdf8788e255ffbf063aef929abfbe08f31",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/elysia-update.json"
+    },
+    {
+      "name": "installer-verification.json",
+      "bytes": 440,
+      "sha256": "484b7be2039cdc7587510b35ac7f4bc844bf3f4bc41a99da9d7a615dd78c3956",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/installer-verification.json"
+    },
+    {
+      "name": "presence-center.png",
+      "bytes": 279469,
+      "sha256": "8431b8059209e23b7c07e63ddd260198d200972e6a4e813e8d20e3f0760776af",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/presence-center.png"
+    },
+    {
+      "name": "settings-appearance.png",
+      "bytes": 66889,
+      "sha256": "b228ab3de3546135b6f487c793c3d472e7f175cabb43e75ef15f58bd8968699e",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/settings-appearance.png"
+    },
+    {
+      "name": "settings-update.png",
+      "bytes": 68273,
+      "sha256": "2821bd62af76d698c437fcfc98b8943c390a2847bee8e0c64973180cac1c4362",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/settings-update.png"
+    },
+    {
+      "name": "ui-verification.json",
+      "bytes": 1029,
+      "sha256": "45bbf9e454e7a2fbebcaf724b5398e5bab1b5d90ccf78981a11c3d488706f9d8",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/ui-verification.json"
+    }
+  ],
+  "updater_full_future_version_download_and_install_evaluated": false,
+  "installed_on_owner_computer": false,
+  "private_conversations_in_git": false,
+  "unchanged_avatar_orb_and_neural_files": "preserved-files.json"
+}

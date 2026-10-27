@@ -1,19 +1,25 @@
 # E.L.Y.S.I.A. 2.0
 
-## Elysia Desktop nativa · Tauri 2
+## Elysia Desktop 2.2 · Tauri 2
 
-[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Setup-x64.exe) · [Ver a interface](reports/native-desktop/windows-conversation.png) · [Configurações de música](reports/native-desktop/windows-settings-audio.png).
+[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/Elysia-Setup-x64.exe) · [Presença no centro](reports/desktop-appearance-update/windows-presence-center.png) · [Atualizações no app](reports/desktop-appearance-update/windows-settings-update.png).
 
 Janela desktop Tauri 2, frontend React/TypeScript compilado com Vite, estilos
 Tailwind, integração Rust e preferências/conversas em SQLite privado. Quatro áreas
 consolidadas, configurações amplas, busca por atalhos e três músicas originais com
-volume e seleção. Ícone aprovado pelo proprietário; avatares, orbes e pesos do
+volume e seleção. Controles de orbes e avatares em Aparência, com paletas, partículas,
+movimento e visualização central. Botão Atualizar Elysia no topo e em Sistema, com
+download e SHA-256 antes de abrir o instalador. Ícone aprovado pelo proprietário; avatares, orbes e pesos do
 Neural Core preservados. [Guia da versão nativa](desktop/README.md).
 
-Instalação, atualização, remoção, reabertura do histórico, som, biblioteca, cinema
+Instalação, reinstalação, remoção, reabertura do histórico, som, biblioteca, cinema
 e ferramentas foram verificados na janela WebView2 real do Windows. O instalador
 prepara o WebView2 se necessário. O fluxo em uma máquina sem Runtime é documentado;
-o runner de validação já o tinha instalado. [Relatórios](reports/native-desktop/README.md).
+o runner de validação já o tinha instalado. [Relatórios](reports/desktop-appearance-update/README.md).
+
+Instale esta versão uma vez para receber o botão de atualização. Depois, use
+**Configurações → Sistema → Verificar atualizações** para baixar e abrir a
+instalação das próximas versões pelo próprio aplicativo.
 
 Para trazer conversas do app anterior, exporte o backup e importe em Configurações
 → Dados e privacidade. Registros privados não são enviados ao GitHub. Esta entrega
