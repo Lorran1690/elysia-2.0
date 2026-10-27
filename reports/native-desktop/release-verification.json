@@ -1,0 +1,75 @@
+{
+  "app_source_commit": "aebf8e6c70ebaf998a801362fcc3113c18ce68e3",
+  "release_url": "https://github.com/Lorran1690/elysia-2.0/releases/tag/native-aebf8e6c70eb",
+  "tag": "native-aebf8e6c70eb",
+  "windows_workflow": 40493188663,
+  "windows_job": 122151957420,
+  "windows_conclusion": "success",
+  "cross_platform_tests_workflow": 40493188733,
+  "cross_platform_tests_conclusion": "success",
+  "framework": "Tauri 2 + React / TypeScript + Vite + Tailwind + Rust",
+  "native_window_tested": true,
+  "personal_data_storage": "local SQLite; not uploaded to GitHub",
+  "avatar_orb_and_reference_bytes_unchanged": true,
+  "neural_weights_unchanged": true,
+  "voice_core": "paused",
+  "realistic_neural_video_goal_completed": false,
+  "installed_on_owner_computer": false,
+  "missing_webview2_install_branch_executed_in_ci": false,
+  "assets": [
+    {
+      "name": "conversation.png",
+      "bytes": 126065,
+      "sha256": "aa2d1835770dcad3d4faf8210df4210b5ab6a2abc85dcc16cd30319843aa1049",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/conversation.png"
+    },
+    {
+      "name": "Elysia-Native-Windows-x64.sha256",
+      "bytes": 66,
+      "sha256": "7df364ba237bc0c66086b639b1f9e51191a745f193b64fcb3e2804be7e57bddb",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Native-Windows-x64.sha256"
+    },
+    {
+      "name": "Elysia-Native-Windows-x64.zip",
+      "bytes": 172744437,
+      "sha256": "c3528842433b57c5595729e6eceed3483c6f5cc46211ea0b30acfd7573de5629",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Native-Windows-x64.zip"
+    },
+    {
+      "name": "Elysia-Setup-x64.exe",
+      "bytes": 151487728,
+      "sha256": "f10dbc80057a8141ceb252fac4fc933d541f3f46cafb27f7206c636bfb0d407f",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Setup-x64.exe"
+    },
+    {
+      "name": "Elysia-Setup-x64.sha256",
+      "bytes": 66,
+      "sha256": "c98d66961460cde8d5840be72c2ce677c7f6b88e0bf61586a8da00924e50da98",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Setup-x64.sha256"
+    },
+    {
+      "name": "installer-verification.json",
+      "bytes": 440,
+      "sha256": "484b7be2039cdc7587510b35ac7f4bc844bf3f4bc41a99da9d7a615dd78c3956",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/installer-verification.json"
+    },
+    {
+      "name": "settings-audio.png",
+      "bytes": 86795,
+      "sha256": "4ff9e43f74c7426c7ace927290ebb74a6bee57640d8757de4e39b65dbd068849",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/settings-audio.png"
+    },
+    {
+      "name": "ui-verification.json",
+      "bytes": 687,
+      "sha256": "acd8edf4a3d60ee032912fbff0c7eafec9dffdf2779bc5f8944587287ecc13c9",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/ui-verification.json"
+    },
+    {
+      "name": "webview2-prerequisite.json",
+      "bytes": 718,
+      "sha256": "7772e0f135c25307be872bc94ce7231ab30b96f02144d9f6c792d2ddac1eaf45",
+      "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/webview2-prerequisite.json"
+    }
+  ]
+}

@@ -1,6 +1,26 @@
 # E.L.Y.S.I.A. 2.0
 
-## Aplicativo Windows instalável
+## Elysia Desktop nativa · Tauri 2
+
+[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-aebf8e6c70eb/Elysia-Setup-x64.exe) · [Ver a interface](reports/native-desktop/windows-conversation.png) · [Configurações de música](reports/native-desktop/windows-settings-audio.png).
+
+Janela desktop Tauri 2, frontend React/TypeScript compilado com Vite, estilos
+Tailwind, integração Rust e preferências/conversas em SQLite privado. Quatro áreas
+consolidadas, configurações amplas, busca por atalhos e três músicas originais com
+volume e seleção. Ícone aprovado pelo proprietário; avatares, orbes e pesos do
+Neural Core preservados. [Guia da versão nativa](desktop/README.md).
+
+Instalação, atualização, remoção, reabertura do histórico, som, biblioteca, cinema
+e ferramentas foram verificados na janela WebView2 real do Windows. O instalador
+prepara o WebView2 se necessário. O fluxo em uma máquina sem Runtime é documentado;
+o runner de validação já o tinha instalado. [Relatórios](reports/native-desktop/README.md).
+
+Para trazer conversas do app anterior, exporte o backup e importe em Configurações
+→ Dados e privacidade. Registros privados não são enviados ao GitHub. Esta entrega
+altera a interface e a integração desktop; não melhora os modelos de geração.
+
+
+## Versão anterior do aplicativo Windows
 
 [Baixar instalador Elysia-Setup-x64.exe](https://github.com/Lorran1690/elysia-2.0/releases/download/desktop-53d215020157/Elysia-Setup-x64.exe).
 

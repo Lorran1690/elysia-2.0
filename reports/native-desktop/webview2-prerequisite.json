@@ -1,0 +1,14 @@
+{
+  "source_url": "https://go.microsoft.com/fwlink/p/?LinkId=2124703",
+  "file": "MicrosoftEdgeWebview2Setup.exe",
+  "bytes": 1888472,
+  "sha256": "ca4c9016c70e2184c5e231662e0e98abf4826647180ef3faab32fcb1ca2ec15e",
+  "signature_status": "Valid",
+  "signer_subject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+  "signer_thumbprint": "4028CAD637509D4744B17EC5B42AED8D7A31E6AF",
+  "product_version": "1.3.303.7",
+  "runtime_registry_guid": "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}",
+  "installer_arguments": "/silent /install",
+  "installed_only_when_absent": true,
+  "default_scope": "per-user without elevation; Microsoft Edge Updater may promote to per-machine"
+}

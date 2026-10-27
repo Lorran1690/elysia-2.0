@@ -31,3 +31,17 @@ autenticado no build, para preparar o Runtime somente se ausente. A instalação
 desse pré-requisito pode precisar de internet; não é um motor de geração remoto.
 O fluxo de instalação em máquina sem Runtime é documentado e compilado; a execução
 no runner usa o Runtime já instalado.
+
+## Pacote Windows verificado
+
+[Instalador nativo](https://github.com/Lorran1690/elysia-2.0/releases/tag/native-aebf8e6c70eb), fonte `aebf8e6c70ebaf998a801362fcc3113c18ce68e3`.
+`windows-ui-verification.json` e `windows-installer-verification.json` vieram da
+Release e foram conferidos contra os digests publicados. As capturas Windows são
+da janela nativa real, com perfil e dados sintéticos isolados. O relatório confirma
+reprodução de áudio, volume, troca de faixa, temas, fontes, histórico SQLite,
+proteção contra sobrescrita em falha de restauração, biblioteca, código, composição,
+cinema e busca. Não mede inteligência nem vídeo neural. Incluídos 550 arquivos de
+licença/atribuição de dependências Rust e os avisos npm/Python.
+
+`release-verification.json` registra URLs, tamanhos e SHA-256 observados dos assets.
+O aplicativo não foi instalado no computador do proprietário por esta sessão.
