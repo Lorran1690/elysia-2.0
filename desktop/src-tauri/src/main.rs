@@ -1,4 +1,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+mod updater;
 use serde::Serialize;
 use std::{
     collections::HashMap,
@@ -265,7 +266,7 @@ fn write_selected_export(
 }
 #[tauri::command]
 fn diagnostics(state: tauri::State<Desktop>) -> serde_json::Value {
-    serde_json::json!({"app":"Elysia Desktop","version":"2.1.0","window":"Tauri 2 / WebView2","storage":"SQLite local privado","data_directory":state.data.to_string_lossy(),"neural_weights":"checkpoint próprio anterior preservado","comfyui":"motor e modelos externos instalados separadamente","voice_core":"pausado","startup_error":state.startup_error})
+    serde_json::json!({"app":"Elysia Desktop","version":env!("CARGO_PKG_VERSION"),"build":env!("ELYSIA_BUILD_NUMBER"),"source":env!("ELYSIA_BUILD_SHA"),"window":"Tauri 2 / WebView2","storage":"SQLite local privado","data_directory":state.data.to_string_lossy(),"neural_weights":"checkpoint próprio anterior preservado","comfyui":"motor e modelos externos instalados separadamente","voice_core":"pausado","startup_error":state.startup_error})
 }
 fn launch_core() -> (Option<Child>, Option<String>) {
     if std::net::TcpStream::connect_timeout(
@@ -338,6 +339,7 @@ fn main() {
                 folders: Mutex::new(HashMap::new()),
                 data: private_dir(),
             });
+            app.manage(updater::Updater::default());
             // Keep the initial window inside common HD monitors and DPI scales.
             if let Some(window) = app.get_webview_window("main") {
                 if let Ok(Some(monitor)) = window.current_monitor() {
@@ -360,7 +362,11 @@ fn main() {
             pick_export_folder,
             export_exists,
             write_selected_export,
-            diagnostics
+            diagnostics,
+            updater::updater_info,
+            updater::check_update,
+            updater::download_update,
+            updater::install_update
         ])
         .build(context)
         .expect("Não foi possível abrir a Elysia");

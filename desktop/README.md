@@ -1,4 +1,4 @@
-# Elysia Desktop 2.1
+# Elysia Desktop 2.2
 
 Aplicativo desktop Tauri 2 para Windows 10/11 x64. Interface React 18 e TypeScript,
 compilada com Vite e estilizada com Tailwind. Esta janela usa o WebView2 do Windows;
@@ -28,6 +28,17 @@ seleção, pausa, redução durante respostas e pausa ao ocultar a janela. Arqui
 pessoais podem ser adicionados à sessão. Não há reprodução automática ao iniciar.
 O visualizador musical usa Three.js e React Three Fiber; GSAP anima somente painéis.
 
+Em Aparência, os controles dos orbes e avatares incluem escolha de forma, modelo,
+paletas e gradientes personalizados, tamanho, velocidade, partículas, transformação
+e aceno. As escolhas ficam no SQLite e nos backups privados. **Ver no centro**
+abre uma visualização ampla com Orbe/Avatar/Automático, ajuste à tela e retorno por
+Esc. O botão de presença no topo funciona em qualquer área.
+
+Em **Sistema → Verificar atualizações**, o próprio aplicativo busca novas versões
+no GitHub, baixa e verifica o instalador e permite abrir a instalação na pasta
+atual. A versão anterior precisa receber este instalador uma vez para adquirir
+o botão. Veja [funcionamento e verificação das atualizações](UPDATES.md).
+
 Avatar, rig, orbe e PNGs originais são compilados sem alteração dos arquivos fonte.
 Nenhuma modelagem no Blender ou animação do avatar foi refeita nesta atualização.
 O ícone foi gerado como proposta, mostrado e aprovado pelo proprietário antes da
@@ -46,7 +57,8 @@ existentes não são sobrescritos automaticamente.
 Backups de conversas do aplicativo anterior podem ser importados em Dados e
 privacidade. Não há migração automática do perfil de navegador antigo para o novo
 WebView2. Exporte o histórico anterior antes de desinstalar a versão antiga.
-Preferências de aparência existentes no armazenamento da mesma origem são lidas;
+Preferências antigas de aparência no armazenamento da mesma origem são migradas
+para o SQLite quando ainda não há ajustes novos;
 cores, amostragem e rig do avatar não são substituídos pelas cores da interface.
 
 Esta atualização não altera o Neural Core, treinamento, geração por IA ou capacidade

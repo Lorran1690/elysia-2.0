@@ -1,12 +1,14 @@
+import {appearanceDefaults,normalizeAppearance,type Appearance} from './appearance.ts';
 export type View='chat'|'vault'|'create'|'develop'|'settings';
 export type Message={role:'user'|'assistant';content:string};
 export type Chat={id:string;title:string;messages:Message[];archived:boolean;updated:number};
-export type Preferences={theme:'dark'|'light'|'system';accent:'violet'|'ocean'|'rose';density:'comfortable'|'compact';fontSize:number;reduceMotion:boolean;sidebar:boolean;presence:boolean;enterToSend:boolean;timestamps:boolean;rememberChats:boolean;confirmDelete:boolean;musicVolume:number;musicTrack:string;pauseHidden:boolean;duckMusic:boolean;highContrast:boolean};
-export const defaults:Preferences={theme:'dark',accent:'violet',density:'comfortable',fontSize:100,reduceMotion:false,sidebar:true,presence:true,enterToSend:true,timestamps:false,rememberChats:true,confirmDelete:true,musicVolume:18,musicTrack:'aurora',pauseHidden:true,duckMusic:true,highContrast:false};
+export type Preferences={appearance:Appearance;theme:'dark'|'light'|'system';accent:'violet'|'ocean'|'rose';density:'comfortable'|'compact';fontSize:number;reduceMotion:boolean;sidebar:boolean;presence:boolean;enterToSend:boolean;timestamps:boolean;rememberChats:boolean;confirmDelete:boolean;musicVolume:number;musicTrack:string;pauseHidden:boolean;duckMusic:boolean;highContrast:boolean};
+export const defaults:Preferences={appearance:{...appearanceDefaults,custom:{...appearanceDefaults.custom}},theme:'dark',accent:'violet',density:'comfortable',fontSize:100,reduceMotion:false,sidebar:true,presence:true,enterToSend:true,timestamps:false,rememberChats:true,confirmDelete:true,musicVolume:18,musicTrack:'aurora',pauseHidden:true,duckMusic:true,highContrast:false};
 export type Store={format:'elysia-interface-v2';prefs:Preferences;chats:Chat[];active:string};
 export const fresh=():Chat=>({id:crypto.randomUUID(),title:'Nova conversa',messages:[],archived:false,updated:Date.now()});
 export function normalizePrefs(raw:unknown):Preferences {
- const p={...defaults};if(!raw||typeof raw!=='object')return p;const r=raw as Record<string,unknown>;
+ const p={...defaults,appearance:normalizeAppearance(null)};if(!raw||typeof raw!=='object')return p;const r=raw as Record<string,unknown>;
+ p.appearance=normalizeAppearance(r.appearance);
  for(const k of Object.keys(p) as (keyof Preferences)[]){if(typeof p[k]==='boolean'&&typeof r[k]==='boolean')(p as any)[k]=r[k];}
  for(const [key,allowed] of Object.entries({theme:['dark','light','system'],accent:['violet','ocean','rose'],density:['comfortable','compact']}))if(allowed.includes(String(r[key])))(p as any)[key]=r[key];
  if(typeof r.fontSize==='number'&&Number.isFinite(r.fontSize))p.fontSize=Math.max(90,Math.min(125,r.fontSize));

@@ -101,6 +101,73 @@ try:
   assert abs(page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')-original_font*1.25)<.1
   page.get_by_label('Tamanho do texto',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'100');e.dispatchEvent(new Event('input',{bubbles:true}));}")
   page.get_by_role('button',name='Noite',exact=True).click()
+  # Restore the original appearance controls, then enlarge the same renderer.
+  page.get_by_label('Forma da presença',exact=True).select_option('orb')
+  page.get_by_label('Modelo do avatar',exact=True).select_option('body')
+  page.get_by_role('button',name='Paleta Gelo',exact=True).click()
+  page.get_by_label('Velocidade do orbe',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'0');e.dispatchEvent(new Event('input',{bubbles:true}));}")
+  page.get_by_label('Partículas do orbe',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'1200');e.dispatchEvent(new Event('input',{bubbles:true}));}")
+  preview=page.locator('.presence-preview')
+  expect(preview).to_have_attribute('data-presence-mode','orb')
+  expect(preview).to_have_attribute('data-orb-speed','0')
+  expect(preview).to_have_attribute('data-orb-count','1200')
+  expect(preview).to_have_attribute('data-palette','ice')
+  page.get_by_role('button',name='Ver no centro',exact=True).click()
+  central=page.get_by_role('dialog',name='No centro do seu espaço',exact=True)
+  central.wait_for()
+  assert page.locator('.presence-canvas canvas').count()==1
+  central.get_by_role('button',name='Avatar',exact=True).click()
+  expect(central.locator('.presence-pane')).to_have_attribute('data-avatar','body')
+  expect(central.locator('.presence-pane')).to_have_attribute('data-presence-mode','avatar')
+  central.get_by_role('button',name='Ajustar à tela',exact=True).click()
+  page.wait_for_timeout(1500)
+  page.screenshot(path=str(a.output/'presence-center.png'))
+  page.keyboard.press('Escape')
+  expect(central).not_to_be_visible()
+  assert page.get_by_label('Forma da presença',exact=True).input_value()=='avatar'
+  page.get_by_role('button',name='Personalizada',exact=True).click()
+  page.get_by_label('Cor inicial (hexadecimal)',exact=True).fill('#123abc')
+  page.get_by_label('Cor final (hexadecimal)',exact=True).fill('#abcdef')
+  page.get_by_role('checkbox',name='Acenar ao abrir',exact=False).uncheck()
+  page.locator('.workspace').evaluate('e=>e.scrollTo(0,0)')
+  page.locator('.presence-section-heading').scroll_into_view_if_needed()
+  page.screenshot(path=str(a.output/'settings-appearance.png'))
+  page.wait_for_timeout(700)
+  page.reload()
+  page.get_by_role('button',name='Configurações',exact=True).click()
+  page.get_by_role('button',name='Aparência',exact=True).click()
+  assert page.get_by_label('Forma da presença',exact=True).input_value()=='avatar'
+  assert page.get_by_label('Modelo do avatar',exact=True).input_value()=='body'
+  assert page.get_by_label('Velocidade do orbe',exact=True).input_value()=='0'
+  assert page.get_by_label('Partículas do orbe',exact=True).input_value()=='1200'
+  assert page.get_by_label('Cor inicial (hexadecimal)',exact=True).input_value()=='#123abc'
+  assert not page.get_by_role('checkbox',name='Acenar ao abrir',exact=False).is_checked()
+  if a.native:
+   # Query real Rust state and its install guard. Release availability/download
+   # UI uses an explicit IPC fixture; it never downloads or launches an installer.
+   real_info=page.evaluate("window.__TAURI_INTERNALS__.invoke('updater_info')")
+   assert real_info['supported'] and real_info['installed'] and real_info['current_version']=='2.2.0'
+   assert real_info['current_build']>0 and len(real_info['current_source'])==40
+   guard=page.evaluate("window.__TAURI_INTERNALS__.invoke('install_update').then(()=>false,()=>true)")
+   assert guard
+   actual_check=page.evaluate("window.__TAURI_INTERNALS__.invoke('check_update')")
+   assert actual_check['supported'] and actual_check['status'] in ('up-to-date','available')
+   page.evaluate("""()=>{const original=window.__TAURI_INTERNALS__.invoke;window.__elysiaOriginalInvoke=original;window.__elysiaUpdateCalls=[];
+    window.__TAURI_INTERNALS__.invoke=async(cmd,args,opts)=>{if(['check_update','download_update','install_update'].includes(cmd)){window.__elysiaUpdateCalls.push(cmd);
+     if(cmd==='check_update')return {supported:true,installed:true,current_version:'2.2.0',current_build:1,current_source:'0'.repeat(40),status:'available',candidate:{version:'2.2.1',build:999999,source_sha:'a'.repeat(40),tag:'native-'+ 'a'.repeat(12),bytes:150000000,sha256:'b'.repeat(64),release_url:'https://github.com/Lorran1690/elysia-2.0/releases/tag/native-'+ 'a'.repeat(12)}};
+     if(cmd==='download_update')return {verified:true,version:'2.2.1',build:999999,bytes:150000000,sha256:'b'.repeat(64)};
+     throw Error('Fixture: instalação impedida para manter o teste aberto.');
+    }return original(cmd,args,opts)};}""")
+   page.get_by_role('button',name='Atualizar Elysia',exact=True).click()
+   page.get_by_role('button',name='Baixar atualização',exact=True).wait_for()
+   assert page.evaluate('window.__elysiaUpdateCalls')==['check_update']
+   page.get_by_role('button',name='Baixar atualização',exact=True).click()
+   page.get_by_role('button',name='Fechar Elysia e instalar',exact=True).wait_for()
+   page.screenshot(path=str(a.output/'settings-update.png'))
+   page.get_by_role('button',name='Fechar Elysia e instalar',exact=True).click()
+   page.get_by_role('alert').filter(has_text='Fixture: instalação impedida').wait_for()
+   assert page.evaluate('window.__elysiaUpdateCalls')==['check_update','download_update','install_update']
+   page.evaluate('window.__TAURI_INTERNALS__.invoke=window.__elysiaOriginalInvoke')
   page.get_by_role('button',name='Som e música',exact=True).click()
   page.get_by_role('button',name='Reproduzir música',exact=True).click()
   wait_js(page,"document.querySelector('audio[data-owner=elysia-background]').currentTime > .2",timeout=20000)
@@ -190,7 +257,7 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'welcome_heading_initially_in_viewport':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'appearance_controls_persisted':True,'centered_single_renderer_and_escape':True,'original_avatar_and_orb_assets_preserved':True,'updater_native_install_guard_checked':bool(a.native),'updater_real_github_check':bool(a.native),'updater_ui_simulated_release_download_install':bool(a.native),'updater_real_network_download_evaluated':False,'interface_text_scaling':True,'welcome_heading_initially_in_viewport':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:

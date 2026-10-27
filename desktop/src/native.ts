@@ -45,6 +45,6 @@ export function setupNativeBridge(){if(!native)return;
 export async function readPrivateStore(){if(native)return invoke<string|null>('read_interface_store');return localStorage.getItem('elysia.interface.v2');}
 export async function writePrivateStore(value:string){if(native)return invoke('write_interface_store',{value});localStorage.setItem('elysia.interface.v2',value);}
 export function downloadJson(value:unknown,name:string){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);}
-export const diagnostics=()=>native?invoke<Record<string,unknown>>('diagnostics'):Promise.resolve({window:'Prévia no navegador',platform:navigator.platform,storage:'Armazenamento deste navegador',version:'2.1.0'});
+export const diagnostics=()=>native?invoke<Record<string,unknown>>('diagnostics'):Promise.resolve({window:'Prévia no navegador',platform:navigator.platform,storage:'Armazenamento deste navegador',version:'2.2.0'});
 
 export async function setNativeTheme(theme:'dark'|'light'|'system'){if(native)await getCurrentWindow().setTheme(theme==='system'?null:theme);}
