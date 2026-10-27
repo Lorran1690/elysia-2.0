@@ -7,6 +7,9 @@
 - Lucide: ISC.
 - GSAP: Standard License, https://gsap.com/community/standard-license/ .
   Usado em transições locais de interface; licença e aviso distribuídos nos pacotes.
+- Microsoft Edge WebView2 Runtime: componente Microsoft compartilhado; bootstrapper
+  oficial verificado por Authenticode e hash antes da distribuição. Instalação e
+  termos: https://learn.microsoft.com/microsoft-edge/webview2/concepts/distribution .
 - Bibliotecas do núcleo Python/PyTorch: avisos em core/licenses.
 - Músicas instrumentais originais: CC0-1.0, public/music/LICENSE.txt.
 - Ícone: imagem sintética criada para o projeto e aprovada pelo proprietário.

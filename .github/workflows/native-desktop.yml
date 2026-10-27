@@ -74,11 +74,46 @@ jobs:
           python desktop/scripts/package-licenses.py dist/Elysia-native/THIRD-PARTY-LICENSES
           Copy-Item interface/MODULES.md dist/Elysia-native/MODULES.md
           Copy-Item interface/GENERATIVE-MEDIA.md dist/Elysia-native/GENERATIVE-MEDIA.md
+      - name: Prepare verified Microsoft WebView2 prerequisite
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceUri = 'https://go.microsoft.com/fwlink/p/?LinkId=2124703'
+          $bootstrapper = Join-Path $env:GITHUB_WORKSPACE 'dist\prerequisites\MicrosoftEdgeWebview2Setup.exe'
+          New-Item -ItemType Directory -Force (Split-Path $bootstrapper) | Out-Null
+          Invoke-WebRequest -Uri $sourceUri -OutFile $bootstrapper -TimeoutSec 120 -MaximumRetryCount 2 -RetryIntervalSec 2
+          $signature = Get-AuthenticodeSignature -LiteralPath $bootstrapper
+          if ($signature.Status -ne 'Valid' -or $null -eq $signature.SignerCertificate) {
+            throw 'The WebView2 bootstrapper must have a valid Authenticode signature.'
+          }
+          $subject = $signature.SignerCertificate.Subject
+          if ($subject -notmatch '(?:^|,\s*)CN=Microsoft Corporation(?:,|$)' -or $subject -notmatch '(?:^|,\s*)O=Microsoft Corporation(?:,|$)') {
+            throw 'The WebView2 bootstrapper signer must be Microsoft Corporation.'
+          }
+          $digest = (Get-FileHash -LiteralPath $bootstrapper -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($digest -notmatch '^[a-f0-9]{64}$') { throw 'Invalid prerequisite SHA-256.' }
+          $metadata = [ordered]@{
+            source_url = $sourceUri
+            file = 'MicrosoftEdgeWebview2Setup.exe'
+            bytes = (Get-Item -LiteralPath $bootstrapper).Length
+            sha256 = $digest
+            signature_status = $signature.Status.ToString()
+            signer_subject = $subject
+            signer_thumbprint = $signature.SignerCertificate.Thumbprint
+            product_version = (Get-Item -LiteralPath $bootstrapper).VersionInfo.ProductVersion
+            runtime_registry_guid = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+            installer_arguments = '/silent /install'
+            installed_only_when_absent = $true
+            default_scope = 'per-user without elevation; Microsoft Edge Updater may promote to per-machine'
+          }
+          $metadata | ConvertTo-Json | Set-Content -Path webview2-prerequisite.json -Encoding utf8
+          Copy-Item webview2-prerequisite.json dist/Elysia-native/webview2-prerequisite.json
       - name: Build native installer
         shell: pwsh
         run: |
           $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
-          & $compiler "/DAppSourceDir=$env:GITHUB_WORKSPACE\dist\Elysia-native" "/DAppOutputDir=$env:GITHUB_WORKSPACE" "/DAppVersion=2.1.$env:GITHUB_RUN_NUMBER" "/DAppIconFile=$env:GITHUB_WORKSPACE\desktop\src-tauri\icons\icon.ico" interface/installer/elysia.iss
+          $prerequisite = Get-Content -Raw webview2-prerequisite.json | ConvertFrom-Json
+          & $compiler "/DAppSourceDir=$env:GITHUB_WORKSPACE\dist\Elysia-native" "/DAppOutputDir=$env:GITHUB_WORKSPACE" "/DAppVersion=2.1.$env:GITHUB_RUN_NUMBER" "/DAppIconFile=$env:GITHUB_WORKSPACE\desktop\src-tauri\icons\icon.ico" "/DAppWebView2Bootstrapper=$env:GITHUB_WORKSPACE\dist\prerequisites\MicrosoftEdgeWebview2Setup.exe" "/DAppWebView2Sha256=$($prerequisite.sha256)" interface/installer/elysia.iss
           if ($LASTEXITCODE -ne 0) { throw 'Native installer compilation failed.' }
       - name: Verify real installed native WebView2 app and private data
         run: python scripts/test-installer-windows.py Elysia-Setup-x64.exe --native
@@ -98,6 +133,7 @@ jobs:
             Elysia-Native-Windows-x64.zip
             Elysia-Native-Windows-x64.sha256
             installer-verification.json
+            webview2-prerequisite.json
             native-ui-verification/
           retention-days: 90
       - name: Publish verified native app
@@ -106,4 +142,4 @@ jobs:
         shell: pwsh
         run: |
           $tag = "native-$($env:GITHUB_SHA.Substring(0,12))"
-          gh release create $tag Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 Elysia-Native-Windows-x64.zip Elysia-Native-Windows-x64.sha256 installer-verification.json native-ui-verification/ui-verification.json --target $env:GITHUB_SHA --prerelease --title "Elysia Desktop nativa · $tag" --notes-file desktop/RELEASE-NOTES.md
+          gh release create $tag Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 Elysia-Native-Windows-x64.zip Elysia-Native-Windows-x64.sha256 installer-verification.json webview2-prerequisite.json native-ui-verification/ui-verification.json --target $env:GITHUB_SHA --prerelease --title "Elysia Desktop nativa · $tag" --notes-file desktop/RELEASE-NOTES.md

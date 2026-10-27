@@ -8,7 +8,10 @@ Três músicas originais com volume, seleção e pausa. Ícone aprovado pelo pro
 Avatar e orbes originais preservados. O Neural Core não foi alterado. Esta entrega
 não adiciona capacidades de IA nem inclui modelos de vídeo. Voice Core pausado.
 
-Feche a versão anterior e execute `Elysia-Setup-x64.exe`. O Windows precisa do
-WebView2 Runtime e Visual C++ v14 x64. O instalador não tem assinatura digital.
+Feche a versão anterior e execute `Elysia-Setup-x64.exe`. Se o WebView2 Runtime
+estiver ausente, o instalador usa o Bootstrapper oficial Microsoft, verificado por
+assinatura e SHA-256. Nesse caso é necessário acesso à internet. O Runtime
+compartilhado não é removido ao desinstalar a Elysia. O Visual C++ v14 x64 continua
+necessário para o núcleo. O instalador da Elysia não tem assinatura digital.
 Para trazer conversas do navegador antigo, exporte-as antes e importe em Dados e
 privacidade; não há migração automática do perfil anterior.

@@ -1,11 +1,49 @@
 """Validate the compiled interface in Chromium or the real Tauri WebView2 window."""
-import argparse,json,os,sqlite3,subprocess,tempfile,time,urllib.request
+import argparse,contextlib,json,os,sqlite3,subprocess,sys,tempfile,time,urllib.request
 from pathlib import Path
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 parser=argparse.ArgumentParser();parser.add_argument('--native',type=Path);parser.add_argument('--url',default='http://127.0.0.1:1420');parser.add_argument('--output',type=Path,default=Path('reports/native-desktop'));a=parser.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-process=None;browser=None
+process=None;browser=None;page=None;errors=[]
 private=tempfile.TemporaryDirectory(prefix='elysia-native-check-')
 note_title='Nota interface '+Path(private.name).name
+@contextlib.contextmanager
+def preserve_failure_diagnostics():
+ try:
+  yield
+ except BaseException as failure:
+  # This context exits before sync_playwright(), so the failing page is still
+  # available. Every capture is best effort; never replace the original error.
+  details={'exception_type':type(failure).__name__,'exception':str(failure),'javascript_errors':list(errors),'urls':[],'capture_errors':[]}
+  try:
+   available=[]
+   if browser:
+    try:
+     available=[p for context in browser.contexts for p in context.pages if not p.is_closed()]
+     details['urls']=[p.url for p in available]
+    except Exception as error:details['capture_errors'].append('targets: '+str(error))
+   candidate=page if page and not page.is_closed() else next(iter(available),None)
+   if candidate:
+    details['page_url']=candidate.url
+    try:candidate.screenshot(path=str(a.output/'failure.png'),timeout=5000)
+    except Exception as error:details['capture_errors'].append('screenshot: '+str(error))
+    try:
+     visible=candidate.locator('body').inner_text(timeout=3000)
+     (a.output/'failure-visible.txt').write_text(visible[:100000],encoding='utf-8')
+    except Exception as error:details['capture_errors'].append('visible_text: '+str(error))
+   details['javascript_errors']=list(errors)
+   details['process_returncode']=process.poll() if process else None
+   (a.output/'failure-diagnostics.json').write_text(json.dumps(details,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+  except Exception as error:
+   print('Could not preserve failure diagnostics: '+str(error),file=sys.stderr)
+  raise
+def wait_js(page,expression,timeout=30000):
+ # Scheduled browser-side eval in wait_for_function violates strict CSP in
+ # WebView2. Use explicit CDP evaluations without weakening the app policy.
+ deadline=time.monotonic()+timeout/1000
+ while True:
+  if page.evaluate(expression):return
+  if time.monotonic()>deadline:raise AssertionError('Condition timed out: '+expression)
+  page.wait_for_timeout(100)
 def app_page(browser):
  deadline=time.monotonic()+45
  while True:
@@ -26,7 +64,7 @@ def app_page(browser):
   if browser.contexts and browser.contexts[0].pages:browser.contexts[0].pages[0].wait_for_timeout(100)
   else:time.sleep(.1)
 try:
- with sync_playwright() as pw:
+ with sync_playwright() as pw, preserve_failure_diagnostics():
   if a.native:
    env={**os.environ,'ELYSIA_DATA_DIR':private.name,'WEBVIEW2_USER_DATA_FOLDER':str(Path(private.name)/'webview'),'ELYSIA_E2E':'1'}
    process=subprocess.Popen([str(a.native.resolve())],env=env)
@@ -54,7 +92,7 @@ try:
   page.get_by_role('button',name='Configurações',exact=True).click()
   page.get_by_role('button',name='Aparência',exact=True).click()
   page.get_by_role('button',name='Luz',exact=True).click()
-  page.wait_for_function("document.documentElement.dataset.theme==='light'")
+  wait_js(page,"document.documentElement.dataset.theme==='light'")
   original_font=page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')
   page.get_by_label('Tamanho do texto',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'125');e.dispatchEvent(new Event('input',{bubbles:true}));}")
   assert abs(page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')-original_font*1.25)<.1
@@ -62,14 +100,14 @@ try:
   page.get_by_role('button',name='Noite',exact=True).click()
   page.get_by_role('button',name='Som e música',exact=True).click()
   page.get_by_role('button',name='Reproduzir música',exact=True).click()
-  page.wait_for_function("document.querySelector('audio[data-owner=elysia-background]').currentTime > .2",timeout=20000)
+  wait_js(page,"document.querySelector('audio[data-owner=elysia-background]').currentTime > .2",timeout=20000)
   page.get_by_label('Volume da música',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'37');e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}")
-  page.wait_for_function("document.querySelector('audio').volume===.37")
+  wait_js(page,"document.querySelector('audio').volume===.37")
   page.get_by_role('button',name='Órbita tranquila',exact=False).click()
-  page.wait_for_function("document.querySelector('audio').currentSrc.includes('orbita.mp3') && !document.querySelector('audio').paused")
+  wait_js(page,"document.querySelector('audio').currentSrc.includes('orbita.mp3') && !document.querySelector('audio').paused")
   page.screenshot(path=str(a.output/'settings-audio.png'))
   page.get_by_role('button',name='Pausar música',exact=True).click()
-  page.wait_for_function("document.querySelector('audio').paused")
+  wait_js(page,"document.querySelector('audio').paused")
   page.get_by_role('button',name='Geral',exact=True).click()
   page.get_by_role('checkbox',name='Mostrar presença da Elysia',exact=False).uncheck()
   page.get_by_role('button',name='Conversas',exact=True).first.click()

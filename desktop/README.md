@@ -7,8 +7,13 @@ desktop modernas, renderiza a interface usando um motor web integrado.
 
 Baixe o `Elysia-Setup-x64.exe` da Release nativa. Feche a Elysia anterior antes de
 instalar. O instalador atualiza a mesma pasta `%LOCALAPPDATA%\Programs\Elysia` e
-mantém o diretório privado `%LOCALAPPDATA%\Elysia`. Necessita WebView2 Runtime e o
-redistribuível Visual C++ v14 x64 disponíveis no Windows. Não instala drivers/CUDA.
+mantém o diretório privado `%LOCALAPPDATA%\Elysia`. O instalador verifica o WebView2
+Runtime e, se estiver ausente, executa o Bootstrapper Evergreen oficial da Microsoft.
+Essa primeira instalação do Runtime precisa de internet. Sem elevação, a instalação
+é por usuário; o Edge Updater pode convertê-la para máquina quando já está instalado
+nesse modo. O WebView2 compartilhado é preservado ao remover a Elysia. O pacote ZIP
+portátil requer o Runtime já instalado. O Visual C++ v14 x64 continua sendo um
+pré-requisito do núcleo; não são instalados drivers ou CUDA.
 
 ## Interface
 
@@ -60,3 +65,15 @@ ao lado do EXE nativo usando o workflow `native-desktop.yml`.
 O build verifica tipos, preferências, Rust, instalação, execução no WebView2 real,
 reprodução de áudio, histórico SQLite, biblioteca, composição e ferramentas.
 Os testes não medem inteligência nem realismo de vídeo.
+
+## Pré-requisito WebView2
+
+O build Windows baixa o Bootstrapper somente do link oficial Microsoft, verifica
+sua assinatura Authenticode válida e o publicador Microsoft Corporation e registra
+o SHA-256 em `webview2-prerequisite.json`, incluído na Release. O instalador confere
+os mesmos bytes antes de executar `/silent /install`, somente se não detectar um
+Runtime válido no registro. Após a execução, aguarda a detecção antes de continuar;
+em falha, informa o problema e não abre o aplicativo sem o Runtime.
+
+Fontes: [distribuição Microsoft](https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution)
+e [verificação Authenticode](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature).

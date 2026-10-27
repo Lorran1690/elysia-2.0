@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "actual_tauri_webview2": false,
+  "source_neural_core_simulated": true,
+  "chat_and_history_persistence": true,
+  "failed_restore_does_not_overwrite_history": true,
+  "theme_switch": true,
+  "interface_text_scaling": true,
+  "real_audio_playback_volume_track_pause": true,
+  "vault_save": true,
+  "code_tools_and_analysis": true,
+  "redundant_editor_and_preview_tabs_removed": true,
+  "composition_png": true,
+  "command_search": true,
+  "javascript_errors": [],
+  "realistic_video_quality_evaluated": false
+}
