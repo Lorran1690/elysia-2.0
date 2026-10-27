@@ -142,4 +142,4 @@ jobs:
         shell: pwsh
         run: |
           $tag = "native-$($env:GITHUB_SHA.Substring(0,12))"
-          gh release create $tag Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 Elysia-Native-Windows-x64.zip Elysia-Native-Windows-x64.sha256 installer-verification.json webview2-prerequisite.json native-ui-verification/ui-verification.json --target $env:GITHUB_SHA --prerelease --title "Elysia Desktop nativa · $tag" --notes-file desktop/RELEASE-NOTES.md
+          gh release create $tag Elysia-Setup-x64.exe Elysia-Setup-x64.sha256 Elysia-Native-Windows-x64.zip Elysia-Native-Windows-x64.sha256 installer-verification.json webview2-prerequisite.json native-ui-verification/ui-verification.json native-ui-verification/conversation.png native-ui-verification/settings-audio.png --target $env:GITHUB_SHA --prerelease --title "Elysia Desktop nativa · $tag" --notes-file desktop/RELEASE-NOTES.md

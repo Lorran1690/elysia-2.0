@@ -1,7 +1,7 @@
 # Componentes da interface desktop
 
 - Tauri 2 e seus plugins: MIT / Apache-2.0.
-- Rust crates: licenças conforme Cargo.lock e respectivos pacotes; rusqlite MIT,
+- Rust crates: textos originais em THIRD-PARTY-LICENSES/rust e versões em Cargo.lock; rusqlite MIT,
   SQLite domínio público, reqwest MIT/Apache-2.0, serde MIT/Apache-2.0, uuid MIT/Apache-2.0.
 - React 18, Vite, TypeScript, Tailwind CSS, Three.js e React Three Fiber: MIT.
 - Lucide: ISC.
