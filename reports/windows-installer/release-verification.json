@@ -1,0 +1,26 @@
+{
+  "source_commit": "53d215020157b255110e96b9e0ce8b9bc9e4da17",
+  "release_url": "https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-53d215020157",
+  "installer": {
+    "name": "Elysia-Setup-x64.exe",
+    "bytes": 139934903,
+    "sha256": "3055aecff873bae3e9659b7ee8c60603cfc1f3cf742273450d7b53de9ac0ec56"
+  },
+  "portable": {
+    "name": "Elysia-Windows-x64.zip",
+    "bytes": 160621020,
+    "sha256": "6b9bbcd8114cb429655b9eae66cf459e0858865b42162fdee8ae934bfb326ca2"
+  },
+  "windows_workflow": 40423741216,
+  "windows_job": 121924221655,
+  "windows_conclusion": "success",
+  "tests_workflow": 40423741234,
+  "tests_conclusion": "success on Windows and Linux",
+  "installer_language": "Brazilian Portuguese",
+  "installation_scope": "current user",
+  "default_directory": "%LOCALAPPDATA%\\Programs\\Elysia",
+  "private_directory_preserved": "%LOCALAPPDATA%\\Elysia",
+  "digital_signature": false,
+  "external_models_bundled": false,
+  "installed_on_owner_computer": false
+}

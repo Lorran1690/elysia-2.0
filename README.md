@@ -2,6 +2,8 @@
 
 ## Aplicativo Windows instalável
 
+[Baixar instalador Elysia-Setup-x64.exe](https://github.com/Lorran1690/elysia-2.0/releases/download/desktop-53d215020157/Elysia-Setup-x64.exe).
+
 A interface v11 reúne conversa pelo núcleo próprio experimental, biblioteca
 privada, editor de código, bancada de análise, estúdios de mídia e integração
 com ComfyUI local. Veja [como instalar e atualizar](interface/DESKTOP.md).

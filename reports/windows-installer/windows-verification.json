@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "installer_executed": true,
+  "unicode_install_directory": true,
+  "start_menu_shortcut_created": true,
+  "current_user_uninstall_registration": true,
+  "installed_executable_real_model_smoke": true,
+  "reinstall_preserves_private_data": true,
+  "uninstall_removes_app_and_shortcut": true,
+  "uninstall_preserves_private_data": true,
+  "neural_quality_evaluated": false
+}
