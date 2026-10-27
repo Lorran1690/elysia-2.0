@@ -85,6 +85,7 @@ try:
   if a.native:assert page.evaluate('!!window.__TAURI_INTERNALS__')
   assert page.evaluate("async()=>{const u=URL.createObjectURL(new Blob(['elysia-local-export-fixture']));try{return await (await fetch(u)).text()}finally{URL.revokeObjectURL(u)}}")=='elysia-local-export-fixture'
   page.locator('.local-indicator').filter(has_text='Núcleo local conectado').wait_for(timeout=90000)
+  expect(page.get_by_text('Vamos criar',exact=False)).to_be_in_viewport()
   page.screenshot(path=str(a.output/'conversation.png'))
   page.get_by_label('Mensagem',exact=True).fill('Olá')
   page.get_by_role('button',name='Enviar mensagem',exact=True).click()
@@ -107,6 +108,7 @@ try:
   wait_js(page,"document.querySelector('audio').volume===.37")
   page.get_by_role('button',name='Órbita tranquila',exact=False).click()
   wait_js(page,"document.querySelector('audio').currentSrc.includes('orbita.mp3') && !document.querySelector('audio').paused")
+  page.locator('.workspace').evaluate('e=>e.scrollTo(0,0)')
   page.screenshot(path=str(a.output/'settings-audio.png'))
   page.get_by_role('button',name='Pausar música',exact=True).click()
   wait_js(page,"document.querySelector('audio').paused")
@@ -188,7 +190,7 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'welcome_heading_initially_in_viewport':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:

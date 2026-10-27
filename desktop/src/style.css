@@ -9,3 +9,6 @@
 .recovery-banner{display:flex;align-items:flex-start;gap:12px;padding:15px 24px;background:#bb923518;border-bottom:1px solid #bb923544;font-size:calc(12px * var(--ui-scale, 1));flex:none}.recovery-banner>svg{flex:none;color:#d9b169}.recovery-banner>div{flex:1}.recovery-banner p{font-size:calc(11px * var(--ui-scale, 1));line-height:1.7;margin:6px 0;color:var(--muted)}.recovery-banner small{display:block;font-size:calc(10px * var(--ui-scale, 1));overflow-wrap:anywhere}.recovery-banner .secondary{font-size:calc(11px * var(--ui-scale, 1))}
 
 .legacy-module .code-editor{font-size:calc(12px * var(--ui-scale,1))!important}
+
+.settings-nav{position:sticky;top:0;align-self:flex-start;max-height:calc(100vh - 150px);overflow-y:auto;scrollbar-width:thin}
+@media(max-width:850px){.settings-nav{position:static;max-height:none;overflow:visible}}
