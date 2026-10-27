@@ -11,6 +11,8 @@
   "code_tools_and_analysis": true,
   "redundant_editor_and_preview_tabs_removed": true,
   "composition_png": true,
+  "local_blob_export_readable_with_csp": true,
+  "cinema_player_play_and_stop": true,
   "command_search": true,
   "javascript_errors": [],
   "realistic_video_quality_evaluated": false

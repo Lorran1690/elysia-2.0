@@ -1,7 +1,7 @@
 """Validate the compiled interface in Chromium or the real Tauri WebView2 window."""
 import argparse,contextlib,json,os,sqlite3,subprocess,sys,tempfile,time,urllib.request
 from pathlib import Path
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout, expect
 parser=argparse.ArgumentParser();parser.add_argument('--native',type=Path);parser.add_argument('--url',default='http://127.0.0.1:1420');parser.add_argument('--output',type=Path,default=Path('reports/native-desktop'));a=parser.parse_args();a.output.mkdir(parents=True,exist_ok=True)
 process=None;browser=None;page=None;errors=[]
 private=tempfile.TemporaryDirectory(prefix='elysia-native-check-')
@@ -83,6 +83,7 @@ try:
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.get_by_text('Vamos criar',exact=False).wait_for(timeout=60000)
   if a.native:assert page.evaluate('!!window.__TAURI_INTERNALS__')
+  assert page.evaluate("async()=>{const u=URL.createObjectURL(new Blob(['elysia-local-export-fixture']));try{return await (await fetch(u)).text()}finally{URL.revokeObjectURL(u)}}")=='elysia-local-export-fixture'
   page.locator('.local-indicator').filter(has_text='Núcleo local conectado').wait_for(timeout=90000)
   page.screenshot(path=str(a.output/'conversation.png'))
   page.get_by_label('Mensagem',exact=True).fill('Olá')
@@ -93,6 +94,7 @@ try:
   page.get_by_role('button',name='Aparência',exact=True).click()
   page.get_by_role('button',name='Luz',exact=True).click()
   wait_js(page,"document.documentElement.dataset.theme==='light'")
+  if a.native:wait_js(page,"window.__TAURI_INTERNALS__.invoke('plugin:window|theme',{label:'main'}).then(t=>t==='light')")
   original_font=page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')
   page.get_by_label('Tamanho do texto',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'125');e.dispatchEvent(new Event('input',{bubbles:true}));}")
   assert abs(page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')-original_font*1.25)<.1
@@ -135,6 +137,11 @@ try:
   page.get_by_role('button',name='Baixar arquivo gerado',exact=True).wait_for()
   page.get_by_role('tab',name='Geração por IA',exact=True).click()
   assert page.get_by_role('button',name='Diagnosticar motor e modelos',exact=True).is_visible()
+  page.get_by_role('tab',name='Cinema 3D',exact=True).click()
+  film=page.frame_locator('iframe[title="Cinema 3D da Elysia"]')
+  film.get_by_role('button',name='Reproduzir com trilha',exact=True).click(timeout=60000)
+  expect(film.locator('#time')).not_to_have_text('0 / 60 s',timeout=20000)
+  film.get_by_role('button',name='Interromper',exact=True).click()
   page.keyboard.press('Control+k')
   page.get_by_role('dialog',name='Busca no aplicativo').wait_for()
   page.get_by_label('Buscar ferramentas e conversas',exact=True).fill('Olá')
@@ -181,7 +188,7 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'local_blob_export_readable_with_csp':True,'cinema_player_play_and_stop':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:

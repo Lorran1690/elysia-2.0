@@ -338,6 +338,18 @@ fn main() {
                 folders: Mutex::new(HashMap::new()),
                 data: private_dir(),
             });
+            // Keep the initial window inside common HD monitors and DPI scales.
+            if let Some(window) = app.get_webview_window("main") {
+                if let Ok(Some(monitor)) = window.current_monitor() {
+                    let scale = monitor.scale_factor();
+                    let width =
+                        1440.0_f64.min((monitor.size().width as f64 / scale - 80.0).max(850.0));
+                    let height =
+                        940.0_f64.min((monitor.size().height as f64 / scale - 110.0).max(600.0));
+                    let _ = window.set_size(tauri::LogicalSize::new(width, height));
+                    let _ = window.center();
+                }
+            }
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
