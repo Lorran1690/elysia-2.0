@@ -1,18 +1,30 @@
 """Validate the compiled interface in Chromium or the real Tauri WebView2 window."""
 import argparse,json,os,sqlite3,subprocess,tempfile,time,urllib.request
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 parser=argparse.ArgumentParser();parser.add_argument('--native',type=Path);parser.add_argument('--url',default='http://127.0.0.1:1420');parser.add_argument('--output',type=Path,default=Path('reports/native-desktop'));a=parser.parse_args();a.output.mkdir(parents=True,exist_ok=True)
 process=None;browser=None
 private=tempfile.TemporaryDirectory(prefix='elysia-native-check-')
+note_title='Nota interface '+Path(private.name).name
 def app_page(browser):
  deadline=time.monotonic()+45
  while True:
   for context in browser.contexts:
+   if not context.pages:
+    try:context.wait_for_event('page',timeout=1000)
+    except PlaywrightTimeout:pass
    for page in context.pages:
-    if 'tauri.localhost' in page.url:return page
-  if time.monotonic()>deadline:raise RuntimeError('Native application target did not load')
-  time.sleep(.2)
+    try:
+     # These protocol waits pump CDP events; cached .url + time.sleep does not.
+     page.wait_for_url('**tauri.localhost**',wait_until='domcontentloaded',timeout=2500)
+     return page
+    except PlaywrightTimeout:pass
+  if time.monotonic()>deadline:
+   targets=[p.url for c in browser.contexts for p in c.pages]
+   (a.output/'native-targets.json').write_text(json.dumps(targets,indent=2))
+   raise RuntimeError('Native application target did not load: '+repr(targets))
+  if browser.contexts and browser.contexts[0].pages:browser.contexts[0].pages[0].wait_for_timeout(100)
+  else:time.sleep(.1)
 try:
  with sync_playwright() as pw:
   if a.native:
@@ -43,6 +55,10 @@ try:
   page.get_by_role('button',name='Aparência',exact=True).click()
   page.get_by_role('button',name='Luz',exact=True).click()
   page.wait_for_function("document.documentElement.dataset.theme==='light'")
+  original_font=page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')
+  page.get_by_label('Tamanho do texto',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'125');e.dispatchEvent(new Event('input',{bubbles:true}));}")
+  assert abs(page.locator('.settings-content h2').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')-original_font*1.25)<.1
+  page.get_by_label('Tamanho do texto',exact=True).evaluate("e=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'100');e.dispatchEvent(new Event('input',{bubbles:true}));}")
   page.get_by_role('button',name='Noite',exact=True).click()
   page.get_by_role('button',name='Som e música',exact=True).click()
   page.get_by_role('button',name='Reproduzir música',exact=True).click()
@@ -59,10 +75,10 @@ try:
   page.get_by_role('button',name='Conversas',exact=True).first.click()
   assert not page.locator('.presence-pane').count()
   page.get_by_role('button',name='Biblioteca',exact=True).click()
-  page.get_by_label('Título do registro',exact=True).fill('Nota da interface nativa')
+  page.get_by_label('Título do registro',exact=True).fill(note_title)
   page.get_by_label('Conteúdo do registro',exact=True).fill('Fixture privada para verificar o Vault existente.')
   page.get_by_role('button',name='Salvar registro',exact=True).click()
-  page.locator('.vault-list li').filter(has_text='Nota da interface nativa').wait_for()
+  page.locator('.vault-list li').filter(has_text=note_title).wait_for()
   page.get_by_role('button',name='Desenvolvimento',exact=True).click()
   assert page.get_by_label('Editor de código',exact=True).is_visible()
   assert not page.get_by_role('tab',name='Ferramentas',exact=True).count()
@@ -127,7 +143,7 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'interface_text_scaling':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:
