@@ -1,13 +1,22 @@
 # E.L.Y.S.I.A. 2.0
 
+## Aplicativo Windows instalável
+
+A interface v11 reúne conversa pelo núcleo próprio experimental, biblioteca
+privada, editor de código, bancada de análise, estúdios de mídia e integração
+com ComfyUI local. Veja [como instalar e atualizar](interface/DESKTOP.md).
+O arquivo `Elysia-Setup-x64.exe` instala o aplicativo no menu Iniciar; o ZIP
+continua disponível como alternativa portátil.
+
 ## Criação de mídia e código
 
 [Aplicativo Windows com criação de mídia e editor](https://github.com/Lorran1690/elysia-2.0/releases/tag/desktop-cf8fe9b6a3da).
 
 Composição e exportação PNG, síntese musical WAV, animações WebM curtas, editor de
 código e gravação em pasta escolhida do Google Drive para computador. Veja
-[capacidades, armazenamento e limites](interface/MEDIA.md). Não há modelo de IA
-generativa de imagem/vídeo/voz integrado nesta etapa.
+[capacidades, armazenamento e limites](interface/MEDIA.md). A geração por difusão está disponível em um painel separado, por
+[ComfyUI local com instalação e modelos próprios](interface/GENERATIVE-MEDIA.md).
+Vídeo neural realista continua sem validação; Voice Core permanece pausado.
 
 ## Módulos locais
 
@@ -160,8 +169,8 @@ A integração não altera pesos nem comprova capacidade de conversação comple
 ## Aplicativo Windows e backups
 
 O [aplicativo da Elysia](interface/DESKTOP.md) inclui núcleo, pesos e interface.
-Abra `Elysia.cmd` com a `.venv` instalada ou baixe o pacote Windows nas Releases
-quando a compilação concluir. Conversas têm exportação e restauração de backup.
+Use `Elysia-Setup-x64.exe` nas Releases para instalar o aplicativo. O pacote ZIP
+portátil e `Elysia.cmd` com a `.venv` instalada continuam como alternativas. Conversas têm exportação e restauração de backup.
 
 ### Correção da tela preta no Windows
 

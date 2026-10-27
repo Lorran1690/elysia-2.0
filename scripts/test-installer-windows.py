@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 import uuid
 import winreg
 
@@ -77,3 +78,14 @@ with tempfile.TemporaryDirectory(prefix='elysia-installer-') as tmp:
         if installed and (destination/'unins000.exe').is_file():
             run([destination/'unins000.exe','/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART'])
         default_canary.unlink(missing_ok=True)
+        # Inno's temporary uninstaller helper can outlive its parent briefly,
+        # holding the log after the product and registration are already gone.
+        # Wait for this owned log to close before TemporaryDirectory removes it.
+        deadline = time.monotonic() + 30
+        while True:
+            try:
+                (root/'uninstall.log').unlink(missing_ok=True)
+                break
+            except PermissionError:
+                if time.monotonic() >= deadline: raise
+                time.sleep(.2)
