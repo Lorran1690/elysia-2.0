@@ -58,7 +58,7 @@ with tempfile.TemporaryDirectory(prefix='elysia-installer-') as tmp:
         report_file = root/'installed-smoke.json'
         run([core_dir/'Elysia.exe', '--smoke-test', report_file], env=env)
         if args.native:
-            run([sys.executable, 'desktop/scripts/test-ui.py', '--native', executable, '--output', root/'native-ui'], timeout=300)
+            run([sys.executable, 'desktop/scripts/test-ui.py', '--native', executable, '--output', Path('native-ui-verification')], timeout=300)
         smoke = json.loads(report_file.read_text(encoding='utf-8'))
         assert smoke['passed'] and smoke['frozen']
         # Reinstall into the same directory, retaining owner files and registration.
@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory(prefix='elysia-installer-') as tmp:
         except FileNotFoundError: pass
         else: raise AssertionError('Uninstall registration was not removed')
         installed = False
-        report = {'passed':True,'installer_executed':True,'unicode_install_directory':True,'start_menu_shortcut_created':True,'current_user_uninstall_registration':True,'installed_executable_real_model_smoke':smoke['passed'],'reinstall_preserves_private_data':True,'uninstall_removes_app_and_shortcut':True,'uninstall_preserves_private_data':True,'neural_quality_evaluated':False}
+        report = {'passed':True,'installer_executed':True,'unicode_install_directory':True,'start_menu_shortcut_created':True,'current_user_uninstall_registration':True,'installed_executable_real_model_smoke':smoke['passed'],'reinstall_preserves_private_data':True,'uninstall_removes_app_and_shortcut':True,'uninstall_preserves_private_data':True,'neural_quality_evaluated':False,'actual_tauri_webview2':args.native}
         args.output.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(report))
     finally:

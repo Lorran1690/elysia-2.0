@@ -1,14 +1,22 @@
 """Validate the compiled interface in Chromium or the real Tauri WebView2 window."""
-import argparse,json,os,subprocess,tempfile,time,urllib.request
+import argparse,json,os,sqlite3,subprocess,tempfile,time,urllib.request
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 parser=argparse.ArgumentParser();parser.add_argument('--native',type=Path);parser.add_argument('--url',default='http://127.0.0.1:1420');parser.add_argument('--output',type=Path,default=Path('reports/native-desktop'));a=parser.parse_args();a.output.mkdir(parents=True,exist_ok=True)
 process=None;browser=None
 private=tempfile.TemporaryDirectory(prefix='elysia-native-check-')
+def app_page(browser):
+ deadline=time.monotonic()+45
+ while True:
+  for context in browser.contexts:
+   for page in context.pages:
+    if 'tauri.localhost' in page.url:return page
+  if time.monotonic()>deadline:raise RuntimeError('Native application target did not load')
+  time.sleep(.2)
 try:
  with sync_playwright() as pw:
   if a.native:
-   env={**os.environ,'ELYSIA_DATA_DIR':private.name,'WEBVIEW2_USER_DATA_FOLDER':str(Path(private.name)/'webview'),'WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS':'--remote-debugging-port=9223 --enable-unsafe-swiftshader'}
+   env={**os.environ,'ELYSIA_DATA_DIR':private.name,'WEBVIEW2_USER_DATA_FOLDER':str(Path(private.name)/'webview'),'ELYSIA_E2E':'1'}
    process=subprocess.Popen([str(a.native.resolve())],env=env)
    deadline=time.monotonic()+120
    while True:
@@ -17,7 +25,7 @@ try:
     except Exception:
      if time.monotonic()>deadline or process.poll() is not None:raise RuntimeError('Native WebView2 failed to open')
      time.sleep(.4)
-   page=browser.contexts[0].pages[0]
+   page=app_page(browser)
   else:
    options={'headless':True,'args':['--enable-unsafe-swiftshader']}
    if os.environ.get('ELYSIA_CHROMIUM_PATH'):options['executable_path']=os.environ['ELYSIA_CHROMIUM_PATH']
@@ -81,6 +89,23 @@ try:
   assert not errors,errors
   # Wait for the debounced SQLite/browser write before checking persistence.
   page.wait_for_timeout(900)
+  # An unreadable history must never be replaced by a fresh empty store.
+  if a.native:
+   connection=sqlite3.connect(Path(private.name)/'interface.sqlite3')
+   saved=connection.execute("SELECT value FROM preferences WHERE key='interface-v2'").fetchone()[0]
+   connection.execute("UPDATE preferences SET value=? WHERE key='interface-v2'",('invalid-fixture',));connection.commit();connection.close()
+  else:
+   saved=page.evaluate("localStorage.getItem('elysia.interface.v2')")
+   page.evaluate("localStorage.setItem('elysia.interface.v2','invalid-fixture')")
+  page.reload();page.get_by_role('alert').filter(has_text='Gravação automática suspensa').wait_for();page.wait_for_timeout(900)
+  if a.native:
+   connection=sqlite3.connect(Path(private.name)/'interface.sqlite3')
+   assert connection.execute("SELECT value FROM preferences WHERE key='interface-v2'").fetchone()[0]=='invalid-fixture'
+   connection.execute("UPDATE preferences SET value=? WHERE key='interface-v2'",(saved,));connection.commit();connection.close()
+  else:
+   assert page.evaluate("localStorage.getItem('elysia.interface.v2')")=='invalid-fixture'
+   page.evaluate("s=>localStorage.setItem('elysia.interface.v2',s)",saved)
+  page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
   if a.native:
    try:page.evaluate("window.__TAURI_INTERNALS__.invoke('plugin:window|close',{label:'main'})")
    except Exception:pass
@@ -93,7 +118,7 @@ try:
     except Exception:
      if time.monotonic()>deadline:raise RuntimeError('Native relaunch failed')
      time.sleep(.4)
-   page=browser.contexts[0].pages[0]
+   page=app_page(browser)
    page.locator('.message-assistant').wait_for(timeout=60000)
    assert not page.locator('.presence-pane').count()
    assert not page.evaluate("!window.__TAURI_INTERNALS__")
@@ -102,11 +127,19 @@ try:
    process.wait(timeout=30)
   else:
    page.reload();page.locator('.message-assistant').wait_for();assert not page.locator('.presence-pane').count()
-  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'theme_switch':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
+  report={'passed':True,'actual_tauri_webview2':bool(a.native),'source_neural_core_simulated':not bool(a.native),'chat_and_history_persistence':True,'failed_restore_does_not_overwrite_history':True,'theme_switch':True,'real_audio_playback_volume_track_pause':True,'vault_save':True,'code_tools_and_analysis':True,'redundant_editor_and_preview_tabs_removed':True,'composition_png':True,'command_search':True,'javascript_errors':errors,'realistic_video_quality_evaluated':False}
   (a.output/'ui-verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 finally:
  if browser:
   try:browser.close()
   except Exception:pass
- if process and process.poll() is None:process.terminate();process.wait(timeout=15)
- private.cleanup()
+ if process and process.poll() is None:
+  if os.name=='nt':subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],capture_output=True)
+  else:process.terminate()
+  process.wait(timeout=15)
+ deadline=time.monotonic()+20
+ while True:
+  try:private.cleanup();break
+  except OSError:
+   if time.monotonic()>deadline:print('Temporary WebView profile cleanup deferred to the runner.');break
+   time.sleep(.2)

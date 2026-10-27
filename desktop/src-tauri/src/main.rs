@@ -306,6 +306,22 @@ fn launch_core() -> (Option<Child>, Option<String>) {
     }
 }
 fn main() {
+    let mut context = tauri::generate_context!();
+    // Runtime 150 ignores environment browser args for elevated test runners.
+    // Explicit, isolated E2E mode only; normal installs expose no debugging port.
+    if std::env::var("ELYSIA_E2E").as_deref() == Ok("1") {
+        if let (Some(data), Some(profile)) = (
+            std::env::var_os("ELYSIA_DATA_DIR"),
+            std::env::var_os("WEBVIEW2_USER_DATA_FOLDER"),
+        ) {
+            let data = PathBuf::from(data);
+            let profile = PathBuf::from(profile);
+            if profile.starts_with(&data) && data.is_dir() {
+                context.config_mut().app.windows[0].additional_browser_args = Some("--remote-debugging-address=127.0.0.1 --remote-debugging-port=9223 --enable-unsafe-swiftshader".into());
+                context.config_mut().app.windows[0].data_directory = Some(profile);
+            }
+        }
+    }
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, _, _| {
             if let Some(w) = app.get_webview_window("main") {
@@ -334,7 +350,7 @@ fn main() {
             write_selected_export,
             diagnostics
         ])
-        .build(tauri::generate_context!())
+        .build(context)
         .expect("Não foi possível abrir a Elysia");
     app.run(|app, event| {
         if let tauri::RunEvent::Exit = event {
