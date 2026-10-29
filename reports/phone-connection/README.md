@@ -36,3 +36,25 @@ privado e ComfyUI/modelos instalados para a geração por IA.
 
 A compilação de um novo APK e executável Windows é registrada no GitHub Actions.
 O APK público de build 7 ainda é a versão anterior até a publicação do novo pacote.
+
+## Encaminhamento privado com Tailscale
+
+Depois de instalar e conectar Tailscale no computador e Android à sua rede
+privada, deixe o gateway aberto e execute em outro PowerShell:
+
+```powershell
+tailscale serve --bg localhost:8766
+tailscale serve status
+```
+
+Use no aplicativo o endereço HTTPS mostrado por Serve, sem caminho adicional.
+O comando pode pedir habilitação de HTTPS/DNS na sua rede privada. A conta e esse
+passo dependem do proprietário. Copie a chave diretamente do arquivo privado no
+computador para o campo de senha do telefone; não envie a chave nesta conversa.
+
+Esses comandos foram conferidos na [documentação oficial de Serve](https://tailscale.com/docs/reference/tailscale-cli/serve),
+consultada em 29/10/2026. Serve limita o acesso à tailnet e faz a terminação TLS;
+o processo Elysia permanece no loopback. A opção `--bg` mantém o encaminhamento
+ativo em segundo plano; o gateway e o computador também precisam continuar
+ligados. Não foi configurado Tailscale nem executado esse comando no computador
+do proprietário.
