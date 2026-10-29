@@ -1,0 +1,9 @@
+{
+  "app_pid": "3078",
+  "android_build_type": "user",
+  "android_ro_debuggable": "0",
+  "exact_socket_name": "webview_devtools_remote_3078",
+  "matching_socket_lines": [],
+  "exact_debug_socket_present": false,
+  "http_discovery": {}
+}

@@ -9,7 +9,24 @@
   "unsigned_artifact_zip_sha256": "9be7d999f851e5650eef75d26770e4a00ae6385ddfdc37ea67672f1270569eed",
   "unsigned_apk_sha256": "f855a54ff47eaccabd51b3ab4724d1e7574bbcdfcfdda00e2082ebf854be18e3",
   "signed_apk_sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529",
-  "production_apk_installation_validation": "pending separate signed-release workflow",
+  "production_apk_installation_validation": "passed signed-release workflow",
   "neural_generation_evaluated": false,
-  "owner_phone_installed": false
+  "owner_phone_installed": false,
+  "signed_apk_validation": {
+    "workflow_run": 40948889883,
+    "workflow_attempt": 1,
+    "workflow_url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40948889883/attempts/1",
+    "test_source_commit": "18f78fc53f31b12dfa60c1307fc36a39d2c6af7f",
+    "artifact_id": 12931495564,
+    "artifact_zip_bytes": 2269369,
+    "artifact_zip_sha256": "65e17d7c20ae0ea615975422b993b1a99058334bea427e6b4bab095f0169683d",
+    "validation_revision": 7,
+    "device_report": "signed-apk/device-verification.json",
+    "package_report": "signed-apk/package-verification.json",
+    "artifact_record": "signed-apk/verification-artifact.json",
+    "android_build_type": "user",
+    "android_ro_debuggable": "0",
+    "signed_apk_sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529",
+    "reinstall_preserves_note_title_and_content": true
+  }
 }

@@ -1,0 +1,79 @@
+{
+  "workflow_run": 40948889883,
+  "workflow_attempt": 1,
+  "workflow_url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40948889883/attempts/1",
+  "test_source_commit": "18f78fc53f31b12dfa60c1307fc36a39d2c6af7f",
+  "artifact_id": 12931495564,
+  "artifact_name": "Elysia-Android-signed-release-verification-attempt-1",
+  "artifact_zip_bytes": 2269369,
+  "artifact_zip_sha256": "65e17d7c20ae0ea615975422b993b1a99058334bea427e6b4bab095f0169683d",
+  "artifact_zip_download_hash_verified": true,
+  "synthetic_test_data_only": true,
+  "archived_files": [
+    {
+      "path": "device-verification.json",
+      "bytes": 1015,
+      "sha256": "b03f396dcfff7508868b4635b5b3f56cf245b3726fc81e718c85090569e54445"
+    },
+    {
+      "path": "package-verification.json",
+      "bytes": 709,
+      "sha256": "2fa9cf759c7b0802dd458d2dfea1dbf793e7fd59592d624ded209e567821e227"
+    },
+    {
+      "path": "emulator-ready.json",
+      "bytes": 272,
+      "sha256": "99a87d731433a8ea0ef7e9211c5a9c35b3ad2e09eb3621252092c9360cc8633c"
+    },
+    {
+      "path": "release-debugging-launch.json",
+      "bytes": 237,
+      "sha256": "5c15d40c9f4cd4b54affd973d077b3be936fc8274f5c46b1775b765eddc1fd64"
+    },
+    {
+      "path": "release-debugging-ui-ready.json",
+      "bytes": 237,
+      "sha256": "5c15d40c9f4cd4b54affd973d077b3be936fc8274f5c46b1775b765eddc1fd64"
+    },
+    {
+      "path": "release-portrait.png",
+      "bytes": 298458,
+      "sha256": "62284f74ff0e718542635c8c2b3c6605037e4ff99e83b81a0b15d40f00dd0bed"
+    },
+    {
+      "path": "release-presence.png",
+      "bytes": 686801,
+      "sha256": "07a08ae980d694d53bf0bcafc250eaca85eb944c1be052584ef7f7d0db36b40e"
+    },
+    {
+      "path": "release-reinstalled-library.png",
+      "bytes": 169216,
+      "sha256": "d0ab351ca0133eca8e1001d7921fe23bc9ff3ef8f548646c8fbcb7444bf52ddf"
+    },
+    {
+      "path": "release-landscape.png",
+      "bytes": 104648,
+      "sha256": "6f4a5714c83884b4fee6310c18ccd1bc8356154e22eebdf173234dbc9f410237"
+    },
+    {
+      "path": "release-form-saved-record.xml",
+      "bytes": 22024,
+      "sha256": "8ecd06c9246a81372da298b31acd8fc849b11a1e751ceaf76b0b71538fe831a2"
+    },
+    {
+      "path": "release-form-saved-record.json",
+      "bytes": 1105,
+      "sha256": "7d2e6844270cb9ad92b70716217427c4b6b7426b5ac0ac396263bb8703051995"
+    },
+    {
+      "path": "release-form-reinstalled-record.xml",
+      "bytes": 23692,
+      "sha256": "3e4f009b5bd8a5ea7f31046822bd30df916395f9dd0afa13e92e09f23203eb84"
+    },
+    {
+      "path": "release-form-reinstalled-record.json",
+      "bytes": 1095,
+      "sha256": "21bb8fdcffba214404c5e35adcaf102f875372285400af9287da5cb481b6bb39"
+    }
+  ]
+}
