@@ -1,0 +1,7 @@
+/** Session-only credentials: excluded from storage and conversation backups. */
+let pair:{endpoint:string;token:string}|null=null;
+export function configurePhoneConnection(endpoint:string,token:string){const url=new URL(endpoint);if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash||url.pathname!=='/')throw Error('Use o endereço HTTPS sem caminho ou senha.');if(!/^[A-Za-z0-9_-]{43,128}$/.test(token))throw Error('Chave inválida.');pair={endpoint:url.origin,token};}
+export function disconnectPhone(){pair=null;}
+export function phoneConnected(){return pair!==null;}
+export function isComputerRoute(path:string){return path==='/api/health'||path==='/api/chat'||/^\/api\/generation\/(status|probe|start|cancel|resume)$/.test(path)||/^\/api\/generation\/file\/[A-Za-z0-9_-]{1,100}\/[0-9]{1,4}$/.test(path);}
+export async function computerRequest(path:string,method:string,body:string|null,transport:typeof fetch):Promise<Response>{if(!pair)throw Error('Conecte seu computador em Sistema.');if(!isComputerRoute(path)||!['GET','POST'].includes(method))throw Error('Operação não permitida.');return transport(pair.endpoint+path,{method,headers:{Authorization:'Bearer '+pair.token,...(body!==null?{'Content-Type':'application/json'}:{})},body:body??undefined,credentials:'omit',redirect:'error',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(path==='/api/chat'?180000:60000)});}

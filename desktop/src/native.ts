@@ -1,3 +1,4 @@
+import {phoneConnected,isComputerRoute,computerRequest} from './phone-connection';
 import {mobile,androidNative} from './platform';
 import {mobileRequest,readMobileStore,writeMobileStore} from './mobile-api';
 import {shareAndroidBlob,setupAndroidShell} from './android';
@@ -31,7 +32,7 @@ export function setupNativeBridge(){
   window.fetch=async(input,init)=>{
    const path=typeof input==='string'?input:input instanceof Request?input.url:input.toString();
    const url=new URL(path,location.href);
-   if(url.origin===location.origin&&url.pathname.startsWith('/api/'))return mobileRequest(url.pathname+url.search,init?.method||'GET',typeof init?.body==='string'?init.body:null);
+   if(url.origin===location.origin&&url.pathname.startsWith('/api/'))return phoneConnected()&&isComputerRoute(url.pathname+url.search)?computerRequest(url.pathname+url.search,init?.method||'GET',typeof init?.body==='string'?init.body:null,originalFetch):mobileRequest(url.pathname+url.search,init?.method||'GET',typeof init?.body==='string'?init.body:null);
    return originalFetch(input,init);
   };
  }

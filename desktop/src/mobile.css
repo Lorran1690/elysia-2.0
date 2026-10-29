@@ -280,4 +280,4 @@
 
 .desktop[data-mobile-edition=true] .studio-drive{display:none}
 
-.desktop[data-mobile-edition=true] .composer-wrap{display:none}
+.desktop[data-mobile-edition=true][data-computer-ready=false] .composer-wrap{display:none}
