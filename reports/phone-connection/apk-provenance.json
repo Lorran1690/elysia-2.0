@@ -16,10 +16,15 @@
   "public_download_size_and_sha256_verified": true,
   "browser_real_core_report": "browser-real-core.json",
   "signed_installation_workflow_run": 40972407084,
-  "signed_installation_result": "pending",
+  "signed_installation_result": "passed",
   "neural_quality_improved": false,
   "realistic_media_generation_evaluated": false,
   "previous_signed_installation_run": 40971821100,
   "previous_signed_installation_result": "failed before app installation: emulator HOME ANR",
-  "owner_phone_or_pc_configured_by_this_session": false
+  "owner_phone_or_pc_configured_by_this_session": false,
+  "signed_installation_workflow_attempt": 1,
+  "signed_device_report": "signed-apk/device-verification.json",
+  "signed_verification_provenance": "signed-apk/provenance.json",
+  "debug_ui_workflow_run": 40971821286,
+  "debug_ui_report": "debug-apk/device-verification.json"
 }

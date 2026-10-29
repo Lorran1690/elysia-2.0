@@ -16,7 +16,8 @@ Abra o link no telefone, baixe o APK e confirme a instalação. Depois, use
 O código, o APK e seus hashes ficam no GitHub; os registros pessoais ficam no
 armazenamento privado do app. Com o Drive instalado no telefone, use Exportar
 e escolha uma pasta privada para guardar seus backups. Desinstalar ou limpar os dados remove os registros
-locais. [Verificação da conexão e do APK atual](reports/phone-connection/README.md)
+locais. O APK assinado passou em emulador, incluindo rotação e reinstalação com
+notas preservadas. [Verificação da conexão e do APK atual](reports/phone-connection/README.md)
 e [testes históricos do build 7](reports/android/README.md).
 
 ## Elysia Desktop 2.2 · Tauri 2

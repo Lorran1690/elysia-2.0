@@ -1,0 +1,8 @@
+{
+  "boot_completed": true,
+  "package_manager_responding": true,
+  "home_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+  "consecutive_valid_home_trees": 2,
+  "accessibility_fresh_read_retries": 0,
+  "checked_before_app_installation": true
+}

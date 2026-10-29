@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "actual_android_apk": true,
+  "accessibility_fresh_read_retries": 0,
+  "release_signed_apk_smoke": true,
+  "apk_bytes": 11390489,
+  "apk_sha256": "0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f417d47b33",
+  "app_id": "org.elysia.mobile",
+  "android_api": "35",
+  "network_disabled_commands": [
+    "svc wifi disable",
+    "svc data disable"
+  ],
+  "neural_generation_evaluated": false,
+  "realistic_ai_video_evaluated": false,
+  "production_apk_not_debuggable": true,
+  "production_webview_debug_socket_absent": true,
+  "native_accessibility_ui": true,
+  "original_presence_opens": true,
+  "reinstall_preserves_private_vault_note": true,
+  "reinstall_preserves_private_vault_content": true,
+  "portrait_record_viewport": [
+    276,
+    2096
+  ],
+  "portrait_landscape_captured": true,
+  "cdp_used": false,
+  "physical_screenshot_dimensions": {
+    "portrait": {
+      "width": 1080,
+      "height": 2340
+    },
+    "landscape": {
+      "width": 2340,
+      "height": 1080
+    }
+  }
+}

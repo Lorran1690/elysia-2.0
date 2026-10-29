@@ -36,7 +36,7 @@ privado e ComfyUI/modelos instalados para a geração por IA.
 
 A compilação de um novo APK e executável Windows é registrada no GitHub Actions.
 O APK de build 15 está publicado e assinado com a chave persistente. A assinatura,
-identidade e hash passaram; a validação instalada de produção está em andamento.
+identidade, hash e validação instalada de produção passaram.
 Os dois testes debug anteriores pararam antes da instalação, na inicialização
 do emulador (ANR do HOME na primeira tentativa e prontidão na segunda).
 
@@ -70,3 +70,28 @@ APK build 15: SHA-256 `0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f41
 11.390.489 bytes, origem do aplicativo `4bd969dfe6122186d854edccef5230ed816c0a33`.
 [Verificação estática do pacote](package-verification.json). Os artefatos unsigned
 das tentativas 1 e 2 do workflow 40969592957 têm APKs idênticos em bytes.
+
+## APK debug instalado aprovado
+
+A [execução 40971821286](https://github.com/Lorran1690/elysia-2.0/actions/runs/40971821286)
+passou em Android 15/API35, sem rede: biblioteca e backups, ferramentas, editor,
+áudio, PNG/exportação nativa, teclado real e rotação, sem erros JavaScript.
+[Relatório](debug-apk/device-verification.json) e [proveniência](debug-apk/provenance.json).
+O código da aplicação corresponde ao build público 15; a identidade do debug é
+diferente e ele permite CDP. Isso não é prova de execução do modelo no telefone.
+
+## APK assinado de produção aprovado
+
+A [execução 40972407084, tentativa 1](https://github.com/Lorran1690/elysia-2.0/actions/runs/40972407084/attempts/1)
+passou com o próprio APK público build 15, em imagem Android `user`,
+`ro.debuggable=0`, sem socket de depuração e sem CDP. Verificou abertura,
+presença central, título e conteúdo de nota sintética após reinstalação por cima
+e retrato/paisagem 1080×2340/2340×1080.
+[Relatório](signed-apk/device-verification.json), [origem e hashes](signed-apk/provenance.json),
+[biblioteca preservada](signed-apk/release-reinstalled-library.png).
+
+O código, APK, instalador Windows e evidências estão publicados. A etapa restante
+no equipamento do proprietário é iniciar o gateway e configurar o HTTPS privado
+na VPN. A conversa pelo modelo real foi avaliada no navegador com transporte
+HTTPS; a geração por GPU e a ligação entre os aparelhos do proprietário não foram
+executadas nesta sessão.

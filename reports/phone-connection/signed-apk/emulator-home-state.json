@@ -1,0 +1,11 @@
+{
+  "resolved_home": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+  "booted": true,
+  "packages_ready": true,
+  "focused": true,
+  "visible_home": true,
+  "resumed": [
+    "      topResumedActivity=ActivityRecord{31ba79c u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}"
+  ],
+  "stable": 2
+}

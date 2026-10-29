@@ -1,0 +1,11 @@
+{
+  "workflow_run": 40971821286,
+  "workflow_attempt": 1,
+  "test_source": "69d32f5a39402c855c2e80bd5e711f0d3c9958b7",
+  "application_source_matches_published_build15_except_build_identity": true,
+  "artifact_id": 12939664842,
+  "artifact_zip_bytes": 4491937,
+  "artifact_zip_sha256": "3f83f90a189bb651d8d755e80dde4e77ff5b0b9f5712ade0af611daedb310ddb",
+  "download_hash_verified": true,
+  "binary_is_different_from_production_apk": true
+}

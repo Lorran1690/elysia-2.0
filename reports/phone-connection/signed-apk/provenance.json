@@ -1,0 +1,74 @@
+{
+  "workflow_run": 40972407084,
+  "workflow_attempt": 1,
+  "workflow_url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40972407084",
+  "test_source_commit": "b6e144d2378634ed984d33d64c30fd20426b6d08",
+  "apk_app_source_commit": "4bd969dfe6122186d854edccef5230ed816c0a33",
+  "artifact_id": 12940798335,
+  "artifact_zip_bytes": 2268639,
+  "artifact_zip_sha256": "986f2ad6844da3b60dff25aa30b6dd9eba7600dc7c1990c17fd5d4be0283f85d",
+  "download_hash_verified": true,
+  "synthetic_note_only": true,
+  "archived_files": [
+    {
+      "path": "device-verification.json",
+      "bytes": 1015,
+      "sha256": "1607477455ee310673dc98154a57677597eaf7c68b205ee3b61c80bdd7b3f10c"
+    },
+    {
+      "path": "package-verification.json",
+      "bytes": 710,
+      "sha256": "09ac57c8aab6efbc488846b390a9d5fd37d90e9897595e05fe8f5924e65effd0"
+    },
+    {
+      "path": "emulator-ready.json",
+      "bytes": 272,
+      "sha256": "99a87d731433a8ea0ef7e9211c5a9c35b3ad2e09eb3621252092c9360cc8633c"
+    },
+    {
+      "path": "emulator-home-state.json",
+      "bytes": 330,
+      "sha256": "68e4143188694a36830735347ae8a6b1c96843a2962ad6e2e8e4bf99714f800b"
+    },
+    {
+      "path": "release-debugging-launch.json",
+      "bytes": 237,
+      "sha256": "e0930ed8d8f962dd43cb0bfde4256400aa84f6cfb883bfd88eddac96d688620e"
+    },
+    {
+      "path": "release-debugging-ui-ready.json",
+      "bytes": 237,
+      "sha256": "e0930ed8d8f962dd43cb0bfde4256400aa84f6cfb883bfd88eddac96d688620e"
+    },
+    {
+      "path": "release-portrait.png",
+      "bytes": 297466,
+      "sha256": "7b93cc41b78108b219173454bfac061869e63197f33df284581617d92c634396"
+    },
+    {
+      "path": "release-presence.png",
+      "bytes": 683727,
+      "sha256": "6994033027b779095629cf69298191136ffcfa4780b163467a0477b56adcb952"
+    },
+    {
+      "path": "release-reinstalled-library.png",
+      "bytes": 172340,
+      "sha256": "50872439d910528bb0aa59a764da09c425a9e572a2159deff87b7bd9b71aabf6"
+    },
+    {
+      "path": "release-landscape.png",
+      "bytes": 113418,
+      "sha256": "02732a2ca9a1ea93c8e631b8b8d03867cfd373d9898ca18f309397bcc8ed2508"
+    },
+    {
+      "path": "release-form-saved-record.xml",
+      "bytes": 22000,
+      "sha256": "593fdc55f2b4f94507d25fff127520d9b8f75b1da92b33f2fa8858149f0edfd1"
+    },
+    {
+      "path": "release-form-reinstalled-record.xml",
+      "bytes": 23694,
+      "sha256": "8c7efb2349e3514e6c8b8033162b12df7fc7b1da56637d3e5a129624af06621e"
+    }
+  ]
+}
