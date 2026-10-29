@@ -30,7 +30,7 @@ jobs:
           sdkmanager 'build-tools;36.0.0'
           "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs artifacts/android/Elysia-Android.apk
           "$ANDROID_HOME/build-tools/36.0.0/zipalign" -c -P 16 -v 4 artifacts/android/Elysia-Android.apk
-          python -m pip install playwright==1.56.0
+          python -m pip install playwright==1.60.0
       - name: Enable emulator hardware acceleration
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-elysia-kvm.rules

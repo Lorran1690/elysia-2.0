@@ -209,7 +209,9 @@ def debug_ui():
                     raise AssertionError('Debug-only Android WebView CDP did not open')
                 time.sleep(.25)
         with sync_playwright() as pw:
-            browser = pw.chromium.connect_over_cdp(endpoint)
+            # Android WebView has no browser-context download management. Preserve
+            # its native settings rather than sending desktop Chromium overrides.
+            browser = pw.chromium.connect_over_cdp(endpoint, no_defaults=True)
             set_navigation_hook(hide_keyboard)
             page = app_page(browser)
             page.on('pageerror', lambda e: errors.append(str(e)))

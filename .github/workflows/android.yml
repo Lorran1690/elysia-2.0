@@ -42,7 +42,7 @@ jobs:
           python scripts/android-licenses.py
       - name: Verify responsive interface in Chromium
         run: |
-          python -m pip install playwright==1.56.0
+          python -m pip install playwright==1.60.0
           python -m playwright install --with-deps chromium
           npm --prefix desktop run preview -- --port 1420 > /tmp/elysia-mobile-preview.log 2>&1 &
           python desktop/scripts/test-mobile-ui.py --url http://127.0.0.1:1420 --output reports/android-browser
