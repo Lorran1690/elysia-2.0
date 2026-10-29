@@ -21,7 +21,7 @@ e [testes históricos do build 7](reports/android/README.md).
 
 ## Elysia Desktop 2.2 · Tauri 2
 
-[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-d44aab78a5cd/Elysia-Setup-x64.exe) · [Presença no centro](reports/desktop-appearance-update/windows-presence-center.png) · [Atualizações no app](reports/desktop-appearance-update/windows-settings-update.png).
+[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-5789c8c13b2b/Elysia-Setup-x64.exe) · [Presença no centro](reports/desktop-appearance-update/windows-presence-center.png) · [Atualizações no app](reports/desktop-appearance-update/windows-settings-update.png).
 
 Janela desktop Tauri 2, frontend React/TypeScript compilado com Vite, estilos
 Tailwind, integração Rust e preferências/conversas em SQLite privado. Quatro áreas

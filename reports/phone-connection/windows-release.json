@@ -1,0 +1,12 @@
+{
+  "workflow_run": 40971479469,
+  "workflow_url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40971479469",
+  "source_commit": "5789c8c13b2bc5856046b2d338d88f340b2f85c1",
+  "installer_url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-5789c8c13b2b/Elysia-Setup-x64.exe",
+  "installer_bytes": 151684776,
+  "installer_sha256": "4c688a42a9c8cf8bf0ddd2df01511ef45b72e9723739669137e2b66f21660878",
+  "evidence": "Published release asset metadata after successful installed UI and installer steps",
+  "installed_on_owner_pc": false,
+  "phone_gateway_entrypoint_included": true,
+  "gateway_executed_on_owner_pc": false
+}
