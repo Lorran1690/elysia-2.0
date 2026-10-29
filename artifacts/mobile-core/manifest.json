@@ -1,0 +1,407 @@
+{
+  "format": "elysia-mobile-tensors-v1",
+  "dtype": "float32",
+  "byte_order": "little",
+  "model_config": {
+    "vocab_size": 2048,
+    "block_size": 512,
+    "num_layers": 4,
+    "embedding_dim": 192,
+    "num_heads": 4,
+    "feedforward_dim": 768,
+    "dropout": 0.1,
+    "positional_embedding": "rope",
+    "norm_type": "rmsnorm",
+    "feedforward_type": "swiglu",
+    "attention_backend": "sdpa",
+    "rope_theta": 10000.0
+  },
+  "tokenizer": {
+    "type": "byte_bpe",
+    "schema_version": 1,
+    "vocab_size": 2048,
+    "requested_vocab_size": 2048,
+    "fingerprint": "fe188d04c371a8eb628341cae601055d85b84254103c1bca3dbcbda8b28a0124"
+  },
+  "checkpoint_sha256": "2c8d4c2492db9f227a2ad56fa4d139777dddd5fb482bc17b5d4fb2907851aa06",
+  "weights": {
+    "file": "weights.bin",
+    "bytes": 10270464,
+    "sha256": "6b1f987cb3273e583e548a7d66eeab9f32e6a815e4058e67f0f9fd6f27b4403e"
+  },
+  "tensors": [
+    {
+      "name": "token_embeddings.weight",
+      "shape": [
+        2048,
+        192
+      ],
+      "offset": 0,
+      "bytes": 1572864
+    },
+    {
+      "name": "blocks.0.attention_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 1572864,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.0.attention.qkv.weight",
+      "shape": [
+        576,
+        192
+      ],
+      "offset": 1573632,
+      "bytes": 442368
+    },
+    {
+      "name": "blocks.0.attention.qkv.bias",
+      "shape": [
+        576
+      ],
+      "offset": 2016000,
+      "bytes": 2304
+    },
+    {
+      "name": "blocks.0.attention.output.weight",
+      "shape": [
+        192,
+        192
+      ],
+      "offset": 2018304,
+      "bytes": 147456
+    },
+    {
+      "name": "blocks.0.attention.output.bias",
+      "shape": [
+        192
+      ],
+      "offset": 2165760,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.0.feedforward_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 2166528,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.0.feedforward.gate.weight",
+      "shape": [
+        1024,
+        192
+      ],
+      "offset": 2167296,
+      "bytes": 786432
+    },
+    {
+      "name": "blocks.0.feedforward.gate.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 2953728,
+      "bytes": 4096
+    },
+    {
+      "name": "blocks.0.feedforward.network.0.weight",
+      "shape": [
+        192,
+        512
+      ],
+      "offset": 2957824,
+      "bytes": 393216
+    },
+    {
+      "name": "blocks.0.feedforward.network.0.bias",
+      "shape": [
+        192
+      ],
+      "offset": 3351040,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.1.attention_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 3351808,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.1.attention.qkv.weight",
+      "shape": [
+        576,
+        192
+      ],
+      "offset": 3352576,
+      "bytes": 442368
+    },
+    {
+      "name": "blocks.1.attention.qkv.bias",
+      "shape": [
+        576
+      ],
+      "offset": 3794944,
+      "bytes": 2304
+    },
+    {
+      "name": "blocks.1.attention.output.weight",
+      "shape": [
+        192,
+        192
+      ],
+      "offset": 3797248,
+      "bytes": 147456
+    },
+    {
+      "name": "blocks.1.attention.output.bias",
+      "shape": [
+        192
+      ],
+      "offset": 3944704,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.1.feedforward_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 3945472,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.1.feedforward.gate.weight",
+      "shape": [
+        1024,
+        192
+      ],
+      "offset": 3946240,
+      "bytes": 786432
+    },
+    {
+      "name": "blocks.1.feedforward.gate.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 4732672,
+      "bytes": 4096
+    },
+    {
+      "name": "blocks.1.feedforward.network.0.weight",
+      "shape": [
+        192,
+        512
+      ],
+      "offset": 4736768,
+      "bytes": 393216
+    },
+    {
+      "name": "blocks.1.feedforward.network.0.bias",
+      "shape": [
+        192
+      ],
+      "offset": 5129984,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.2.attention_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 5130752,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.2.attention.qkv.weight",
+      "shape": [
+        576,
+        192
+      ],
+      "offset": 5131520,
+      "bytes": 442368
+    },
+    {
+      "name": "blocks.2.attention.qkv.bias",
+      "shape": [
+        576
+      ],
+      "offset": 5573888,
+      "bytes": 2304
+    },
+    {
+      "name": "blocks.2.attention.output.weight",
+      "shape": [
+        192,
+        192
+      ],
+      "offset": 5576192,
+      "bytes": 147456
+    },
+    {
+      "name": "blocks.2.attention.output.bias",
+      "shape": [
+        192
+      ],
+      "offset": 5723648,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.2.feedforward_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 5724416,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.2.feedforward.gate.weight",
+      "shape": [
+        1024,
+        192
+      ],
+      "offset": 5725184,
+      "bytes": 786432
+    },
+    {
+      "name": "blocks.2.feedforward.gate.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 6511616,
+      "bytes": 4096
+    },
+    {
+      "name": "blocks.2.feedforward.network.0.weight",
+      "shape": [
+        192,
+        512
+      ],
+      "offset": 6515712,
+      "bytes": 393216
+    },
+    {
+      "name": "blocks.2.feedforward.network.0.bias",
+      "shape": [
+        192
+      ],
+      "offset": 6908928,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.3.attention_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 6909696,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.3.attention.qkv.weight",
+      "shape": [
+        576,
+        192
+      ],
+      "offset": 6910464,
+      "bytes": 442368
+    },
+    {
+      "name": "blocks.3.attention.qkv.bias",
+      "shape": [
+        576
+      ],
+      "offset": 7352832,
+      "bytes": 2304
+    },
+    {
+      "name": "blocks.3.attention.output.weight",
+      "shape": [
+        192,
+        192
+      ],
+      "offset": 7355136,
+      "bytes": 147456
+    },
+    {
+      "name": "blocks.3.attention.output.bias",
+      "shape": [
+        192
+      ],
+      "offset": 7502592,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.3.feedforward_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 7503360,
+      "bytes": 768
+    },
+    {
+      "name": "blocks.3.feedforward.gate.weight",
+      "shape": [
+        1024,
+        192
+      ],
+      "offset": 7504128,
+      "bytes": 786432
+    },
+    {
+      "name": "blocks.3.feedforward.gate.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 8290560,
+      "bytes": 4096
+    },
+    {
+      "name": "blocks.3.feedforward.network.0.weight",
+      "shape": [
+        192,
+        512
+      ],
+      "offset": 8294656,
+      "bytes": 393216
+    },
+    {
+      "name": "blocks.3.feedforward.network.0.bias",
+      "shape": [
+        192
+      ],
+      "offset": 8687872,
+      "bytes": 768
+    },
+    {
+      "name": "final_norm.weight",
+      "shape": [
+        192
+      ],
+      "offset": 8688640,
+      "bytes": 768
+    },
+    {
+      "name": "output_projection.weight",
+      "shape": [
+        2048,
+        192
+      ],
+      "offset": 8689408,
+      "bytes": 1572864
+    },
+    {
+      "name": "output_projection.bias",
+      "shape": [
+        2048
+      ],
+      "offset": 10262272,
+      "bytes": 8192
+    }
+  ],
+  "all_tensors_exact_roundtrip": true,
+  "android_inference_verified": false,
+  "conversation_quality_improved": false
+}
