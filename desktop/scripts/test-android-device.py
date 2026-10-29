@@ -41,8 +41,28 @@ def adb(*command, timeout=40, binary=False, check=True):
     return result.stdout if binary else result.stdout.decode('utf-8', errors='replace').strip()
 
 
+def app_is_foreground():
+    activities = adb('shell', 'dumpsys', 'activity', 'activities')
+    top = [line for line in activities.splitlines() if re.search(r'\btopResumedActivity\s*[=:]', line)]
+    resumed = top or [line for line in activities.splitlines() if re.search(r'\b(?:mResumedActivity|ResumedActivity)\s*[=:]', line)]
+    return any(args.app_id + '/' in line for line in resumed)
+
+
+def assert_app_foreground(timeout=8):
+    deadline = time.monotonic() + timeout
+    while not app_is_foreground():
+        if time.monotonic() >= deadline:
+            raise AssertionError('Elysia left the foreground; the test never relaunches it to mask navigation errors')
+        time.sleep(.2)
+
+
 def screen(name):
     (args.output / name).write_bytes(adb('exec-out', 'screencap', '-p', binary=True))
+
+
+def native_screenshot(path):
+    assert_app_foreground()
+    path.write_bytes(adb('exec-out', 'screencap', '-p', binary=True))
 
 
 def launch():
@@ -88,11 +108,32 @@ def tap_label(label, scroll=False, timeout=60):
     raise AssertionError('Android accessibility label not found: ' + label)
 
 
-def hide_keyboard():
-    state = adb('shell', 'dumpsys', 'input_method')
-    if re.search(r'(?:mInputShown|mIsInputViewShown|inputShown)\s*=\s*true', state):
+def webview_height():
+    for node in ui_tree().iter('node'):
+        if node.attrib.get('class') == 'android.webkit.WebView':
+            match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.attrib.get('bounds', ''))
+            if match:
+                left, top, right, bottom = map(int, match.groups())
+                if right > left and bottom > top:
+                    return bottom - top
+    raise AssertionError('Visible Android WebView bounds unavailable')
+
+
+def hide_keyboard(full_height):
+    # Release tests cannot read DOM state. A physically reduced WebView proves
+    # that the IME is actually visible; mInputShown alone can remain stale after
+    # navigation and must never justify sending Back to the application.
+    if webview_height() < full_height - 90:
         adb('shell', 'input', 'keyevent', '4')
+        assert_app_foreground()
         time.sleep(.25)
+
+
+def dismiss_dom_keyboard(page):
+    assert_app_foreground()
+    page.evaluate("document.activeElement?.blur()")
+    expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).to_be_visible(timeout=15000)
+    assert_app_foreground()
 
 
 def wait_accessibility(label, timeout=60):
@@ -155,13 +196,14 @@ def release_smoke(package_info):
     screen('release-presence.png')
     tap_label('Fechar visualização central')
     tap_label('Biblioteca')
+    full_height = webview_height()
     canary = 'AndroidReleasePrivateCanary'
     tap_label('Título do registro', scroll=True)
     adb('shell', 'input', 'text', canary)
-    hide_keyboard()
+    hide_keyboard(full_height)
     tap_label('Conteúdo do registro', scroll=True)
     adb('shell', 'input', 'text', 'SyntheticPrivateCanaryData')
-    hide_keyboard()
+    hide_keyboard(full_height)
     tap_label('Salvar registro', scroll=True)
     # The save notice is above the form and can be outside Android's visible
     # accessibility tree. Finding this newly saved canary below verifies the write.
@@ -212,14 +254,15 @@ def debug_ui():
             # Android WebView has no browser-context download management. Preserve
             # its native settings rather than sending desktop Chromium overrides.
             browser = pw.chromium.connect_over_cdp(endpoint, no_defaults=True)
-            set_navigation_hook(hide_keyboard)
+            set_navigation_hook(lambda: dismiss_dom_keyboard(page))
             # Capture the physical display, including Android's IME and system
             # bars, without relying on CDP compositor screenshot timing.
-            set_screenshot_hook(lambda path: path.write_bytes(adb('exec-out', 'screencap', '-p', binary=True)))
+            set_screenshot_hook(native_screenshot)
             page = app_page(browser)
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.get_by_role('navigation', name='Navegação do telefone', exact=True).wait_for(timeout=60000)
             assert page.evaluate("!!window.Capacitor?.isNativePlatform?.()"), 'Expected actual Capacitor Android runtime'
+            assert_app_foreground()
             check_mobile_api(page)
             check_phone_navigation(page)
             assert_phone_layout(page, 'Android portrait')
@@ -256,6 +299,9 @@ def debug_ui():
             expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).not_to_be_visible()
             screen('android-keyboard.png')
             adb('shell', 'input', 'keyevent', '4')
+            page.wait_for_timeout(500)
+            assert_app_foreground()
+            expect(page.locator('.desktop')).to_have_attribute('data-view', 'vault')
             expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).to_be_visible(timeout=15000)
             rotate(True)
             wait_js(page, 'innerWidth > innerHeight', timeout=20000)
@@ -295,7 +341,13 @@ except BaseException as failure:
     try:
         screen('failure-device.png')
         (args.output / 'failure-ui.xml').write_bytes(ET.tostring(ui_tree(), encoding='utf-8'))
-        (args.output / 'failure-logcat.txt').write_text(adb('logcat', '-d', '-t', '500'))
+        (args.output / 'failure-logcat.txt').write_text(adb('logcat', '-d', '-t', '1000'))
+        (args.output / 'failure-activity.txt').write_text(adb('shell', 'dumpsys', 'activity', 'activities'))
+        (args.output / 'failure-window.txt').write_text(adb('shell', 'dumpsys', 'window', 'windows'))
+        (args.output / 'failure-input-method.txt').write_text(adb('shell', 'dumpsys', 'input_method'))
+        pid = adb('shell', 'pidof', args.app_id).split()
+        if pid:
+            (args.output / 'failure-app-logcat.txt').write_text(adb('logcat', '-d', '--pid=' + pid[0]))
         (args.output / 'failure.json').write_text(json.dumps({'exception': str(failure)}, indent=2) + '\n')
     except Exception:
         pass
