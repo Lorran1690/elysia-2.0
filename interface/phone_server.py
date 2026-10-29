@@ -65,6 +65,10 @@ def main():
     if not re.fullmatch(r'[A-Za-z0-9_-]{43,128}', token): parser.error('Arquivo de chave inválido.')
     core = NeuralCore(ROOT/'artifacts/aira-dialogue-v1/run-001/sft-model.pt')
     server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(PhoneHandler, core=core))
+    # The desktop process has its own state.tmp/state.json; never race its writes.
+    from actions.media_generation import MediaService
+    from memory.vault import data_directory
+    server.media_ai = MediaService(data_directory()/'phone-media-ai')
     server.phone_token = token
     print(f'Gateway em 127.0.0.1:{server.server_port}; use um túnel HTTPS privado.', flush=True)
     try: server.serve_forever()

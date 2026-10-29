@@ -58,3 +58,7 @@ o processo Elysia permanece no loopback. A opção `--bg` mantém o encaminhamen
 ativo em segundo plano; o gateway e o computador também precisam continuar
 ligados. Não foi configurado Tailscale nem executado esse comando no computador
 do proprietário.
+
+O gateway mantém o histórico de geração em `phone-media-ai`, separado de
+`media-ai` do processo desktop, para evitar escritas concorrentes nos mesmos
+arquivos de estado. Os dois usam o ComfyUI do computador.
