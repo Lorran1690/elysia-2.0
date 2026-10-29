@@ -24,7 +24,10 @@ export async function shareAndroidBlob(blob:Blob,name:string){
   path='exports/'+crypto.randomUUID()+'/'+name;
   const data=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=()=>reject(Error('Não foi possível preparar o arquivo.'));reader.readAsDataURL(blob)});
   const result=await Filesystem.writeFile({path,directory:Directory.Cache,data,recursive:true});
-  await Share.share({title:'Exportar '+name,files:[result.uri],dialogTitle:'Salvar ou compartilhar arquivo da Elysia'});
+  try{await Share.share({title:'Exportar '+name,files:[result.uri],dialogTitle:'Salvar ou compartilhar arquivo da Elysia'});}catch(error){
+   if((error as {message?:string})?.message!=='Share canceled')throw error;
+   window.dispatchEvent(new CustomEvent('elysia-notice',{detail:'Compartilhamento cancelado.'}));
+  }
  }finally{sharing=false;}
 }
 export function setupAndroidShell(){

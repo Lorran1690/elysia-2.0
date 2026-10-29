@@ -47,6 +47,29 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none -no-snapshot
           script: python desktop/scripts/test-android-device.py --apk artifacts/android/Elysia-Android.apk --app-id org.elysia.mobile --release-smoke --output reports/android-release
+      - name: Verify physical portrait and landscape captures
+        run: |
+          python - <<'PY'
+          import json
+          import struct
+          from pathlib import Path
+
+          output = Path('reports/android-release')
+          dimensions = {}
+          for name, orientation in [('release-portrait.png', 'portrait'), ('release-landscape.png', 'landscape')]:
+              header = (output / name).read_bytes()[:24]
+              assert len(header) == 24 and header[:8] == b'\x89PNG\r\n\x1a\n' and header[12:16] == b'IHDR', 'Invalid Android screenshot: ' + name
+              width, height = struct.unpack('>II', header[16:24])
+              assert width > 0 and height > 0, (name, width, height)
+              assert (height > width) if orientation == 'portrait' else (width > height), ('Android rotation was not captured', name, width, height)
+              dimensions[orientation] = {'width': width, 'height': height}
+          report_path = output / 'device-verification.json'
+          report = json.loads(report_path.read_text())
+          assert report['passed'] and report['release_signed_apk_smoke'] and report['portrait_landscape_captured'], report
+          report['physical_screenshot_dimensions'] = dimensions
+          report_path.write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps({'physical_screenshot_dimensions': dimensions}))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:

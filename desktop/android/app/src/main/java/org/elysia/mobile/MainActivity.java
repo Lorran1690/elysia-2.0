@@ -31,7 +31,14 @@ public class MainActivity extends BridgeActivity {
             Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
             view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, ime.bottom));
             if (getBridge() != null) {
-                getBridge().triggerWindowJSEvent("elysia-keyboard", "{\"visible\":" + insets.isVisible(WindowInsetsCompat.Type.ime()) + "}");
+                boolean visible = insets.isVisible(WindowInsetsCompat.Type.ime());
+                // Insets can arrive before Capacitor's bridge script or React
+                // during a page reload. Standard DOM dispatch needs neither;
+                // keep the latest real value for the initial React listener.
+                getBridge().eval(
+                    "window.__elysiaKeyboardVisible=" + visible + ";window.dispatchEvent(new CustomEvent('elysia-keyboard',{detail:{visible:" + visible + "}}));",
+                    null
+                );
             }
             return WindowInsetsCompat.CONSUMED;
         });
