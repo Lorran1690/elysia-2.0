@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "actual_project_neural_core": true,
+  "synthetic_prompt": true,
+  "authenticated_generation_status": true,
+  "disconnect_hides_composer": true,
+  "reply_nonempty": true,
+  "conversation_quality_evaluated": false,
+  "real_https_socket": true,
+  "app_origin": "https://localhost",
+  "browser_assets_served_by_test_route": true,
+  "self_signed_certificate_accepted_only_in_test_context": true,
+  "browser_local_network_permission_check_disabled_only_for_test": true,
+  "actual_owner_phone_connected": false,
+  "media_gpu_generation_evaluated": false,
+  "javascript_errors": []
+}
