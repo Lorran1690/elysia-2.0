@@ -28,6 +28,9 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
       - name: Compile the phone interface and private offline modules
         working-directory: desktop
@@ -61,6 +64,7 @@ jobs:
           name: Elysia-Android-unsigned
           path: |
             desktop/android/app/build/outputs/apk/release/app-release-unsigned.apk
+            desktop/android/app/build/outputs/apk/release/output-metadata.json
             android-signing-tools/
             android-release-unsigned.sha256
           retention-days: 90

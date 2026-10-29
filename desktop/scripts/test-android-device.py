@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright, expect, TimeoutError as Playwri
 from mobile_ui_checks import (
     assert_phone_layout, capture_failure, check_center, check_mobile_api,
     check_music_and_png, check_phone_navigation, check_vault_and_tools,
-    navigate, settings, wait_js,
+    navigate, settings, wait_js, set_navigation_hook,
 )
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -163,7 +163,8 @@ def release_smoke(package_info):
     adb('shell', 'input', 'text', 'SyntheticPrivateCanaryData')
     hide_keyboard()
     tap_label('Salvar registro', scroll=True)
-    wait_accessibility('Registro salvo na biblioteca local.')
+    # The save notice is above the form and can be outside Android's visible
+    # accessibility tree. Finding this newly saved canary below verifies the write.
     tap_label('Conversas')
     tap_label('Biblioteca')
     tap_label(canary, scroll=True)
@@ -190,14 +191,26 @@ def debug_ui():
         deadline = time.monotonic() + 60
         while True:
             try:
-                urllib.request.urlopen('http://127.0.0.1:9224/json/version', timeout=2).read()
+                with urllib.request.urlopen('http://127.0.0.1:9224/json/version', timeout=2) as response:
+                    version = json.load(response)
+                # Android WebViews expose the browser endpoint at this stable
+                # path, including versions that omit it from /json/version.
+                endpoint = 'ws://127.0.0.1:9224/devtools/browser'
+                advertised = version.get('webSocketDebuggerUrl')
+                if advertised:
+                    from urllib.parse import urlsplit
+                    parts = urlsplit(advertised)
+                    endpoint = 'ws://127.0.0.1:9224' + parts.path
+                    if parts.query:
+                        endpoint += '?' + parts.query
                 break
             except Exception:
                 if time.monotonic() > deadline:
                     raise AssertionError('Debug-only Android WebView CDP did not open')
                 time.sleep(.25)
         with sync_playwright() as pw:
-            browser = pw.chromium.connect_over_cdp('http://127.0.0.1:9224')
+            browser = pw.chromium.connect_over_cdp(endpoint)
+            set_navigation_hook(hide_keyboard)
             page = app_page(browser)
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.get_by_role('navigation', name='Navegação do telefone', exact=True).wait_for(timeout=60000)
@@ -253,6 +266,7 @@ def debug_ui():
         capture_failure(page, args.output, failure)
         raise
     finally:
+        set_navigation_hook(None)
         adb('forward', '--remove', 'tcp:9224', check=False)
 
 

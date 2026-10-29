@@ -16,7 +16,19 @@ def wait_js(page, expression, timeout=30000):
         page.wait_for_timeout(100)
 
 
+# The actual Android test driver can dismiss a visible native IME before using
+# bottom navigation. Browser checks keep this unset; production code is untouched.
+_before_navigation = None
+
+
+def set_navigation_hook(callback):
+    global _before_navigation
+    _before_navigation = callback
+
+
 def navigate(page, label):
+    if _before_navigation:
+        _before_navigation()
     page.get_by_role('navigation', name='Navegação do telefone', exact=True).get_by_role('button', name=label, exact=True).click()
 
 
