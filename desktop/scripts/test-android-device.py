@@ -144,7 +144,8 @@ def wait_emulator_home(timeout=180):
     assert component, 'Android did not resolve a HOME activity after boot and PackageManager readiness'
     home_package = component.split('/')[0]
     adb('shell', 'wm', 'dismiss-keyguard')
-    adb('shell', 'input', 'keyevent', '3')
+    # Boot already launches HOME. Avoid injecting a redundant key event while
+    # the cold launcher is still handling its initial frame/input dispatch.
     stable = 0
     while time.monotonic() < deadline:
         windows = adb('shell', 'dumpsys', 'window', 'windows')
