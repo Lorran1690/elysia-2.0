@@ -1,0 +1,15 @@
+{
+  "source_commit": "d44aab78a5cd66a4ace8f549a66704aef1c78686",
+  "android_build": 7,
+  "verified_workflow_run": 40894178419,
+  "verified_workflow_attempt": 2,
+  "verified_workflow_url": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40894178419",
+  "unsigned_artifact_id": 12906493188,
+  "unsigned_artifact_zip_bytes": 12533409,
+  "unsigned_artifact_zip_sha256": "9be7d999f851e5650eef75d26770e4a00ae6385ddfdc37ea67672f1270569eed",
+  "unsigned_apk_sha256": "f855a54ff47eaccabd51b3ab4724d1e7574bbcdfcfdda00e2082ebf854be18e3",
+  "signed_apk_sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529",
+  "production_apk_installation_validation": "pending separate signed-release workflow",
+  "neural_generation_evaluated": false,
+  "owner_phone_installed": false
+}

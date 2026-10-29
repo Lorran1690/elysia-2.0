@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "production_release_signed": true,
+  "debug_keystore_used": false,
+  "certificate_sha256": "f21d8badadb6e10e30112621c7f7ee6cef3288492b04cb72df915dc21848a088",
+  "unsigned_apk_sha256": "f855a54ff47eaccabd51b3ab4724d1e7574bbcdfcfdda00e2082ebf854be18e3",
+  "apk_sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529",
+  "source_commit": "d44aab78a5cd66a4ace8f549a66704aef1c78686",
+  "build": 7,
+  "signature_and_zip_alignment_verified": true,
+  "private_signing_material_in_repository": false,
+  "installer_executed_on_owner_phone": false
+}

@@ -1,8 +1,24 @@
 # E.L.Y.S.I.A. 2.0
 
+## Elysia para Android
+
+[Baixar Elysia-Android.apk](https://raw.githubusercontent.com/Lorran1690/elysia-2.0/refs/heads/feature/media-creation/artifacts/android/Elysia-Android.apk) · [Guia Android](desktop/ANDROID.md).
+
+Interface para telefone com navegação por toque, rotação, biblioteca privada,
+ferramentas locais, editor, composição de mídia e visualização central dos orbes
+e avatares originais. O Neural Core e os modelos de geração por IA ainda dependem
+do aplicativo para computador; esta edição Android ainda não oferece conversação.
+
+Abra o link no telefone, baixe o APK e confirme a instalação. Depois, use
+**Configurações → Sistema → Verificar atualizações** no próprio aplicativo.
+O código, o APK e seus hashes ficam no GitHub; os registros pessoais ficam no
+armazenamento privado do app. Com o Drive instalado no telefone, use Exportar
+e escolha uma pasta privada para guardar seus backups. Desinstalar ou limpar os dados remove os registros
+locais. [Relatórios de verificação](reports/android/README.md).
+
 ## Elysia Desktop 2.2 · Tauri 2
 
-[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-9781d75fd4ab/Elysia-Setup-x64.exe) · [Presença no centro](reports/desktop-appearance-update/windows-presence-center.png) · [Atualizações no app](reports/desktop-appearance-update/windows-settings-update.png).
+[Baixar o instalador Windows](https://github.com/Lorran1690/elysia-2.0/releases/download/native-d44aab78a5cd/Elysia-Setup-x64.exe) · [Presença no centro](reports/desktop-appearance-update/windows-presence-center.png) · [Atualizações no app](reports/desktop-appearance-update/windows-settings-update.png).
 
 Janela desktop Tauri 2, frontend React/TypeScript compilado com Vite, estilos
 Tailwind, integração Rust e preferências/conversas em SQLite privado. Quatro áreas
