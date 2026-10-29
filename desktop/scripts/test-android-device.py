@@ -124,6 +124,11 @@ def swipe_content_up():
     adb('shell', 'input', 'swipe', width // 2, int(height * .74), width // 2, int(height * .33), '280')
 
 
+def swipe_content_down():
+    width, height = physical_size()
+    adb('shell', 'input', 'swipe', width // 2, int(height * .36), width // 2, int(height * .76), '280')
+
+
 def tap_label(label, scroll=False, timeout=60):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
@@ -138,13 +143,13 @@ def tap_label(label, scroll=False, timeout=60):
     raise AssertionError('Android accessibility label not found: ' + label)
 
 
-def find_labelled_edittext(label, tree):
+def find_labelled_edittext(label, tree, visible=True):
     # Chromium's native accessibility tree can expose the visible HTML label
     # separately from its unnamed EditText, even with the DOM aria-label intact.
     for container in tree.iter('node'):
-        labels = [child for child in container if label in [child.attrib.get('text'), child.attrib.get('content-desc')] and node_bounds(child)]
+        labels = [child for child in container if label in [child.attrib.get('text'), child.attrib.get('content-desc')] and (not visible or node_bounds(child))]
         fields = [child for child in container if child.attrib.get('class') == 'android.widget.EditText']
-        if labels and len(fields) == 1 and node_bounds(fields[0]) and fields[0].attrib.get('enabled') == 'true':
+        if labels and len(fields) == 1 and (not visible or (node_bounds(fields[0]) and fields[0].attrib.get('enabled') == 'true')):
             return fields[0]
     return None
 
@@ -161,8 +166,9 @@ def tap_field(label, timeout=60):
     raise AssertionError('Native field associated with visible label not found: ' + label)
 
 
-def webview_height():
-    for node in ui_tree().iter('node'):
+def webview_height(tree=None):
+    tree = tree if tree is not None else ui_tree()
+    for node in tree.iter('node'):
         if node.attrib.get('class') == 'android.webkit.WebView':
             match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.attrib.get('bounds', ''))
             if match:
@@ -178,8 +184,78 @@ def hide_keyboard(full_height):
     # navigation and must never justify sending Back to the application.
     if webview_height() < full_height - 90:
         adb('shell', 'input', 'keyevent', '4')
-        assert_app_foreground()
-        time.sleep(.25)
+    deadline = time.monotonic() + 30
+    previous = None
+    stable = 0
+    while stable < 2:
+        height = webview_height()
+        stable = stable + 1 if height >= full_height - 2 and height == previous else 0
+        previous = height
+        if time.monotonic() >= deadline:
+            raise AssertionError('Native IME did not close and restore the full WebView height')
+        time.sleep(.1)
+    assert_app_foreground()
+
+
+def native_form_checkpoint(stage, tree=None, expected=None):
+    tree = tree if tree is not None else ui_tree()
+    prefix = args.output / ('release-form-' + stage)
+    prefix.with_suffix('.xml').write_bytes(ET.tostring(tree, encoding='utf-8'))
+    fields = {}
+    for label in ['Título', 'Conteúdo']:
+        node = find_labelled_edittext(label, tree, visible=False)
+        fields[label] = dict(node.attrib) if node is not None else None
+    prefix.with_suffix('.json').write_text(json.dumps({'fields': fields, 'webview_height': webview_height(tree)}, ensure_ascii=False, indent=2) + '\n')
+    screen(prefix.name + '.png')
+    for label, value in (expected or {}).items():
+        assert fields[label] and fields[label].get('text') == value, ('Native field value differs before save', label, fields[label], value)
+    return fields
+
+
+def type_native_field(label, value, full_height, stage):
+    tap_field(label)
+    deadline = time.monotonic() + 30
+    previous = None
+    stable = 0
+    while stable < 2:
+        tree = ui_tree()
+        field = find_labelled_edittext(label, tree, visible=False)
+        height = webview_height(tree)
+        ready = field is not None and field.attrib.get('focused') == 'true' and field.attrib.get('enabled') == 'true' and node_bounds(field) and height < full_height - 90
+        stable = stable + 1 if ready and height == previous else 0
+        previous = height
+        if time.monotonic() >= deadline:
+            native_form_checkpoint(stage + '-focus-failure', tree)
+            raise AssertionError('Native field focus and visible IME did not settle: ' + label)
+        time.sleep(.1)
+    # Send characters exactly once, only after Android's native editable and
+    # keyboard are ready. A missing or truncated value fails with its snapshot.
+    adb('shell', 'input', 'text', value)
+    deadline = time.monotonic() + 10
+    while True:
+        tree = ui_tree()
+        field = find_labelled_edittext(label, tree, visible=False)
+        if field is not None and field.attrib.get('text') == value:
+            native_form_checkpoint(stage, tree, {label: value})
+            return
+        if time.monotonic() >= deadline:
+            native_form_checkpoint(stage + '-value-failure', tree, {label: value})
+        time.sleep(.1)
+
+
+def wait_saved_canary(title, content, timeout=30):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        tree = ui_tree()
+        visible_text = {node.attrib.get('text') for node in tree.iter('node')
+                        if node.attrib.get('class') != 'android.widget.EditText' and node_bounds(node)}
+        if title in visible_text and content in visible_text:
+            native_form_checkpoint('saved-record', tree)
+            return
+        swipe_content_down()
+        time.sleep(.2)
+    native_form_checkpoint('save-failure')
+    raise AssertionError('The saved canary title and content were not visible; the draft was not discarded by navigation')
 
 
 def dismiss_dom_keyboard(page):
@@ -311,15 +387,14 @@ def release_smoke(package_info):
     full_height = webview_height()
     canary = 'AndroidReleasePrivateCanary' + uuid.uuid4().hex[:8]
     canary_content = 'SyntheticPrivateCanaryData'
-    tap_field('Título')
-    adb('shell', 'input', 'text', canary)
+    type_native_field('Título', canary, full_height, 'title-typed')
     hide_keyboard(full_height)
-    tap_field('Conteúdo')
-    adb('shell', 'input', 'text', canary_content)
+    type_native_field('Conteúdo', canary_content, full_height, 'content-typed')
     hide_keyboard(full_height)
+    native_form_checkpoint('before-save', expected={'Título': canary, 'Conteúdo': canary_content})
     tap_label('Salvar registro', scroll=True)
-    # The save notice is above the form and can be outside Android's visible
-    # accessibility tree. Finding this newly saved canary below verifies the write.
+    native_form_checkpoint('after-save')
+    wait_saved_canary(canary, canary_content)
     tap_label('Conversas')
     tap_label('Biblioteca')
     tap_label(canary, scroll=True)

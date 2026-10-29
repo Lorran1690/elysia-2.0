@@ -2,10 +2,10 @@
   "format": "elysia-android-release-validation-v1",
   "apk_build": 7,
   "apk_sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529",
-  "reason": "Validate unchanged APK using visible native label-to-EditText associations; assert saved title and content survive reinstall on an Android user OS image.",
+  "reason": "Verify native field focus and actual typed values before Save, require a visible saved record before navigation, then prove title and content survive reinstall.",
   "required_android_build_type": "user",
   "required_ro_debuggable": "0",
-  "previous_signed_workflow_run": 40898830107,
+  "previous_signed_workflow_run": 40900403814,
   "chromium_source": "https://chromium.googlesource.com/chromium/src/+/124.0.6367.219/android_webview/glue/java/src/com/android/webview/chromium/SharedStatics.java#87",
-  "validation_revision": 3
+  "validation_revision": 4
 }
