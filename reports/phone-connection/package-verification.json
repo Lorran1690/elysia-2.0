@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "actual_binary_manifest_checked": true,
+  "application_id": "org.elysia.mobile",
+  "version_name": "2.2.0",
+  "version_code": 15,
+  "descriptor_source_commit": "4bd969dfe6122186d854edccef5230ed816c0a33",
+  "apk_bytes": 11390489,
+  "apk_sha256": "0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f417d47b33",
+  "certificate_sha256": "f21d8badadb6e10e30112621c7f7ee6cef3288492b04cb72df915dc21848a088",
+  "signature_verified_by_android_apksigner": true,
+  "descriptor_matches_apk_identity_size_hash_and_signer": true,
+  "production_apk_not_debuggable": true,
+  "private_signing_material_read": false,
+  "apk_executed_by_this_check": false,
+  "embedded_source_commit_evaluated": false
+}

@@ -151,11 +151,20 @@ def wait_emulator_home(timeout=180):
         assert 'Application Not Responding:' not in windows, 'Android HOME has an ANR before app installation; no system dialog was dismissed'
         booted = adb('shell', 'getprop', 'sys.boot_completed') == '1'
         packages_ready = 'package:' in adb('shell', 'pm', 'path', 'android')
+        # Setup can initially resolve FallbackHome and later switch to Launcher.
+        # Re-resolve the actual default instead of waiting on the stale package.
+        resolution = adb('shell', 'cmd', 'package', 'resolve-activity', '--brief', '-a', 'android.intent.action.MAIN', '-c', 'android.intent.category.HOME')
+        current_home = next((line.strip() for line in reversed(resolution.splitlines()) if re.fullmatch(r'[a-z][a-z0-9_.]+/[A-Za-z0-9_.$]+', line.strip())), None)
+        if current_home and current_home != component:
+            component = current_home
+            home_package = component.split('/')[0]
+            stable = 0
         resumed = resumed_activities()
         focused = any(home_package + '/' in line for line in resumed)
         tree = ui_tree()
         visible_home = any(node.attrib.get('package') == home_package and node_bounds(node) for node in tree.iter('node'))
         stable = stable + 1 if booted and packages_ready and focused and visible_home else 0
+        (args.output / 'emulator-home-state.json').write_text(json.dumps({'resolved_home': component, 'booted': booted, 'packages_ready': packages_ready, 'focused': focused, 'visible_home': visible_home, 'resumed': resumed, 'stable': stable}, indent=2)+'\n')
         if stable >= 2:
             (args.output / 'emulator-ready.json').write_text(json.dumps({'boot_completed': True, 'package_manager_responding': True, 'home_component': component, 'consecutive_valid_home_trees': stable, 'accessibility_fresh_read_retries': _ui_dump_read_retries, 'checked_before_app_installation': True}, indent=2) + '\n')
             return

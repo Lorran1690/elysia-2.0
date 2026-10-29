@@ -50,5 +50,5 @@ Testes de transporte usam uma resposta **sintética explicitamente identificada*
 para comprovar autenticação e limites, sem atribuir essa resposta ao modelo.
 O gateway mantém o mesmo Neural Core próprio e pipeline ComfyUI existente.
 A conexão no telefone do proprietário depende de configurar o computador e VPN.
-O APK público anterior (build 7) não contém essa integração; é necessário publicar
-um novo APK assinado antes de usar esse painel no telefone.
+Use o APK build 15 ou superior para ter este painel. O build 7 não contém
+a conexão ao computador. Confira o estado dos testes no relatório phone-connection.

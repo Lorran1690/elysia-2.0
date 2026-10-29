@@ -6,17 +6,18 @@
 
 Interface para telefone com navegação por toque, rotação, biblioteca privada,
 ferramentas locais, editor, composição de mídia e visualização central dos orbes
-e avatares originais. O Neural Core e os modelos de geração por IA ainda dependem
-do aplicativo para computador; esta edição Android ainda não oferece conversação.
+e avatares originais. Em Configurações → Sistema, conecte seu computador por
+HTTPS privado para usar o Neural Core próprio e o serviço de geração. O modelo
+continua experimental e pode produzir respostas incorretas ou repetitivas.
+[Configuração da conexão privada](reports/phone-connection/README.md).
 
 Abra o link no telefone, baixe o APK e confirme a instalação. Depois, use
 **Configurações → Sistema → Verificar atualizações** no próprio aplicativo.
 O código, o APK e seus hashes ficam no GitHub; os registros pessoais ficam no
 armazenamento privado do app. Com o Drive instalado no telefone, use Exportar
 e escolha uma pasta privada para guardar seus backups. Desinstalar ou limpar os dados remove os registros
-locais. O APK assinado passou em emulador Android 15, incluindo reinstalação com
-título e conteúdo da nota preservados e rotação em retrato/paisagem.
-[Relatórios de verificação](reports/android/README.md).
+locais. [Verificação da conexão e do APK atual](reports/phone-connection/README.md)
+e [testes históricos do build 7](reports/android/README.md).
 
 ## Elysia Desktop 2.2 · Tauri 2
 

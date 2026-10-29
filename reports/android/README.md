@@ -1,9 +1,9 @@
-# Android · aplicativo e evidências
+# Android · evidências históricas do build 7
 
-[Baixar Elysia-Android.apk](https://raw.githubusercontent.com/Lorran1690/elysia-2.0/refs/heads/feature/media-creation/artifacts/android/Elysia-Android.apk) · [Guia de instalação e atualização](../../desktop/ANDROID.md)
+[Baixar Elysia-Android.apk](https://raw.githubusercontent.com/Lorran1690/elysia-2.0/33c4e6145372fb71d157ba13b4744e9b562b5ea4/artifacts/android/Elysia-Android.apk) · [Guia de instalação e atualização](../../desktop/ANDROID.md)
 
-APK público **2.2.0, compilação 7**, pacote `org.elysia.mobile`, com
-11.386.393 bytes. Origem registrada no [manifesto](../../artifacts/android/latest.json)
+APK histórico **2.2.0, compilação 7**, pacote `org.elysia.mobile`, com
+11.386.393 bytes. Origem registrada no [manifesto histórico](https://github.com/Lorran1690/elysia-2.0/blob/33c4e6145372fb71d157ba13b4744e9b562b5ea4/artifacts/android/latest.json)
 e na [proveniência](build-provenance.json):
 `d44aab78a5cd66a4ace8f549a66704aef1c78686`.
 
@@ -78,3 +78,5 @@ Exporte seu backup privado pelo aplicativo antes de atualizar; desinstalar ou
 limpar dados remove os registros locais.
 
 [^chromium]: No [código oficial do Chromium 124](https://chromium.googlesource.com/chromium/src/+/124.0.6367.219/android_webview/glue/java/src/com/android/webview/chromium/SharedStatics.java#87), a depuração do WebView não pode ser desativada em builds de depuração. [`BuildInfo`](https://chromium.googlesource.com/chromium/src/+/124.0.6367.219/base/android/java/src/org/chromium/base/BuildInfo.java#373) inclui Android `eng`/`userdebug`, independentemente da flag do aplicativo; por isso a validação de produção usa imagem `user`.
+
+A entrega atual com conexão ao computador está em [phone-connection](../phone-connection/README.md).

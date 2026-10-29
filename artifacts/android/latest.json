@@ -1,13 +1,13 @@
 {
   "format": "elysia-android-update-v1",
   "version": "2.2.0",
-  "build": 7,
-  "source_sha": "d44aab78a5cd66a4ace8f549a66704aef1c78686",
+  "build": 15,
+  "source_sha": "4bd969dfe6122186d854edccef5230ed816c0a33",
   "apk": {
     "name": "Elysia-Android.apk",
     "url": "https://raw.githubusercontent.com/Lorran1690/elysia-2.0/refs/heads/feature/media-creation/artifacts/android/Elysia-Android.apk",
-    "bytes": 11386393,
-    "sha256": "d18b21062b157079dce47a7b61c378ba4e1eb80c4496f2a632928ade9e8f4529"
+    "bytes": 11390489,
+    "sha256": "0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f417d47b33"
   },
   "certificate_sha256": "f21d8badadb6e10e30112621c7f7ee6cef3288492b04cb72df915dc21848a088"
 }

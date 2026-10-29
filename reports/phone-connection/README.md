@@ -35,7 +35,10 @@ proprietário. O gateway precisa ser iniciado no computador, com túnel HTTPS
 privado e ComfyUI/modelos instalados para a geração por IA.
 
 A compilação de um novo APK e executável Windows é registrada no GitHub Actions.
-O APK público de build 7 ainda é a versão anterior até a publicação do novo pacote.
+O APK de build 15 está publicado e assinado com a chave persistente. A assinatura,
+identidade e hash passaram; a validação instalada de produção está em andamento.
+Os dois testes debug anteriores pararam antes da instalação, na inicialização
+do emulador (ANR do HOME na primeira tentativa e prontidão na segunda).
 
 ## Encaminhamento privado com Tailscale
 
@@ -62,3 +65,8 @@ do proprietário.
 O gateway mantém o histórico de geração em `phone-media-ai`, separado de
 `media-ai` do processo desktop, para evitar escritas concorrentes nos mesmos
 arquivos de estado. Os dois usam o ComfyUI do computador.
+
+APK build 15: SHA-256 `0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f417d47b33`,
+11.390.489 bytes, origem do aplicativo `4bd969dfe6122186d854edccef5230ed816c0a33`.
+[Verificação estática do pacote](package-verification.json). Os artefatos unsigned
+das tentativas 1 e 2 do workflow 40969592957 têm APKs idênticos em bytes.
