@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright, expect, TimeoutError as Playwri
 from mobile_ui_checks import (
     assert_phone_layout, capture_failure, check_center, check_mobile_api,
     check_music_and_png, check_phone_navigation, check_vault_and_tools,
-    navigate, settings, wait_js, set_navigation_hook,
+    navigate, settings, wait_js, set_navigation_hook, set_screenshot_hook,
 )
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -213,6 +213,9 @@ def debug_ui():
             # its native settings rather than sending desktop Chromium overrides.
             browser = pw.chromium.connect_over_cdp(endpoint, no_defaults=True)
             set_navigation_hook(hide_keyboard)
+            # Capture the physical display, including Android's IME and system
+            # bars, without relying on CDP compositor screenshot timing.
+            set_screenshot_hook(lambda path: path.write_bytes(adb('exec-out', 'screencap', '-p', binary=True)))
             page = app_page(browser)
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.get_by_role('navigation', name='Navegação do telefone', exact=True).wait_for(timeout=60000)
@@ -269,6 +272,7 @@ def debug_ui():
         raise
     finally:
         set_navigation_hook(None)
+        set_screenshot_hook(None)
         adb('forward', '--remove', 'tcp:9224', check=False)
 
 

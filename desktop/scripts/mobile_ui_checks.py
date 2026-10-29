@@ -19,11 +19,24 @@ def wait_js(page, expression, timeout=30000):
 # The actual Android test driver can dismiss a visible native IME before using
 # bottom navigation. Browser checks keep this unset; production code is untouched.
 _before_navigation = None
+_native_screenshot = None
 
 
 def set_navigation_hook(callback):
     global _before_navigation
     _before_navigation = callback
+
+
+def set_screenshot_hook(callback):
+    global _native_screenshot
+    _native_screenshot = callback
+
+
+def screenshot(page, path):
+    if _native_screenshot:
+        _native_screenshot(Path(path))
+    else:
+        page.screenshot(path=str(path))
 
 
 def navigate(page, label):
@@ -67,7 +80,7 @@ def check_phone_navigation(page):
     expect(drawer).not_to_be_visible()
 
 
-def check_center(page, screenshot=None):
+def check_center(page, screenshot_path=None):
     page.get_by_role('button', name='Centralizar orbe ou avatar', exact=True).click()
     dialog = page.get_by_role('dialog', name='No centro do seu espaço', exact=True)
     expect(dialog).to_be_visible()
@@ -79,9 +92,9 @@ def check_center(page, screenshot=None):
     assert page.locator('.presence-canvas canvas').count() == 1
     expect(dialog.get_by_role('button', name='Ajustar à tela', exact=True)).to_be_in_viewport()
     assert_phone_layout(page, 'center')
-    if screenshot:
+    if screenshot_path:
         page.wait_for_timeout(650)
-        page.screenshot(path=str(screenshot))
+        screenshot(page, screenshot_path)
     dialog.get_by_role('button', name='Fechar visualização central', exact=True).click()
     expect(dialog).not_to_be_visible()
 
@@ -131,7 +144,9 @@ def check_vault_and_tools(page, output, native_android=False):
     page.get_by_label('Buscar na biblioteca', exact=True).fill(title)
     page.get_by_role('button', name='Buscar', exact=True).click()
     expect(page.locator('.vault-list li')).to_have_count(1)
-    page.screenshot(path=str(Path(output) / 'library.png'))
+    if _before_navigation:
+        _before_navigation()
+    screenshot(page, Path(output) / 'library.png')
     navigate(page, 'Desenvolvimento')
     page.get_by_role('tab', name='Utilitários', exact=True).click()
     page.get_by_label('Entrada da ferramenta', exact=True).fill('(17+3)*4')
@@ -164,7 +179,7 @@ def check_music_and_png(page, output, native_android=False):
     page.get_by_role('button', name='Gerar PNG', exact=True).click()
     page.get_by_role('button', name='Baixar arquivo gerado', exact=True).wait_for()
     assert page.locator('.studio-output img').evaluate('e=>e.complete&&e.naturalWidth>0')
-    page.screenshot(path=str(Path(output) / 'composition.png'))
+    screenshot(page, Path(output) / 'composition.png')
     if not native_android:
         with page.expect_download() as download:
             page.get_by_role('button', name='Baixar arquivo gerado', exact=True).click()
@@ -179,7 +194,7 @@ def capture_failure(page, output, failure):
     (output / 'failure.json').write_text(json.dumps({'exception': str(failure)}, ensure_ascii=False, indent=2) + '\n')
     if page and not page.is_closed():
         try:
-            page.screenshot(path=str(output / 'failure.png'), timeout=5000)
+            screenshot(page, output / 'failure.png')
             (output / 'failure-visible.txt').write_text(page.locator('body').inner_text(timeout=3000)[:100000])
         except Exception:
             pass
