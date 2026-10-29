@@ -308,19 +308,29 @@ def type_native_field(label, value, full_height, stage):
         time.sleep(.1)
 
 
-def wait_saved_canary(title, content, timeout=30):
+def wait_saved_canary(title, content, timeout=45, *, stage='saved-record', direction='down', viewport=None, full_height=None):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         tree = ui_tree()
-        visible_text = {node.attrib.get('text') for node in tree.iter('node')
-                        if node.attrib.get('class') != 'android.widget.EditText' and node_bounds(node)}
+        if full_height is not None and webview_height(tree) < full_height - 90:
+            hide_keyboard(full_height)
+            tree = ui_tree()
+        visible_text = set()
+        for node in tree.iter('node'):
+            bounds = node_bounds(node)
+            if node.attrib.get('class') == 'android.widget.EditText' or not bounds:
+                continue
+            # Text behind the fixed header/navigation is not a visible record.
+            if viewport and not (bounds[1] >= viewport[0] and bounds[3] <= viewport[1]):
+                continue
+            visible_text.add(node.attrib.get('text'))
         if title in visible_text and content in visible_text:
-            native_form_checkpoint('saved-record', tree)
+            native_form_checkpoint(stage, tree)
             return
-        swipe_content_down()
+        (swipe_content_up if direction == 'up' else swipe_content_down)()
         time.sleep(.2)
-    native_form_checkpoint('save-failure')
-    raise AssertionError('The saved canary title and content were not visible; the draft was not discarded by navigation')
+    native_form_checkpoint(stage + '-failure')
+    raise AssertionError('The saved canary title and content were not both visible in the workspace: ' + stage)
 
 
 def dismiss_dom_keyboard(page):
@@ -432,7 +442,11 @@ def release_debug_snapshot(stage, package_info):
 
 def release_smoke(package_info):
     initial_debugging = release_debug_snapshot('launch', package_info)
-    wait_accessibility('Biblioteca')
+    initial_tree = wait_accessibility('Biblioteca')
+    header = find_node('Centralizar orbe ou avatar', initial_tree)
+    navigation = find_node('Navegação do telefone', initial_tree)
+    assert header is not None and navigation is not None, 'Native portrait workspace bounds were not available'
+    record_viewport = (node_bounds(header)[3], node_bounds(navigation)[1])
     ready_debugging = release_debug_snapshot('ui-ready', adb('shell', 'dumpsys', 'package', args.app_id))
     # Chromium 124 forces DevTools on eng/userdebug OS builds, independently
     # of the application flag. A strict production check needs a user OS image.
@@ -459,20 +473,22 @@ def release_smoke(package_info):
     native_form_checkpoint('before-save', expected={'Título': canary, 'Conteúdo': canary_content})
     tap_label('Salvar registro', scroll=True)
     native_form_checkpoint('after-save')
-    wait_saved_canary(canary, canary_content)
+    wait_saved_canary(canary, canary_content, viewport=record_viewport, full_height=full_height)
     adb('shell', 'am', 'force-stop', args.app_id)
     adb('install', '-r', args.apk, timeout=120)
     launch()
     wait_accessibility('Biblioteca')
     tap_label('Biblioteca', node_class='android.widget.Button')
-    tap_label(canary, scroll=True)
-    wait_accessibility(canary_content, scroll=True)
+    native_form_checkpoint('reinstalled-initial')
+    # The record is not an interactive control. Clicking a clipped text node
+    # can hit the fixed navigation covering it. Inspect actual title/body only.
+    wait_saved_canary(canary, canary_content, stage='reinstalled-record', direction='up', viewport=record_viewport, full_height=full_height)
     screen('release-reinstalled-library.png')
     rotate(True)
     time.sleep(1)
     wait_accessibility('Biblioteca')
     screen('release-landscape.png')
-    return {'production_apk_not_debuggable': True, 'production_webview_debug_socket_absent': True, 'native_accessibility_ui': True, 'original_presence_opens': True, 'reinstall_preserves_private_vault_note': True, 'portrait_landscape_captured': True, 'cdp_used': False}
+    return {'production_apk_not_debuggable': True, 'production_webview_debug_socket_absent': True, 'native_accessibility_ui': True, 'original_presence_opens': True, 'reinstall_preserves_private_vault_note': True, 'reinstall_preserves_private_vault_content': True, 'portrait_record_viewport': record_viewport, 'portrait_landscape_captured': True, 'cdp_used': False}
 
 
 def debug_ui():
