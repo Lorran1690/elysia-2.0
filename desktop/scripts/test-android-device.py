@@ -41,11 +41,14 @@ def adb(*command, timeout=40, binary=False, check=True):
     return result.stdout if binary else result.stdout.decode('utf-8', errors='replace').strip()
 
 
-def app_is_foreground():
+def resumed_activities():
     activities = adb('shell', 'dumpsys', 'activity', 'activities')
     top = [line for line in activities.splitlines() if re.search(r'\btopResumedActivity\s*[=:]', line)]
-    resumed = top or [line for line in activities.splitlines() if re.search(r'\b(?:mResumedActivity|ResumedActivity)\s*[=:]', line)]
-    return any(args.app_id + '/' in line for line in resumed)
+    return top or [line for line in activities.splitlines() if re.search(r'\b(?:mResumedActivity|ResumedActivity)\s*[=:]', line)]
+
+
+def app_is_foreground():
+    return any(args.app_id + '/' in line for line in resumed_activities())
 
 
 def assert_app_foreground(timeout=8):
@@ -54,6 +57,21 @@ def assert_app_foreground(timeout=8):
         if time.monotonic() >= deadline:
             raise AssertionError('Elysia left the foreground; the test never relaunches it to mask navigation errors')
         time.sleep(.2)
+
+
+def wait_share_chooser(timeout=30):
+    # Writing a PNG precedes opening Android's Sharesheet. A physical Back is
+    # justified only once the real chooser, rather than Elysia, is foreground.
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        windows = adb('shell', 'dumpsys', 'window', 'windows')
+        if 'Application Not Responding:' in windows:
+            raise AssertionError('Android reported an Application Not Responding dialog before share cancellation; no dialog is dismissed by the driver')
+        resumed = resumed_activities()
+        if any(('com.android.intentresolver/' in line or 'android/' in line) and 'ChooserActivity' in line for line in resumed):
+            return
+        time.sleep(.2)
+    raise AssertionError('Native share chooser did not enter the foreground; no Back was sent')
 
 
 def screen(name):
@@ -300,9 +318,10 @@ def debug_ui():
                     break
                 time.sleep(.3)
             assert generated, 'Generated PNG was not written by the native export bridge'
+            wait_share_chooser()
             screen('android-share-sheet.png')
             adb('shell', 'input', 'keyevent', '4')
-            page.wait_for_timeout(600)
+            assert_app_foreground(timeout=15)
             navigate(page, 'Biblioteca')
             field = page.get_by_label('Título do registro', exact=True)
             before = page.evaluate('visualViewport.height')
@@ -329,6 +348,7 @@ def debug_ui():
             browser.close()
             return results
     except BaseException as failure:
+        (args.output / 'debug-failure.json').write_text(json.dumps({'exception': str(failure), 'javascript_errors': errors}, ensure_ascii=False, indent=2) + '\n')
         capture_failure(page, args.output, failure)
         raise
     finally:

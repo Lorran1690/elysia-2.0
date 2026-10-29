@@ -61,7 +61,7 @@ jobs:
           sha256sum desktop/android/app/build/outputs/apk/release/app-release-unsigned.apk > android-release-unsigned.sha256
       - uses: actions/upload-artifact@v4
         with:
-          name: Elysia-Android-unsigned
+          name: Elysia-Android-unsigned-attempt-${{ github.run_attempt }}
           path: |
             desktop/android/app/build/outputs/apk/release/app-release-unsigned.apk
             desktop/android/app/build/outputs/apk/release/output-metadata.json
@@ -87,7 +87,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Elysia-Android-verification
+          name: Elysia-Android-verification-attempt-${{ github.run_attempt }}
           path: |
             reports/android-browser/
             reports/android-device/
