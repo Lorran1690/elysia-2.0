@@ -29,6 +29,7 @@
   "mobile_neural_unavailable_is_explicit": true,
   "appearance_persistence": true,
   "keyboard_resize_simulated": true,
+  "focused_rotation_without_ime_preserves_navigation": true,
   "physical_keyboard_evaluated": false,
   "api_requests_reached_server": [],
   "javascript_errors": [],

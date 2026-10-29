@@ -101,9 +101,17 @@ try:
         expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).not_to_be_visible()
         page.evaluate("""()=>{delete visualViewport.height;visualViewport.dispatchEvent(new Event('resize'));}""")
         expect(page.locator('.desktop')).to_have_attribute('data-keyboard-open', 'false')
+        # A focused field does not imply an IME. Rotating the viewport alone
+        # must not hide navigation as if a keyboard had consumed the height.
+        assert page.evaluate("document.activeElement?.tagName") == 'INPUT'
+        page.set_viewport_size({'width': 844, 'height': 390})
+        wait_js(page, 'innerWidth > innerHeight')
+        expect(page.locator('.desktop')).to_have_attribute('data-keyboard-open', 'false')
+        expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).to_be_visible()
+        assert_phone_layout(page, 'focused landscape without keyboard')
         assert not requests, ('API requests escaped the local adapter', requests)
         assert not errors, errors
-        report = {'passed': True, 'actual_android_apk': False, 'browser_touch_viewports': sizes, 'font_125_percent_all_settings': True, 'drawer_and_touch_navigation': True, 'centered_original_presence_single_renderer': True, 'mobile_neural_unavailable_is_explicit': True, 'appearance_persistence': True, 'keyboard_resize_simulated': True, 'physical_keyboard_evaluated': False, 'api_requests_reached_server': requests, 'javascript_errors': errors, **results}
+        report = {'passed': True, 'actual_android_apk': False, 'browser_touch_viewports': sizes, 'font_125_percent_all_settings': True, 'drawer_and_touch_navigation': True, 'centered_original_presence_single_renderer': True, 'mobile_neural_unavailable_is_explicit': True, 'appearance_persistence': True, 'keyboard_resize_simulated': True, 'focused_rotation_without_ime_preserves_navigation': True, 'physical_keyboard_evaluated': False, 'api_requests_reached_server': requests, 'javascript_errors': errors, **results}
         (args.output / 'ui-verification.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report))
         browser.close()

@@ -9,5 +9,11 @@
   "android": {
     "allowMixedContent": false,
     "backgroundColor": "#0e0f15"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "disable",
+      "style": "DARK"
+    }
   }
 }

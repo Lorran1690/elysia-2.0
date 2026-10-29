@@ -16,8 +16,8 @@ def wait_js(page, expression, timeout=30000):
         page.wait_for_timeout(100)
 
 
-# The actual Android test driver can dismiss a visible native IME before using
-# bottom navigation. Browser checks keep this unset; production code is untouched.
+# The actual Android driver dismisses input before navigation and form actions.
+# Browser checks keep this unset; production code is untouched.
 _before_navigation = None
 _native_screenshot = None
 
@@ -39,9 +39,13 @@ def screenshot(page, path):
         page.screenshot(path=str(path))
 
 
-def navigate(page, label):
+def dismiss_input():
     if _before_navigation:
         _before_navigation()
+
+
+def navigate(page, label):
+    dismiss_input()
     page.get_by_role('navigation', name='Navegação do telefone', exact=True).get_by_role('button', name=label, exact=True).click()
 
 
@@ -118,6 +122,7 @@ def check_vault_and_tools(page, output, native_android=False):
     navigate(page, 'Biblioteca')
     page.get_by_label('Título do registro', exact=True).fill(title)
     page.get_by_label('Conteúdo do registro', exact=True).fill(content)
+    dismiss_input()
     page.get_by_role('button', name='Salvar registro', exact=True).click()
     page.locator('.vault-list li').filter(has_text=title).wait_for()
     backup = page.evaluate("fetch('/api/vault/backup').then(r=>r.json())")
@@ -142,24 +147,27 @@ def check_vault_and_tools(page, output, native_android=False):
     navigate(page, 'Biblioteca')
     page.locator('.vault-list li').filter(has_text=title).wait_for()
     page.get_by_label('Buscar na biblioteca', exact=True).fill(title)
+    dismiss_input()
     page.get_by_role('button', name='Buscar', exact=True).click()
     expect(page.locator('.vault-list li')).to_have_count(1)
-    if _before_navigation:
-        _before_navigation()
+    dismiss_input()
     screenshot(page, Path(output) / 'library.png')
     navigate(page, 'Desenvolvimento')
     page.get_by_role('tab', name='Utilitários', exact=True).click()
     page.get_by_label('Entrada da ferramenta', exact=True).fill('(17+3)*4')
+    dismiss_input()
     page.get_by_role('button', name='Executar ferramenta', exact=True).click()
     expect(page.get_by_label('Resultado da ferramenta', exact=True)).to_have_text('80')
     page.get_by_label('Ferramenta', exact=True).select_option('json_validate')
     page.get_by_label('Entrada da ferramenta', exact=True).fill('{"móvel":true}')
+    dismiss_input()
     page.get_by_role('button', name='Executar ferramenta', exact=True).click()
     page.get_by_label('Resultado da ferramenta', exact=True).wait_for()
     assert not page.locator('.legacy-module [role=alert]').count()
     page.get_by_role('tab', name='Editor', exact=True).click()
     page.get_by_label('Linguagem do código', exact=True).select_option('json')
     page.get_by_label('Editor de código', exact=True).fill('{"elysia":"android"}')
+    dismiss_input()
     page.get_by_role('button', name='Validar sintaxe', exact=True).click()
     page.locator('.module-notice').wait_for()
     assert not page.locator('.legacy-module [role=alert]').count()

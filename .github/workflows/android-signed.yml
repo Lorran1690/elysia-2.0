@@ -28,7 +28,7 @@ jobs:
         run: |
           test -f artifacts/android/Elysia-Android.apk
           sdkmanager 'build-tools;36.0.0'
-          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs artifacts/android/Elysia-Android.apk
+          python desktop/scripts/verify-android-release.py --aapt2 "$ANDROID_HOME/build-tools/36.0.0/aapt2" --apksigner "$ANDROID_HOME/build-tools/36.0.0/apksigner"
           "$ANDROID_HOME/build-tools/36.0.0/zipalign" -c -P 16 -v 4 artifacts/android/Elysia-Android.apk
           python -m pip install playwright==1.60.0
       - name: Enable emulator hardware acceleration

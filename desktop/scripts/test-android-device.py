@@ -132,6 +132,21 @@ def hide_keyboard(full_height):
 def dismiss_dom_keyboard(page):
     assert_app_foreground()
     page.evaluate("document.activeElement?.blur()")
+    # A blur can race Android's pending IME animation. Wait for the actual
+    # WebView dimensions to settle before computing the next touch target.
+    deadline = time.monotonic() + 15
+    previous_height = None
+    stable_samples = 0
+    while stable_samples < 4:
+        state = page.evaluate("""()=>({height:visualViewport.height,
+          keyboard:document.querySelector('.desktop')?.dataset.keyboardOpen,
+          editing:['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)})""")
+        settled = state['keyboard'] == 'false' and not state['editing']
+        stable_samples = stable_samples + 1 if settled and state['height'] == previous_height else 0
+        previous_height = state['height']
+        if time.monotonic() >= deadline:
+            raise AssertionError('Native keyboard did not settle after input blur: ' + str(state))
+        page.wait_for_timeout(100)
     expect(page.get_by_role('navigation', name='Navegação do telefone', exact=True)).to_be_visible(timeout=15000)
     assert_app_foreground()
 

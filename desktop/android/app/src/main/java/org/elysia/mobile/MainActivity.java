@@ -24,11 +24,15 @@ public class MainActivity extends BridgeActivity {
         controller.setAppearanceLightNavigationBars(false);
         // Keep the WebView itself outside system bars and camera cutouts on
         // portrait, landscape and Android 15/16 edge-to-edge windows. The CSS
-        // still uses dynamic viewport sizing when adjustResize opens the IME.
+        // follows the actual native IME visibility; an orientation resize alone
+        // must not be mistaken for an open keyboard by the web interface.
         ViewCompat.setOnApplyWindowInsetsListener(content, (view, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
             view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, ime.bottom));
+            if (getBridge() != null) {
+                getBridge().triggerWindowJSEvent("elysia-keyboard", "{\"visible\":" + insets.isVisible(WindowInsetsCompat.Type.ime()) + "}");
+            }
             return WindowInsetsCompat.CONSUMED;
         });
         ViewCompat.requestApplyInsets(content);
