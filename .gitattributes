@@ -39,3 +39,6 @@ data/conversation-v3/*.json text eol=lf
 data/conversation-v3/*.gz binary
 data/conversation-v3/SOURCE-* -text -whitespace
 reports/conversation-v3/** text eol=lf
+
+# Keep the generated Windows Gradle launcher executable by cmd.exe.
+desktop/android/gradlew.bat text eol=crlf

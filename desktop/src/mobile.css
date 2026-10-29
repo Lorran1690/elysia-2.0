@@ -1,0 +1,283 @@
+/* The desktop shell and the original presence renderer stay intact. Phone
+   layouts share the same components, data and controls at a narrower viewport. */
+.desktop .mobile-wordmark,
+.desktop .mobile-search,
+.desktop .mobile-nav,
+.desktop .mobile-settings-select { display: none; }
+.mobile-drawer-backdrop { display: none; }
+
+@media (max-width: 760px), (max-width: 1000px) and (max-height: 600px) and (pointer: coarse) {
+  .desktop[data-phone=true] {
+    height: var(--elysia-app-height, 100dvh);
+    min-height: 0;
+    max-width: 100%;
+    isolation: isolate;
+    font-size: calc(15px * var(--ui-scale, 1));
+  }
+  .desktop .shell { width: 100%; min-height: 0; }
+  .desktop .workspace { min-width: 0; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .desktop :is(button, a, input, select, textarea) { -webkit-tap-highlight-color: transparent; }
+  .desktop button { touch-action: manipulation; }
+  .desktop :is(input:not([type=checkbox]):not([type=range]):not([type=color]):not([type=file]), textarea, select) {
+    min-width: 0;
+    max-width: 100%;
+    font-size: max(16px, calc(14px * var(--ui-scale, 1)));
+  }
+  .desktop :is(.secondary, .text-button, .icon-btn, .play-large, .track, .copy-button) { min-height: 44px; }
+  .desktop .icon-btn { min-width: 44px; padding: 10px; }
+  .desktop .topbar {
+    min-height: calc(58px + env(safe-area-inset-top, 0px));
+    height: auto;
+    padding: env(safe-area-inset-top, 0px) max(10px, env(safe-area-inset-right, 0px)) 0 max(10px, env(safe-area-inset-left, 0px));
+    gap: 8px;
+  }
+  .desktop .topbar > .flex { min-width: 0; gap: 3px; }
+  .desktop .topbar :is(.breadcrumb, .local-badge, .desktop-update-button, .desktop-focus-button, .desktop-settings-button) { display: none; }
+  .desktop .top-actions { gap: 2px; flex: none; }
+  .desktop .mobile-search { display: inline-flex; }
+  .desktop .mobile-wordmark { display: flex; gap: 8px; align-items: center; min-width: 0; }
+  .desktop .mobile-wordmark > img { width: 30px; height: 30px; border-radius: 9px; flex: none; }
+  .desktop .mobile-wordmark > span { font-size: 19px; font-weight: 550; letter-spacing: -.6px; line-height: 1.2; }
+  .desktop .mobile-wordmark small { display: block; font-size: 10px; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-top: 3px; }
+  .desktop .app-footer { display: none; }
+  .desktop .mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    flex: none;
+    padding: 5px max(5px, env(safe-area-inset-right, 0px)) calc(5px + env(safe-area-inset-bottom, 0px)) max(5px, env(safe-area-inset-left, 0px));
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    gap: 2px;
+  }
+  .desktop .mobile-nav > button {
+    min-width: 0;
+    min-height: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 2px;
+    background: transparent;
+    border-radius: 11px;
+    color: var(--muted);
+    font-size: clamp(9px, 2.6vw, 12px);
+    line-height: 1.25;
+  }
+  .desktop .mobile-nav > button[aria-current=page] { color: var(--accent); background: var(--accent-soft); }
+  .desktop[data-keyboard-open=true] .mobile-nav { display: none; }
+
+  /* History becomes a modal drawer. Its backdrop covers the shared shell. */
+  .desktop > .sidebar:not(.mobile-drawer) { display: none; }
+  .desktop .mobile-drawer-backdrop { display: block; position: fixed; inset: 0; z-index: 119; background: #03040a99; backdrop-filter: blur(5px); cursor: default; }
+  .desktop .sidebar.mobile-drawer {
+    position: fixed;
+    z-index: 120;
+    inset: 0 auto 0 0;
+    display: flex;
+    width: min(88vw, 360px);
+    height: var(--elysia-app-height, 100dvh);
+    padding: calc(20px + env(safe-area-inset-top, 0px)) 15px calc(16px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 12px 0 60px #0004;
+    min-height: 0;
+  }
+  .desktop .mobile-drawer .wordmark { padding: 0 0 20px 6px; }
+  .desktop .mobile-drawer .wordmark > div { flex: 1; }
+  .desktop .mobile-drawer .wordmark div > span { font-size: 6.5px; }
+  .desktop .mobile-drawer :is(.search-button, .new-chat, nav button, .chat-history > button, .sidebar-bottom > button) { min-height: 48px; font-size: 14px; }
+  .desktop .mobile-drawer > nav { display: none; }
+  .desktop .mobile-drawer > .wordmark,
+  .desktop .mobile-drawer > .search-button,
+  .desktop .mobile-drawer > .new-chat,
+  .desktop .mobile-drawer > .sidebar-section,
+  .desktop .mobile-drawer > .sidebar-bottom { flex: none; }
+  .desktop .mobile-drawer .chat-history { min-height: 0; overscroll-behavior: contain; }
+  .desktop .mobile-drawer .search-button kbd { display: none; }
+  .desktop .mobile-drawer .sidebar-section { padding-top: 15px; font-size: 10px; }
+  .desktop .mobile-drawer .new-chat { margin: 12px 0 15px; }
+  .desktop .mobile-drawer .chat-history > button { padding: 12px 10px; }
+  .desktop .mobile-drawer .local-indicator { font-size: 10px; padding-top: 12px; }
+
+  .desktop .conversation-layout { width: 100%; min-width: 0; min-height: 0; }
+  .desktop .conversation { min-height: 0; width: 100%; }
+  .desktop .conversation-toolbar { padding: 3px 12px; height: 48px; gap: 5px; }
+  .desktop .conversation-toolbar > .text-button { max-width: calc(100% - 100px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; font-size: 13px; text-align: left; }
+  .desktop .conversation-toolbar > .text-button > svg { display: inline-block; vertical-align: middle; margin-left: 4px; }
+  .desktop .conversation-toolbar > .flex { gap: 2px; }
+  .desktop .messages { padding: 0 20px; scroll-padding-bottom: 18px; }
+  .desktop .chat-welcome { padding: clamp(14px, 4vh, 35px) 0 18px; }
+  .desktop .chat-welcome h1 { font-size: clamp(32px, 8.4vw, 43px); letter-spacing: -1.1px; margin: 15px 0; }
+  .desktop .chat-welcome > p { font-size: 14px; max-width: 310px; line-height: 1.65; }
+  .desktop .eyebrow { font-size: 9px; letter-spacing: 1.4px; }
+  .desktop .welcome-cards { grid-template-columns: 1fr; gap: 8px; margin-top: 23px; }
+  .desktop .welcome-cards > button { display: grid; grid-template-columns: 27px 1fr; min-height: 64px; padding: 12px 14px; column-gap: 9px; row-gap: 3px; }
+  .desktop .welcome-cards button > svg { grid-row: span 2; margin: 0; align-self: center; }
+  .desktop .welcome-cards strong { font-size: 13px; }
+  .desktop .welcome-cards span { display: block; grid-column: 2; font-size: 11px; }
+  .desktop .model-note { font-size: 11px; margin-top: 17px; }
+  .desktop .message { padding: 20px 0 10px; overflow-wrap: anywhere; }
+  .desktop .message-author { font-size: 10px; flex-wrap: wrap; gap: 5px 10px; }
+  .desktop .message p { font-size: max(15px, calc(14px * var(--ui-scale, 1))); line-height: 1.75; }
+  .desktop .copy-button { font-size: 12px; }
+  .desktop .thinking { font-size: 12px; flex-wrap: wrap; }
+  .desktop .composer-wrap { padding: 9px 12px 10px; background: var(--bg); }
+  .desktop .composer { padding: 12px 12px 8px; border-radius: 17px; }
+  .desktop .composer textarea { resize: none; min-height: 46px; max-height: 120px; font-size: 16px; }
+  .desktop .composer-bottom { margin-top: 4px; }
+  .desktop .composer-bottom > span { font-size: 10px; }
+  .desktop .send { width: 44px; height: 44px; border-radius: 12px; }
+  .desktop .composer-hint { font-size: 9px; line-height: 1.5; gap: 6px; margin-top: 6px; }
+  .desktop .composer-hint > span { white-space: nowrap; }
+  .desktop .connection-note { font-size: 11px; line-height: 1.5; }
+
+  .desktop .settings-layout { padding: 24px 16px 35px; gap: 24px; width: 100%; min-width: 0; display: flex; flex-direction: column; }
+  .desktop .settings-nav { position: static; min-width: 0; width: 100%; max-height: none; overflow: visible; }
+  .desktop .settings-nav h1 { font-size: 26px; margin: 9px 0 18px; }
+  .desktop .mobile-settings-select { display: flex; align-items: center; gap: 15px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+  .desktop .mobile-settings-select > span { color: var(--muted); font-size: 12px; flex: none; }
+  .desktop .mobile-settings-select select { flex: 1; width: 100%; background: transparent; padding: 6px 0; border: 0; }
+  .desktop .settings-content { max-width: 100%; width: 100%; }
+  .desktop .settings-content h2 { font-size: 26px; margin-top: 10px; }
+  .desktop .section-description { font-size: 14px; line-height: 1.7; }
+  .desktop .settings-card { padding: 4px 16px; margin: 18px 0; min-width: 0; }
+  .desktop .settings-card > h3 { font-size: 15px; line-height: 1.5; padding-top: 14px; }
+  .desktop .setting-row { padding: 17px 0; gap: 14px; min-width: 0; min-height: 54px; }
+  .desktop .setting-row > span { min-width: 0; overflow-wrap: anywhere; }
+  .desktop .setting-row strong { font-size: max(14px, calc(12px * var(--ui-scale, 1))); }
+  .desktop .setting-row small { font-size: 12px; line-height: 1.65; }
+  .desktop .setting-row:has(input[type=range]),
+  .desktop .setting-row:has(select) { flex-direction: column; align-items: stretch; gap: 12px; }
+  .desktop .setting-row input[type=range] { width: 100%; height: 30px; }
+  .desktop .setting-row select { width: 100%; min-width: 0; max-width: 100%; min-height: 44px; }
+  .desktop .toggle { width: 42px; height: 24px; }
+  .desktop .toggle:before { width: 18px; height: 18px; }
+  .desktop .toggle:checked:before { transform: translateX(18px); }
+  .desktop .theme-choices { gap: 8px; margin: 20px 0; }
+  .desktop .theme-choices > button { padding: 9px; font-size: 12px; }
+  .desktop .theme-preview { height: 60px; padding-left: 23px; }
+  .desktop .theme-choices > button > svg { width: 12px; right: 7px; bottom: 12px; }
+  .desktop .secondary { font-size: 13px; line-height: 1.5; padding: 10px 13px; max-width: 100%; }
+  .desktop .small-note { font-size: 12px; line-height: 1.75; }
+  .desktop .shortcut-row { font-size: 12px; gap: 15px; }
+  .desktop .privacy-summary { padding: 17px; gap: 12px; }
+  .desktop .privacy-summary h3 { font-size: 16px; }
+  .desktop .privacy-summary p { font-size: 13px; }
+  .desktop .music-hero { padding: 17px; gap: 12px; }
+  .desktop .music-hero > svg { display: none; }
+  .desktop .music-hero h3 { font-size: 17px; }
+  .desktop .track { padding: 17px 0; }
+  .desktop .track strong { font-size: 14px; }
+  .desktop .track small { font-size: 12px; }
+  .desktop .diagnostics { padding: 15px; font-size: 12px; }
+  .desktop .setting-row:has(.text-button) { flex-wrap: wrap; }
+
+  .desktop .module-page { padding: 26px 16px 40px; min-width: 0; width: 100%; }
+  .desktop .page-heading h1 { font-size: 32px; }
+  .desktop .page-heading p { font-size: 14px; line-height: 1.7; }
+  .desktop .workspace-tabs { min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; gap: 5px; scrollbar-width: thin; padding-bottom: 9px; margin: 22px 0 18px; }
+  .desktop .workspace-tabs > button { white-space: nowrap; flex: none; min-height: 44px; font-size: 13px; padding: 10px 13px; }
+  .desktop .legacy-module { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  .desktop .legacy-module .module-form { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .desktop .legacy-module .module-form > * { min-width: 0; max-width: 100%; }
+  .desktop .legacy-module :is(input, select, textarea, pre, .module-result, .studio-output, .studio-drive, .source-graph, .workbench-node) { min-width: 0; max-width: 100%; }
+  .desktop .legacy-module :is(input, select, textarea) { font-size: 16px; }
+  .desktop .legacy-module .code-editor { font-size: 16px!important; }
+  .desktop .legacy-module .module-form label { font-size: 13px; }
+  .desktop .legacy-module .seg { overflow-x: auto; max-width: 100%; scrollbar-width: thin; }
+  .desktop .legacy-module .seg > button { flex: 0 0 auto; min-height: 44px; padding: 10px 13px; font-size: 13px; }
+  .desktop .legacy-module :is(.pill-btn, .vault-list button) { min-height: 44px; max-width: 100%; padding: 10px 13px; font-size: 13px; line-height: 1.5; white-space: normal; }
+  .desktop .legacy-module .module-actions { flex-wrap: wrap; min-width: 0; }
+  .desktop .legacy-module .module-actions > * { min-width: 0; max-width: 100%; }
+  .desktop .legacy-module .studio-colors { flex-wrap: wrap; gap: 12px; }
+  .desktop .legacy-module .studio-colors input { width: 68px; }
+  .desktop .legacy-module .note-block { padding: 14px; font-size: 13px; }
+  .desktop .legacy-module :is(.vault-list li, .ai-jobs article, .capability-list article) { padding: 16px; }
+  .desktop .legacy-module :is(.workbench-node, .ai-jobs p, .module-result, details, .module-file) { overflow-wrap: anywhere; }
+  .desktop .legacy-module :is(img, video, canvas) { max-width: 100%; }
+  .desktop .legacy-module .studio-output { padding: 14px; }
+  .desktop .legacy-module .studio-drive { padding: 16px; }
+  .desktop .legacy-module .studio-output :is(img, video) { max-height: 50dvh; }
+  .desktop .legacy-module .module-search { flex-wrap: wrap; }
+  .desktop .legacy-module .module-search input { width: 100%; min-height: 44px; flex-basis: 100%; }
+  .desktop .legacy-module .source-graph { overflow: auto; }
+  .desktop .legacy-module pre { overflow-x: auto; white-space: pre; }
+  .desktop .cinema-frame { height: min(72dvh, 520px); min-height: 260px; }
+  .desktop .module-callout { padding: 16px; font-size: 14px; }
+  .desktop .module-callout p { font-size: 13px; }
+
+  .desktop .presence-section-heading { margin-top: 30px; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .desktop .presence-section-heading h3 { font-size: 19px; }
+  .desktop .presence-section-heading p { font-size: 13px; }
+  .desktop .presence-section-heading > .secondary { font-size: 13px; }
+  .desktop .presence-preview-box { height: 300px; }
+  .desktop .presence-pane.presence-preview,
+  .desktop .presence-pane.presence-center { display: flex; min-width: 0; }
+  .desktop .presence-palettes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .desktop .presence-palettes > button { font-size: 12px; min-height: 46px; padding: 9px; }
+  .desktop .presence-color { grid-template-columns: 40px minmax(0, 1fr); width: 100%; font-size: 13px; }
+  .desktop .presence-color input[type=color] { width: 40px; height: 40px; }
+  .desktop .presence-color input:not([type=color]) { font-size: 16px; }
+  .desktop .presence-focus { padding: calc(14px + env(safe-area-inset-top, 0px)) 14px calc(12px + env(safe-area-inset-bottom, 0px)); height: var(--elysia-app-height, 100dvh); }
+  .desktop .presence-focus > header { gap: 12px; align-items: flex-start; }
+  .desktop .presence-focus h2 { font-size: clamp(21px, 5.6vw, 28px); max-width: 230px; margin-top: 7px; }
+  .desktop .presence-focus > header > .secondary { flex: none; padding: 9px 10px; min-height: 44px; }
+  .desktop .presence-focus kbd { display: none; }
+  .desktop .presence-focus > footer { justify-content: center; gap: 9px; margin-top: 5px; }
+  .desktop .presence-modes { width: 100%; justify-content: center; }
+  .desktop .presence-modes > button { min-height: 44px; padding: 9px 13px; flex: 1; font-size: 13px; }
+  .desktop .presence-focus-actions { justify-content: center; gap: 7px; }
+  .desktop .presence-focus-actions .secondary { font-size: 12px; padding: 9px 11px; }
+  .desktop .presence-focus-note { font-size: 10px; line-height: 1.5; margin-top: 8px; }
+
+  .desktop .palette-backdrop { padding: calc(12px + env(safe-area-inset-top, 0px)) 12px max(12px, env(safe-area-inset-bottom, 0px)); }
+  .desktop .command-palette { width: 100%; max-height: calc(var(--elysia-app-height, 100dvh) - 30px); }
+  .desktop .command-palette > label { padding: 10px 12px; gap: 8px; }
+  .desktop .command-palette input { font-size: 16px!important; }
+  .desktop .palette-results button { min-height: 55px; padding: 13px 10px; }
+  .desktop .palette-results strong { font-size: 14px; }
+  .desktop .palette-results small { font-size: 12px; }
+  .desktop .command-palette footer { font-size: 11px; padding: 12px 18px; }
+  .desktop .toast { width: calc(100% - 28px); max-width: 480px; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); padding: 12px 13px; gap: 9px; font-size: 13px; }
+  .desktop .toast > span { min-width: 0; overflow-wrap: anywhere; }
+  .desktop .recovery-banner { padding: 12px 14px; gap: 9px; max-height: 42dvh; overflow: auto; flex-wrap: wrap; }
+  .desktop .recovery-banner > div { min-width: 0; flex-basis: calc(100% - 40px); }
+  .desktop .recovery-banner p { font-size: 12px; }
+}
+
+@media (max-width: 370px) {
+  .desktop .mobile-wordmark > img { display: none; }
+  .desktop .messages { padding-right: 17px; padding-left: 17px; }
+  .desktop .settings-layout, .desktop .module-page { padding-right: 13px; padding-left: 13px; }
+  .desktop .theme-choices > button { padding: 8px; }
+  .desktop .presence-palettes > button { gap: 7px; padding: 8px; font-size: 11px; }
+  .desktop .presence-palettes > button > span { width: 20px; height: 20px; }
+}
+
+@media (max-height: 500px) and (max-width: 1000px) and (pointer: coarse) {
+  .desktop .topbar { min-height: calc(48px + env(safe-area-inset-top, 0px)); }
+  .desktop .mobile-nav { padding-top: 2px; padding-bottom: calc(2px + env(safe-area-inset-bottom, 0px)); }
+  .desktop .mobile-nav > button { min-height: 46px; flex-direction: row; gap: 7px; font-size: 11px; }
+  .desktop .mobile-nav > button > svg { width: 18px; }
+  .desktop .conversation-toolbar { height: 42px; }
+  .desktop .composer-wrap { padding-top: 5px; padding-bottom: 6px; }
+  .desktop .composer textarea { min-height: 28px; }
+  .desktop .composer-hint { display: none; }
+  .desktop .chat-welcome { padding-top: 14px; }
+  .desktop .presence-focus { padding-top: calc(10px + env(safe-area-inset-top, 0px)); }
+  .desktop .presence-focus > header .eyebrow, .desktop .presence-focus-note, .desktop .presence-center .presence-caption { display: none; }
+  .desktop .presence-focus h2 { font-size: 20px; margin-top: 0; }
+  .desktop .presence-focus > footer { flex-wrap: nowrap; }
+  .desktop .presence-modes { width: auto; padding: 3px; }
+  .desktop .presence-modes > button { min-height: 40px; padding: 8px 12px; }
+  .desktop .sidebar.mobile-drawer { padding-top: calc(10px + env(safe-area-inset-top, 0px)); padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .desktop .mobile-drawer .wordmark { padding-bottom: 8px; }
+  .desktop .mobile-drawer .new-chat { margin-top: 7px; margin-bottom: 3px; }
+  .desktop .mobile-drawer .sidebar-section { padding-top: 3px; padding-bottom: 3px; }
+  .desktop .mobile-drawer .sidebar-bottom > button { display: none; }
+  .desktop .mobile-drawer .sidebar-bottom { padding-top: 3px; }
+  .desktop .mobile-drawer .local-indicator { padding-top: 5px; padding-bottom: 0; }
+}
+
+.desktop[data-mobile-edition=true] .studio-drive{display:none}
+
+.desktop[data-mobile-edition=true] .composer-wrap{display:none}

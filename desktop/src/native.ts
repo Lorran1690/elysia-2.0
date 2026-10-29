@@ -1,9 +1,14 @@
+import {mobile,androidNative} from './platform';
+import {mobileRequest,readMobileStore,writeMobileStore} from './mobile-api';
+import {shareAndroidBlob,setupAndroidShell} from './android';
+export {mobile,androidNative} from './platform';
 import {invoke,isTauri} from '@tauri-apps/api/core';
 import {getCurrentWindow} from '@tauri-apps/api/window';
 export const native=isTauri();
 const originalFetch=window.fetch.bind(window);
 export async function request(path:string,payload?:unknown):Promise<any>{const r=await fetch(path,payload===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await r.json();if(!r.ok)throw Error(d.error||'Não foi possível concluir.');return d;}
 async function saveBlobUrl(url:string,name:string){
+ if(androidNative)return shareAndroidBlob(await (await originalFetch(url)).blob(),name);
  const data=await (await originalFetch(url)).arrayBuffer();
  return invoke('save_export',{name,bytes:Array.from(new Uint8Array(data))});
 }
@@ -18,11 +23,21 @@ export function wireWorkspaceFrame(frame:HTMLIFrameElement){
    event.preventDefault();window.dispatchEvent(new KeyboardEvent('keydown',{key:event.key,ctrlKey:event.ctrlKey,metaKey:event.metaKey,shiftKey:event.shiftKey,altKey:event.altKey}));
   }
  });
- if(native&&frame.contentDocument)wireDownloadClicks(frame.contentDocument);
+ if((native||androidNative)&&frame.contentDocument)wireDownloadClicks(frame.contentDocument);
 }
-export function setupNativeBridge(){if(!native)return;
+export function setupNativeBridge(){
+ setupAndroidShell();
+ if(mobile){
+  window.fetch=async(input,init)=>{
+   const path=typeof input==='string'?input:input instanceof Request?input.url:input.toString();
+   const url=new URL(path,location.href);
+   if(url.origin===location.origin&&url.pathname.startsWith('/api/'))return mobileRequest(url.pathname+url.search,init?.method||'GET',typeof init?.body==='string'?init.body:null);
+   return originalFetch(input,init);
+  };
+ }
+ if(!native&&!androidNative)return;
  wireDownloadClicks(document);
- window.fetch=async(input,init)=>{
+ if(native)window.fetch=async(input,init)=>{
   if(typeof input==='string'&&input.startsWith('/api/')){
    const response=await invoke<{status:number;body:number[];mime:string}>('core_request',{path:input,method:init?.method||'GET',body:typeof init?.body==='string'?init.body:null});
    return new Response(new Uint8Array(response.body),{status:response.status,headers:{'Content-Type':response.mime}});
@@ -30,7 +45,7 @@ export function setupNativeBridge(){if(!native)return;
   return originalFetch(input,init);
  };
  // A folder handle exists only after the native picker grants access this session.
- (window as any).showDirectoryPicker=async()=>{
+ if(native)(window as any).showDirectoryPicker=async()=>{
   const folder=await invoke<{token:string;label:string}|null>('pick_export_folder');
   if(!folder)throw new DOMException('Seleção cancelada','AbortError');
   return {name:folder.label,queryPermission:async()=> 'granted',requestPermission:async()=> 'granted',
@@ -42,9 +57,9 @@ export function setupNativeBridge(){if(!native)return;
  const click=HTMLAnchorElement.prototype.click;
  HTMLAnchorElement.prototype.click=function(){if(this.download&&this.href.startsWith('blob:')){const name=this.download;saveBlobUrl(this.href,name).catch(e=>window.dispatchEvent(new CustomEvent('elysia-notice',{detail:String(e)})));return;}click.call(this);};
 }
-export async function readPrivateStore(){if(native)return invoke<string|null>('read_interface_store');return localStorage.getItem('elysia.interface.v2');}
-export async function writePrivateStore(value:string){if(native)return invoke('write_interface_store',{value});localStorage.setItem('elysia.interface.v2',value);}
+export async function readPrivateStore(){if(mobile)return readMobileStore();if(native)return invoke<string|null>('read_interface_store');return localStorage.getItem('elysia.interface.v2');}
+export async function writePrivateStore(value:string){if(mobile)return writeMobileStore(value);if(native)return invoke('write_interface_store',{value});localStorage.setItem('elysia.interface.v2',value);}
 export function downloadJson(value:unknown,name:string){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);}
-export const diagnostics=()=>native?invoke<Record<string,unknown>>('diagnostics'):Promise.resolve({window:'Prévia no navegador',platform:navigator.platform,storage:'Armazenamento deste navegador',version:'2.2.0'});
+export const diagnostics=()=>mobile?Promise.resolve({app:'Elysia Android',platform:androidNative?'Aplicativo Android':'Prévia da edição Android',storage:'IndexedDB privado no dispositivo',version:'2.2.0',neural:'Núcleo Python ainda não portado para Android',media:'Composição local; ComfyUI e modelos não incluídos',voice_core:'Pausado',cloud_sync:false}):native?invoke<Record<string,unknown>>('diagnostics'):Promise.resolve({window:'Prévia no navegador',platform:navigator.platform,storage:'Armazenamento deste navegador',version:'2.2.0'});
 
 export async function setNativeTheme(theme:'dark'|'light'|'system'){if(native)await getCurrentWindow().setTheme(theme==='system'?null:theme);}

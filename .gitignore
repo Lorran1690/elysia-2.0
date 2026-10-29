@@ -56,3 +56,9 @@ desktop/public/assets/
 desktop/public/src/
 desktop/public/vendor/
 elysia-interface-backup-*.json
+
+# Private Android release identity is backed up separately, never committed.
+*.p12
+*.jks
+*.keystore
+*signing-private.zip

@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "actual_android_apk": false,
+  "browser_touch_viewports": [
+    [
+      320,
+      568
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      430,
+      932
+    ],
+    [
+      844,
+      390
+    ]
+  ],
+  "font_125_percent_all_settings": true,
+  "drawer_and_touch_navigation": true,
+  "centered_original_presence_single_renderer": true,
+  "mobile_neural_unavailable_is_explicit": true,
+  "appearance_persistence": true,
+  "keyboard_resize_simulated": true,
+  "physical_keyboard_evaluated": false,
+  "api_requests_reached_server": [],
+  "javascript_errors": [],
+  "indexeddb_vault_persistence": true,
+  "vault_backup_python_sha256_compatible": true,
+  "invalid_restore_preserves_data": true,
+  "calculator_and_json_tools": true,
+  "code_editor_and_json_validation": true,
+  "actual_audio_play_pause_volume": true,
+  "png_composition_generated": true,
+  "png_browser_download": true
+}

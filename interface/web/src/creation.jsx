@@ -102,8 +102,8 @@ const MediaStudioPanel = ({onClose,studioOnly=false}) => {
   </>;
 };
 
-const CodeStudioPanel = ({onClose,editorOnly=false}) => {
-  const [view,setView]=useStateC('Editor'),[language,setLanguage]=useStateC('python'),[title,setTitle]=useStateC('Meu projeto'),[code,setCode]=useStateC(''),[message,setMessage]=useStateC(''),[busy,setBusy]=useStateC(false);
+const CodeStudioPanel = ({onClose,editorOnly=false,initialLanguage='python'}) => {
+  const [view,setView]=useStateC('Editor'),[language,setLanguage]=useStateC(initialLanguage),[title,setTitle]=useStateC('Meu projeto'),[code,setCode]=useStateC(''),[message,setMessage]=useStateC(''),[busy,setBusy]=useStateC(false);
   const [preview,setPreview]=useStateC(false);
   useEffectC(()=>{try{const saved=JSON.parse(localStorage.getItem('elysia.code.draft.v1')||'null');if(saved&&['python','javascript','html','css','json'].includes(saved.language)&&typeof saved.code==='string'&&saved.code.length<=20000){setLanguage(saved.language);setCode(saved.code);}}catch{}},[]);
   const changeCode=value=>{setCode(value);setPreview(false);try{localStorage.setItem('elysia.code.draft.v1',JSON.stringify({language,code:value}));}catch{setMessage('Não foi possível salvar o rascunho. Baixe o arquivo para preservá-lo.');}};
@@ -125,7 +125,7 @@ const CodeStudioPanel = ({onClose,editorOnly=false}) => {
       <label>Nome do projeto<input aria-label="Nome do projeto de código" value={title} maxLength={80} disabled={busy} onChange={e=>setTitle(e.target.value)}/></label>
       <button className="pill-btn" disabled={busy} onClick={template}>Criar modelo inicial</button>
       <label>Código<textarea className="code-editor" aria-label="Editor de código" spellCheck={false} rows={15} maxLength={20000} value={code} disabled={busy} onChange={e=>changeCode(e.target.value)}/></label></div>
-      <p className="muted">{code.split('\n').length} linhas · {code.length} caracteres. O rascunho fica neste navegador; baixe para fazer backup privado.</p>
+      <p className="muted">{code.split('\n').length} linhas · {code.length} caracteres. O rascunho fica neste dispositivo; exporte para fazer backup privado.</p>
       <div className="module-actions"><button className="pill-btn" disabled={!code||busy} onClick={()=>downloadBlob(new Blob([code],{type:'text/plain;charset=utf-8'}),'elysia-codigo-'+stamp()+'.'+ext[language])}>Baixar código</button>
       {['python','json'].includes(language)&&<button className="pill-btn ghost" disabled={busy||!code} onClick={validate}>Validar sintaxe</button>}
       {language==='html'&&<button className="pill-btn ghost" onClick={()=>setPreview(!preview)}>Prévia HTML sem scripts</button>}</div>

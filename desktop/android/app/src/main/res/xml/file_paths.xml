@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Only files explicitly exported by the user can enter the share sheet. -->
+    <cache-path name="elysia_exports" path="exports/" />
+</paths>

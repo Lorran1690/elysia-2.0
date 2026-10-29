@@ -1,0 +1,13 @@
+{
+  "appId": "org.elysia.mobile",
+  "appName": "Elysia",
+  "webDir": "dist",
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#0e0f15"
+  }
+}

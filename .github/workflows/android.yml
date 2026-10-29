@@ -1,0 +1,92 @@
+name: Elysia Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/media-creation]
+    paths:
+      - 'desktop/**'
+      - 'interface/web/**'
+      - '.github/workflows/android.yml'
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile the phone interface and private offline modules
+        working-directory: desktop
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+          npm run build:android
+          npx cap sync android
+          python scripts/android-licenses.py
+      - name: Verify responsive interface in Chromium
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+          npm --prefix desktop run preview -- --port 1420 > /tmp/elysia-mobile-preview.log 2>&1 &
+          python desktop/scripts/test-mobile-ui.py --url http://127.0.0.1:1420 --output reports/android-browser
+      - name: Build release and test APKs
+        working-directory: desktop/android
+        run: |
+          sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace assembleRelease assembleDebug :app:testDebugUnitTest lintRelease
+      - name: Preserve unsigned release and signing tools
+        run: |
+          mkdir -p android-signing-tools/lib64
+          cp "$ANDROID_HOME/build-tools/36.0.0/lib/apksigner.jar" android-signing-tools/apksigner.jar
+          cp "$ANDROID_HOME/build-tools/36.0.0/zipalign" android-signing-tools/zipalign
+          cp "$ANDROID_HOME/build-tools/36.0.0/lib64/libc++.so" android-signing-tools/lib64/libc++.so
+          sha256sum desktop/android/app/build/outputs/apk/release/app-release-unsigned.apk > android-release-unsigned.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Elysia-Android-unsigned
+          path: |
+            desktop/android/app/build/outputs/apk/release/app-release-unsigned.apk
+            android-signing-tools/
+            android-release-unsigned.sha256
+          retention-days: 90
+      - name: Enable emulator hardware acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-elysia-kvm.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run the installed Android WebView app
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          avd-name: elysia-test
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none -no-snapshot
+          script: python desktop/scripts/test-android-device.py --apk desktop/android/app/build/outputs/apk/debug/app-debug.apk --app-id org.elysia.mobile --output reports/android-device
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Elysia-Android-verification
+          path: |
+            reports/android-browser/
+            reports/android-device/
+            desktop/android/app/build/reports/lint-results-release.*
+            desktop/android/app/build/reports/tests/testDebugUnitTest/
+          retention-days: 90
