@@ -93,9 +93,74 @@ def rotate(landscape):
     adb('shell', 'settings', 'put', 'system', 'user_rotation', '1' if landscape else '0')
 
 
+_ui_dump_sequence = 0
+_ui_dump_read_retries = 0
+
+
 def ui_tree():
-    adb('shell', 'uiautomator', 'dump', '/sdcard/elysia-test-window.xml', timeout=30)
-    return ET.fromstring(adb('exec-out', 'cat', '/sdcard/elysia-test-window.xml', binary=True))
+    global _ui_dump_sequence, _ui_dump_read_retries
+    # A cold user image can return an incomplete/error response while Android's
+    # accessibility service starts. Retry fresh reads only; never reuse an older
+    # tree, repeat an app action, or invent a hierarchy after transport failure.
+    for attempt in range(1, 4):
+        _ui_dump_sequence += 1
+        remote = f'/sdcard/elysia-test-window-{_ui_dump_sequence}.xml'
+        raw = b''
+        output = ''
+        try:
+            output = adb('shell', 'uiautomator', 'dump', remote, timeout=20)
+            raw = adb('exec-out', 'cat', remote, timeout=8, binary=True)
+            tree = ET.fromstring(raw)
+            if tree.tag != 'hierarchy':
+                raise ET.ParseError('Unexpected accessibility root: ' + tree.tag)
+            return tree
+        except (ET.ParseError, subprocess.SubprocessError) as failure:
+            _ui_dump_read_retries += 1
+            prefix = args.output / f'ui-read-failure-{_ui_dump_sequence}'
+            prefix.with_suffix('.raw').write_bytes(raw)
+            prefix.with_suffix('.json').write_text(json.dumps({'attempt': attempt, 'remote_path': remote, 'dump_stdout': output, 'error': str(failure)}, indent=2) + '\n')
+            if attempt == 3:
+                raise AssertionError('Android accessibility transport failed after three fresh reads; see ui-read-failure files') from failure
+            time.sleep(.2)
+        finally:
+            try:
+                adb('shell', 'rm', '-f', remote, timeout=5, check=False)
+            except subprocess.SubprocessError:
+                pass
+
+
+def wait_emulator_home(timeout=180):
+    # emulator-runner's boot gate checks only sys.boot_completed. Let the cold
+    # Google Play image finish loading its actual HOME before installing Elysia.
+    deadline = time.monotonic() + timeout
+    component = None
+    while time.monotonic() < deadline:
+        if adb('shell', 'getprop', 'sys.boot_completed') == '1' and 'package:' in adb('shell', 'pm', 'path', 'android'):
+            resolution = adb('shell', 'cmd', 'package', 'resolve-activity', '--brief', '-a', 'android.intent.action.MAIN', '-c', 'android.intent.category.HOME')
+            component = next((line.strip() for line in reversed(resolution.splitlines()) if re.fullmatch(r'[a-z][a-z0-9_.]+/[A-Za-z0-9_.$]+', line.strip())), None)
+            if component:
+                break
+        time.sleep(.25)
+    assert component, 'Android did not resolve a HOME activity after boot and PackageManager readiness'
+    home_package = component.split('/')[0]
+    adb('shell', 'wm', 'dismiss-keyguard')
+    adb('shell', 'input', 'keyevent', '3')
+    stable = 0
+    while time.monotonic() < deadline:
+        windows = adb('shell', 'dumpsys', 'window', 'windows')
+        assert 'Application Not Responding:' not in windows, 'Android HOME has an ANR before app installation; no system dialog was dismissed'
+        booted = adb('shell', 'getprop', 'sys.boot_completed') == '1'
+        packages_ready = 'package:' in adb('shell', 'pm', 'path', 'android')
+        resumed = resumed_activities()
+        focused = any(home_package + '/' in line for line in resumed)
+        tree = ui_tree()
+        visible_home = any(node.attrib.get('package') == home_package and node_bounds(node) for node in tree.iter('node'))
+        stable = stable + 1 if booted and packages_ready and focused and visible_home else 0
+        if stable >= 2:
+            (args.output / 'emulator-ready.json').write_text(json.dumps({'boot_completed': True, 'package_manager_responding': True, 'home_component': component, 'consecutive_valid_home_trees': stable, 'accessibility_fresh_read_retries': _ui_dump_read_retries, 'checked_before_app_installation': True}, indent=2) + '\n')
+            return
+        time.sleep(.25)
+    raise AssertionError('Android HOME did not become responsive before app installation')
 
 
 def node_bounds(node):
@@ -511,8 +576,9 @@ def debug_ui():
 
 
 try:
-    assert adb('get-state') == 'device'
     adb('wait-for-device')
+    assert adb('get-state') == 'device'
+    wait_emulator_home()
     adb('install', '-r', args.apk, timeout=120)
     adb('logcat', '-c')
     adb('shell', 'settings', 'put', 'secure', 'show_ime_with_hard_keyboard', '1')
@@ -522,23 +588,34 @@ try:
     launch()
     package_info = adb('shell', 'dumpsys', 'package', args.app_id)
     checks = release_smoke(package_info) if args.release_smoke else debug_ui()
-    report = {'passed': True, 'actual_android_apk': True, 'release_signed_apk_smoke': args.release_smoke, 'apk_bytes': args.apk.stat().st_size, 'apk_sha256': hashlib.file_digest(args.apk.open('rb'), 'sha256').hexdigest(), 'app_id': args.app_id, 'android_api': adb('shell', 'getprop', 'ro.build.version.sdk'), 'network_disabled_commands': ['svc wifi disable', 'svc data disable'], 'neural_generation_evaluated': False, 'realistic_ai_video_evaluated': False, **checks}
+    report = {'passed': True, 'actual_android_apk': True, 'accessibility_fresh_read_retries': _ui_dump_read_retries, 'release_signed_apk_smoke': args.release_smoke, 'apk_bytes': args.apk.stat().st_size, 'apk_sha256': hashlib.file_digest(args.apk.open('rb'), 'sha256').hexdigest(), 'app_id': args.app_id, 'android_api': adb('shell', 'getprop', 'ro.build.version.sdk'), 'network_disabled_commands': ['svc wifi disable', 'svc data disable'], 'neural_generation_evaluated': False, 'realistic_ai_video_evaluated': False, **checks}
     (args.output / 'device-verification.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report))
 except BaseException as failure:
+    (args.output / 'failure.json').write_text(json.dumps({'exception': str(failure)}, indent=2) + '\n')
+    diagnostic_errors = []
+    captures = {
+        'failure-device.png': lambda: adb('exec-out', 'screencap', '-p', binary=True),
+        'failure-ui.xml': lambda: ET.tostring(ui_tree(), encoding='utf-8'),
+        'failure-logcat.txt': lambda: adb('logcat', '-d', '-t', '1000'),
+        'failure-activity.txt': lambda: adb('shell', 'dumpsys', 'activity', 'activities'),
+        'failure-window.txt': lambda: adb('shell', 'dumpsys', 'window', 'windows'),
+        'failure-input-method.txt': lambda: adb('shell', 'dumpsys', 'input_method'),
+    }
+    for name, capture in captures.items():
+        try:
+            value = capture()
+            (args.output / name).write_bytes(value if isinstance(value, bytes) else value.encode('utf-8'))
+        except Exception as diagnostic_failure:
+            diagnostic_errors.append({'capture': name, 'error': str(diagnostic_failure)})
     try:
-        screen('failure-device.png')
-        (args.output / 'failure-ui.xml').write_bytes(ET.tostring(ui_tree(), encoding='utf-8'))
-        (args.output / 'failure-logcat.txt').write_text(adb('logcat', '-d', '-t', '1000'))
-        (args.output / 'failure-activity.txt').write_text(adb('shell', 'dumpsys', 'activity', 'activities'))
-        (args.output / 'failure-window.txt').write_text(adb('shell', 'dumpsys', 'window', 'windows'))
-        (args.output / 'failure-input-method.txt').write_text(adb('shell', 'dumpsys', 'input_method'))
-        pid = adb('shell', 'pidof', args.app_id).split()
+        pid = adb('shell', 'pidof', args.app_id, check=False).split()
         if pid:
             (args.output / 'failure-app-logcat.txt').write_text(adb('logcat', '-d', '--pid=' + pid[0]))
-        (args.output / 'failure.json').write_text(json.dumps({'exception': str(failure)}, indent=2) + '\n')
-    except Exception:
-        pass
+    except Exception as diagnostic_failure:
+        diagnostic_errors.append({'capture': 'app-logcat', 'error': str(diagnostic_failure)})
+    if diagnostic_errors:
+        (args.output / 'failure-diagnostic-errors.json').write_text(json.dumps(diagnostic_errors, indent=2) + '\n')
     raise
 finally:
     try:
