@@ -114,9 +114,9 @@ def node_point(node):
     return (left + right) // 2, (top + bottom) // 2
 
 
-def find_node(label, tree=None):
+def find_node(label, tree=None, node_class=None):
     tree = tree if tree is not None else ui_tree()
-    return next((n for n in tree.iter('node') if label in [n.attrib.get('text'), n.attrib.get('content-desc')] and node_bounds(n) and n.attrib.get('enabled') == 'true'), None)
+    return next((n for n in tree.iter('node') if label in [n.attrib.get('text'), n.attrib.get('content-desc')] and node_bounds(n) and n.attrib.get('enabled') == 'true' and (node_class is None or n.attrib.get('class') == node_class)), None)
 
 
 def swipe_content_up():
@@ -129,11 +129,11 @@ def swipe_content_down():
     adb('shell', 'input', 'swipe', width // 2, int(height * .36), width // 2, int(height * .76), '280')
 
 
-def tap_label(label, scroll=False, timeout=60):
+def tap_label(label, scroll=False, timeout=60, node_class=None):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         tree = ui_tree()
-        node = find_node(label, tree)
+        node = find_node(label, tree, node_class=node_class)
         if node is not None:
             adb('shell', 'input', 'tap', *node_point(node))
             return
@@ -383,7 +383,7 @@ def release_smoke(package_info):
     wait_accessibility('Fechar visualização central')
     screen('release-presence.png')
     tap_label('Fechar visualização central')
-    tap_label('Biblioteca')
+    tap_label('Biblioteca', node_class='android.widget.Button')
     full_height = webview_height()
     canary = 'AndroidReleasePrivateCanary' + uuid.uuid4().hex[:8]
     canary_content = 'SyntheticPrivateCanaryData'
@@ -395,15 +395,11 @@ def release_smoke(package_info):
     tap_label('Salvar registro', scroll=True)
     native_form_checkpoint('after-save')
     wait_saved_canary(canary, canary_content)
-    tap_label('Conversas')
-    tap_label('Biblioteca')
-    tap_label(canary, scroll=True)
-    wait_accessibility(canary_content, scroll=True)
     adb('shell', 'am', 'force-stop', args.app_id)
     adb('install', '-r', args.apk, timeout=120)
     launch()
     wait_accessibility('Biblioteca')
-    tap_label('Biblioteca')
+    tap_label('Biblioteca', node_class='android.widget.Button')
     tap_label(canary, scroll=True)
     wait_accessibility(canary_content, scroll=True)
     screen('release-reinstalled-library.png')
