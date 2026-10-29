@@ -3,7 +3,8 @@
 Aplicativo Android com a interface da Elysia adaptada ao telefone: navegação
 inferior, histórico recolhível, configurações para toque, teclado e rotação,
 áreas seguras e visualização central de orbes e avatares. Android 7/API24 ou mais
-recente. Os avatares, orbes, ícone aprovado e músicas originais são preservados.
+recente, com Android System WebView atualizado. A validação usa Android 15/API35
+emulado. Os avatares, orbes, ícone aprovado e músicas originais são preservados.
 
 ## Recursos locais
 

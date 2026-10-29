@@ -12,6 +12,7 @@ import re
 import subprocess
 import time
 import urllib.request
+import uuid
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -97,17 +98,30 @@ def ui_tree():
     return ET.fromstring(adb('exec-out', 'cat', '/sdcard/elysia-test-window.xml', binary=True))
 
 
-def node_point(node):
+def node_bounds(node):
     match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.attrib.get('bounds', ''))
     if not match:
-        raise AssertionError('No bounds for accessibility node: ' + str(node.attrib))
+        return None
     left, top, right, bottom = map(int, match.groups())
+    return (left, top, right, bottom) if right > left and bottom > top else None
+
+
+def node_point(node):
+    bounds = node_bounds(node)
+    if not bounds:
+        raise AssertionError('No visible bounds for accessibility node: ' + str(node.attrib))
+    left, top, right, bottom = bounds
     return (left + right) // 2, (top + bottom) // 2
 
 
 def find_node(label, tree=None):
     tree = tree if tree is not None else ui_tree()
-    return next((n for n in tree.iter('node') if label in [n.attrib.get('text'), n.attrib.get('content-desc')]), None)
+    return next((n for n in tree.iter('node') if label in [n.attrib.get('text'), n.attrib.get('content-desc')] and node_bounds(n) and n.attrib.get('enabled') == 'true'), None)
+
+
+def swipe_content_up():
+    width, height = physical_size()
+    adb('shell', 'input', 'swipe', width // 2, int(height * .74), width // 2, int(height * .33), '280')
 
 
 def tap_label(label, scroll=False, timeout=60):
@@ -119,11 +133,32 @@ def tap_label(label, scroll=False, timeout=60):
             adb('shell', 'input', 'tap', *node_point(node))
             return
         if scroll:
-            match = re.search(r'(\d+)x(\d+)', adb('shell', 'wm', 'size'))
-            width, height = map(int, match.groups())
-            adb('shell', 'input', 'swipe', width // 2, int(height * .74), width // 2, int(height * .33), '280')
+            swipe_content_up()
         time.sleep(.25)
     raise AssertionError('Android accessibility label not found: ' + label)
+
+
+def find_labelled_edittext(label, tree):
+    # Chromium's native accessibility tree can expose the visible HTML label
+    # separately from its unnamed EditText, even with the DOM aria-label intact.
+    for container in tree.iter('node'):
+        labels = [child for child in container if label in [child.attrib.get('text'), child.attrib.get('content-desc')] and node_bounds(child)]
+        fields = [child for child in container if child.attrib.get('class') == 'android.widget.EditText']
+        if labels and len(fields) == 1 and node_bounds(fields[0]) and fields[0].attrib.get('enabled') == 'true':
+            return fields[0]
+    return None
+
+
+def tap_field(label, timeout=60):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        node = find_labelled_edittext(label, ui_tree())
+        if node is not None:
+            adb('shell', 'input', 'tap', *node_point(node))
+            return
+        swipe_content_up()
+        time.sleep(.25)
+    raise AssertionError('Native field associated with visible label not found: ' + label)
 
 
 def webview_height():
@@ -169,12 +204,14 @@ def dismiss_dom_keyboard(page):
     assert_app_foreground()
 
 
-def wait_accessibility(label, timeout=60):
+def wait_accessibility(label, timeout=60, scroll=False):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         tree = ui_tree()
         if find_node(label, tree) is not None:
             return tree
+        if scroll:
+            swipe_content_up()
         time.sleep(.3)
     raise AssertionError('Android UI did not expose: ' + label)
 
@@ -272,12 +309,13 @@ def release_smoke(package_info):
     tap_label('Fechar visualização central')
     tap_label('Biblioteca')
     full_height = webview_height()
-    canary = 'AndroidReleasePrivateCanary'
-    tap_label('Título do registro', scroll=True)
+    canary = 'AndroidReleasePrivateCanary' + uuid.uuid4().hex[:8]
+    canary_content = 'SyntheticPrivateCanaryData'
+    tap_field('Título')
     adb('shell', 'input', 'text', canary)
     hide_keyboard(full_height)
-    tap_label('Conteúdo do registro', scroll=True)
-    adb('shell', 'input', 'text', 'SyntheticPrivateCanaryData')
+    tap_field('Conteúdo')
+    adb('shell', 'input', 'text', canary_content)
     hide_keyboard(full_height)
     tap_label('Salvar registro', scroll=True)
     # The save notice is above the form and can be outside Android's visible
@@ -285,12 +323,14 @@ def release_smoke(package_info):
     tap_label('Conversas')
     tap_label('Biblioteca')
     tap_label(canary, scroll=True)
+    wait_accessibility(canary_content, scroll=True)
     adb('shell', 'am', 'force-stop', args.app_id)
     adb('install', '-r', args.apk, timeout=120)
     launch()
     wait_accessibility('Biblioteca')
     tap_label('Biblioteca')
     tap_label(canary, scroll=True)
+    wait_accessibility(canary_content, scroll=True)
     screen('release-reinstalled-library.png')
     rotate(True)
     time.sleep(1)
