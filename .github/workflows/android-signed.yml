@@ -40,7 +40,10 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
-          target: google_apis
+          # Chromium forces WebView debugging on eng/userdebug Android images,
+          # irrespective of the application's production/debuggable flag:
+          # https://chromium.googlesource.com/chromium/src/+/124.0.6367.219/android_webview/glue/java/src/com/android/webview/chromium/SharedStatics.java#87
+          target: google_apis_playstore
           arch: x86_64
           profile: pixel_5
           avd-name: elysia-release

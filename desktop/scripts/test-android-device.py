@@ -217,12 +217,54 @@ def app_page(browser):
     raise AssertionError('The bundled mobile app did not load in its Android WebView')
 
 
-def release_smoke(package_info):
-    assert not re.search(r'(?:pkgFlags|flags)=\[[^\]]*\bDEBUGGABLE\b', package_info), 'Production APK is debuggable'
+def release_debug_snapshot(stage, package_info):
     pid = adb('shell', 'pidof', args.app_id).split()[0]
+    assert pid.isdigit(), 'Invalid Android app PID: ' + pid
     sockets = adb('shell', 'cat', '/proc/net/unix')
-    assert 'webview_devtools_remote_' + pid not in sockets, 'Production WebView exposes debugging'
+    socket_name = 'webview_devtools_remote_' + pid
+    matching = [line for line in sockets.splitlines() if line.split() and line.split()[-1].removeprefix('@') == socket_name]
+    prefix = args.output / ('release-debugging-' + stage)
+    prefix.with_suffix('.package.txt').write_text(package_info)
+    prefix.with_suffix('.unix-sockets.txt').write_text(sockets)
+    evidence = {'app_pid': pid, 'android_build_type': adb('shell', 'getprop', 'ro.build.type'),
+                'android_ro_debuggable': adb('shell', 'getprop', 'ro.debuggable'),
+                'exact_socket_name': socket_name, 'matching_socket_lines': matching,
+                'exact_debug_socket_present': bool(matching), 'http_discovery': {}}
+    prefix.with_suffix('.json').write_text(json.dumps(evidence, indent=2) + '\n')
+    if matching:
+        # Discover whether an already-exposed native socket serves DevTools.
+        # This never enables debugging or attaches to a production WebView.
+        try:
+            adb('forward', 'tcp:9225', 'localabstract:' + socket_name, timeout=10)
+        except Exception as failure:
+            evidence['http_discovery']['forward'] = {'error': str(failure)}
+        else:
+            try:
+                for endpoint in ['/json/version', '/json/list']:
+                    try:
+                        with urllib.request.urlopen('http://127.0.0.1:9225' + endpoint, timeout=3) as response:
+                            evidence['http_discovery'][endpoint] = {'status': response.status, 'body': response.read(65536).decode('utf-8', errors='replace')}
+                    except Exception as failure:
+                        evidence['http_discovery'][endpoint] = {'error': str(failure)}
+            finally:
+                adb('forward', '--remove', 'tcp:9225', check=False)
+    prefix.with_suffix('.json').write_text(json.dumps(evidence, indent=2) + '\n')
+    return evidence
+
+
+def release_smoke(package_info):
+    initial_debugging = release_debug_snapshot('launch', package_info)
     wait_accessibility('Biblioteca')
+    ready_debugging = release_debug_snapshot('ui-ready', adb('shell', 'dumpsys', 'package', args.app_id))
+    # Chromium 124 forces DevTools on eng/userdebug OS builds, independently
+    # of the application flag. A strict production check needs a user OS image.
+    # https://chromium.googlesource.com/chromium/src/+/124.0.6367.219/base/android/java/src/org/chromium/base/BuildInfo.java#373
+    for snapshot in [initial_debugging, ready_debugging]:
+        assert snapshot['android_build_type'] == 'user', ('Production smoke requires an Android user build', snapshot)
+        assert snapshot['android_ro_debuggable'] == '0', ('Production smoke requires ro.debuggable=0', snapshot)
+    assert not re.search(r'(?:pkgFlags|flags)=\[[^\]]*\bDEBUGGABLE\b', package_info), 'Production APK is debuggable'
+    assert not initial_debugging['exact_debug_socket_present'], 'Production WebView exposes an exact debug socket during launch; see release-debugging-launch.json'
+    assert not ready_debugging['exact_debug_socket_present'], 'Production WebView exposes an exact debug socket after UI readiness; see release-debugging-ui-ready.json'
     screen('release-portrait.png')
     tap_label('Centralizar orbe ou avatar')
     wait_accessibility('Fechar visualização central')

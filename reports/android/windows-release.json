@@ -1,0 +1,9 @@
+{
+  "verified_ci_run": "https://github.com/Lorran1690/elysia-2.0/actions/runs/40894178458",
+  "source_commit": "d44aab78a5cd66a4ace8f549a66704aef1c78686",
+  "installer_url": "https://github.com/Lorran1690/elysia-2.0/releases/download/native-d44aab78a5cd/Elysia-Setup-x64.exe",
+  "installer_bytes": 151681322,
+  "installer_sha256": "543f97d19f6c4ec8245fce785f02e5327db0bbe969aa8ae3528904f8c6af2a15",
+  "evidence": "Successful installed Windows UI/installer CI and GitHub published asset metadata",
+  "installed_on_owner_pc": false
+}
