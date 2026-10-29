@@ -34,6 +34,7 @@ class GatewayTests(unittest.TestCase):
         for token in [None, 'wrong']:
             self.assertEqual(self.call('POST','/api/chat',payload,token)[0],401)
         self.assertEqual(self.call('POST','/api/chat',payload,'a'*43,origin='https://attacker.invalid')[0],401)
+        self.assertEqual(self.call('HEAD','/index.html')[0],405)
         self.assertEqual(self.core.calls,[])
     def test_authenticated_chat_and_private_routes(self):
         payload={'messages':[{'role':'user','content':'Synthetic test'}]}

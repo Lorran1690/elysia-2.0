@@ -35,6 +35,11 @@ class PhoneHandler(Handler):
         self.send_header('Content-Length', '0')
         self.end_headers()
 
+    def do_HEAD(self):
+        self.send_response(405)
+        self.send_header('Content-Length', '0')
+        self.end_headers()
+
     def do_GET(self):
         if not self.allowed(): return self.json_response(401, {'error': 'Conexão não autorizada.'})
         if not self.route_allowed('GET'): return self.json_response(404, {'error': 'Operação não disponível.'})
