@@ -1,0 +1,30 @@
+name: Publish Android installer download
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/media-creation]
+    paths: ['.github/workflows/android-download.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify installer and publish attachment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          info=json.loads(Path('artifacts/android/latest.json').read_text())
+          apk=Path('artifacts/android/Elysia-Android.apk')
+          assert info['build']==15
+          assert apk.stat().st_size==info['apk']['bytes']
+          assert hashlib.file_digest(apk.open('rb'),'sha256').hexdigest()==info['apk']['sha256']
+          PY
+          if ! gh release view android-v2.2.0-15 >/dev/null 2>&1; then
+            gh release create android-v2.2.0-15 --verify-tag --title 'Elysia Android 2.2.0 — build 15' --notes 'Instalador Android assinado. Baixe Elysia-Android.apk e abra pelo gerenciador de Downloads. Conexão ao computador configurada em Sistema. Núcleo próprio experimental; computador e HTTPS privado necessários para conversa e geração por IA.'
+          fi
+          gh release upload android-v2.2.0-15 artifacts/android/Elysia-Android.apk artifacts/android/Elysia-Android.sha256 --clobber
