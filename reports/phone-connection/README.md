@@ -95,3 +95,18 @@ no equipamento do proprietário é iniciar o gateway e configurar o HTTPS privad
 na VPN. A conversa pelo modelo real foi avaliada no navegador com transporte
 HTTPS; a geração por GPU e a ligação entre os aparelhos do proprietário não foram
 executadas nesta sessão.
+
+## Download no telefone
+
+[Baixar Elysia-Android.apk](https://github.com/Lorran1690/elysia-2.0/releases/download/android-v2.2.0-15/Elysia-Android.apk).
+Abra o link no Chrome, aguarde o download e toque no arquivo pelo aplicativo
+Arquivos → Downloads. Se o Android solicitar, permita a instalação para o
+navegador ou gerenciador de arquivos usado. Instale por cima da versão anterior.
+
+Em 30/10/2026, o download de Release foi conferido com HTTP 200,
+`application/vnd.android.package-archive` e
+`Content-Disposition: attachment; filename=Elysia-Android.apk`.
+Ele contém o mesmo APK build 15 já validado. O link raw anterior retornava
+`application/octet-stream` sem indicação de anexo; isso pode dificultar o uso
+em navegadores internos. A mensagem de erro do telefone ainda não foi recebida,
+portanto essa diferença não confirma a causa específica no aparelho.

@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-30",
+  "url": "https://github.com/Lorran1690/elysia-2.0/releases/download/android-v2.2.0-15/Elysia-Android.apk",
+  "http_status": 200,
+  "content_type": "application/vnd.android.package-archive",
+  "content_disposition": "attachment; filename=Elysia-Android.apk",
+  "bytes": 11390489,
+  "sha256": "0a0e36a9f8aef616efee9f9ced8066b7172774d0d6b9acc8105140f417d47b33",
+  "matches_verified_signed_apk": true,
+  "owner_phone_error_diagnosed": false
+}

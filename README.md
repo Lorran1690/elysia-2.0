@@ -2,7 +2,7 @@
 
 ## Elysia para Android
 
-[Baixar Elysia-Android.apk](https://raw.githubusercontent.com/Lorran1690/elysia-2.0/refs/heads/feature/media-creation/artifacts/android/Elysia-Android.apk) · [Guia Android](desktop/ANDROID.md).
+[Baixar Elysia-Android.apk](https://github.com/Lorran1690/elysia-2.0/releases/download/android-v2.2.0-15/Elysia-Android.apk) · [Guia Android](desktop/ANDROID.md).
 
 Interface para telefone com navegação por toque, rotação, biblioteca privada,
 ferramentas locais, editor, composição de mídia e visualização central dos orbes
